@@ -24,7 +24,7 @@ Website resmi `https://starpointgarage.com/` untuk layanan premium motorcycle ca
 2. Konfirmasi tarif, kebijakan DP, jadwal kerja, serta gratis antar-jemput dengan admin jika terjadi perubahan.
 3. Ulasan, statistik rating, dan promo lama tidak dinyatakan sebagai data real-time.
 4. Nomor WhatsApp saat ini tertulis `6281345115758`; ubah pada link dan script jika nomor bisnis berganti.
-5. Gambar yang tersedia: `public/assets/store.webp` dan `public/assets/app-showcase.webp`. Foto galeri premium lama dan logo final belum tersedia sebagai asset repository.
+5. Gambar yang tersedia: `public/assets/store.webp` dan `public/assets/app-showcase.webp`. Foto galeri premium lama belum tersedia sebagai asset repository. Logo historis telah dipulihkan sebagai `public/assets/starpoint-logo.webp`.
 6. Form booking tidak melakukan pembayaran maupun membuat reservasi otomatis. Semua slot dikonfirmasi admin via WhatsApp.
 
 ## Perawatan
