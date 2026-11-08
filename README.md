@@ -39,3 +39,11 @@ Logo resmi di header, footer, dan favicon mengikuti gambar yang diunggah pemilik
 - Dipakai untuk hero, empat layanan utama, dan galeri delapan layanan lainnya.
 - Background `services-archive.webp` versi screenshot resolusi 280×168 telah dihapus dari seluruh referensi CSS/HTML yang aktif.
 - Gambar ini adalah visual katalog aplikasi, tidak secara otomatis membuktikan hasil pengerjaan suatu unit pelanggan.
+
+## Akun member di website
+- Halaman pendaftaran dan login: `/member.html` (sumber utama: `public/member.html`).
+- Website menggunakan Edge Function `member-auth` Supabase yang juga digunakan aplikasi Member. Tidak ada database atau akun kedua.
+- Frontend hanya memakai *publishable* API key, tanpa service role. Username, email, nomor WhatsApp, password, duplikasi, dan pembatasan percobaan diproses backend.
+- Password dan token hasil login tidak disimpan ke localStorage atau dikirim ke WhatsApp. Halaman sukses menampilkan identitas akun terverifikasi; untuk riwayat, poin, dan booking member lanjutkan ke portal aplikasi, kemudian masuk dengan akun yang sama (sesi lintas domain tidak dibagikan otomatis).
+- Pemulihan password: `/reset-password.html`, memakai SDK resmi Supabase di browser dan akses recovery dari email, dengan versi dependency yang dipin.
+- Semua ini berjalan di Cloudflare static assets dalam `public/` tanpa VPS. Simpan kesamaan file root dan `public/`.
