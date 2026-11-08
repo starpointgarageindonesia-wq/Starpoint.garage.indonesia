@@ -4,7 +4,7 @@ const PUBLIC_CLIENT_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
 const AUTH_ENDPOINT=SUPABASE_ORIGIN+'/functions/v1/member-auth';
 const $=id=>document.getElementById(id);
 const messages={
- INVALID_USERNAME:'Username hanya boleh terdiri dari 4–24 huruf, angka, titik, atau garis bawah.',
+ INVALID_USERNAME:'Username hanya boleh terdiri dari 4 sampai 24 huruf, angka, titik, atau garis bawah.',
  INVALID_EMAIL:'Masukkan alamat email yang valid.', PHONE_REQUIRED:'Nomor WhatsApp wajib diisi.',
  INVALID_PHONE:'Format nomor WhatsApp tidak valid.',WEAK_PASSWORD:'Password minimal 8 karakter dan mengandung huruf serta angka.',
  USERNAME_TAKEN:'Username sudah dipakai akun lain. Silakan gunakan username berbeda.',
@@ -43,7 +43,7 @@ function showMember(member,wasCreated){
  $('successHeading').textContent=wasCreated?'SELAMAT DATANG, RIDER.':'WELCOME BACK, RIDER.';
  $('successText').textContent=wasCreated?'Akun Starpoint Garage Member berhasil dibuat dan tersimpan di sistem yang sama dengan aplikasi.':'Akun member berhasil diverifikasi.';
  $('memberCode').textContent=String(member.member_code||'Belum tersedia');
- $('memberUsername').textContent=String(member.username||'—');
+ $('memberUsername').textContent=String(member.username||'Belum tersedia');
  $('memberStatus').textContent=member.status==='active'?'Aktif':'Hubungi admin';
  // Access and refresh tokens returned by member-auth are intentionally never persisted or placed in URLs.
  window.scrollTo({top:0,behavior:'smooth'});
@@ -70,26 +70,26 @@ $('registerForm').addEventListener('submit',async event=>{
  if(!/^\+?[0-9][0-9\s-]{7,18}$/.test(phone)){notice(messages.INVALID_PHONE);return}
  if(password.length<8||password.length>128||!/[a-z]/i.test(password)||!/\d/.test(password)){notice(messages.WEAK_PASSWORD);return}
  if(password!==confirm){notice('Konfirmasi password belum sama.');return}
- const b=$('regSubmit');setBusy(b,true,'BUAT AKUN MEMBER ↗');
+ const b=$('regSubmit');setBusy(b,true,'BUAT AKUN MEMBER ');
  try{const data=await send('register',{username,email,phone,password});form.reset();showMember(data.member||{},true)}
  catch(e){notice(e.message||'Pendaftaran gagal. Silakan coba lagi.')}
- finally{setBusy(b,false,'BUAT AKUN MEMBER ↗')}
+ finally{setBusy(b,false,'BUAT AKUN MEMBER ')}
 });
 $('loginForm').addEventListener('submit',async event=>{
  event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;clearNotice();
  const username=$('loginUser').value.trim(),password=$('loginPassword').value;
- const b=$('loginSubmit');setBusy(b,true,'MASUK MEMBER ↗');
+ const b=$('loginSubmit');setBusy(b,true,'MASUK MEMBER ');
  try{const data=await send('login',{username,password});$('loginPassword').value='';showMember(data.member||{},false)}
  catch(e){notice(e.message||'Login gagal. Silakan coba lagi.')}
- finally{setBusy(b,false,'MASUK MEMBER ↗')}
+ finally{setBusy(b,false,'MASUK MEMBER ')}
 });
 $('forgotOpen').addEventListener('click',()=>{$('forgotPanel').hidden=!$('forgotPanel').hidden;clearNotice();if(!$('forgotPanel').hidden)$('forgotEmail').focus()});
 $('forgotForm').addEventListener('submit',async event=>{
  event.preventDefault();if(!event.currentTarget.reportValidity())return;clearNotice();
- const b=$('forgotSubmit');setBusy(b,true,'KIRIM TAUTAN RESET ↗');
+ const b=$('forgotSubmit');setBusy(b,true,'KIRIM TAUTAN RESET ');
  try{await send('forgot_password',{email:$('forgotEmail').value.trim().toLowerCase()});notice('Jika email terdaftar, tautan reset password akan dikirim. Periksa Inbox dan Spam.',true)}
  catch(e){notice(e.message||'Tautan reset belum berhasil dikirim.')}
- finally{setBusy(b,false,'KIRIM TAUTAN RESET ↗')}
+ finally{setBusy(b,false,'KIRIM TAUTAN RESET ')}
 });
 $('backToForm').addEventListener('click',()=>{$('successPanel').hidden=true;$('authContent').hidden=false;setMode('login')});
 $('year').textContent=String(new Date().getFullYear());
