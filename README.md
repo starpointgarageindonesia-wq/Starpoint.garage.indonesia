@@ -40,10 +40,13 @@ Logo resmi di header, footer, dan favicon mengikuti gambar yang diunggah pemilik
 - Background `services-archive.webp` versi screenshot resolusi 280×168 telah dihapus dari seluruh referensi CSS/HTML yang aktif.
 - Gambar ini adalah visual katalog aplikasi, tidak secara otomatis membuktikan hasil pengerjaan suatu unit pelanggan.
 
-## Akun member di website
-- Halaman pendaftaran dan login: `/member.html` (sumber utama: `public/member.html`).
-- Website menggunakan Edge Function `member-auth` Supabase yang juga digunakan aplikasi Member. Tidak ada database atau akun kedua.
-- Frontend hanya memakai *publishable* API key, tanpa service role. Username, email, nomor WhatsApp, password, duplikasi, dan pembatasan percobaan diproses backend.
-- Password dan token hasil login tidak disimpan ke localStorage atau dikirim ke WhatsApp. Halaman sukses menampilkan identitas akun terverifikasi; untuk riwayat, poin, dan booking member lanjutkan ke portal aplikasi, kemudian masuk dengan akun yang sama (sesi lintas domain tidak dibagikan otomatis).
-- Pemulihan password: `/reset-password.html`, memakai SDK resmi Supabase di browser dan akses recovery dari email, dengan versi dependency yang dipin.
-- Semua ini berjalan di Cloudflare static assets dalam `public/` tanpa VPS. Simpan kesamaan file root dan `public/`.
+## Member di Website (integrasi aplikasi penuh)
+- Halaman utama tetap berisi layanan, katalog harga, foto, galeri, lokasi, ulasan, FAQ, dan booking WhatsApp. Tombol **Member** berada di header tepat di sebelah kontrol bahasa ID/EN, bukan di menu utama.
+- Halaman `public/member.html` / `member.html` adalah salinan teroptimasi dari HTML **Supabase Edge Function `member-app`** yang digunakan APK Member. Semua tampilan inti dan alur register, login, booking, status pengerjaan, riwayat, poin, voucher, notifikasi, QR Member, profil, dan kendaraan menggunakan kode aplikasi yang sama.
+- Foto katalog WebP tetap **file identik** dari aplikasi; 12 gambar base64 di HTML diganti referensi statis `/assets/app-services/*.webp` yang sudah ada sehingga halaman lebih cepat. Logo dan visual lain tetap mengikuti aplikasi.
+- Browser berkomunikasi langsung dengan Supabase `member-auth`, PostgREST RPC, dan Storage menggunakan *publishable* API key dan token user. **Jangan menaruh service-role/secret key di file publik.**
+- Sesi login aplikasi website disimpan dalam `localStorage` domain `starpointgarage.com` oleh kode Member asli (`spg_member_session`). Sesi dari APK berbeda origin dan tidak otomatis ikut login, tetapi akun, booking, status, poin, riwayat, dan data Supabase tetap satu sumber.
+- Deep link `/member.html?mode=daftar` membuka tab Daftar, sedangkan `/member.html` dan `/member.html?mode=masuk` membuka tab Masuk. Seluruh alur tetap diproses fungsi asli Member.
+- `reset-password.html` adalah halaman pemulihan email. *Native bridge* `window.StarpointNative` hanya berjalan di APK; browser memakai fallback bawaan untuk fitur yang mendukungnya.
+- **Sinkronisasi versi UI:** HTML website adalah snapshot dari `member-app` pada saat deployment. Jika Edge Function aplikasi berubah di masa depan, salinan website perlu diperbarui dari sumber yang sama agar tetap identik. Data tidak disalin dan selalu dibaca/ditulis langsung di Supabase.
+- Tidak ada skema database, Edge Function, akun, atau transaksi pelanggan yang diubah dalam pekerjaan ini.
