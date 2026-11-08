@@ -406,6 +406,14 @@ h1,.display,.section-title,.intro-quote,.final-cta h2,.gallery-caption b,.addres
 .card-button::after{content:none!important;display:none!important}
 .rider-tile h3{margin-top:9px}.mini-feature,.book-benefit{gap:0}.step h3{margin-top:8px}
 
+
+/* The Member portal is separate from the site menu and next to the language toggle. */
+.member-button{display:inline-flex;align-items:center;justify-content:center;flex:none;min-height:42px;padding:10px 18px;border:1px solid #ee505c;border-radius:40px;background:#d62838;color:#fff!important;font:850 12px/1 'DM Sans',Inter,Arial,sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 5px 18px #d6283838;transition:background .2s ease,transform .2s ease}
+.member-button:hover,.member-button:focus-visible{background:#f13d4f;transform:translateY(-1px)}
+@media(max-width:1190px){.member-button{min-height:39px;padding:9px 14px;font-size:11px}}
+@media(max-width:780px){.member-button{margin-left:auto;min-height:36px;padding:9px 12px;font-size:11px}.language-toggle{margin-left:0!important}.header-inner{gap:8px}.brand-image{width:154px}.menu-button{order:5}}
+@media(max-width:400px){.member-button{min-height:34px;padding:8px 10px;font-size:10px}.brand-image{width:129px}.language-toggle{padding:7px 8px;font-size:9px;gap:3px}.header-inner{gap:5px}}
+@media(max-width:360px){.brand-image{width:109px}.member-button{padding:8px 9px;font-size:9px}.language-toggle{padding:6px 7px}.menu-button{padding:8px;font-size:10px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"AutomotiveBusiness","name":"Starpoint Garage","url":"https://starpointgarage.com/","image":"https://starpointgarage.com/assets/store.webp","telephone":"+6281345115758","description":"Premium motorcycle wash, paint correction, detailing, coating dan perawatan kendaraan di Surabaya.","address":{"@type":"PostalAddress","streetAddress":"Jl. Raya Kendangsari Industri No. 58B, Kutisari, Tenggilis Mejoyo","addressLocality":"Surabaya","addressRegion":"Jawa Timur","postalCode":"60291","addressCountry":"ID"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"18:00"}],"currenciesAccepted":"IDR"}</script>
 </head>
@@ -416,7 +424,7 @@ h1,.display,.section-title,.intro-quote,.final-cta h2,.gallery-caption b,.addres
   <div class="w header-inner">
     <a class="logo" href="#top" aria-label="Starpoint Garage, kembali ke atas"><img class="brand-image" src="/assets/starpoint-official.svg" alt="Logo resmi Star Point Garage" width="1280" height="409"></a>
     <button type="button" class="menu-button" id="menuButton" aria-controls="mainNav" aria-expanded="false">☰ MENU</button>
-    <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="#layanan" data-i18n="services">Layanan</a><a href="#mengapa" data-i18n="standards">Keunggulan</a><a href="#galeri" data-i18n="gallery">Galeri</a><a href="#aplikasi" data-i18n="app">Aplikasi</a><a href="/member.html" class="member-nav-link" aria-label="Daftar atau masuk member Starpoint Garage">Member</a><a href="#ulasan" data-i18n="reviews">Ulasan</a><a href="#lokasi" data-i18n="location">Lokasi</a><a class="nav-cta" href="#booking" data-i18n="bookNow">BOOKING SEKARANG </a></nav><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch website language" aria-pressed="false"><b id="langId">ID</b><span aria-hidden="true">/</span><b id="langEn">EN</b></button>
+    <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="#layanan" data-i18n="services">Layanan</a><a href="#mengapa" data-i18n="standards">Keunggulan</a><a href="#galeri" data-i18n="gallery">Galeri</a><a href="#aplikasi" data-i18n="app">Aplikasi</a><a href="#ulasan" data-i18n="reviews">Ulasan</a><a href="#lokasi" data-i18n="location">Lokasi</a><a class="nav-cta" href="#booking" data-i18n="bookNow">BOOKING SEKARANG </a></nav><a href="/member.html" class="member-button" aria-label="Buka portal Member Starpoint Garage">Member</a><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch website language" aria-pressed="false"><b id="langId">ID</b><span aria-hidden="true">/</span><b id="langEn">EN</b></button>
   </div>
 </header>
 <main id="main">
