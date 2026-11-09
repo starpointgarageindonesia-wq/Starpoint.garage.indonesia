@@ -72,7 +72,8 @@ a{color:#f6d27f}
       page = page.replace(pattern, function (_, prefix) { return prefix + "'" + path + "'"; });
     });
     page = page.replace(/<head>/i,
-      '<head><meta name="robots" content="noindex,nofollow">' +
+      '<head><meta name="spg-ui-source" content="live-supabase">' +
+      '<meta name="robots" content="noindex,nofollow">' +
       '<meta name="referrer" content="strict-origin-when-cross-origin">' +
       '<link rel="icon" type="image/svg+xml" href="/favicon.svg">');
     page = page.replace(/<\/head>/i, websiteFixes + '</head>');
