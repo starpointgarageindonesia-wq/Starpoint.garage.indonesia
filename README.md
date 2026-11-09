@@ -40,20 +40,19 @@ Logo resmi di header, footer, dan favicon mengikuti gambar yang diunggah pemilik
 - Background `services-archive.webp` versi screenshot resolusi 280×168 telah dihapus dari seluruh referensi CSS/HTML yang aktif.
 - Gambar ini adalah visual katalog aplikasi, tidak secara otomatis membuktikan hasil pengerjaan suatu unit pelanggan.
 
-## Member di Website (integrasi aplikasi penuh)
-- Halaman utama tetap berisi layanan, katalog harga, foto, galeri, lokasi, ulasan, FAQ, dan booking WhatsApp. Tombol **Member** berada di header tepat di sebelah kontrol bahasa ID/EN, bukan di menu utama.
-- Halaman `public/member.html` / `member.html` adalah salinan teroptimasi dari HTML **Supabase Edge Function `member-app`** yang digunakan APK Member. Semua tampilan inti dan alur register, login, booking, status pengerjaan, riwayat, poin, voucher, notifikasi, QR Member, profil, dan kendaraan menggunakan kode aplikasi yang sama.
-- Foto katalog WebP tetap **file identik** dari aplikasi; 12 gambar base64 di HTML diganti referensi statis `/assets/app-services/*.webp` yang sudah ada sehingga halaman lebih cepat. Logo dan visual lain tetap mengikuti aplikasi.
-- Browser berkomunikasi langsung dengan Supabase `member-auth`, PostgREST RPC, dan Storage menggunakan *publishable* API key dan token user. **Jangan menaruh service-role/secret key di file publik.**
-- Sesi login aplikasi website disimpan dalam `localStorage` domain `starpointgarage.com` oleh kode Member asli (`spg_member_session`). Sesi dari APK berbeda origin dan tidak otomatis ikut login, tetapi akun, booking, status, poin, riwayat, dan data Supabase tetap satu sumber.
-- Deep link `/member.html?mode=daftar` membuka tab Daftar, sedangkan `/member.html` dan `/member.html?mode=masuk` membuka tab Masuk. Seluruh alur tetap diproses fungsi asli Member.
-- `reset-password.html` adalah halaman pemulihan email. *Native bridge* `window.StarpointNative` hanya berjalan di APK; browser memakai fallback bawaan untuk fitur yang mendukungnya.
-- **Sinkronisasi versi UI:** HTML website adalah snapshot dari `member-app` pada saat deployment. Jika Edge Function aplikasi berubah di masa depan, salinan website perlu diperbarui dari sumber yang sama agar tetap identik. Data tidak disalin dan selalu dibaca/ditulis langsung di Supabase.
-- Tidak ada skema database, Edge Function, akun, atau transaksi pelanggan yang diubah dalam pekerjaan ini.
+## Member di Website (sinkronisasi aktif GitHub + Supabase)
+- Website utama tetap berada di `/` dengan katalog, layanan, galeri, lokasi, FAQ, dan WhatsApp. Tombol **Member** di header tetap terpisah dan berada tepat di sisi kontrol ID/EN.
+- **Sumber tunggal tampilan Member:** Supabase Edge Function `member-app`. `public/member.html` dan `member.html` berisi *bootloader* kecil yang mengambil HTML terbaru langsung dari Edge Function setiap kali halaman Member dibuka atau dimuat ulang. Tidak perlu lagi menyalin HTML APK ke GitHub setelah setiap perubahan UI pada Supabase.
+- Browser mengunduh HTML dengan CORS dari endpoint publik `member-app`, mengganti base URL khusus Edge Function agar sesuai domain `starpointgarage.com`, menyesuaikan header dan viewport web, serta mempertahankan deep link `?mode=daftar`.
+- Kedua belas foto katalog dari `SERVICE_IMG` pada HTML aktif diganti pada saat pemuatan dengan **aset WebP yang sama** di `/assets/app-services/*.webp`. Jika ada gambar/fitur baru pada APK, kode Member lainnya tetap diambil utuh dari sumber Supabase, sementara optimasi aset perlu ditinjau ulang bila pemetaan berubah.
+- **Fallback:** `public/member-backup.html` / `member-backup.html` menyimpan snapshot web lengkap yang terakhir diketahui. Jika layanan UI Supabase tidak dapat diambil, browser otomatis mengarahkan pengguna ke versi tersebut (dan menyediakan tautan cadangan). Fallback tetap membutuhkan koneksi ke backend Supabase untuk login dan data.
+- Browser berinteraksi dengan `member-auth`, PostgREST RPC, dan Supabase Storage menggunakan publishable key dan token pengguna. **Service-role/secret API key tidak disimpan di GitHub atau browser.**
+- Sesi login pada domain website memakai `localStorage` `spg_member_session` milik kode Member; APK berbeda origin dan mungkin meminta login tersendiri, tetapi keduanya membaca/menulis akun, booking, progres, poin, voucher, riwayat, dan data yang sama di Supabase.
+- `reset-password.html` tetap menjadi URL resmi pemulihan password, sesuai redirect pada `member-auth`. Tidak ada skema database, Edge Function, akun, transaksi, atau histori pelanggan yang diubah untuk mekanisme sinkronisasi ini.
+- **Batasan:** perubahan UI Supabase langsung diterima saat kunjungan/muat ulang halaman Member berikutnya, bukan otomatis mengganti kode di tab yang sudah terbuka. Peluncuran perubahan backend yang merusak kompatibilitas tetap harus diuji. Jika fungsi `member-app` gagal, snapshot cadangan dipakai sampai sumber kembali tersedia.
 
-## Pemeriksaan kesamaan Member website dan APK
-- Pemeriksaan `node scripts/check-member-parity.mjs` membandingkan HTML lengkap `public/member.html` dengan halaman aktif Supabase Edge Function `member-app`.
-- Pengecualian hanya untuk metadata khusus browser, pemilihan gambar katalog WebP lokal, serta deep link daftar pada website; seluruh JavaScript utama dan alur Member harus tetap identik dengan aplikasi.
-- Pemeriksaan memastikan tombol Member tetap terpisah di sebelah bahasa, 12 gambar katalog tersedia, serta `index.html`/`member.html` root sama dengan berkas di `public/`.
-- Workflow `.github/workflows/member-parity.yml` dijalankan ketika file terkait berubah, terjadwal harian, dan bisa dijalankan manual dari GitHub Actions. Jika gagal, cek perubahan Edge Function lalu sesuaikan kedua salinan HTML secara hati-hati.
-- Pemeriksaan ini **tidak otomatis menimpa** kode website, tidak menyentuh database, tidak mengubah akun, dan tidak menghapus riwayat pelanggan. Kegagalan pengecekan bukan berarti akun atau booking telah bermasalah.
+## Pengecekan integrasi Member
+- Pemeriksaan `node scripts/check-member-parity.mjs` memverifikasi kesamaan berkas root/produksi, tombol Member di samping bahasa, keberadaan fallback, 12 gambar katalog WebP, dan sintaks pemuat.
+- Pengecekan menarik HTML aktif `member-app` melalui GET tanpa autentikasi pelanggan, menguji optimasi dan penyesuaian HTML beserta skripnya, lalu memverifikasi CORS `member-auth` untuk domain website. **Tidak membuat akun, booking, transaksi, atau perubahan database.**
+- Workflow `.github/workflows/member-parity.yml` menjalankan pemeriksaan saat berkas terkait berubah, setiap hari, serta atas permintaan manual. Keberhasilan otomasi perlu diperiksa melalui status GitHub Actions.
+- Pengujian end-to-end pendaftaran, login, booking, progres pekerjaan, dan pembayaran membutuhkan akun tester. Pemeriksaan statis/CORS saja bukan bukti transaksi sukses.
