@@ -50,3 +50,10 @@ Logo resmi di header, footer, dan favicon mengikuti gambar yang diunggah pemilik
 - `reset-password.html` adalah halaman pemulihan email. *Native bridge* `window.StarpointNative` hanya berjalan di APK; browser memakai fallback bawaan untuk fitur yang mendukungnya.
 - **Sinkronisasi versi UI:** HTML website adalah snapshot dari `member-app` pada saat deployment. Jika Edge Function aplikasi berubah di masa depan, salinan website perlu diperbarui dari sumber yang sama agar tetap identik. Data tidak disalin dan selalu dibaca/ditulis langsung di Supabase.
 - Tidak ada skema database, Edge Function, akun, atau transaksi pelanggan yang diubah dalam pekerjaan ini.
+
+## Pemeriksaan kesamaan Member website dan APK
+- Pemeriksaan `node scripts/check-member-parity.mjs` membandingkan HTML lengkap `public/member.html` dengan halaman aktif Supabase Edge Function `member-app`.
+- Pengecualian hanya untuk metadata khusus browser, pemilihan gambar katalog WebP lokal, serta deep link daftar pada website; seluruh JavaScript utama dan alur Member harus tetap identik dengan aplikasi.
+- Pemeriksaan memastikan tombol Member tetap terpisah di sebelah bahasa, 12 gambar katalog tersedia, serta `index.html`/`member.html` root sama dengan berkas di `public/`.
+- Workflow `.github/workflows/member-parity.yml` dijalankan ketika file terkait berubah, terjadwal harian, dan bisa dijalankan manual dari GitHub Actions. Jika gagal, cek perubahan Edge Function lalu sesuaikan kedua salinan HTML secara hati-hati.
+- Pemeriksaan ini **tidak otomatis menimpa** kode website, tidak menyentuh database, tidak mengubah akun, dan tidak menghapus riwayat pelanggan. Kegagalan pengecekan bukan berarti akun atau booking telah bermasalah.
