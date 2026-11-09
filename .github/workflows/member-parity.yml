@@ -1,17 +1,19 @@
-name: Check Starpoint Member parity
+name: Check Starpoint Member integration
 on:
   push:
     branches: [main]
     paths:
       - index.html
       - member.html
+      - member-backup.html
       - public/index.html
       - public/member.html
+      - public/member-backup.html
       - public/assets/app-services/**
       - scripts/check-member-parity.mjs
       - .github/workflows/member-parity.yml
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -20,11 +22,11 @@ permissions:
 jobs:
   check-member:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check production Member integration
+      - name: Check live Supabase Member UI and browser integration
         run: node scripts/check-member-parity.mjs
