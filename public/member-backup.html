@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="id">
+<head><style id="spg-native-single-splash">html.spg-native #spg-startup{display:none!important}</style><script id="spg-native-splash-guard">(function(){try{if(window.StarpointNative)document.documentElement.classList.add("spg-native")}catch(e){}})();</script><style id="spg-member-instant-home-52">
+html.spg-restoring-session #authScreen{display:none!important}
+html.spg-restoring-session #mainScreen.hidden{display:none!important}
+</style><script id="spg-member-session-before-paint">(function(){try{var s=JSON.parse(localStorage.getItem('spg_member_session')||'null');if(s&&s.access_token)document.documentElement.classList.add('spg-restoring-session');}catch(e){}})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505"><meta name="robots" content="noindex,nofollow"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<base href="/">
+<meta name="app-ui-version" content="2026.11.02.96-restore-original-promo-hero">
+<title>Member | Starpoint Garage</title>
+<style>
+:root{--bg:#050505;--panel:#0e0e0f;--panel2:#151517;--panel3:#1c1c1f;--line:#2a2a2e;--red:#ff2433;--red2:#b60d18;--txt:#f7f7f8;--muted:#94949a;--soft:#c9c9ce;--ok:#2bd28b;--warn:#ffad32;--blue:#4a8cff;--radius:20px;--shadow:0 22px 60px rgba(0,0,0,.42)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--txt);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overscroll-behavior:none}body{background:radial-gradient(circle at 15% -5%,rgba(255,36,51,.16),transparent 26%),radial-gradient(circle at 100% 25%,rgba(255,36,51,.07),transparent 32%),linear-gradient(#050505,#080809);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}button,input,select,textarea{font:inherit}.hidden{display:none!important}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh}.screen{min-height:100vh}.auth{display:grid;place-items:center;padding:24px 20px 48px}.auth-card{width:100%;max-width:460px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(19,19,21,.98),rgba(7,7,8,.99));border-radius:30px;padding:24px;box-shadow:var(--shadow)}.auth-hero{position:relative;overflow:hidden;border:1px solid #29292d;border-radius:24px;background:linear-gradient(145deg,#151517,#070708);padding:22px;margin-bottom:20px}.auth-hero:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,36,51,.16);filter:blur(24px);right:-90px;top:-120px}.brand{display:flex;align-items:center;gap:14px;position:relative}.brand img{width:112px;height:62px;object-fit:contain;background:#000;border-radius:14px;padding:8px}.brand h1{margin:0;font-size:28px}.brand small{display:block;color:var(--muted);font-weight:700;letter-spacing:.12em;font-size:10px;margin-top:5px}.auth-hero p{position:relative;margin:22px 0 0;color:#cacacf;font-size:14px;line-height:1.55;max-width:310px}.seg{display:grid;grid-template-columns:repeat(2,1fr);gap:5px;border:1px solid var(--line);padding:5px;border-radius:15px;background:#0a0a0b;margin-bottom:14px}.seg button{border:0;background:transparent;color:#8f8f95;border-radius:11px;padding:11px;font-weight:800}.seg button.active{background:linear-gradient(180deg,#ff2d3a,#d91422);color:#fff}.field{display:grid;gap:7px;margin:12px 0}.field label{font-size:12px;color:#bdbdc2;font-weight:750}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#0b0b0c;color:#fff;border-radius:14px;padding:13px 14px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#5a252a;box-shadow:0 0 0 3px rgba(255,36,51,.08)}.btn{border:1px solid var(--line);border-radius:14px;padding:13px 16px;font-weight:850;color:#fff;background:#151517}.btn-primary{border-color:#e92230;background:linear-gradient(180deg,#ff2b39,#d91522)}.btn-dark{background:#171719}.btn-ghost{background:transparent;color:#b7b7bd}.btn-block{width:100%}.auth-msg{min-height:19px;color:#ff7d86;font-size:13px;margin-top:9px}.tiny-link{border:0;background:none;color:#ff5964;font-weight:800;padding:8px 0}.spinner{display:inline-block;width:17px;height:17px;border:2px solid #ffffff55;border-top-color:#fff;border-radius:50%;animation:s .7s linear infinite}@keyframes s{to{transform:rotate(360deg)}}
+.main{padding-bottom:98px}.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;background:rgba(5,5,5,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}.topbar img{width:116px;height:56px;object-fit:contain;background:#000;border-radius:12px;padding:5px}.bell{width:48px;height:48px;border-radius:15px;border:1px solid var(--line);background:#111113;color:#fff;position:relative;font-size:17px;display:grid;place-items:center;padding:0;line-height:0}.bell-count{position:absolute;right:-3px;top:-3px;min-width:18px;height:18px;border-radius:10px;background:var(--red);font-size:10px;display:grid;place-items:center;font-weight:900}.content{padding:20px}.headline{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}.headline h2{font-size:30px;margin:0}.headline p{margin:5px 0 0;color:var(--muted);font-size:14px}.hero{position:relative;overflow:hidden;border:1px solid #4b2024;border-radius:26px;padding:22px;background:linear-gradient(145deg,#1b0d10,#111113 60%,#0a0a0b);box-shadow:0 18px 50px rgba(0,0,0,.25)}.hero:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,36,51,.26),transparent 66%);right:-80px;top:-100px}.hero-kicker{color:#ff7b84;font-weight:850;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.hero h3{font-size:28px;line-height:1.08;margin:8px 0 10px;max-width:78%}.hero p{color:#c3c3c8;margin:0;line-height:1.5;font-size:14px;max-width:78%}.hero-actions{display:flex;gap:9px;margin-top:18px;position:relative;z-index:2}.hero-actions button{flex:1}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 0}.quick{border:1px solid var(--line);background:linear-gradient(180deg,#151517,#0e0e0f);color:#fff;border-radius:18px;padding:14px 8px;text-align:center;min-height:88px}.quick i{display:grid;place-items:center;width:32px;height:32px;margin:0 auto 8px;border-radius:11px;background:#241215;color:#ff5360;font-style:normal;font-weight:900}.quick span{font-size:11px;font-weight:800}.section{margin-top:24px}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}.section-title h3{margin:0;font-size:18px}.section-title button{border:0;background:none;color:#ff5360;font-weight:850}.card{border:1px solid var(--line);background:linear-gradient(180deg,#131315,#0d0d0f);border-radius:20px;padding:17px}.list{display:grid;gap:12px}.row{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:8px 0}.row+.row{border-top:1px solid #252529}.row span{color:#b1b1b7;font-size:13px}.row strong{text-align:right}.meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:6px}.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:850;background:#252529;color:#d9d9dd}.badge.pending,.badge.unpaid{background:#3a2514;color:#ffbe67}.badge.in_progress,.badge.partial{background:#122b4a;color:#78b6ff}.badge.completed,.badge.paid,.badge.confirmed{background:#0e3627;color:#65e5ac}.badge.cancelled,.badge.rejected{background:#3a151a;color:#ff8a93}.tag{display:inline-flex;padding:7px 10px;border-radius:11px;background:#18181b;border:1px solid #303034;color:#d5d5da;font-size:12px}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.status-card{display:grid;gap:12px}.status-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.status-top h4{font-size:18px;margin:0}.status-price{font-size:22px;font-weight:900}.progress{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}.step{height:5px;border-radius:4px;background:#29292d}.step.on{background:linear-gradient(90deg,#ff2634,#f8515b)}.promo{border:1px solid #472126;background:linear-gradient(135deg,#211014,#111113);border-radius:20px;padding:18px;position:relative;overflow:hidden}.promo:after{content:"%";position:absolute;right:15px;top:-20px;font-size:120px;font-weight:950;color:rgba(255,255,255,.035)}.promo strong{display:block;font-size:19px;max-width:78%}.promo p{color:#aaaab0;margin:7px 0 0;font-size:13px;max-width:75%;line-height:1.45}.service-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.service-card h4{margin:0 0 5px;font-size:16px}.service-card p{color:var(--muted);font-size:12px;margin:0;line-height:1.45}.service-price{font-size:15px;font-weight:900}.nav{position:fixed;z-index:30;left:50%;bottom:0;transform:translateX(-50%);width:min(760px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:rgba(7,7,8,.96);backdrop-filter:blur(20px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}.nav button{border:0;background:transparent;color:#7e7e85;padding:7px 3px;font-size:10px;font-weight:800}.nav button i{display:block;font-style:normal;font-size:20px;height:24px;margin-bottom:3px}.nav button.active{color:#fff}.nav button.active i{color:var(--red)}.empty{padding:24px 14px;text-align:center;color:#76767c;border:1px dashed #2a2a2e;border-radius:18px}.refresh{width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:#111113;color:#fff}.search-row{display:grid;grid-template-columns:1fr auto;gap:8px}.search-row input{border:1px solid var(--line);background:#0d0d0f;color:#fff;border-radius:14px;padding:13px}.search-row button{width:48px;border:1px solid var(--line);background:#171719;color:#fff;border-radius:14px}.booking-card h4{margin:0;font-size:17px}.booking-actions{display:flex;gap:8px;margin-top:13px}.booking-actions button{flex:1;padding:11px 10px}.qr-card{text-align:center;border:1px solid #5b2228;background:linear-gradient(180deg,#141416,#09090a);border-radius:28px;padding:22px}.qr-logo{width:150px;height:55px;object-fit:contain;margin-bottom:13px}.qr-frame{background:#fff;border-radius:22px;padding:14px;width:min(300px,88%);margin:0 auto}.qr-frame img{display:block;width:100%;aspect-ratio:1/1}.member-code{font-size:23px;font-weight:950;letter-spacing:.05em;margin:16px 0 5px}.wa-box{margin-top:15px;border:1px solid #244b31;background:#0b2015;border-radius:18px;padding:15px;text-align:left}.wa-box strong{display:block;color:#6fe0a7}.history-card .history-head{display:flex;justify-content:space-between;gap:10px}.spg-home-activity .history-card .history-head>.badge{display:flex;align-items:center;justify-content:center;align-self:flex-start;flex:0 0 auto;box-sizing:border-box;text-align:center;line-height:1.3;max-width:136px;min-height:42px;padding:10px 14px;border-radius:16px;white-space:normal}.history-card h4{margin:0;font-size:17px}.history-card .price{font-size:18px;font-weight:900}.profile-card{display:flex;align-items:center;gap:14px}.avatar{width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,#34181c,#121214);border:1px solid #503036;display:grid;place-items:center;font-size:24px}.profile-card h3{margin:0;font-size:20px}.profile-card p{margin:4px 0 0;color:var(--muted);font-size:13px}.vehicle{display:flex;align-items:center;gap:12px}.vehicle-icon{width:48px;height:48px;border-radius:15px;background:#19191c;display:grid;place-items:center;font-size:22px;border:1px solid #2d2d31}.vehicle-main{flex:1}.vehicle-main strong{display:block}.vehicle-main small{color:var(--muted)}.notice{border:1px solid #423a20;background:#1b180c;border-radius:17px;padding:14px;color:#e9d484;font-size:13px;line-height:1.45}.sheet-wrap{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.68);display:flex;align-items:flex-end;justify-content:center;padding-top:40px}.sheet{width:min(760px,100%);max-height:92vh;overflow:auto;border:1px solid #303034;border-bottom:0;background:linear-gradient(180deg,#171719,#09090a);border-radius:28px 28px 0 0;padding:20px 20px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -20px 60px rgba(0,0,0,.5)}.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.sheet-head h3{margin:0;font-size:21px}.close{width:38px;height:38px;border:1px solid #333337;background:#101012;color:#fff;border-radius:12px;font-size:22px}.sheet-section{margin-top:16px}.service-list{display:grid;gap:8px}.service-option{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:13px;border:1px solid #2d2d31;background:#101012;border-radius:15px}.service-option input{accent-color:var(--red)}.service-option small{display:block;color:var(--muted);margin-top:3px}.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cat-btn{border:1px solid #2c2c30;background:#111113;color:#b8b8bd;border-radius:15px;padding:13px 7px;font-weight:800;font-size:12px}.cat-btn.active{border-color:#ff4652;background:#241216;color:#fff}.toast{position:fixed;z-index:120;left:50%;bottom:100px;transform:translate(-50%,20px);opacity:0;background:#f4f4f5;color:#09090a;border-radius:13px;padding:11px 15px;font-size:13px;font-weight:800;pointer-events:none;transition:.2s;max-width:88%;text-align:center}.toast.show{transform:translate(-50%,0);opacity:1}@media(max-width:430px){.content{padding:17px}.headline h2{font-size:27px}.quick-grid{gap:7px}.quick{min-height:82px;padding:12px 5px}.hero h3,.hero p{max-width:86%}.cat-grid{grid-template-columns:repeat(2,1fr)}}
+
+.icon-svg{width:21px;height:21px;display:block;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}.bell .icon-svg{width:22px;height:22px}.nav button i{display:grid;place-items:center;height:24px;margin-bottom:4px}.nav button i .icon-svg{width:22px;height:22px}.refresh{display:grid;place-items:center}.refresh .icon-svg{width:20px;height:20px}.icon-btn-label{display:inline-flex;align-items:center;gap:8px;justify-content:center}.promo-stack{display:grid;gap:10px}.promo-feature{border:1px solid #59242a;background:linear-gradient(135deg,#271014 0%,#151416 58%,#0b0b0c 100%);border-radius:24px;padding:20px;position:relative;overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.22)}.promo-feature:after{content:"%";position:absolute;right:12px;bottom:-48px;font-size:150px;font-weight:950;color:rgba(255,255,255,.035)}.promo-feature strong{display:block;font-size:21px;max-width:78%;position:relative;z-index:1}.promo-feature p{margin:8px 0 0;color:#b0b0b6;font-size:13px;line-height:1.5;max-width:78%;position:relative;z-index:1}.payment-methods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.payment-methods button{border:1px solid var(--line);background:#121214;color:#a4a4aa;padding:12px;border-radius:14px;font-weight:850}.payment-methods button.active{border-color:#ee2936;background:#261014;color:#fff}.payment-panel{border:1px solid var(--line);background:#0c0c0e;border-radius:20px;padding:15px;margin:12px 0}.qris-pay{background:#fff;border-radius:18px;padding:10px;overflow:hidden}.qris-pay img{display:block;width:100%;height:auto;border-radius:10px}.bank-box{display:grid;gap:12px}.bank-line{display:grid;gap:3px}.bank-line small{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.08em}.bank-line strong{font-size:18px}.copy-row{display:flex;align-items:center;gap:9px}.copy-row strong{flex:1;font-size:21px;letter-spacing:.04em}.pay-pending{margin-top:10px;border:1px solid #59401c;background:#21170a;color:#ffc975;padding:10px 12px;border-radius:13px;font-size:12px;font-weight:750}.profile-card.clean{display:block}.profile-card.clean h3{font-size:22px}.profile-card.clean p{margin-top:5px}.vehicle.clean{padding:17px 18px}.vehicle.clean .vehicle-main{padding-left:0}.section-title button .icon-svg{width:17px;height:17px}.btn .icon-svg{width:18px;height:18px}.account-actions{display:grid;gap:9px}.account-actions .btn{display:flex;align-items:center;justify-content:center;gap:9px}.auth-card .brand h1{font-size:25px}.auth-card .brand small{letter-spacing:.15em}
+
+.points-card{display:block;border:1px solid #5a252a;background:linear-gradient(135deg,#261014,#111113 65%,#0a0a0b);border-radius:24px;padding:20px;margin-bottom:10px;box-shadow:0 18px 50px rgba(0,0,0,.24)}.points-card small{display:block;color:#ff7a84;font-weight:850;font-size:12px;letter-spacing:.06em}.points-card strong{display:block;font-size:32px;line-height:1.05;margin-top:7px}.points-card span{display:block;color:#aaaab0;font-size:13px;margin-top:7px}.point-mark{width:58px;height:58px;border-radius:18px;background:linear-gradient(180deg,#ff2b39,#cf111f);display:grid;place-items:center;font-size:30px;font-weight:950;box-shadow:0 12px 30px rgba(255,36,51,.22)}.point-rule{border:1px solid var(--line);background:#101012;border-radius:16px;padding:12px 14px;color:#c2c2c7;font-size:12px;text-align:center;margin-bottom:15px}.point-rule span{margin:0 8px;color:#5f5f66}.point-recent{display:grid;gap:8px;margin-bottom:16px}.point-recent>div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid #1e1e21;padding:8px 2px;color:#a8a8ae;font-size:12px}.point-recent strong{white-space:nowrap}.point-recent .plus{color:#54df9c}.point-recent .minus{color:#ff6974}.point-potential{display:flex;align-items:center;gap:8px;border:1px solid #4d3d1c;background:#1b160b;color:#efcf86;border-radius:14px;padding:11px 13px;margin:10px 0;font-size:12px;line-height:1.4}.point-potential .icon-svg{width:18px;height:18px;flex:0 0 auto}.btn-whatsapp{background:#0c2419;border-color:#185f3e;color:#65e4a3}.btn-whatsapp .icon-svg{width:20px;height:20px}.account-actions .btn-whatsapp{display:flex;align-items:center;justify-content:center;gap:9px}
+.point-mark,.point-rule{display:none!important}</style>
+
+<style id="starpoint-gold-v6">
+:root{--bg:#070809;--panel:#151719;--panel2:#1b1d20;--panel3:#202226;--line:#34312a;--red:#e5b84f;--red2:#9f711e;--txt:#f8f7f3;--muted:#a7a6a1;--soft:#d7d3c8;--ok:#45d89b;--warn:#e5b84f;--blue:#78a7ff;--gold:#e5b84f;--gold2:#ad7c25}
+html,body{background:#070809}
+body{background-color:#070809;background-image:radial-gradient(circle at 50% -18%,rgba(229,184,79,.11),transparent 27%),linear-gradient(30deg,rgba(255,255,255,.018) 12%,transparent 12.5%,transparent 87%,rgba(255,255,255,.018) 87.5%),linear-gradient(150deg,rgba(255,255,255,.018) 12%,transparent 12.5%,transparent 87%,rgba(255,255,255,.018) 87.5%);background-size:auto,34px 58px,34px 58px;background-position:0 0,0 0,17px 29px}
+.main{padding-bottom:118px}.content{padding:18px 20px 26px}
+.topbar{position:sticky;top:0;z-index:25;min-height:94px;padding:18px 20px 14px;background:rgba(22,24,26,.97);border-bottom:1px solid rgba(229,184,79,.78);backdrop-filter:blur(18px)}
+.member-head{display:grid;gap:3px;min-width:0}.member-head strong{font-size:20px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.member-head span{font-size:12px;color:#e3e0d8}.top-actions{display:flex;align-items:center;gap:8px}.bell,.profile-btn{width:43px;height:43px;border:0;background:transparent;color:#f5f3ed;display:grid;place-items:center;border-radius:14px}.bell:hover,.profile-btn:hover{background:#232527}.profile-btn svg,.bell svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8}
+.headline h2{font-size:27px}.headline p{color:#b1afa9}
+.btn-primary,.seg button.active{color:#15130e;border-color:#d6a53e;background:linear-gradient(135deg,#f2d47d,#d79e30);box-shadow:0 8px 24px rgba(229,184,79,.15)}
+.tiny-link,.section-title button{color:#e6bd5d}.card,.auth-card{border-color:#37332a;background:linear-gradient(180deg,#1c1e21,#111315)}.hero{border-color:#665026;background:linear-gradient(145deg,#251f12,#17191b 55%,#0d0f10)}
+.nav{height:96px;grid-template-columns:repeat(5,1fr);align-items:end;padding:12px 7px calc(10px + env(safe-area-inset-bottom));background:rgba(20,22,24,.985);border-top:1px solid #292b2e;border-radius:24px 24px 0 0;box-shadow:0 -18px 50px rgba(0,0,0,.38)}
+.nav button{position:relative;height:70px;color:#c6c5c0;padding:7px 2px 4px;font-size:11px;font-weight:720}.nav button i{font-size:21px;height:27px;color:#d5d4cf}.nav button.active,.nav button.active i{color:#e7bc54}.nav button.active:after{content:"";position:absolute;width:38px;height:5px;border-radius:4px;background:#e7bc54;left:50%;bottom:-7px;transform:translateX(-50%)}.nav button.qr-main{transform:translateY(-19px);height:82px}.nav button.qr-main i{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin:-9px auto 4px;background:linear-gradient(145deg,#f4d77f,#d8a039);color:#17140e;box-shadow:0 12px 30px rgba(214,160,57,.3)}.nav button.qr-main i svg{width:29px;height:29px}
+.home-banner{min-height:142px;border-radius:20px;overflow:hidden;position:relative;border:1px solid #6d5424;background:#17191b;box-shadow:var(--shadow)}.home-banner:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,7,.94) 0%,rgba(5,6,7,.68) 55%,rgba(5,6,7,.18) 100%)}.home-banner-inner{position:relative;z-index:2;padding:18px;max-width:72%}.home-banner h2{font-size:23px;line-height:1.15;margin:0 0 9px}.home-banner h2 b{color:#e7bc54}.home-banner p{font-size:12px;color:#e3e0d8;line-height:1.45;margin:0 0 13px}.gold-btn{border:0;border-radius:13px;background:linear-gradient(135deg,#f1d279,#d69c2f);color:#17130c;padding:10px 15px;font-weight:850}
+.promo-stack{display:grid;grid-auto-flow:column;grid-auto-columns:88%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:5px}.promo-feature{min-height:190px;scroll-snap-align:start;border:1px solid #6b5225;border-radius:21px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;background-image:linear-gradient(180deg,rgba(8,9,10,.04),rgba(8,9,10,.90));background-size:cover;background-position:center}.promo-feature strong{font-size:22px;line-height:1.1}.promo-feature p{margin:7px 0 0;color:#e4e1d9;max-width:92%}
+.service-strip{display:grid;grid-auto-flow:column;grid-auto-columns:44%;gap:11px;overflow-x:auto;padding:2px 0 7px;scroll-snap-type:x mandatory}.service-mini{scroll-snap-align:start;border:1px solid #806127;background:#17191b;border-radius:17px;overflow:hidden}.service-mini img{width:100%;height:118px;object-fit:cover;display:block}.service-mini-body{padding:12px}.service-mini strong{display:block;font-size:14px;line-height:1.25;min-height:35px}.service-mini span{display:block;color:#e7bc54;font-weight:850;margin-top:8px}
+.reward-tabs,.service-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:18px}.reward-tabs button,.service-tabs button{border:1px solid #383a3c;background:#292b2e;color:#aaa9a5;border-radius:14px;padding:12px 7px;font-weight:800}.reward-tabs button.active,.service-tabs button.active{border-color:#d4a33e;background:linear-gradient(135deg,#efcf73,#d69c2f);color:#17130c}
+.reward-hero{border:1px solid #6a5225;background:linear-gradient(135deg,#201b11,#141618);border-radius:22px;padding:19px}.reward-balance{font-size:38px;font-weight:950;color:#f1ca68;line-height:1}.reward-value{color:#c7c3b7;margin-top:7px}.point-row{display:flex;justify-content:space-between;gap:12px;padding:13px 0}.point-row+.point-row{border-top:1px solid #2f302f}.point-row b.earn{color:#56daa1}.point-row b.redeem{color:#e8bc56}.point-row>div:first-child{flex:1;min-width:0}.point-row>b{flex:0 0 112px;white-space:nowrap;text-align:right;align-self:center}
+.service-search{width:100%;border:1px solid #44413a;background:#303235;color:#fff;border-radius:17px;padding:15px 16px;margin-bottom:13px;outline:none}.service-search:focus{border-color:#c49435}.service-tabs{grid-template-columns:repeat(4,minmax(0,1fr));overflow-x:auto}.service-tabs button{min-width:0;font-size:11px}.services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.service-tile{border:1px solid #8a682a;background:#181a1d;border-radius:19px;overflow:hidden}.service-tile img{width:100%;height:146px;object-fit:cover;display:block}.service-tile-body{padding:12px}.service-tile h4{font-size:15px;line-height:1.25;margin:0 0 6px}.service-tile .duration{color:#a9a7a1;font-size:11px;margin-bottom:9px}.price-list{display:grid;gap:5px}.price-line{display:flex;justify-content:space-between;gap:6px;font-size:10px;color:#c9c6be}.price-line b{color:#e8bd58;font-size:10px}.service-tile .consult{color:#e8bd58;font-weight:850;font-size:12px}.service-tile .book-mini{width:100%;margin-top:10px;border:0;border-radius:11px;background:#282a2d;color:#eee;padding:9px;font-size:11px;font-weight:800}
+.store-map{height:240px;border-radius:22px;background:linear-gradient(rgba(245,245,245,.86),rgba(245,245,245,.86)),url(/assets/store.webp) center/cover;border:1px solid #d6d1c7;display:grid;place-items:center;overflow:hidden}.store-pin{width:64px;height:64px;border-radius:50%;background:#e7bc54;color:#16130d;display:grid;place-items:center;font-size:29px;box-shadow:0 12px 30px rgba(0,0,0,.2)}.store-card{border:1px solid #826329;border-radius:20px;background:#191b1e;overflow:hidden}.store-card img{width:100%;height:185px;object-fit:cover;display:block}.store-card-body{padding:15px}.store-card h3{margin:0 0 7px;font-size:19px}.store-card p{margin:0;color:#c2c0ba;font-size:12px;line-height:1.5}.store-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:14px}
+.account-actions .btn-whatsapp{background:#163322;border-color:#245b3a}
+@media(max-width:420px){.content{padding-left:14px;padding-right:14px}.services-grid{gap:9px}.service-tile img{height:128px}.service-tile-body{padding:10px}.home-banner-inner{max-width:82%}.nav button{font-size:10px}}
+</style>
+<style id="starpoint-revision-20261012">
+.home-first{margin-top:2px}
+.service-mini-body span{display:none!important}.service-mini-body{padding-bottom:13px}.service-mini strong{min-height:auto}
+.price-list{margin-top:10px;padding:10px 11px;border-radius:13px;background:linear-gradient(180deg,#111214,#0c0d0f);border:1px solid rgba(229,184,79,.26);display:grid;gap:7px}
+.price-line{padding:0}.price-line+ .price-line{border-top:1px solid rgba(255,255,255,.055);padding-top:7px}
+.services-grid{align-items:start}.service-tile{height:auto}.service-tile-body{display:block}
+.activity-stack{display:grid;gap:10px;margin-bottom:17px}.activity-card{border:1px solid #414247;border-radius:18px;padding:15px;background:linear-gradient(145deg,#1c1e21,#111315);box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.activity-card.booking-active{border-color:#6d2a2f;background:linear-gradient(145deg,#281114,#171719)}.activity-card.work-active{border-color:#665026;background:linear-gradient(145deg,#251f12,#171719)}
+.activity-kicker{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#e8bd58;margin-bottom:9px}.activity-card h4{margin:0;font-size:15px;line-height:1.3}.activity-link{margin-top:11px;border:0;background:transparent;color:#e8bd58;font-weight:850;padding:4px 0}
+.store-map-live{height:320px;border-radius:22px;overflow:hidden;border:1px solid #5b4b2d;background:#eee}.store-map-live iframe{width:100%;height:100%;border:0;display:block;touch-action:pan-x pan-y}
+.motor-hint{display:block;color:var(--muted);font-size:11px;line-height:1.4;margin-top:6px}.field input[readonly]{background:#17181a;color:#e8bd58;border-color:#4d4229}
+.service-strip{grid-auto-columns:42%}.service-mini img{filter:saturate(.92) contrast(1.03)}
+@media(max-width:430px){.store-map-live{height:285px}.service-strip{grid-auto-columns:46%}}
+</style><style id="external-safe-v11">
+.map-sheet{height:min(58vh,520px);border-radius:18px;overflow:hidden;border:1px solid rgba(232,189,88,.32);background:#101113}
+.map-sheet iframe{width:100%;height:100%;border:0;display:block;touch-action:pan-x pan-y}
+.muted-map{color:var(--muted);font-size:13px;line-height:1.5;margin:8px 0 12px}
+.whatsapp-safe-card{text-align:center}
+.wa-safe-icon{width:58px;height:58px;margin:0 auto 8px;display:grid;place-items:center;border-radius:50%;background:#183d2a;color:#5ee58f}
+.wa-safe-icon svg{width:30px;height:30px}
+.wa-number{font-size:22px;font-weight:900;color:#e8bd58;margin:8px 0}
+.whatsapp-safe-card p{color:var(--muted);font-size:12px;line-height:1.5}
+.whatsapp-safe-card code{font-size:11px}
+</style><style id="spg-work-stage-20261012">
+.spg-work-block{margin:11px 0 9px;padding:11px 12px;border-radius:14px;background:#101113;border:1px solid #303035}
+.spg-work-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:9px;font-size:11px;color:#a4a4ab}
+.spg-work-heading strong{color:#f1f1f1;font-size:11px;text-align:right}
+.spg-work-tracker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.spg-work-step{display:flex;flex-direction:column;min-width:0;gap:6px;color:#77777f}
+.spg-work-dot{height:5px;width:100%;border-radius:8px;background:#35353a}
+.spg-work-label{font-size:10px;line-height:1.25;text-align:center}
+.spg-work-step.spg-current .spg-work-dot{background:#ff6673}
+.spg-work-step.spg-current .spg-work-label{color:#fff;font-weight:850}
+.spg-work-step.spg-done .spg-work-dot{background:#69c99e}
+.spg-work-step.spg-done .spg-work-label{color:#bddecf}
+.spg-work-note{color:#9f9fa6;font-size:11px;margin:6px 0 9px;line-height:1.4}
+</style><style id="spg-auth-brand-logo-only">
+.auth-hero .brand.brand-logo-only{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;gap:8px;text-align:center;margin:0 auto}
+.auth-hero .brand.brand-logo-only img{display:block;width:min(46vw,168px);height:auto;max-height:60px;object-fit:contain;object-position:center;background:transparent;border:0;border-radius:0;padding:0;margin:0 auto;box-shadow:none;image-rendering:auto}
+.auth-hero .brand.brand-logo-only small{display:block;font-size:11px;font-weight:900;letter-spacing:.22em;color:#ff5964;margin:0;text-align:center}
+</style><style id="spg-startup-logo-only-v1">#spg-startup{position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;background:#000;opacity:1;pointer-events:auto;transition:opacity .20s ease}#spg-startup.spg-finished{opacity:0;pointer-events:none}#spg-startup img{width:min(68vw,285px);max-height:140px;height:auto;object-fit:contain;animation:spg-popup-in .32s ease-out both}@keyframes spg-popup-in{from{opacity:.15;transform:scale(.86)}to{opacity:1;transform:scale(1)}}</style>
+<style id="spg-member-revision-20261030-v5">
+.service-home-title{align-items:flex-start}.service-home-title h3{flex:1;min-width:0}.section-title button[data-pagego="services"]{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;white-space:nowrap;padding:5px 0;line-height:1.1}
+.service-mini{appearance:none;width:100%;padding:0;color:var(--txt);text-align:left;font:inherit;cursor:pointer}.service-mini-body{display:grid;gap:5px}.service-mini-body .service-mini-hint{display:block!important;margin:0;color:#e8bd58;font-size:11px;font-weight:800}.service-mini:focus-visible,.service-tile:focus-visible{outline:2px solid #e8bd58;outline-offset:2px}
+.services-head{align-items:center}.service-history-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex:0 0 auto;border:1px solid #7b602b;background:#201b12;color:#efc866;border-radius:13px;padding:10px 12px;font-size:12px;font-weight:900;white-space:nowrap}.service-history-btn .icon-svg{width:17px;height:17px}
+.service-tile{cursor:pointer}.service-tile .book-mini{background:linear-gradient(135deg,#efcf73,#d69c2f);color:#17130c;font-weight:900}
+.service-detail-photo{display:block;width:100%;height:220px;object-fit:cover;border-radius:20px;border:1px solid #6f5629}.service-detail-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:16px}.service-detail-title h2{margin:0;font-size:22px;line-height:1.2}.service-detail-title span{flex:0 0 auto;max-width:42%;color:#d9b75f;background:#211b10;border:1px solid #55421e;border-radius:999px;padding:7px 9px;font-size:10px;font-weight:800;text-align:center}.service-detail-desc{color:#c4c1b9;font-size:13px;line-height:1.6;margin:11px 0 18px}.detail-section-title{font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#a9a59b;margin-bottom:9px}.service-detail-prices{display:grid;border:1px solid #3c3932;border-radius:16px;overflow:hidden;background:#101113}.detail-price-row{display:flex;justify-content:space-between;gap:14px;padding:12px 14px;font-size:13px}.detail-price-row+.detail-price-row{border-top:1px solid #292923}.detail-price-row span{color:#c8c5bd}.detail-price-row strong{color:#edc65f;white-space:nowrap}.service-detail-book{margin-top:15px}
+.history-page-head{align-items:center}.history-count{display:grid;place-items:center;min-width:28px;height:28px;padding:0 8px;border:1px solid #55431f;border-radius:999px;color:#e8bd58;font-size:12px;font-weight:900}
+.booking-summary{display:grid;gap:0}.quote-title{font-size:12px;font-weight:950;letter-spacing:.07em;text-transform:uppercase;color:#e8bd58;padding-bottom:11px;border-bottom:1px solid #2d2c29}.quote-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid #262628;color:#c6c4be;font-size:13px}.quote-row strong{color:#f4f2ec;white-space:nowrap}.quote-row.discount strong{color:#61d9a2}.quote-total{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 0 11px}.quote-total span{font-weight:900}.quote-total strong{font-size:23px;color:#55dda1;white-space:nowrap}.quote-payment-note{display:grid;gap:5px;border:1px solid #6b5225;background:#1c170d;border-radius:14px;padding:12px 13px;color:#ddc579}.quote-payment-note strong{color:#f0cc6b;font-size:13px}.quote-payment-note span{font-size:11px;line-height:1.5}.quote-payment-note.free{border-color:#285c45;background:#10231a;color:#86d8b2}.benefit-note{color:#9f9d96;font-size:11px;line-height:1.5;padding:2px 2px 0}.booking-summary .point-potential{align-items:flex-start}.booking-summary .point-potential div{line-height:1.45}
+.payment-total-card{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid #6c5425;background:linear-gradient(135deg,#211b0f,#111315);border-radius:17px;padding:16px;margin-bottom:12px}.payment-total-card span{color:#c7c1b3;font-size:13px}.payment-total-card strong{font-size:23px;color:#f0c65c;white-space:nowrap}.payment-help{text-align:center;color:#bbb8b0;font-size:12px;line-height:1.5;margin-top:10px}.payment-proof-box{display:grid;gap:8px;border:1px solid #3c3932;background:#111214;border-radius:16px;padding:13px;margin:13px 0}.payment-proof-box label{font-size:13px;font-weight:900}.payment-proof-box input{width:100%;border:1px dashed #755d2c;background:#191a1c;color:#eee;border-radius:12px;padding:11px;font-size:12px}.payment-proof-box small{color:#9f9d96;font-size:11px;line-height:1.45}
+.payment-deadline{display:grid;gap:4px;margin-top:11px;border:1px solid #713137;background:#271316;border-radius:14px;padding:11px 12px}.payment-deadline strong{color:#ff8d96;font-size:19px;font-variant-numeric:tabular-nums;letter-spacing:.02em}.payment-deadline span{color:#caaeb0;font-size:11px;line-height:1.45}.sheet-deadline{margin:0 0 13px}.payment-state{margin-top:11px;border-radius:14px;padding:11px 12px;font-size:12px;line-height:1.45}.payment-state.submitted{border:1px solid #715522;background:#241d10;color:#edcc78}.payment-state.confirmed{border:1px solid #285f47;background:#10261c;color:#74dbae}.cancellation-reason{margin-top:11px;border:1px solid #663038;background:#241216;color:#ff9ea5;border-radius:14px;padding:11px 12px;font-size:12px;line-height:1.45}
+.point-potential{align-items:flex-start}.point-potential .icon-svg{margin-top:1px}
+@media(max-width:430px){.service-home-title{gap:8px}.service-home-title h3{font-size:17px;line-height:1.25}.section-title button[data-pagego="services"]{font-size:12px}.services-head h2,.history-page-head h2{font-size:27px}.service-history-btn{padding:9px 10px}.service-detail-photo{height:190px}.service-detail-title{display:grid}.service-detail-title span{max-width:100%;justify-self:start}.quote-total strong,.payment-total-card strong{font-size:20px}}
+</style>
+<style id="spg-member-revision-20261030-v6">
+.service-home-title{display:flex;align-items:center;gap:10px}
+.service-home-title h3{flex:1 1 auto;min-width:0;font-size:clamp(15px,4.25vw,19px);line-height:1.3;margin:0}
+.service-home-title button[data-pagego="services"]{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:4px;white-space:nowrap;font-size:12px;line-height:1.2;padding:8px 0;min-height:40px}
+.quote-reward{display:flex;align-items:flex-start;gap:10px;margin:12px 0 0;border:1px solid #34302a;border-radius:12px;background:#181714;padding:11px 12px}
+.quote-reward>div{display:flex;flex-direction:column;gap:3px;min-width:0;line-height:1.45}
+.quote-reward strong{display:block;color:#f0d48e;font-size:12px;line-height:1.35}
+.quote-reward span{display:block;color:#c2bdb2;font-size:11px;line-height:1.45}
+.service-detail-desc{overflow-wrap:anywhere;white-space:normal;line-height:1.65}
+.service-tile-body .duration{line-height:1.5}
+@media(max-width:360px){.service-home-title h3{font-size:14px}.service-home-title button[data-pagego="services"]{font-size:11px}}
+</style>
+<style id="spg-qris-premium-62">.payment-panel.qris-panel{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(236,191,97,.44);background:radial-gradient(ellipse at 84% -15%,rgba(230,169,66,.21),transparent 55%),radial-gradient(ellipse at -18% 95%,rgba(180,28,47,.20),transparent 54%),linear-gradient(155deg,#201a18,#0b0b0f 62%,#171214);border-radius:30px;padding:15px;box-shadow:0 22px 52px rgba(0,0,0,.44),inset 0 1px 0 rgba(255,255,255,.07)}.payment-panel.qris-panel:before{content:'';position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,#e4ae5d 32%,#f6dca3 50%,#e4ae5d 68%,transparent);opacity:.72;pointer-events:none}.payment-panel.qris-panel:after{content:'';position:absolute;top:-95px;right:-100px;width:230px;height:230px;border:1px solid rgba(255,211,151,.13);border-radius:50%;box-shadow:0 0 0 23px rgba(255,211,151,.018),0 0 0 46px rgba(255,211,151,.015);pointer-events:none}.payment-panel.qris-panel .qris-pay{position:relative;z-index:1;background:linear-gradient(135deg,#fff,#f8f5f1);border:1px solid rgba(255,255,255,.96);border-radius:27px;padding:7px;overflow:hidden;box-shadow:0 17px 38px rgba(0,0,0,.45),0 4px 9px rgba(0,0,0,.23),inset 0 1px 0 #fff}.payment-panel.qris-panel .qris-pay img{display:block;width:100%;height:auto;border-radius:21px;image-rendering:auto}.payment-panel.qris-panel .payment-help{text-align:center;color:#e5d6c2;font-size:13px;font-weight:650;line-height:1.55;letter-spacing:.01em;padding:15px 6px 4px}.payment-panel.qris-panel .payment-help strong{color:#fff}@media(max-width:430px){.payment-panel.qris-panel{padding:11px;border-radius:25px}.payment-panel.qris-panel .qris-pay{padding:5px;border-radius:23px}.payment-panel.qris-panel .qris-pay img{border-radius:19px}}</style><style id="spg-fixed-bars-20261031">
+#mainScreen.main{padding-top:94px!important;padding-bottom:154px!important}
+#mainScreen > .topbar{position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;width:min(760px,100%)!important;min-height:94px!important;margin:0!important;z-index:65!important}
+#mainScreen > .nav{position:fixed!important;bottom:0!important;left:50%!important;transform:translateX(-50%)!important;width:min(760px,100%)!important;height:112px!important;min-height:112px!important;display:grid!important;align-items:start!important;padding:10px 7px calc(24px + env(safe-area-inset-bottom,0px))!important;z-index:70!important}
+#mainScreen > .nav button{height:66px!important;align-self:start!important}
+</style><style id="spg-promo-carousel-v84">
+.spg-promo-track{width:100%;display:flex;gap:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.spg-promo-track::-webkit-scrollbar{display:none}
+.spg-promo-slide{position:relative;flex:0 0 100%;min-width:100%;width:100%;aspect-ratio:16/9;scroll-snap-align:start;overflow:hidden;background:#111;border:1px solid #66502a;border-radius:20px}
+.spg-promo-slide img{display:block;width:100%;height:100%;object-fit:contain;background:#090909}
+.spg-promo-dots{display:flex;justify-content:center;align-items:center;gap:7px;margin-top:10px;min-height:12px}
+.spg-promo-dot{width:7px;height:7px;border:0;border-radius:999px;padding:0;background:#5e5e63;transition:width .2s,background .2s}
+.spg-promo-dot.active{width:20px;background:#e5bb59}
+</style><style id="spg-qris-refined-v61">
+.payment-panel.qris-panel{
+  isolation:isolate;display:grid;gap:12px;position:relative;
+  margin:2px 0 0;padding:18px 13px 13px;border-radius:30px;
+  overflow:hidden;border:1px solid rgba(244,204,116,.65);
+  background:radial-gradient(circle at 12% 5%,rgba(223,171,77,.23),transparent 36%),
+  radial-gradient(circle at 100% 100%,rgba(230,174,67,.11),transparent 37%),
+  linear-gradient(150deg,#292317 0%,#171719 44%,#101113 100%);
+  box-shadow:0 22px 58px rgba(0,0,0,.52),0 6px 16px rgba(0,0,0,.22),inset 0 1px rgba(255,236,181,.15),inset 0 0 0 1px rgba(0,0,0,.22);
+}
+.payment-panel.qris-panel::before{
+  content:"SCAN UNTUK MEMBAYAR";position:relative;z-index:1;inset:auto;
+  display:block;width:auto;height:auto;margin:0;letter-spacing:.14em;
+  font-size:11px;line-height:1.35;font-weight:850;color:#f0d295;
+  text-align:center;background:none;pointer-events:none;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+.payment-panel.qris-panel::after{
+  content:"";position:absolute;z-index:0;right:-98px;top:-110px;
+  width:230px;height:230px;transform:rotate(36deg);
+  border:1px solid rgba(230,179,84,.23);border-radius:38px;
+  box-shadow:0 0 0 20px rgba(230,179,84,.018),0 0 0 43px rgba(230,179,84,.013);
+  pointer-events:none;
+}
+.payment-panel.qris-panel .qris-pay{
+  position:relative;z-index:1;display:block;padding:8px;
+  margin:0;overflow:hidden;border-radius:27px;
+  background:linear-gradient(135deg,#f1d790 0%,#fff4d2 14%,#fff 28%,#fff 76%,#ebc776 100%);
+  border:1px solid rgba(255,227,159,.9);
+  box-shadow:0 18px 40px rgba(0,0,0,.46),0 0 0 3px rgba(240,197,103,.10),inset 0 1px rgba(255,255,255,.95);
+}
+.payment-panel.qris-panel .qris-pay img{
+  display:block;width:100%;height:auto;max-width:100%;
+  border-radius:20px;background:#fff;image-rendering:auto;
+  box-shadow:0 1px 4px rgba(32,20,9,.11);
+}
+.payment-panel.qris-panel .qris-pay::after{
+  content:"";position:absolute;inset:7px;z-index:2;
+  border-radius:21px;border:1px solid rgba(145,106,40,.16);
+  pointer-events:none;
+}
+.payment-panel.qris-panel .payment-help{
+  display:block;position:relative;z-index:1;box-sizing:border-box;
+  margin:0;padding:12px 14px;border-radius:16px;
+  border:1px solid rgba(229,185,91,.24);
+  background:linear-gradient(180deg,rgba(255,247,217,.075),rgba(255,255,255,.018));
+  color:#f0e4ce;text-align:center;font-size:13px;font-weight:690;
+  line-height:1.5;letter-spacing:.005em;
+  box-shadow:inset 0 1px rgba(255,255,255,.035);
+}
+@media(max-width:430px){
+  .payment-panel.qris-panel{padding:15px 10px 11px;border-radius:25px;gap:10px}
+  .payment-panel.qris-panel .qris-pay{padding:7px;border-radius:23px}
+  .payment-panel.qris-panel .qris-pay img{border-radius:17px}
+  .payment-panel.qris-panel .qris-pay::after{inset:6px;border-radius:18px}
+  .payment-panel.qris-panel .payment-help{font-size:12px;padding:10px 8px;border-radius:14px}
+}
+</style><style id="spg-store-review-20261031">
+.spg-store-review-cta{display:flex;align-items:center;justify-content:center;gap:9px;min-height:58px;margin:13px 0 18px;padding:12px 15px;border-radius:18px;border:1px solid rgba(255,222,139,.7);text-decoration:none;background:linear-gradient(120deg,#f8dc87 0%,#e4aa3b 100%);color:#18130c;font-weight:800;font-size:13px;letter-spacing:-.015em;box-shadow:0 10px 27px rgba(0,0,0,.26),inset 0 1px rgba(255,255,255,.42)}
+.store-actions .spg-store-review-cta{position:relative;width:100%;margin:0;min-height:56px}
+.spg-store-review-cta:active{transform:scale(.992)}
+.spg-store-review-stars{flex:0 0 auto;white-space:nowrap;letter-spacing:0;font-size:13px}
+.spg-store-review-label{flex:1;min-width:0;text-align:center;line-height:1.35}
+.spg-store-review-next{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:26px;font-weight:400;line-height:1}
+@media(max-width:375px){.spg-store-review-cta{gap:6px;padding:11px 9px;font-size:12px}.spg-store-review-stars{font-size:11px}}
+</style><style id="spg-member-static-chrome-75">
+/* FIX: No product cards bleed above the header or below the Android gesture bar. */
+html body #mainScreen .topbar{
+ position:fixed!important;
+ top:max(32px, env(safe-area-inset-top,0px))!important;
+ left:50%!important;
+ transform:translateX(-50%)!important;
+ width:min(760px,100%)!important;
+ min-height:100px!important;
+ padding:18px 20px 14px!important;
+ background:#16181a!important;
+ backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+ z-index:45!important;
+ animation:none!important;
+ transition:none!important;
+}
+html body #mainScreen .topbar::before{
+ content:"";
+ position:absolute;
+ left:0;
+ right:0;
+ bottom:100%;
+ height:max(32px, env(safe-area-inset-top,0px));
+ background:#070809;
+ pointer-events:none;
+}
+html body #mainScreen {
+ padding-top:calc(100px + max(32px, env(safe-area-inset-top,0px)))!important;
+ padding-bottom:calc(148px + env(safe-area-inset-bottom,0px))!important;
+}
+html body #mainScreen .nav{
+ position:fixed!important;
+ left:50%!important;
+ bottom:0!important;
+ transform:translateX(-50%)!important;
+ width:min(760px,100%)!important;
+ height:calc(116px + env(safe-area-inset-bottom,0px))!important;
+ box-sizing:border-box!important;
+ padding:12px 7px calc(28px + env(safe-area-inset-bottom,0px))!important;
+ background:#141618!important;
+ border-radius:24px 24px 0 0!important;
+ backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+ z-index:46!important;
+ animation:none!important;
+ transition:none!important;
+}
+</style><style id="spg-member-web-browser-fixes-20261109">
+/* Browser-only offset: the Android status-bar reserve is provided by the APK wrapper. */
+html:not(.spg-native) body #mainScreen .topbar {
+  top:env(safe-area-inset-top,0px)!important;
+}
+html:not(.spg-native) body #mainScreen .topbar::before {
+  height:env(safe-area-inset-top,0px)!important;
+}
+html:not(.spg-native) body #mainScreen {
+  padding-top:calc(100px + env(safe-area-inset-top,0px))!important;
+}
+</style></head>
+<body><div id="spg-startup" role="presentation" aria-hidden="true"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%2230%20186%20455%20146%22%20role%3D%22img%22%20aria-label%3D%22Star%20Point%20Garage%22%3E%3Cpath%20fill%3D%22%23F3232A%22%20fill-rule%3D%22evenodd%22%20d%3D%22M138%2C206%20L98%2C206%20L96%2C215%20L109%2C216%20L103%2C251%20L115%2C249%20L122%2C217%20L136%2C215ZM472%2C205%20L431%2C206%20L429%2C214%20L430%2C216%20L443%2C217%20L436%2C251%20L449%2C250%20L455%2C218%20L457%2C216%20L469%2C216ZM385%2C205%20L374%2C250%20L387%2C250%20L391%2C230%20L393%2C229%20L406%2C251%20L416%2C251%20L427%2C206%20L414%2C206%20L408%2C228%20L395%2C206ZM374%2C205%20L361%2C206%20L353%2C243%20L353%2C251%20L364%2C251%20L366%2C248ZM295%2C212%20L285%2C206%20L259%2C206%20L249%2C250%20L261%2C251%20L263%2C250%20L264%2C241%20L266%2C239%20L282%2C238%20L290%2C234%20L293%2C231%20L297%2C221ZM271%2C215%20L280%2C215%20L284%2C219%20L284%2C223%20L279%2C229%20L267%2C229%20L268%2C220ZM191%2C206%20L181%2C250%20L194%2C251%20L197%2C240%20L202%2C238%20L210%2C251%20L222%2C251%20L217%2C237%20L222%2C234%20L228%2C226%20L228%2C215%20L226%2C211%20L217%2C206ZM204%2C215%20L211%2C215%20L216%2C219%20L216%2C224%20L211%2C229%20L201%2C230%20L199%2C228ZM167%2C205%20L153%2C207%20L126%2C251%20L138%2C251%20L145%2C242%20L161%2C242%20L166%2C251%20L178%2C250ZM158%2C219%20L160%2C222%20L161%2C232%20L151%2C233%20L150%2C232ZM339%2C206%20L333%2C204%20L320%2C205%20L311%2C209%20L304%2C216%20L300%2C224%20L299%2C236%20L302%2C244%20L307%2C249%20L315%2C252%20L327%2C252%20L337%2C248%20L345%2C240%20L349%2C231%20L350%2C223%20L348%2C215ZM331%2C215%20L337%2C222%20L336%2C233%20L328%2C241%20L319%2C242%20L315%2C240%20L312%2C236%20L312%2C227%20L314%2C222%20L322%2C215ZM94%2C208%20L81%2C204%20L70%2C205%20L63%2C208%20L57%2C214%20L56%2C225%20L59%2C229%20L75%2C235%20L78%2C238%20L77%2C240%20L69%2C243%20L55%2C238%20L51%2C243%20L39%2C251%20L72%2C251%20L87%2C245%20L91%2C237%20L90%2C231%20L85%2C226%20L71%2C222%20L69%2C218%20L73%2C215%20L90%2C217Z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M358%2C279%20L349%2C320%20L380%2C320%20L383%2C312%20L362%2C312%20L361%2C310%20L363%2C304%20L366%2C302%20L381%2C303%20L383%2C295%20L366%2C295%20L365%2C292%20L367%2C288%20L387%2C287%20L388%2C279ZM289%2C280%20L279%2C279%20L276%2C282%20L253%2C319%20L263%2C319%20L268%2C312%20L285%2C312%20L288%2C320%20L298%2C319ZM281%2C291%20L285%2C303%20L274%2C304%20L273%2C302%20L277%2C294ZM222%2C279%20L214%2C320%20L223%2C320%20L228%2C308%20L232%2C308%20L235%2C311%20L239%2C320%20L249%2C320%20L244%2C308%20L254%2C298%20L255%2C288%20L253%2C284%20L247%2C280ZM228%2C299%20L231%2C287%20L239%2C287%20L245%2C293%20L239%2C301%20L230%2C301ZM199%2C280%20L189%2C279%20L163%2C319%20L174%2C319%20L178%2C312%20L195%2C312%20L198%2C320%20L208%2C319ZM191%2C291%20L193%2C293%20L195%2C303%20L184%2C304%20L183%2C302ZM345%2C282%20L339%2C279%20L327%2C278%20L313%2C284%20L305%2C295%20L304%2C306%20L306%2C312%20L316%2C320%20L327%2C321%20L339%2C318%20L341%2C316%20L344%2C299%20L334%2C299%20L332%2C309%20L329%2C312%20L320%2C311%20L315%2C304%20L315%2C300%20L318%2C293%20L322%2C289%20L333%2C287%20L340%2C291%20L348%2C285ZM162%2C281%20L152%2C278%20L145%2C278%20L131%2C284%20L123%2C296%20L122%2C305%20L124%2C312%20L134%2C320%20L145%2C321%20L157%2C318%20L159%2C316%20L162%2C299%20L152%2C299%20L150%2C309%20L147%2C312%20L141%2C312%20L137%2C310%20L133%2C302%20L136%2C293%20L140%2C289%20L151%2C287%20L158%2C291%20L166%2C285Z%22%2F%3E%3Cpath%20fill%3D%22%23FFE500%22%20fill-rule%3D%22evenodd%22%20d%3D%22M446%2C260%20L264%2C264%20L444%2C267ZM363%2C198%20L378%2C189%20L365%2C189Z%22%2F%3E%3C%2Fsvg%3E" alt=""></div></div>
+<div class="app">
+<section id="authScreen" class="screen auth">
+  <div class="auth-card">
+    <div class="auth-hero"><div class="brand brand-logo-only"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%2230%20186%20455%20146%22%20role%3D%22img%22%20aria-label%3D%22Star%20Point%20Garage%22%3E%3Cpath%20fill%3D%22%23F3232A%22%20fill-rule%3D%22evenodd%22%20d%3D%22M138%2C206%20L98%2C206%20L96%2C215%20L109%2C216%20L103%2C251%20L115%2C249%20L122%2C217%20L136%2C215ZM472%2C205%20L431%2C206%20L429%2C214%20L430%2C216%20L443%2C217%20L436%2C251%20L449%2C250%20L455%2C218%20L457%2C216%20L469%2C216ZM385%2C205%20L374%2C250%20L387%2C250%20L391%2C230%20L393%2C229%20L406%2C251%20L416%2C251%20L427%2C206%20L414%2C206%20L408%2C228%20L395%2C206ZM374%2C205%20L361%2C206%20L353%2C243%20L353%2C251%20L364%2C251%20L366%2C248ZM295%2C212%20L285%2C206%20L259%2C206%20L249%2C250%20L261%2C251%20L263%2C250%20L264%2C241%20L266%2C239%20L282%2C238%20L290%2C234%20L293%2C231%20L297%2C221ZM271%2C215%20L280%2C215%20L284%2C219%20L284%2C223%20L279%2C229%20L267%2C229%20L268%2C220ZM191%2C206%20L181%2C250%20L194%2C251%20L197%2C240%20L202%2C238%20L210%2C251%20L222%2C251%20L217%2C237%20L222%2C234%20L228%2C226%20L228%2C215%20L226%2C211%20L217%2C206ZM204%2C215%20L211%2C215%20L216%2C219%20L216%2C224%20L211%2C229%20L201%2C230%20L199%2C228ZM167%2C205%20L153%2C207%20L126%2C251%20L138%2C251%20L145%2C242%20L161%2C242%20L166%2C251%20L178%2C250ZM158%2C219%20L160%2C222%20L161%2C232%20L151%2C233%20L150%2C232ZM339%2C206%20L333%2C204%20L320%2C205%20L311%2C209%20L304%2C216%20L300%2C224%20L299%2C236%20L302%2C244%20L307%2C249%20L315%2C252%20L327%2C252%20L337%2C248%20L345%2C240%20L349%2C231%20L350%2C223%20L348%2C215ZM331%2C215%20L337%2C222%20L336%2C233%20L328%2C241%20L319%2C242%20L315%2C240%20L312%2C236%20L312%2C227%20L314%2C222%20L322%2C215ZM94%2C208%20L81%2C204%20L70%2C205%20L63%2C208%20L57%2C214%20L56%2C225%20L59%2C229%20L75%2C235%20L78%2C238%20L77%2C240%20L69%2C243%20L55%2C238%20L51%2C243%20L39%2C251%20L72%2C251%20L87%2C245%20L91%2C237%20L90%2C231%20L85%2C226%20L71%2C222%20L69%2C218%20L73%2C215%20L90%2C217Z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M358%2C279%20L349%2C320%20L380%2C320%20L383%2C312%20L362%2C312%20L361%2C310%20L363%2C304%20L366%2C302%20L381%2C303%20L383%2C295%20L366%2C295%20L365%2C292%20L367%2C288%20L387%2C287%20L388%2C279ZM289%2C280%20L279%2C279%20L276%2C282%20L253%2C319%20L263%2C319%20L268%2C312%20L285%2C312%20L288%2C320%20L298%2C319ZM281%2C291%20L285%2C303%20L274%2C304%20L273%2C302%20L277%2C294ZM222%2C279%20L214%2C320%20L223%2C320%20L228%2C308%20L232%2C308%20L235%2C311%20L239%2C320%20L249%2C320%20L244%2C308%20L254%2C298%20L255%2C288%20L253%2C284%20L247%2C280ZM228%2C299%20L231%2C287%20L239%2C287%20L245%2C293%20L239%2C301%20L230%2C301ZM199%2C280%20L189%2C279%20L163%2C319%20L174%2C319%20L178%2C312%20L195%2C312%20L198%2C320%20L208%2C319ZM191%2C291%20L193%2C293%20L195%2C303%20L184%2C304%20L183%2C302ZM345%2C282%20L339%2C279%20L327%2C278%20L313%2C284%20L305%2C295%20L304%2C306%20L306%2C312%20L316%2C320%20L327%2C321%20L339%2C318%20L341%2C316%20L344%2C299%20L334%2C299%20L332%2C309%20L329%2C312%20L320%2C311%20L315%2C304%20L315%2C300%20L318%2C293%20L322%2C289%20L333%2C287%20L340%2C291%20L348%2C285ZM162%2C281%20L152%2C278%20L145%2C278%20L131%2C284%20L123%2C296%20L122%2C305%20L124%2C312%20L134%2C320%20L145%2C321%20L157%2C318%20L159%2C316%20L162%2C299%20L152%2C299%20L150%2C309%20L147%2C312%20L141%2C312%20L137%2C310%20L133%2C302%20L136%2C293%20L140%2C289%20L151%2C287%20L158%2C291%20L166%2C285Z%22%2F%3E%3Cpath%20fill%3D%22%23FFE500%22%20fill-rule%3D%22evenodd%22%20d%3D%22M446%2C260%20L264%2C264%20L444%2C267ZM363%2C198%20L378%2C189%20L365%2C189Z%22%2F%3E%3C%2Fsvg%3E" alt="Star Point Garage"><small>MEMBER</small></div><p>Booking lebih cepat, pantau pengerjaan, simpan riwayat, dan gunakan QR Member dalam satu aplikasi.</p></div>
+    <div class="seg" id="authTabs"><button class="active" type="button" data-auth="login">Masuk</button><button type="button" data-auth="register">Daftar</button></div>
+    <form id="loginForm">
+      <div class="field"><label>Username atau Email</label><input id="loginUser" autocomplete="username" placeholder="username / email" required></div>
+      <div class="field"><label>Password</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••" required></div>
+      <button class="btn btn-primary btn-block" id="loginBtn">Masuk</button>
+      <button type="button" class="tiny-link" id="forgotBtn">Lupa password?</button>
+    </form>
+    <form id="registerForm" class="hidden">
+      <div class="field"><label>Username</label><input id="regUser" autocomplete="username" autocapitalize="none" spellcheck="false" minlength="4" maxlength="24" placeholder="4–24 karakter" required><small style="display:block;margin-top:6px;color:#a9a9af;font-size:11px">Satu username hanya untuk satu akun.</small></div>
+      <div class="field"><label>Email</label><input id="regEmail" type="email" autocomplete="email" placeholder="nama@email.com" required></div>
+      <div class="field"><label>Nomor WhatsApp</label><input id="regPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" required></div>
+      <div class="field"><label>Password</label><input id="regPass" type="password" autocomplete="new-password" minlength="8" placeholder="Minimal 8 karakter, huruf + angka" required></div>
+      <button class="btn btn-primary btn-block" id="registerBtn">Buat Akun</button>
+    </form>
+    <div class="auth-msg" id="authMsg"></div>
+  </div>
+</section>
+<section id="mainScreen" class="screen main hidden">
+  <header class="topbar">
+  <div class="member-head"><strong id="topName">Starpoint Member</strong><span id="topMember">Member Starpoint</span></div>
+  <div class="top-actions">
+    <button class="bell" id="bellBtn" aria-label="Notifikasi"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span class="bell-count hidden" id="bellCount">0</span></button>
+    <button class="profile-btn" id="accountBtn" aria-label="Profil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></button>
+  </div>
+</header>
+  <main class="content" id="page"><div class="section"><div class="empty">Memuat layanan...</div></div></main>
+  <nav class="nav">
+  <button data-page="home" class="active"><i><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M9.5 20v-6h5v6"/></svg></i>Home</button>
+  <button data-page="reward"><i><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="m12 7 1.6 3.2 3.5.5-2.5 2.5.6 3.5-3.2-1.7-3.2 1.7.6-3.5-2.5-2.5 3.5-.5z"/></svg></i>Reward</button>
+  <button data-page="qr" class="qr-main"><i><svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path d="M14 14h2v2h-2zM18 14h2v6h-4v-2M14 18v2"/></svg></i>QR</button>
+  <button data-page="services"><i><svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 14h14l1.5 3.5v2H18v-2H6v2H3.5v-2z"/><path d="m7 14 1.4-4h7.2l1.4 4M8 17h.01M16 17h.01"/></svg></i>Layanan</button>
+  <button data-page="store"><i><svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 10v10h16V10"/><path d="M3 10 5 4h14l2 6"/><path d="M8 20v-6h8v6"/></svg></i>Store</button>
+</nav>
+</section>
+</div>
+<div id="sheetRoot"></div><div class="toast" id="toast"></div>
+<script>
+const SUPABASE_URL='https://msvdxyicostwztisvbvl.supabase.co';
+const API_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
+const CATS=[['small','Small'],['medium','Medium'],['large','Large'],['big_bike','Big Bike'],['luxury','Luxury']];
+const PAYEE_NAME='NOOR PURNAMA HIDAYATULLAH';
+const BRI_ACCOUNT='760101006310531';
+const QRIS_ASSET=(()=>{const b=atob('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+OyG7jL+AQUqDCKvQQC6QVOxZa6AXQkSudKXQC6yEv5JC6AQTZjE/MQQD+qqqqqr+AAAbbG9MAACqAovr4wkAHo/qGh4agBzfa6q2i6AHGRWttKnQBGA46mB68ADr2V9WS+gBHTGE0W3qAVFWFabgmgDPqxqRCHiAZiq8TeIygBT5zLzKf0AXh2H12yyQAefm6E6vCAammK0yupQAvx5P6CPmAPG/ZGqpGADajyK4GquANFb7EUREADPhMPmC/wAWhEurPwjgDLi9i2g0OAAMfaY3IjgDLOl45rK6AVFnKYrC2ABrrLqO69OAfkdvgoCggBCniuOoxuAVJPho7qqgCSxSzy4HoAYucL9CodQBH8GtLHouAOHMa2/RrgDiTQP7uP6AAEJ7FR7EwD+VK6s7K4AQTUVGi/HAC60YvqavmAXQ+lqbQ1gC67ED3/MiAQQVnqaoOAD+iifw6wKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=');const n=57;let d='';for(let y=0;y<n;y++){let start=-1;for(let x=0;x<=n;x++){const i=y*n+x;const on=x<n&&((b.charCodeAt(i>>3)>>(7-(i&7)))&1);if(on&&start<0)start=x;if(!on&&start>=0){const w=(x-start)*8;d+='M'+(82+start*8)+' '+(212+y*8)+'h'+w+'v8h-'+w+'z';start=-1;}}}const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 620 840' role='img' aria-label='QRIS STARPOINT GARAGE'><defs><linearGradient id='paper' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#ffffff'/><stop offset='1' stop-color='#fcfbfa'/></linearGradient><pattern id='geo' width='40' height='40' patternUnits='userSpaceOnUse'><path d='M0 20h20V0M20 40h20V20' stroke='#e7e3df' stroke-width='1.5' fill='none'/></pattern></defs><rect width='620' height='840' rx='36' fill='url(#paper)'/><rect x='8' y='8' width='604' height='824' rx='30' stroke='#e8e2df' stroke-width='2' fill='none'/><path d='M0 0h172L0 172Z' fill='#faebeb' opacity='.48'/><path d='M0 0h92L0 92Z' fill='#df2035'/><path d='M620 840H478l142-142Z' fill='#e62237'/><path d='M620 840h-69l69-69Z' fill='#ad1729'/><path d='M18 0h584v81H18z' fill='url(#geo)' opacity='.18'/><text x='86' y='65' font-family='Arial,sans-serif' font-size='39' font-weight='900' letter-spacing='-1.5' fill='#151515'>QRIS</text><path d='M86 77h103' stroke='#e62237' stroke-width='5' stroke-linecap='round'/><text x='310' y='126' text-anchor='middle' font-family='Arial,sans-serif' font-size='33' font-weight='800' letter-spacing='.4' fill='#111111'>STARPOINT GARAGE</text><text x='310' y='154' text-anchor='middle' font-family='Arial,sans-serif' font-size='19' fill='#343434'>NMID: ID1026544930419</text><text x='310' y='178' text-anchor='middle' font-family='Arial,sans-serif' font-size='17' fill='#575757'>A01</text><path fill='#000000' d='`+d+`'/><path d='M232 715h156' stroke='#e8e8e8' stroke-width='2' stroke-linecap='round'/><text x='310' y='754' text-anchor='middle' font-family='Arial,sans-serif' font-size='22' font-weight='700' letter-spacing='.35' fill='#292929'>SATU QRIS UNTUK SEMUA</text><text x='310' y='787' text-anchor='middle' font-family='Arial,sans-serif' font-size='18' fill='#626262'>Scan dan bayar sesuai tagihan</text><path d='M34 816h264' stroke='#eeeeee' stroke-width='2'/></svg>`;return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);})();
+const STARPOINT_WA='6281345115758';
+const ICONS={"bell":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9\"/><path d=\"M10 21h4\"/></svg>","home":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M3 11.5 12 4l9 7.5\"/><path d=\"M5.5 10.5V20h13v-9.5\"/><path d=\"M9.5 20v-6h5v6\"/></svg>","calendar":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 3v4M17 3v4M3 10h18\"/></svg>","qr":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z\"/><path d=\"M14 14h2v2h-2zM18 14h2v6h-4v-2M14 18v2\"/></svg>","history":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M3 12a9 9 0 1 0 3-6.7\"/><path d=\"M3 4v6h6M12 7v5l3 2\"/></svg>","user":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4.5 21a7.5 7.5 0 0 1 15 0\"/></svg>","refresh":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M20 6v5h-5\"/><path d=\"M19 11a8 8 0 1 0 1 5\"/></svg>","plus":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M12 5v14M5 12h14\"/></svg>","edit":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M4 20h4l11-11-4-4L4 16v4z\"/><path d=\"m13.5 6.5 4 4\"/></svg>","trash":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5\"/></svg>","logout":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M10 4H5v16h5M14 8l4 4-4 4M18 12H9\"/></svg>","copy":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><rect x=\"8\" y=\"8\" width=\"11\" height=\"11\" rx=\"2\"/><path d=\"M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3\"/></svg>","wallet":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><path d=\"M3 6.5A2.5 2.5 0 0 1 5.5 4H19v16H5.5A2.5 2.5 0 0 1 3 17.5z\"/><path d=\"M16 10h5v5h-5a2.5 2.5 0 0 1 0-5z\"/></svg>","whatsapp":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" stroke=\"none\"><path d=\"M12 2a9.7 9.7 0 0 0-8.3 14.7L2 22l5.5-1.6A9.8 9.8 0 1 0 12 2Zm0 17.7a7.8 7.8 0 0 1-4-1.1l-.3-.2-3.3 1 1-3.2-.2-.3A7.7 7.7 0 1 1 12 19.7Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.4 6.4 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.5.2-.4c.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5a9 9 0 0 0 3.5 3.1c.5.2.9.4 1.2.5.5.2 1 .2 1.3.1.4-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1 0 0-.2-.1-.4-.2Z\"/></svg>","points":"<svg class=\"icon-svg\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M9 17V7h4.2a3 3 0 0 1 0 6H9M9 13h4\"/></svg>"};
+function ico(name){return ICONS[name]||'';}
+const state={session:null,member:null,home:null,catalog:[],bookings:[],history:[],notifications:[],points:{balance:0,rupiah_value:0,recent:[]},vouchers:[],motorModels:[],page:'home',bookingCat:'small',rewardTab:'redeem',serviceGroup:'main',serviceSearch:''};
+let memberSyncTimer=null;
+const $=s=>document.querySelector(s), queryAll=s=>[...document.querySelectorAll(s)];
+function esc(v){return String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
+function rupiah(n){return 'Rp '+Number(n||0).toLocaleString('id-ID');}
+function catLabel(v){return CATS.find(x=>x[0]===v)?.[1]||v||'-';}
+function spgWorkProgress(status){
+const stages=[['pending','Belum Dikerjakan'],['in_progress','Proses'],['completed','Selesai']];
+const idx=stages.findIndex(s=>s[0]===status);
+if(idx<0)return '';
+return '<div class="spg-work-block" role="group" aria-label="Status pekerjaan: '+stages[idx][1]+'"><div class="spg-work-heading"><span>Status Pekerjaan</span><strong>'+stages[idx][1]+'</strong></div><div class="spg-work-tracker">'+stages.map((s,i)=>'<div class="spg-work-step '+(i<idx?'spg-done':i===idx?'spg-current':'spg-upcoming')+'"><span class="spg-work-dot"></span><span class="spg-work-label">'+s[1]+'</span></div>').join('')+'</div></div>';
+}
+function workLabel(v){return v==='pending'?'Belum Dikerjakan':v==='in_progress'?'Proses':v==='completed'?'Selesai':'-';}
+function payLabel(v){return v==='paid'?'Lunas':v==='partial'?'Sebagian':'Belum Bayar';}
+function bookingLabel(v){return v==='confirmed'?'Diterima':v==='cancelled'?'Dibatalkan':v==='completed'?'Selesai':'Menunggu';}
+function methodLabel(v){return v==='qris_manual'?'QRIS Manual':v==='bank_transfer'?'Transfer Bank':'Tunai';}
+function dt(v){if(!v)return '-';try{return new Intl.DateTimeFormat('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(new Date(v));}catch{return '-';}}
+function dmy(v){if(!v)return '-';try{return new Intl.DateTimeFormat('id-ID',{timeZone:'Asia/Jakarta',day:'2-digit',month:'short',year:'numeric'}).format(new Date(v));}catch{return '-';}}
+function paymentTimeLeft(v){
+  if(!v)return 'Batas waktu tidak tersedia';
+  const seconds=Math.max(0,Math.ceil((new Date(v).getTime()-Date.now())/1000));
+  if(seconds<=0)return '00:00';
+  const minutes=Math.floor(seconds/60),rest=seconds%60;
+  return `${String(minutes).padStart(2,'0')}:${String(rest).padStart(2,'0')}`;
+}
+function showToast(msg){const t=$('#toast');t.textContent=String(msg||'');t.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>t.classList.remove('show'),2600);}
+function errText(e){const m=String(e?.message||e||'Terjadi kesalahan').replace(/^Error:\s*/,'');const map={TOO_MANY_REQUESTS:'Terlalu banyak percobaan. Coba lagi sekitar 10 menit.',REGISTER_UNAVAILABLE:'Pendaftaran sedang terkendala. Coba beberapa saat lagi.',INVALID_CREDENTIALS:'Username/email atau password salah.',INVALID_USERNAME:'Username 4–24 karakter: huruf, angka, titik, underscore.',INVALID_EMAIL:'Email tidak valid.',WEAK_PASSWORD:'Password minimal 8 karakter dan harus mengandung angka.',INVALID_PHONE:'Nomor WhatsApp tidak valid.',PHONE_REQUIRED:'Nomor WhatsApp wajib diisi.',PHONE_TAKEN:'Nomor WhatsApp sudah terhubung ke akun lain.',PHONE_LINK_FAILED:'Nomor WhatsApp belum dapat dihubungkan.',REGISTER_FAILED:'Pendaftaran belum berhasil. Coba lagi.',LOOKUP_FAILED:'Server belum bisa memeriksa username. Coba lagi.',SESSION_CREATE_FAILED:'Akun dibuat, tetapi sesi login gagal. Coba masuk memakai akun yang baru.',REGISTRATION_INCOMPLETE:'Akun dibuat tetapi profil belum siap. Hubungi Starpoint Garage.',EMAIL_RATE_LIMITED:'Terlalu banyak permintaan reset. Coba lagi nanti.',EMAIL_DELIVERY_FAILED:'Email reset belum bisa dikirim. Coba lagi nanti atau hubungi Starpoint Garage.',USERNAME_TAKEN:'Username sudah dipakai akun lain. Silakan gunakan username berbeda.',EMAIL_TAKEN:'Email sudah terdaftar.',ACCOUNT_INACTIVE:'Akun member tidak aktif.',SESSION_EXPIRED:'Sesi berakhir. Silakan masuk lagi.'};return map[m]||m;}
+function saveSession(d){state.session=d.session;localStorage.setItem('spg_member_session',JSON.stringify(state.session));}
+function loadSaved(){try{state.session=JSON.parse(localStorage.getItem('spg_member_session')||'null');}catch{state.session=null;}}
+function clearSession(){clearInterval(memberSyncTimer);memberSyncTimer=null;state.session=null;state.member=null;localStorage.removeItem('spg_member_session');}
+async function jsonFetch(url,opt={}){const r=await fetch(url,opt),txt=await r.text();let data=null;try{data=txt?JSON.parse(txt):null;}catch{data={message:txt||('HTTP '+r.status)}}if(!r.ok)throw new Error(data?.error||data?.message||('HTTP '+r.status));return data;}
+async function authApi(action,payload={}){return jsonFetch(SUPABASE_URL+'/functions/v1/member-auth',{method:'POST',headers:{'Content-Type':'application/json','apikey':API_KEY},body:JSON.stringify({action,...payload})});}
+let memberRefreshPromise=null;
+async function refreshSession(){
+  if(memberRefreshPromise)return memberRefreshPromise;
+  memberRefreshPromise=(async()=>{
+    if(!state.session?.refresh_token)throw new Error('SESSION_EXPIRED');
+    const d=await jsonFetch(SUPABASE_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{'Content-Type':'application/json','apikey':API_KEY},body:JSON.stringify({refresh_token:state.session.refresh_token})});
+    state.session={access_token:d.access_token,refresh_token:d.refresh_token};
+    localStorage.setItem('spg_member_session',JSON.stringify(state.session));
+  })();
+  try{return await memberRefreshPromise;}finally{memberRefreshPromise=null;}
+}
+async function rpc(name,params={},retry=true){
+  if(!state.session?.access_token)throw new Error('SESSION_EXPIRED');
+  const tokenUsed=state.session.access_token;
+  try{return await jsonFetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{method:'POST',headers:{'Content-Type':'application/json','apikey':API_KEY,'Authorization':'Bearer '+tokenUsed},body:JSON.stringify(params)});}
+  catch(e){
+    if(retry&&/JWT|401|expired|token/i.test(e.message)){
+      if(state.session?.access_token===tokenUsed)await refreshSession();
+      return rpc(name,params,false);
+    }
+    throw e;
+  }
+}
+function openSheet(html){$('#sheetRoot').innerHTML='<div class="sheet-wrap"><div class="sheet">'+html+'</div></div>';queryAll('[data-close]').forEach(b=>b.onclick=closeSheet);$('.sheet-wrap').onclick=e=>{if(e.target.classList.contains('sheet-wrap'))closeSheet();};}
+function stopSpgProofCamera(){try{window.spgProofCameraStream?.getTracks().forEach(t=>t.stop());}catch{}window.spgProofCameraStream=null;const box=$('#proofCameraBox');if(box)box.style.display='none';}
+function closeSheet(){stopSpgProofCamera();window.spgCapturedPaymentProof=null;$('#sheetRoot').innerHTML='';}
+function setAuthMode(mode){queryAll('#authTabs button').forEach(b=>b.classList.toggle('active',b.dataset.auth===mode));$('#loginForm').classList.toggle('hidden',mode!=='login');$('#registerForm').classList.toggle('hidden',mode!=='register');$('#authMsg').textContent='';}
+queryAll('#authTabs button').forEach(b=>b.onclick=()=>setAuthMode(b.dataset.auth));
+$('#loginForm').onsubmit=async e=>{e.preventDefault();const b=$('#loginBtn');b.disabled=true;b.innerHTML='<span class="spinner"></span>';try{const d=await authApi('login',{username:$('#loginUser').value.trim(),password:$('#loginPass').value});saveSession(d);await enterApp();}catch(err){$('#authMsg').textContent=errText(err);}finally{b.disabled=false;b.textContent='Masuk';}};
+$('#registerForm').onsubmit=async e=>{e.preventDefault();const b=$('#registerBtn');b.disabled=true;b.innerHTML='<span class="spinner"></span>';try{const d=await authApi('register',{username:$('#regUser').value.trim(),email:$('#regEmail').value.trim(),phone:$('#regPhone').value.trim(),password:$('#regPass').value});saveSession(d);if(await enterApp())showToast('Akun Member berhasil dibuat');}catch(err){$('#authMsg').textContent=errText(err);}finally{b.disabled=false;b.textContent='Buat Akun';}};
+function openForgotPassword(){
+openSheet('<div class="sheet-head"><h3>Lupa Password</h3><button class="close" data-close type="button">×</button></div><p style="font-size:13px;line-height:1.55;color:var(--soft)">Masukkan email akun member. Link penggantian password akan dikirim melalui email.</p><form id="forgotForm"><div class="field"><label for="forgotEmail">Email terdaftar</label><input id="forgotEmail" type="email" autocomplete="email" placeholder="nama@email.com" required></div><p class="auth-msg" id="forgotMessage" role="status"></p><button class="btn btn-primary btn-block" id="forgotSend" type="submit">Kirim Link Reset</button></form>');
+$('#forgotEmail').value=$('#loginUser').value.includes('@')?$('#loginUser').value.trim():'';
+$('#forgotForm').onsubmit=async e=>{
+e.preventDefault();const email=$('#forgotEmail').value.trim().toLowerCase(),msg=$('#forgotMessage'),btn=$('#forgotSend');if(!email||!$('#forgotEmail').checkValidity()){msg.textContent='Masukkan alamat email yang valid.';return;}
+btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Mengirim...';msg.textContent='';
+try{await authApi('forgot_password',{email});msg.textContent='Jika email terdaftar, tautan reset akan dikirim. Periksa Inbox dan Spam. Tautan dibuka melalui browser.';msg.style.color='var(--ok)';btn.textContent='Kirim Ulang Link Reset';}
+catch(err){msg.textContent=errText(err);msg.style.color='#ff8a93';btn.textContent='Coba Kirim Lagi';}
+finally{btn.disabled=false;}
+};
+}
+$('#forgotBtn').onclick=openForgotPassword;
+async function enterApp(){
+  try{
+    await loadAll();
+    $('#authScreen').classList.add('hidden');
+    $('#mainScreen').classList.remove('hidden');
+    document.documentElement.classList.remove('spg-restoring-session');
+    render();
+    startMemberSync();
+    return true;
+  }catch(e){
+    const reason=String(e?.message||e||'');
+    const invalidSession=/SESSION_EXPIRED|invalid.grant|invalid.refresh|refresh.token.not.found|account.inactive|invalid.jwt|jwt.*(expired|invalid)|unauthoriz|^401$/i.test(reason);
+    document.documentElement.classList.remove('spg-restoring-session');
+    if(invalidSession){
+      clearSession();
+      $('#mainScreen').classList.add('hidden');
+      $('#authScreen').classList.remove('hidden');
+      $('#authMsg').textContent=errText(e);
+    }else{
+      // Jaringan/server sementara bermasalah bukan berarti pengguna harus login lagi.
+      $('#authScreen').classList.add('hidden');
+      $('#mainScreen').classList.remove('hidden');
+      render();
+      startMemberSync();
+      showToast('Koneksi sedang bermasalah. Data akan disinkronkan kembali.');
+    }
+    return false;
+  }
+}
+async function loadAll(){
+  // Required identity check stays strict. Optional dashboard data should never block login.
+  const results=await Promise.allSettled([
+    rpc('member_me'),
+    rpc('member_home'),
+    rpc('member_catalog'),
+    rpc('member_bookings',{p_limit:50}),
+    rpc('member_history',{p_limit:100}),
+    rpc('member_notifications',{p_limit:50}),
+    rpc('member_points'),
+    rpc('member_vouchers'),
+    rpc('member_motor_catalog')
+  ]);
+  if(results[0].status!=='fulfilled')throw results[0].reason;
+  const value=(i,fallback)=>results[i].status==='fulfilled'?results[i].value:fallback;
+  const list=(i,previous)=>{const result=value(i,previous);return Array.isArray(result)?result:(Array.isArray(previous)?previous:[]);};
+  state.member=results[0].value;
+  state.home=value(1,state.home||{promotions:[]})||{promotions:[]};
+  state.catalog=list(2,state.catalog);
+  if(!state.catalog.length && results[2].status==='rejected'){
+    try{const retry=await rpc('member_catalog');if(Array.isArray(retry))state.catalog=retry;}catch(e){console.warn('Member catalog retry unavailable');}
+  }
+  state.bookings=list(3,state.bookings);
+  state.history=list(4,state.history);
+  state.notifications=list(5,state.notifications);
+  const points=value(6,state.points);
+  state.points=points&&typeof points==='object'&&!Array.isArray(points)?points:{balance:0,rupiah_value:0,recent:[]};
+  state.vouchers=list(7,state.vouchers);
+  state.motorModels=list(8,state.motorModels);
+  if($('#topName'))$('#topName').textContent=(state.member?.full_name||state.member?.username||'Starpoint Member')+' 👋';
+  if($('#topMember'))$('#topMember').textContent=state.member?.member_code||'Member Starpoint';
+  const unread=state.notifications.filter(n=>n&&!n.read_at).length;
+  if($('#bellCount')){$('#bellCount').textContent=unread;$('#bellCount').classList.toggle('hidden',!unread);}
+  try{
+    const oldCache=JSON.parse(localStorage.getItem('spg_member_startup_cache')||'null');
+    if(state.catalog.length){
+      localStorage.setItem('spg_member_startup_cache',JSON.stringify({catalog:state.catalog,promotions:Array.isArray(state.home?.promotions)?state.home.promotions:[]}));
+    }else if(Array.isArray(oldCache?.catalog) && oldCache.catalog.length){
+      state.catalog=oldCache.catalog;
+    }
+  }catch(e){}
+  const failedOptional=results.slice(1).filter(x=>x.status==='rejected').length;
+  if(failedOptional)console.warn('Starpoint Member: optional dashboard requests unavailable; session retained');
+}
+async function reloadData(){try{await loadAll();render();}catch(e){showToast(errText(e));}}
+function startMemberSync(){clearInterval(memberSyncTimer);memberSyncTimer=setInterval(async()=>{if(document.hidden||!state.session)return;try{const before=spgHomeActivityFingerprint();await loadAll();const after=spgHomeActivityFingerprint();if(before!==after&&state.page==='home')render();}catch{}},10000);}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&state.session){loadAll().then(()=>{if(state.page==='home')render();}).catch(()=>{});}});
+queryAll('.nav button').forEach(b=>b.onclick=()=>{state.page=b.dataset.page;queryAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));render();});
+$('#bellBtn').onclick=()=>openNotifications();$('#accountBtn').onclick=()=>{state.page='account';queryAll('.nav button').forEach(x=>x.classList.remove('active'));render();};
+function render(){const p=$('#page');if(state.page==='home')p.innerHTML=homeHTML();else if(state.page==='reward')p.innerHTML=rewardHTML();else if(state.page==='qr')p.innerHTML=qrHTML();else if(state.page==='services')p.innerHTML=servicesHTML();else if(state.page==='store')p.innerHTML=storeHTML();else if(state.page==='booking')p.innerHTML=bookingHTML();else if(state.page==='history')p.innerHTML=historyHTML();else p.innerHTML=accountHTML();bindPage();initPromoCarousel();}
+let spgPromoTimer=null;
+function initPromoCarousel(){
+ if(spgPromoTimer){clearInterval(spgPromoTimer);spgPromoTimer=null;}
+ if(state.page!=='home')return;
+ const track=document.getElementById('spgPromoTrack');
+ if(!track)return;
+ const slides=[...track.querySelectorAll('.spg-promo-slide')];
+ const dots=[...document.querySelectorAll('.spg-promo-dot')];
+ if(slides.length<2)return;
+ let index=0;
+ const go=(i)=>{
+  index=(i+slides.length)%slides.length;
+  track.scrollTo({left:slides[index].offsetLeft-slides[0].offsetLeft,behavior:'smooth'});
+  dots.forEach((dot,j)=>{dot.classList.toggle('active',j===index);dot.setAttribute('aria-current',j===index?'true':'false');});
+ };
+ dots.forEach((dot,i)=>{dot.onclick=()=>go(i);});
+ track.addEventListener('scrollend',()=>{
+  index=Math.max(0,Math.min(slides.length-1,Math.round(track.scrollLeft/Math.max(1,track.clientWidth))));
+  dots.forEach((dot,j)=>{dot.classList.toggle('active',j===index);dot.setAttribute('aria-current',j===index?'true':'false');});
+ });
+ spgPromoTimer=setInterval(()=>{
+  if(document.hidden||state.page!=='home'||!track.isConnected)return;
+  go(index+1);
+ },1500);
+}
+const SERVICE_IMG={SIGNATURE_WASH:'/assets/app-services/signature-wash.webp',FULL_BODY_REPAINT:'/assets/app-services/full-body-repaint.webp',HELMET_CARE:'/assets/app-services/helmet-care.webp',PAINT_CORRECTION:'/assets/app-services/paint-correction.webp',WHEEL_REPAINT:'/assets/app-services/wheel-repaint.webp',NANO_COATING_10H:'/assets/app-services/nano-coating-10h.webp',DEEP_RUST_REMOVER:'/assets/app-services/deep-rust-remover.webp',DEEP_TAR_REMOVAL:'/assets/app-services/deep-tar-removal.webp',CAR_CARE:'/assets/app-services/car-care.webp',DEEP_DETAILING:'/assets/app-services/deep-detailing.webp',ALL_IN_ALA_CARTE:'/assets/app-services/all-in-ala-carte.webp',ULTIMATE_DEGREASER:'/assets/app-services/ultimate-degreaser.webp'};
+function serviceImage(s){return SERVICE_IMG[s.code]||SERVICE_IMG.SIGNATURE_WASH;}
+function startPrice(s){const vals=Object.values(s.prices||{}).map(Number).filter(n=>n>0);return vals.length?Math.min(...vals):0;}
+function serviceMiniCard(s){
+  return `<button type="button" class="service-mini" data-service-detail="${esc(s.id)}" aria-label="Lihat harga ${esc(s.name)}"><img loading="lazy" src="${serviceImage(s)}" alt="${esc(s.name)}"><div class="service-mini-body"><strong>${esc(s.name)}</strong><span class="service-mini-hint">Lihat harga</span></div></button>`;
+}
+function servicePriceList(s){const rows=CATS.filter(c=>Number(s.prices?.[c[0]]||0)>0);if(!rows.length)return '<div class="consult">Harga via konsultasi</div>';return '<div class="price-list">'+rows.map(c=>'<div class="price-line"><span>'+esc(c[1])+'</span><b>'+rupiah(s.prices[c[0]])+'</b></div>').join('')+'</div>';}
+function promoBannerURL(path){
+ const s=String(path||'');
+ if(!/^promotions\/[0-9a-f-]{36}\/[0-9a-f-]{36}\.(jpg|jpeg|png|webp)$/.test(s))return '';
+ return SUPABASE_URL+'/storage/v1/object/public/promo-banners/'+s.split('/').map(encodeURIComponent).join('/');
+}
+function spgBookingStillActive(b){
+ if(!b||b.status==='cancelled')return false;
+ if(b.transaction)return b.transaction.work_status!=='completed';
+ return b.status==='pending'||b.status==='confirmed';
+}
+function spgHomeActivity(){
+ const jobs=(state.history||[]).filter(j=>j&&j.work_status!=='completed');
+ const jobIds=new Set(jobs.map(j=>String(j.id)));
+ const bookings=(state.bookings||[]).filter(b=>spgBookingStillActive(b)&&(!b.transaction||!jobIds.has(String(b.transaction.id))));
+ return {bookings,jobs};
+}
+function spgHomeActivityFingerprint(){
+ return JSON.stringify({promos:state.home?.promotions||[],bookings:state.bookings||[],jobs:state.history||[]});
+}
+function homeHTML(){
+ const h=state.home||{};
+ const {bookings:activeBookings,jobs:activeJobs}=spgHomeActivity();
+ const hasActivity=activeBookings.length+activeJobs.length>0;
+ const activitySection=hasActivity?`<div class="section spg-home-activity"><div class="section-title"><h3>Booking & Pengerjaan Aktif</h3><span class="history-count">${activeBookings.length+activeJobs.length}</span></div><div class="list">${activeBookings.map(b=>bookingCard(b,false)).join('')}${activeJobs.map(historyCard).join('')}</div></div>`:'';
+ const promos=(Array.isArray(h.promotions)?h.promotions:[]).filter(p=>promoBannerURL(p?.banner_path)).sort((a,b)=>Date.parse(b.created_at||0)-Date.parse(a.created_at||0)).slice(0,7);
+ const priority=['SIGNATURE_WASH','PAINT_CORRECTION','DEEP_DETAILING','NANO_COATING_10H','HELMET_CARE','FULL_BODY_REPAINT','WHEEL_REPAINT','CAR_CARE','DEEP_TAR_REMOVAL','DEEP_RUST_REMOVER','ULTIMATE_DEGREASER','ALL_IN_ALA_CARTE'];
+ const byCode=new Map(state.catalog.map(s=>[s.code,s]));
+ const featured=priority.map(c=>byCode.get(c)).filter(Boolean);
+ const originalHero=`<div class="section home-first"><div class="section-title"><h3>Info Berita & Promosi</h3></div><div class="promo-stack"><div class="promo-feature" style="background-image:linear-gradient(180deg,rgba(8,9,10,.04),rgba(8,9,10,.90)),url('${SERVICE_IMG.SIGNATURE_WASH}')"><strong>Starpoint Garage</strong><p>Premium motorcycle detailing · Surabaya</p></div></div></div>`;
+ const promoSection=promos.length?`<div class="section home-first"><div class="section-title"><h3>Info Berita & Promosi</h3></div><div class="spg-promo-track" id="spgPromoTrack">${promos.map((p,i)=>`<div class="spg-promo-slide"><img src="${esc(promoBannerURL(p.banner_path))}" alt="${esc(p.title||'Banner promo Starpoint Garage')}" loading="${i?'lazy':'eager'}" decoding="async"></div>`).join('')}</div>${promos.length>1?`<div class="spg-promo-dots">${promos.map((p,i)=>`<button type="button" class="spg-promo-dot ${i===0?'active':''}" aria-label="Banner ${i+1} dari ${promos.length}" aria-current="${i===0?'true':'false'}"></button>`).join('')}</div>`:''}</div>`:originalHero;
+ return `${activitySection}${promoSection}<div class="section"><div class="section-title service-home-title"><h3>Apa yang Bisa Kami Lakukan?</h3><button type="button" data-pagego="services"><span>Lihat Semua</span><span aria-hidden="true">›</span></button></div><div class="service-strip">${featured.map(serviceMiniCard).join('')}</div></div>`;
+}
+function memberVoucherLabel(v){if(v.voucher_type==='percent')return 'Diskon '+String(v.discount_percent||0)+'%';if(v.voucher_type==='free_ala_carte')return 'Free Ala Carte';return rupiah(v.amount||0);}
+function memberVoucherTransactions(){
+const out=new Map();
+for(const t of [state.home?.active_job,...(state.history||[])]){
+if(!t?.id||t.payment_status==='paid'||Number(t.points_redeemed||0)>0)continue;
+const paid=Number(t.amount_paid||0),pending=Number(t.pending_payment||0),due=Math.max(0,Number(t.final_total||0)-paid-pending);
+if(due<=0||paid>0||pending>0)continue;
+if((state.vouchers||[]).some(v=>v.status==='used'&&String(v.used_transaction_id||'')===String(t.id)))continue;
+out.set(String(t.id),{...t,due});
+}
+return [...out.values()];
+}
+async function useVoucher(id){
+const v=(state.vouchers||[]).find(x=>String(x.id)===String(id));
+if(!v||v.status!=='active'||v.reserved_booking_id||(v.expires_at&&new Date(v.expires_at).getTime()<=Date.now())){showToast('Voucher sudah tidak aktif');return;}
+const jobs=memberVoucherTransactions();
+if(!jobs.length){
+openSheet('<div class="sheet-head"><h3>Gunakan Voucher</h3><button class="close" data-close>×</button></div><div class="card"><h4 style="margin:0 0 8px">'+esc(memberVoucherLabel(v))+'</h4><p style="color:var(--soft);font-size:14px;line-height:1.6">Belum ada tagihan yang dapat memakai voucher ini. Voucher tetap tersimpan dan bisa digunakan pada transaksi berikutnya sebelum pembayaran.</p></div><button class="btn btn-primary btn-block" data-close style="margin-top:14px">Mengerti</button>');
+queryAll('[data-close]').forEach(b=>b.onclick=closeSheet);
+return;
+}
+if(jobs.length===1){const j=jobs[0];openCheckoutVoucher(j.id,j.due,checkoutActiveVouchers(j.id),id);return;}
+openSheet('<div class="sheet-head"><h3>Gunakan Voucher</h3><button class="close" data-close>×</button></div><div class="field"><label>Pilih tagihan untuk '+esc(memberVoucherLabel(v))+'</label><select id="voucherTransaction">'+jobs.map(j=>'<option value="'+esc(j.id)+'">'+esc(j.code||'Transaksi')+' · '+rupiah(j.due)+'</option>').join('')+'</select></div><button class="btn btn-primary btn-block" id="voucherPickNext">Lanjut Checkout</button>');
+$('#voucherPickNext').onclick=()=>{const j=jobs.find(x=>String(x.id)===$('#voucherTransaction').value);if(j)openCheckoutVoucher(j.id,j.due,checkoutActiveVouchers(j.id),id);};
+}
+function rewardHTML(){
+const p=state.points||{},recent=p.recent||[],tab=state.rewardTab||'redeem';
+let body='';
+if(tab==='voucher'){
+const vouchers=state.vouchers||[],job=state.home?.active_job;
+body='<div class="list">'+(vouchers.length?vouchers.map(v=>{
+const active=v.status==='active';
+const status=v.status==='active'?'Aktif':v.status==='expired'?'Kedaluwarsa':v.status==='used'?'Terpakai':'Tidak aktif';
+const usedInfo=v.status==='used'?'<div class="row" style="margin-top:9px"><span>Potongan terpakai</span><strong>'+rupiah(v.applied_discount_amount||0)+'</strong></div>':'';
+const action=active&&!v.reserved_booking_id?'<button class="btn btn-primary btn-block" style="margin-top:12px" data-use-voucher="'+v.id+'">Gunakan Voucher</button>':active&&v.reserved_booking_id?'<div class="notice" style="margin-top:12px">Voucher dipakai untuk booking yang menunggu penerimaan.</div>':'';
+return '<div class="card"><div class="row"><span>'+esc(v.code)+'</span><strong>'+esc(memberVoucherLabel(v))+'</strong></div><h4 style="margin:10px 0 5px">'+esc(v.title)+'</h4><div class="meta"><span>'+status+'</span><span>•</span><span>sampai '+dmy(v.expires_at)+'</span></div>'+usedInfo+(v.note?'<p style="margin:9px 0 0;color:var(--muted);font-size:12px">'+esc(v.note)+'</p>':'')+action+'</div>';
+}).join(''):'<div class="card empty">Belum ada voucher khusus.</div>')+'</div>';
+}else if(tab==='history'){
+body='<div class="card">'+(recent.length?recent.map(x=>'<div class="point-row"><div><strong>'+esc(x.description||'Starpoint Point')+'</strong><div class="meta"><span>'+dt(x.created_at)+'</span></div></div><b class="'+(Number(x.points_delta)>0?'earn':'redeem')+'">'+(Number(x.points_delta)>0?'+':'')+Number(x.points_delta)+' Point</b></div>').join(''):'<div class="empty">Belum ada riwayat poin.</div>')+'</div>';
+}else{
+body='<div class="reward-hero"><div class="hero-kicker">STARPOINT POINT</div><div class="reward-balance">'+Number(p.balance||0).toLocaleString('id-ID')+' Point</div><div class="reward-value">Setara '+rupiah(p.rupiah_value||0)+' untuk potongan pembayaran.</div></div>';
+}
+return '<div class="headline"><div><h2>Reward</h2><p>Poin dan benefit member Starpoint</p></div></div><div class="reward-tabs"><button class="'+(tab==='voucher'?'active':'')+'" onclick="state.rewardTab=\'voucher\';render()">Voucher</button><button class="'+(tab==='redeem'?'active':'')+'" onclick="state.rewardTab=\'redeem\';render()">Redeem</button><button class="'+(tab==='history'?'active':'')+'" onclick="state.rewardTab=\'history\';render()">Riwayat Poin</button></div>'+body;
+}
+function serviceActivityHTML(){
+const waiting=(state.bookings||[]).filter(b=>(b.status==='pending'||b.status==='confirmed')&&!b.transaction&&spgUpcomingBooking(b)).sort((a,b)=>new Date(a.scheduled_at)-new Date(b.scheduled_at)).slice(0,3);
+const all=(state.history||[]).filter(j=>j&&j.id);
+const latest=(arr)=>arr.sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));
+const inProgress=latest(all.filter(j=>j.work_status==='in_progress'));
+const pending=latest(all.filter(j=>j.work_status==='pending'));
+const completed=latest(all.filter(j=>j.work_status==='completed')).slice(0,1);
+const jobs=[...inProgress,...pending].slice(0,5).concat(completed);
+let out='';
+for(const booking of waiting){
+out+='<div class="activity-card booking-active"><div class="activity-kicker">Menunggu Penerimaan Booking</div><div class="status-top"><div><h4>'+esc(booking.motor_name)+' · '+esc(booking.service_name)+'</h4><div class="meta"><span>'+esc(booking.code||'-')+'</span><span>•</span><span>'+dt(booking.scheduled_at)+'</span><span>•</span><span>'+esc(catLabel(booking.vehicle_category))+'</span></div></div><span class="badge pending">Menunggu</span></div><div class="spg-work-note">Booking belum diterima. Status pengerjaan akan tampil setelah booking dikonfirmasi.</div><button class="activity-link" data-pagego="booking">Lihat Booking ›</button></div>';
+}
+for(const job of jobs){
+const title=(job.services||[]).map(s=>typeof s==='string'?s:s.name).filter(Boolean).join(' · ')||job.code;
+const stage=workLabel(job.work_status);
+out+='<div class="activity-card work-active"><div class="activity-kicker">Status Pekerjaan</div><div class="status-top"><div><h4>'+esc(job.motor_name)+' · '+esc(title)+'</h4><div class="meta"><span>'+esc(job.code||'-')+'</span><span>•</span><span>'+dmy(job.date)+'</span><span>•</span><span>'+payLabel(job.payment_status)+'</span></div></div><span class="badge '+esc(job.work_status)+'">'+stage+'</span></div>'+spgWorkProgress(job.work_status)+'<button class="activity-link" data-pagego="history">Lihat Detail Pekerjaan ›</button></div>';
+}
+return out?'<div class="activity-stack">'+out+'</div>':'';
+}
+function servicesHTML(){
+  return `<div class="headline services-head"><div><h2>Layanan</h2><p>Pilih layanan, cek harga, lalu booking</p></div><button type="button" class="service-history-btn" data-pagego="history">${ico('history')} Riwayat</button></div><input class="service-search" placeholder="Cari layanan..." value="${esc(state.serviceSearch||'')}" oninput="state.serviceSearch=this.value;document.getElementById('serviceGrid').innerHTML=serviceGridHTML();bindServiceCards()"><div class="service-tabs"><button class="${(state.serviceGroup||'main')==='main'?'active':''}" onclick="state.serviceGroup='main';render()">Treatment</button><button class="${state.serviceGroup==='ala_carte'?'active':''}" onclick="state.serviceGroup='ala_carte';render()">Ala Carte</button><button class="${state.serviceGroup==='secondary'?'active':''}" onclick="state.serviceGroup='secondary';render()">Lainnya</button><button class="${state.serviceGroup==='all'?'active':''}" onclick="state.serviceGroup='all';render()">Semua</button></div><div class="services-grid" id="serviceGrid">${serviceGridHTML()}</div>`;
+}
+function serviceGridHTML(){
+  const q=(state.serviceSearch||'').toLowerCase(),group=state.serviceGroup||'main';
+  const rows=state.catalog.filter(s=>(group==='all'||s.service_group===group)&&(!q||String(s.name||'').toLowerCase().includes(q))).sort((a,b)=>(startPrice(a)||Number.MAX_SAFE_INTEGER)-(startPrice(b)||Number.MAX_SAFE_INTEGER)||String(a.name||'').localeCompare(String(b.name||'')));
+  return rows.length?rows.map(serviceTile).join(''):'<div class="empty" style="grid-column:1/-1">Layanan tidak ditemukan.</div>';
+}
+function serviceTile(s){
+  return `<article class="service-tile" data-service-detail="${esc(s.id)}" role="button" tabindex="0" aria-label="Lihat detail ${esc(s.name)}"><img loading="lazy" src="${serviceImage(s)}" alt="${esc(s.name)}"><div class="service-tile-body"><h4>${esc(s.name)}</h4><div class="duration">${esc(s.duration_label||'Durasi menyesuaikan kondisi kendaraan')}</div>${servicePriceList(s)}${s.booking_enabled?`<button type="button" class="book-mini" data-book-service="${esc(s.id)}">Booking</button>`:''}</div></article>`;
+}
+function storeHTML(){return '<div class="headline"><div><h2>Store</h2><p>Starpoint Garage · Surabaya</p></div></div><div class="store-map-live"><iframe title="Peta Starpoint Garage" src="https://www.google.com/maps?q=Jl.%20Raya%20Kendangsari%20Industri%20No.%2058B%2C%20Surabaya&z=17&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><div class="section"><div class="section-title"><h3>Lokasi Starpoint</h3></div><div class="store-card"><img loading="lazy" src="data:image/webp;base64,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" alt="Starpoint Garage"><div class="store-card-body"><h3>Starpoint Garage Surabaya</h3><p>Jl. Raya Kendangsari Industri No. 58B, Kutisari, Tenggilis Mejoyo, Surabaya, Jawa Timur 60291</p><div class="meta"><span>Sebelah Panin Bank</span><span>•</span><span>09.00–18.00 WIB</span></div><div class="store-actions"><button class="btn btn-primary" onclick="openMaps()">Lihat Maps</button><a class="spg-store-review-cta" href="https://search.google.com/local/writereview?placeid=ChIJC4Rjn7tWq2MRaZG4z5HYSU4" target="_self" rel="noopener noreferrer" aria-label="Beri ulasan di Google"><span class="spg-store-review-label">Rating Google</span></a></div></div></div></div>';}
+function jobStatusCard(j){const step=j.work_status==='pending'?1:j.work_status==='in_progress'?2:3;const pending=Number(j.pending_payment||0),outstanding=Math.max(0,Number(j.final_total)-Number(j.amount_paid)),payable=Math.max(0,outstanding-pending);return `<div class="card status-card"><div class="status-top"><div><h4>${esc((j.services||[]).join(' · ')||j.code)}</h4><div class="meta"><span>${esc(j.motor_name)}</span><span>•</span><span>${esc(catLabel(j.vehicle_category))}</span></div></div><span class="badge ${j.work_status}">${workLabel(j.work_status)}</span></div>${spgWorkProgress(j.work_status)}<div class="row"><span>Status pembayaran</span><strong>${payLabel(j.payment_status)}</strong></div><div class="row"><span>Sisa tagihan</span><strong>${rupiah(outstanding)}</strong></div>${pending>0?`<div class="pay-pending">Menunggu konfirmasi pembayaran ${rupiah(pending)}</div>`:''}${payable>0?`<button class="btn btn-primary btn-block icon-btn-label" style="margin-top:3px" data-payjob="${j.id}" data-amount="${payable}">${ico('wallet')} Bayar Tagihan</button>`:''}</div>`;}
+function promoCard(p){return `<div class="promo"><strong>${esc(p.title)}</strong><p>${esc(p.description||'Promo aktif Starpoint Garage.')}</p></div>`;}
+function servicePrice(s,cat){const n=Number(s.prices?.[cat]||0);return n?rupiah(n):'Konsultasi';}
+function serviceCard(s){return `<div class="card service-card"><div><h4>${esc(s.name)}</h4><p>${s.workshop_only?'Workshop':s.home_service_available?'Workshop / Home Service':'Starpoint Garage'}${s.requires_deposit?' · DP '+rupiah(s.deposit_amount):''}</p></div><div class="service-price">${servicePrice(s,state.bookingCat)}</div></div>`;}
+function spgUpcomingBooking(b){const scheduled=Date.parse(b.scheduled_at||'');if(!Number.isFinite(scheduled))return false;const today=new Date(Date.now()+7*3600000);const start=Date.UTC(today.getUTCFullYear(),today.getUTCMonth(),today.getUTCDate())-7*3600000;return scheduled>=start;}
+function bookingHTML(){const active=state.bookings.filter(b=>b.status!=='cancelled'&&b.status!=='completed'&&spgUpcomingBooking(b));const past=state.bookings.filter(b=>b.status==='cancelled'||b.status==='completed'||!spgUpcomingBooking(b));return `<div class="headline"><div><h2>Booking</h2><p>Jadwal dan status layanan</p></div><button class="refresh" data-act="newbooking" aria-label="Tambah booking">${ico('plus')}</button></div><button class="btn btn-primary btn-block icon-btn-label" data-act="newbooking">${ico('calendar')} Booking Layanan</button><div class="section"><div class="section-title"><h3>Booking Aktif</h3></div><div class="list">${active.length?active.map(b=>bookingCard(b,false)).join(''):'<div class="empty">Belum ada booking aktif.</div>'}</div></div>${past.length?`<div class="section"><div class="section-title"><h3>Riwayat Booking</h3></div><div class="list">${past.map(b=>bookingCard(b,false)).join('')}</div></div>`:''}`;}
+function bookingCard(b,compact=false){
+  const paid=Number(b.confirmed_dp||0),pending=Number(b.pending_dp||0);
+  const need=Math.max(0,Number(b.deposit_amount||0)-paid-pending);
+  const autoRejected=b.status==='cancelled'&&!!b.cancellation_reason;
+  const statusText=autoRejected?'Ditolak Otomatis':(b.status==='confirmed'&&!spgUpcomingBooking(b)?'Jadwal Lewat':bookingLabel(b.status));
+  let paymentState='';
+  if(b.status==='pending'&&b.deposit_required&&!b.transaction){
+    if(pending>0) paymentState='<div class="payment-state submitted">Bukti pembayaran sudah dikirim dan sedang diperiksa.</div>';
+    else if(paid>=Number(b.deposit_amount||0)) paymentState='<div class="payment-state confirmed">Pembayaran sudah dikonfirmasi. Menunggu booking diterima.</div>';
+    else paymentState=`<div class="payment-deadline"><strong data-payment-deadline="${esc(b.payment_deadline)}">${paymentTimeLeft(b.payment_deadline)}</strong><span>Batas pembayaran ${dt(b.payment_deadline)}. Booking otomatis ditolak jika bukti belum dikirim.</span></div>`;
+  }
+  return `<div class="card booking-card"><div class="status-top"><div><h4>${esc(b.service_name)}</h4><div class="meta"><span>${esc(b.code)}</span><span>•</span><span>${dt(b.scheduled_at)}</span></div></div><span class="badge ${b.status}">${statusText}</span></div><div class="meta"><span>${esc(b.motor_name)}</span><span>•</span><span>${esc(catLabel(b.vehicle_category))}</span></div>${b.addon_name?`<div class="row"><span>Tambahan Ala Carte</span><strong>${esc(b.addon_name)}</strong></div>`:''}${b.voucher_title?`<div class="row"><span>Voucher</span><strong>${esc(b.voucher_title)}</strong></div>`:''}${Number(b.points_reserved||0)>0?`<div class="row"><span>Starpoint Point</span><strong>${Number(b.points_reserved)} Point</strong></div>`:''}${b.deposit_required?`<div class="row"><span>Pembayaran booking</span><strong>${rupiah(paid)} / ${rupiah(b.deposit_amount)}</strong></div>`:''}${b.transaction?`<div class="row"><span>Pengerjaan · ${esc(b.transaction.code||'-')}</span><strong>${workLabel(b.transaction.work_status)}</strong></div>`:''}${b.status!=='cancelled'?spgWorkProgress(b.transaction?.work_status||'pending'):''}${!b.transaction&&b.status==='pending'?'<div class="spg-work-note">Pengerjaan dimulai setelah booking diterima oleh tim Starpoint.</div>':''}${paymentState}${autoRejected?`<div class="cancellation-reason">${esc(b.cancellation_reason)}</div>`:''}${!compact&&b.status==='pending'?`<div class="booking-actions">${b.deposit_required&&need>0&&pending<=0?`<button class="btn btn-primary" data-dp="${b.id}" data-amount="${need}">Bayar Sekarang</button>`:''}${Number(b.reschedule_count||0)<2?`<button class="btn btn-dark" data-reschedule="${b.id}">Ubah Jadwal</button>`:''}</div>`:''}</div>`;
+}
+function qrHTML(){const m=state.member||{};const code=encodeURIComponent(m.member_code||'');return '<div class="headline"><div><h2>QR Saya</h2><p>QR Member Starpoint Garage</p></div></div><div class="qr-card"><img class="qr-logo" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%2230%20186%20455%20146%22%20role%3D%22img%22%20aria-label%3D%22Star%20Point%20Garage%22%3E%3Cpath%20fill%3D%22%23F3232A%22%20fill-rule%3D%22evenodd%22%20d%3D%22M138%2C206%20L98%2C206%20L96%2C215%20L109%2C216%20L103%2C251%20L115%2C249%20L122%2C217%20L136%2C215ZM472%2C205%20L431%2C206%20L429%2C214%20L430%2C216%20L443%2C217%20L436%2C251%20L449%2C250%20L455%2C218%20L457%2C216%20L469%2C216ZM385%2C205%20L374%2C250%20L387%2C250%20L391%2C230%20L393%2C229%20L406%2C251%20L416%2C251%20L427%2C206%20L414%2C206%20L408%2C228%20L395%2C206ZM374%2C205%20L361%2C206%20L353%2C243%20L353%2C251%20L364%2C251%20L366%2C248ZM295%2C212%20L285%2C206%20L259%2C206%20L249%2C250%20L261%2C251%20L263%2C250%20L264%2C241%20L266%2C239%20L282%2C238%20L290%2C234%20L293%2C231%20L297%2C221ZM271%2C215%20L280%2C215%20L284%2C219%20L284%2C223%20L279%2C229%20L267%2C229%20L268%2C220ZM191%2C206%20L181%2C250%20L194%2C251%20L197%2C240%20L202%2C238%20L210%2C251%20L222%2C251%20L217%2C237%20L222%2C234%20L228%2C226%20L228%2C215%20L226%2C211%20L217%2C206ZM204%2C215%20L211%2C215%20L216%2C219%20L216%2C224%20L211%2C229%20L201%2C230%20L199%2C228ZM167%2C205%20L153%2C207%20L126%2C251%20L138%2C251%20L145%2C242%20L161%2C242%20L166%2C251%20L178%2C250ZM158%2C219%20L160%2C222%20L161%2C232%20L151%2C233%20L150%2C232ZM339%2C206%20L333%2C204%20L320%2C205%20L311%2C209%20L304%2C216%20L300%2C224%20L299%2C236%20L302%2C244%20L307%2C249%20L315%2C252%20L327%2C252%20L337%2C248%20L345%2C240%20L349%2C231%20L350%2C223%20L348%2C215ZM331%2C215%20L337%2C222%20L336%2C233%20L328%2C241%20L319%2C242%20L315%2C240%20L312%2C236%20L312%2C227%20L314%2C222%20L322%2C215ZM94%2C208%20L81%2C204%20L70%2C205%20L63%2C208%20L57%2C214%20L56%2C225%20L59%2C229%20L75%2C235%20L78%2C238%20L77%2C240%20L69%2C243%20L55%2C238%20L51%2C243%20L39%2C251%20L72%2C251%20L87%2C245%20L91%2C237%20L90%2C231%20L85%2C226%20L71%2C222%20L69%2C218%20L73%2C215%20L90%2C217Z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M358%2C279%20L349%2C320%20L380%2C320%20L383%2C312%20L362%2C312%20L361%2C310%20L363%2C304%20L366%2C302%20L381%2C303%20L383%2C295%20L366%2C295%20L365%2C292%20L367%2C288%20L387%2C287%20L388%2C279ZM289%2C280%20L279%2C279%20L276%2C282%20L253%2C319%20L263%2C319%20L268%2C312%20L285%2C312%20L288%2C320%20L298%2C319ZM281%2C291%20L285%2C303%20L274%2C304%20L273%2C302%20L277%2C294ZM222%2C279%20L214%2C320%20L223%2C320%20L228%2C308%20L232%2C308%20L235%2C311%20L239%2C320%20L249%2C320%20L244%2C308%20L254%2C298%20L255%2C288%20L253%2C284%20L247%2C280ZM228%2C299%20L231%2C287%20L239%2C287%20L245%2C293%20L239%2C301%20L230%2C301ZM199%2C280%20L189%2C279%20L163%2C319%20L174%2C319%20L178%2C312%20L195%2C312%20L198%2C320%20L208%2C319ZM191%2C291%20L193%2C293%20L195%2C303%20L184%2C304%20L183%2C302ZM345%2C282%20L339%2C279%20L327%2C278%20L313%2C284%20L305%2C295%20L304%2C306%20L306%2C312%20L316%2C320%20L327%2C321%20L339%2C318%20L341%2C316%20L344%2C299%20L334%2C299%20L332%2C309%20L329%2C312%20L320%2C311%20L315%2C304%20L315%2C300%20L318%2C293%20L322%2C289%20L333%2C287%20L340%2C291%20L348%2C285ZM162%2C281%20L152%2C278%20L145%2C278%20L131%2C284%20L123%2C296%20L122%2C305%20L124%2C312%20L134%2C320%20L145%2C321%20L157%2C318%20L159%2C316%20L162%2C299%20L152%2C299%20L150%2C309%20L147%2C312%20L141%2C312%20L137%2C310%20L133%2C302%20L136%2C293%20L140%2C289%20L151%2C287%20L158%2C291%20L166%2C285Z%22%2F%3E%3Cpath%20fill%3D%22%23FFE500%22%20fill-rule%3D%22evenodd%22%20d%3D%22M446%2C260%20L264%2C264%20L444%2C267ZM363%2C198%20L378%2C189%20L365%2C189Z%22%2F%3E%3C%2Fsvg%3E" alt="Star Point Garage"><div class="qr-frame"><img src="'+SUPABASE_URL+'/functions/v1/member-qr?value='+code+'" alt="QR Member"></div><div class="member-code">'+esc(m.member_code)+'</div><div class="meta" style="justify-content:center"><span>'+esc(m.full_name||m.username)+'</span><span>•</span><span>Member</span></div></div>';}
+function historyHTML(){
+  const bookings=(state.bookings||[]).filter(b=>!spgBookingStillActive(b));
+  const jobs=(state.history||[]).filter(j=>j&&j.work_status==='completed');
+  return `<div class="headline history-page-head"><div><h2>Riwayat Layanan</h2><p>Booking dan progres pekerjaan tersimpan di sini</p></div><button type="button" class="service-history-btn" data-pagego="services">← Layanan</button></div><div class="section"><div class="section-title"><h3>Booking</h3><span class="history-count">${bookings.length}</span></div><div class="list">${bookings.length?bookings.map(b=>bookingCard(b,false)).join(''):'<div class="empty">Belum ada booking.</div>'}</div></div><div class="section"><div class="section-title"><h3>Pekerjaan</h3><span class="history-count">${jobs.length}</span></div><div class="list">${jobs.length?jobs.map(historyCard).join(''):'<div class="empty">Belum ada riwayat pekerjaan.</div>'}</div></div>`;
+}
+function historyCard(h){const pending=Number(h.pending_payment||0),outstanding=Math.max(0,Number(h.final_total)-Number(h.amount_paid)),payable=Math.max(0,outstanding-pending);return `<div class="card history-card"><div class="history-head"><div><h4>${esc((h.services||[]).map(s=>s.name).join(' · ')||h.code)}</h4><div class="meta"><span>${dmy(h.date)}</span><span>•</span><span>${esc(h.motor_name)}</span><span>•</span><span>${esc(catLabel(h.vehicle_category))}</span></div></div><span class="badge ${h.work_status}">${workLabel(h.work_status)}</span></div><div class="tags">${(h.services||[]).map(s=>`<span class="tag">${esc(s.name)}</span>`).join('')}</div>${spgWorkProgress(h.work_status)}<div class="row"><span>${payLabel(h.payment_status)}</span><strong class="price">${rupiah(h.final_total)}</strong></div>${pending>0?`<div class="pay-pending">Pembayaran ${rupiah(pending)} menunggu konfirmasi</div>`:''}${payable>0?`<button class="btn btn-dark btn-block icon-btn-label" data-payjob="${h.id}" data-amount="${payable}" style="margin-top:10px">${ico('wallet')} Bayar ${rupiah(payable)}</button>`:''}</div>`;}
+function accountHTML(){const m=state.member||{},vehicles=m.vehicles||[];return `<div class="headline"><div><h2>Akun</h2><p>Profil dan motor Member</p></div></div><div class="card profile-card clean"><div><h3>${esc(m.full_name||m.username)}</h3><p>${esc(m.email)}</p><div class="meta"><span>${esc(m.member_code)}</span><span>•</span><span>${m.visit_count||0} kunjungan</span></div></div></div><div class="section"><div class="section-title"><h3>Data Pribadi</h3><button class="icon-btn-label" data-act="editprofile">${ico('edit')} Edit</button></div><div class="card"><div class="row"><span>Username</span><strong>${esc(m.username)}</strong></div><div class="row"><span>WhatsApp</span><strong>${esc(m.phone||'-')}</strong></div><div class="row"><span>Tanggal lahir</span><strong>${m.birth_date?dmy(m.birth_date):'-'}</strong></div></div></div><div class="section"><div class="section-title"><h3>Motor Saya</h3><button class="icon-btn-label" data-act="addvehicle">${ico('plus')} Tambah</button></div><div class="list">${vehicles.length?vehicles.map(vehicleCard).join(''):'<div class="empty">Belum ada motor tersimpan.</div>'}</div></div><div class="section account-actions"><button class="btn btn-dark btn-block" data-act="notifications">${ico('bell')} Notifikasi</button><button class="btn btn-ghost btn-block" data-act="logout">${ico('logout')} Keluar</button></div>`;}
+function vehicleCard(v){return `<div class="card vehicle clean"><div class="vehicle-main"><strong>${esc(v.motor_name)}</strong><small>${esc(catLabel(v.vehicle_category))}${v.is_primary?' · Utama':''}</small></div><button class="tiny-link icon-btn-label" data-delvehicle="${v.id}">${ico('trash')} Hapus</button></div>`;}
+function bindPage(){
+  queryAll('[data-act]').forEach(b=>b.onclick=()=>action(b.dataset.act));
+  queryAll('[data-pagego]').forEach(b=>b.onclick=()=>{state.page=b.dataset.pagego;queryAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===state.page));render();});
+  queryAll('[data-dp]').forEach(b=>b.onclick=()=>openDp(b.dataset.dp,Number(b.dataset.amount)));
+  queryAll('[data-payjob]').forEach(b=>b.onclick=()=>openJobPayment(b.dataset.payjob,Number(b.dataset.amount)));
+  queryAll('[data-use-voucher]').forEach(b=>b.onclick=()=>useVoucher(b.dataset.useVoucher));
+  queryAll('[data-reschedule]').forEach(b=>b.onclick=()=>openReschedule(b.dataset.reschedule));
+  queryAll('[data-delvehicle]').forEach(b=>b.onclick=()=>deleteVehicle(b.dataset.delvehicle));
+  bindServiceCards();
+}
+function safeCopy(text,msg){try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>showToast(msg||'Disalin')).catch(()=>fallbackCopy(text,msg));}else fallbackCopy(text,msg);}catch{fallbackCopy(text,msg);}}
+function fallbackCopy(text,msg){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast(msg||'Disalin');}catch{showToast(text);}ta.remove();}
+function openMaps(){const address='Jl. Raya Kendangsari Industri No. 58B, Kutisari, Tenggilis Mejoyo, Surabaya, Jawa Timur 60291';try{if(window.StarpointNative&&typeof window.StarpointNative.openMaps==='function'){window.StarpointNative.openMaps(address);return;}}catch{}openMapPanel();}
+function openMapPanel(){const address='Jl. Raya Kendangsari Industri No. 58B, Kutisari, Tenggilis Mejoyo, Surabaya, Jawa Timur 60291';openSheet('<div class="sheet-head"><h3>Maps Starpoint Garage</h3><button class="close" data-close>×</button></div><div class="map-sheet"><iframe title="Maps Starpoint Garage" src="https://www.google.com/maps?q=Jl.%20Raya%20Kendangsari%20Industri%20No.%2058B%2C%20Surabaya&z=17&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><div class="card" style="margin-top:12px"><strong>Starpoint Garage Surabaya</strong><p class="muted-map">'+address+'</p><button class="btn btn-primary btn-block" id="copyAddressBtn">Salin Alamat</button></div>');setTimeout(()=>{const b=document.getElementById('copyAddressBtn');if(b)b.onclick=()=>safeCopy(address,'Alamat Starpoint disalin');},0);}
+function openWhatsApp(){const phone=STARPOINT_WA||'6281345115758';const msg='Halo Starpoint Garage, saya ingin bertanya.';try{if(window.StarpointNative&&typeof window.StarpointNative.openWhatsApp==='function'){window.StarpointNative.openWhatsApp(phone,msg);return;}}catch{}const scheme='whatsapp://send?phone='+phone+'&text='+encodeURIComponent(msg);const web='https://wa.me/'+phone+'?text='+encodeURIComponent(msg);let left=false;const onHide=()=>{if(document.visibilityState==='hidden')left=true;};document.addEventListener('visibilitychange',onHide,{once:true});try{const f=document.createElement('iframe');f.style.display='none';f.src=scheme;document.body.appendChild(f);setTimeout(()=>{try{f.remove();}catch{}},1600);}catch{}setTimeout(()=>{if(left)return;try{const w=window.open(web,'_blank','noopener');if(!w)window.location.assign(web);}catch{try{window.location.assign(web);}catch{location.href=web;}}},900);}
+async function action(a){if(a==='refresh')await reloadData();else if(a==='newbooking')openBooking();else if(a==='catalog')openCatalog();else if(a==='billing')openBilling();else if(a==='editprofile')openProfile();else if(a==='addvehicle')openVehicle();else if(a==='notifications')openNotifications();else if(a==='whatsapp'){openWhatsApp();}else if(a==='logout'){clearSession();location.reload();}}
+function bindServiceCards(){
+  queryAll('[data-service-detail]').forEach(card=>{
+    card.onclick=e=>{if(e.target.closest('[data-book-service]'))return;openServiceDetail(card.dataset.serviceDetail);};
+    card.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('[data-book-service]')){e.preventDefault();openServiceDetail(card.dataset.serviceDetail);}};
+  });
+  queryAll('[data-book-service]').forEach(b=>b.onclick=e=>{e.stopPropagation();openBooking(b.dataset.bookService);});
+}
+function openServiceDetail(id){
+  const s=state.catalog.find(x=>String(x.id)===String(id));
+  if(!s){showToast('Layanan tidak ditemukan');return;}
+  const rows=CATS.filter(c=>Number(s.prices?.[c[0]]||0)>0);
+  const priceHTML=rows.length?`<div class="service-detail-prices">${rows.map(c=>`<div class="detail-price-row"><span>${esc(c[1])}</span><strong>${rupiah(s.prices[c[0]])}</strong></div>`).join('')}</div>`:'<div class="notice">Harga layanan ditentukan setelah konsultasi.</div>';
+  openSheet(`<div class="sheet-head"><h3>Detail Layanan</h3><button class="close" data-close>×</button></div><img class="service-detail-photo" src="${serviceImage(s)}" alt="${esc(s.name)}"><div class="service-detail-title"><h2>${esc(s.name)}</h2><span>${esc(s.duration_label||'Durasi menyesuaikan kondisi kendaraan')}</span></div><p class="service-detail-desc">${esc(s.description||'Perawatan profesional Starpoint Garage yang disesuaikan dengan kondisi kendaraan.')}</p><div class="detail-section-title">Harga berdasarkan kategori motor</div>${priceHTML}${s.booking_enabled&&rows.length?`<button type="button" class="btn btn-primary btn-block service-detail-book" id="detailBook">Booking</button>`:''}`);
+  if($('#detailBook'))$('#detailBook').onclick=()=>{closeSheet();openBooking(s.id);};
+}
+function openCatalog(){openSheet(`<div class="sheet-head"><h3>Layanan Starpoint</h3><button class="close" data-close>×</button></div><div class="cat-grid">${CATS.map(c=>`<button class="cat-btn ${c[0]===state.bookingCat?'active':''}" data-cat="${c[0]}">${c[1]}</button>`).join('')}</div><div class="sheet-section"><div class="list" id="catalogList"></div></div>`);const draw=()=>{$('#catalogList').innerHTML=state.catalog.map(serviceCard).join('');queryAll('[data-cat]').forEach(b=>b.classList.toggle('active',b.dataset.cat===state.bookingCat));};queryAll('[data-cat]').forEach(b=>b.onclick=()=>{state.bookingCat=b.dataset.cat;draw();});draw();}
+function motorNorm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');}
+function motorBase(v){return motorNorm(String(v||'').replace(/series/ig,'').replace(/all type/ig,''));}
+function motorCandidates(q){const n=motorNorm(q);if(!n)return [];return (state.motorModels||[]).filter(m=>{const mn=motorNorm(m.model_name),bn=motorNorm(m.brand),base=motorBase(m.model_name);return mn.includes(n)||n.includes(mn)||(base.length>=3&&(n.startsWith(base)||base.startsWith(n)))||(bn&&n.startsWith(bn)&&motorNorm(m.brand+' '+m.model_name).includes(n));}).slice(0,16);}
+function resolveMotor(q){const n=motorNorm(q);if(!n)return null;const exact=(state.motorModels||[]).filter(m=>motorNorm(m.model_name)===n||motorNorm(m.brand+' '+m.model_name)===n);if(exact.length){const cats=[...new Set(exact.map(x=>x.vehicle_category))];return cats.length===1?exact[0]:null;}const candidates=motorCandidates(q);if(!candidates.length)return null;const strong=candidates.filter(m=>{const base=motorBase(m.model_name);return base.length>=3&&(n.startsWith(base)||base.startsWith(n));});const pool=strong.length?strong:candidates;const cats=[...new Set(pool.map(x=>x.vehicle_category))];return cats.length===1?pool[0]:null;}
+function openBooking(preselectedId=''){
+const primary=(state.member?.vehicles||[]).find(v=>v.is_primary)||(state.member?.vehicles||[])[0];
+let selected=state.catalog.find(s=>String(s.id)===String(preselectedId)&&s.booking_enabled&&!s.price_via_whatsapp)?.id||state.catalog.filter(s=>s.booking_enabled&&!s.price_via_whatsapp).sort((a,b)=>(startPrice(a)||Number.MAX_SAFE_INTEGER)-(startPrice(b)||Number.MAX_SAFE_INTEGER))[0]?.id||'';
+const initialMotor=primary?.motor_name||'';
+const resolvedInitial=resolveMotor(initialMotor);
+let selectedCat=resolvedInitial?.vehicle_category||primary?.vehicle_category||'';
+const vouchers=(state.vouchers||[]).filter(v=>v.status==='active'&&!v.reserved_booking_id&&(!v.expires_at||new Date(v.expires_at).getTime()>Date.now()));
+const bookingReserved=(state.bookings||[]).filter(b=>b.status==='pending').reduce((sum,b)=>sum+Number(b.points_reserved||0),0);
+const pointBal=Math.max(0,Math.floor(Number(state.points?.balance||0))-bookingReserved);
+let quoteSeq=0;
+let currentQuote=null;
+openSheet('<div class="sheet-head"><h3>Buat Booking</h3><button class="close" data-close>×</button></div>'
++'<style id="bk-motor-filter-style">#bkMotorSuggestions{max-height:185px;overflow-y:auto;overscroll-behavior:contain;background:#111114;border:1px solid #37373a;border-radius:12px}#bkMotorSuggestions .bk-motor-option{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;text-align:left;background:transparent;color:#f7f7f8;border:0;border-bottom:1px solid #2b2b2f;font-size:14px}#bkMotorSuggestions .bk-motor-option:last-child{border-bottom:0}#bkMotorSuggestions .bk-motor-option:active{background:#242428}#bkMotorSuggestions .bk-motor-option small{color:#e8bd58;font-size:11px;text-align:right}#bkMotorSuggestions .bk-motor-none{padding:12px;color:#aaa;font-size:12px}</style>'
++'<div class="field"><label>Motor</label><input id="bkMotor" value="'+esc(initialMotor)+'" placeholder="Ketik nama motor, contoh: NMAX" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="bkMotorSuggestions"><div id="bkMotorSuggestions" role="listbox" aria-label="Hasil pencarian motor" class="hidden"></div><small id="motorHint" class="motor-hint">Ketik nama motor, lalu pilih hasil yang cocok.</small></div>'
++'<div class="field"><label>Kategori Motor</label><input id="bkCatDisplay" value="'+esc(selectedCat?catLabel(selectedCat):'Menunggu jenis motor')+'" readonly><select id="bkCatFallback" class="hidden">'+CATS.map(c=>'<option value="'+c[0]+'">'+c[1]+'</option>').join('')+'</select><small id="catHint" class="motor-hint"></small></div>'
++'<div class="field"><label>Layanan Utama</label><select id="bkService"></select></div>'
++'<div class="field"><label>Tambahan Ala Carte (opsional)</label><select id="bkAddon"><option value="">Tanpa tambahan Ala Carte</option></select></div>'
++'<div class="field"><label>Gunakan Voucher (opsional)</label><select id="bkVoucher"><option value="">Tanpa voucher</option>'+vouchers.map(v=>'<option value="'+esc(v.id)+'">'+esc(memberVoucherLabel(v))+' · '+esc(v.code)+'</option>').join('')+'</select><small class="motor-hint">'+(vouchers.length?'Pilih voucher yang tersedia. Voucher Free Ala Carte memerlukan layanan tambahan Ala Carte.':'Belum ada voucher yang tersedia untuk booking.')+'</small></div>'
++'<div class="field"><label>Gunakan Starpoint Point (opsional)</label><input id="bkPoints" type="number" min="0" max="'+pointBal+'" step="1" inputmode="numeric" value="0"><small class="motor-hint">Tersedia '+pointBal.toLocaleString('id-ID')+' Point · 1 Point = Rp1.000</small></div>'
++'<div class="motor-hint" id="bkBenefitHint" role="status" style="margin:3px 0 10px;color:var(--muted)">Voucher dan Starpoint Point tidak dapat digunakan bersamaan. Pilih salah satu.</div>'
++'<div id="bkPrice" class="card" aria-live="polite" style="margin:12px 0"></div>'
++'<div class="field"><label>Jadwal</label><input id="bkDate" type="datetime-local"></div>'
++'<div class="field"><label>Catatan</label><textarea id="bkNotes" rows="3" placeholder="Opsional"></textarea></div>'
++'<button class="btn btn-primary btn-block" id="bkSave" disabled>Lanjut ke Pembayaran</button>');
+const catValue=()=>selectedCat||$('#bkCatFallback').value||'';
+const params=()=>({
+p_service_id:$('#bkService').value,
+p_vehicle_category:catValue(),
+p_addon_service_id:$('#bkAddon').value||null,
+p_voucher_id:$('#bkVoucher').value||null,
+p_points:Math.floor(Number($('#bkPoints').value||0))
+});
+const createBtn=$('#bkSave');
+const box=$('#bkPrice');
+function showQuote(q){
+if(!q?.eligible){
+box.innerHTML='<div class="notice">'+esc(q?.reason||'Pilih kategori dan layanan terlebih dahulu.')+'</div>';
+createBtn.disabled=true;
+return;
+}
+const disc=Number(q.voucher_discount||0),pd=Number(q.points_discount||0),payNow=Number(q.deposit_amount||0);
+box.innerHTML='<div class="booking-summary"><div class="quote-title">Rincian Pembayaran</div>'
++'<div class="quote-row"><span>Layanan utama</span><strong>'+rupiah(q.main_price)+'</strong></div>'
++(Number(q.addon_price||0)>0?'<div class="quote-row"><span>Tambahan Ala Carte</span><strong>'+rupiah(q.addon_price)+'</strong></div>':'')
++(disc>0?'<div class="quote-row discount"><span>Diskon voucher</span><strong>-'+rupiah(disc)+'</strong></div>':'')
++(pd>0?'<div class="quote-row discount"><span>Potongan Point</span><strong>-'+rupiah(pd)+'</strong></div>':'')
++'<div class="quote-total"><span>Total pembayaran</span><strong>'+rupiah(q.total)+'</strong></div>'
++(payNow>0?'<div class="quote-payment-note"><strong>Dibayar setelah booking dibuat</strong><span>Halaman pembayaran akan langsung terbuka. Kirim bukti maksimal 30 menit agar booking tidak ditolak otomatis.</span></div>':'<div class="quote-payment-note free"><strong>Tidak ada pembayaran</strong><span>Total booking sudah tertutup diskon.</span></div>')
++'<div class="point-potential quote-reward">'+ico('points')+'<div><strong>Estimasi reward: '+Number(q.points_earned_estimate||0)+' Point</strong><span>Point masuk setelah transaksi selesai dan lunas.</span></div></div>'
++((disc>0||pd>0)?'<div class="benefit-note">Voucher atau Point dicadangkan sekarang dan diterapkan saat booking diterima.</div>':'')
++'</div>';
+createBtn.disabled=false;
+}
+async function drawPrice(){
+const seq=++quoteSeq;
+currentQuote=null;
+createBtn.disabled=true;
+if(!selected||!catValue()){showQuote({eligible:false,reason:'Pilih jenis motor dan layanan terlebih dahulu.'});return;}
+box.innerHTML='<div class="meta"><span>Memeriksa harga dan voucher...</span></div>';
+try{
+const q=await rpc('member_booking_quote',params());
+if(seq!==quoteSeq)return;
+currentQuote=q;
+showQuote(q);
+}catch(e){
+if(seq!==quoteSeq)return;
+showQuote({eligible:false,reason:errText(e)});
+}
+}
+function drawServices(){
+const cat=catValue();
+const list=state.catalog.filter(s=>s.booking_enabled&&!s.price_via_whatsapp&&Number(s.prices?.[cat]||0)>0).sort((a,b)=>Number(a.prices?.[cat]||0)-Number(b.prices?.[cat]||0));
+const previous=$('#bkService').value||selected;
+$('#bkService').innerHTML=list.length?list.map(s=>'<option value="'+esc(s.id)+'">'+esc(s.name)+' · '+rupiah(s.prices?.[cat])+'</option>').join(''):'<option value="">Pilih kategori terlebih dahulu</option>';
+selected=list.some(s=>s.id===previous)?previous:(list[0]?.id||'');
+$('#bkService').value=selected;
+const addonPrevious=$('#bkAddon').value;
+const addons=state.catalog.filter(s=>s.service_group==='ala_carte'&&s.id!==selected&&Number(s.prices?.[cat]||0)>0);
+$('#bkAddon').innerHTML='<option value="">Tanpa tambahan Ala Carte</option>'+addons.map(s=>'<option value="'+esc(s.id)+'">'+esc(s.name)+' · '+rupiah(s.prices?.[cat])+'</option>').join('');
+if(addons.some(s=>s.id===addonPrevious))$('#bkAddon').value=addonPrevious;
+drawPrice();
+}
+let filteredMotorChoices=[];
+function hideMotorChoices(){
+const box=$('#bkMotorSuggestions'),input=$('#bkMotor');
+if(!box)return;
+box.classList.add('hidden');
+if(input)input.setAttribute('aria-expanded','false');
+}
+function showMotorChoices(){
+const input=$('#bkMotor'),box=$('#bkMotorSuggestions');
+if(!input||!box)return;
+const query=motorNorm(input.value);
+if(!query){filteredMotorChoices=[];box.innerHTML='';hideMotorChoices();return;}
+filteredMotorChoices=(state.motorModels||[]).filter(m=>motorNorm(m.model_name).includes(query)||motorNorm(m.brand+' '+m.model_name).includes(query)).slice(0,5);
+box.innerHTML=filteredMotorChoices.length
+?filteredMotorChoices.map((m,i)=>'<button type="button" class="bk-motor-option" role="option" data-motor-index="'+i+'"><span>'+esc(m.model_name)+'</span><small>'+esc(m.brand)+' · '+esc(catLabel(m.vehicle_category))+'</small></button>').join('')
+:'<div class="bk-motor-none">Tidak ditemukan. Coba nama motor lain atau pilih kategori manual.</div>';
+box.classList.remove('hidden');
+input.setAttribute('aria-expanded','true');
+}
+function selectMotorChoice(i){
+const m=filteredMotorChoices[i];
+if(!m)return;
+$('#bkMotor').value=m.model_name;
+updateMotor();
+hideMotorChoices();
+$('#bkMotor').blur();
+}
+function updateMotor(){
+const v=$('#bkMotor').value.trim(),m=resolveMotor(v);
+if(m){
+selectedCat=m.vehicle_category;
+$('#bkCatDisplay').value=catLabel(selectedCat);
+$('#bkCatFallback').classList.add('hidden');
+$('#catHint').textContent=m.brand+' · kategori otomatis dari database motor';
+$('#motorHint').textContent='Kategori terdeteksi otomatis.';
+}else{
+selectedCat='';
+$('#bkCatDisplay').value='Belum terdeteksi';
+$('#bkCatFallback').classList.remove('hidden');
+$('#catHint').textContent='Pilih kategori jika jenis motor belum ditemukan.';
+$('#motorHint').textContent='Pilih salah satu saran motor agar kategori terisi otomatis.';
+}
+drawServices();
+}
+$('#bkMotor').addEventListener('input',()=>{updateMotor();showMotorChoices();});
+$('#bkMotor').addEventListener('focus',showMotorChoices);
+$('#bkMotor').addEventListener('blur',()=>setTimeout(hideMotorChoices,250));
+$('#bkMotor').addEventListener('keydown',e=>{if(e.key==='Escape')hideMotorChoices();else if(e.key==='Enter'&&filteredMotorChoices.length&&!$('#bkMotorSuggestions').classList.contains('hidden')){e.preventDefault();selectMotorChoice(0);}});
+$('#bkMotorSuggestions').addEventListener('click',e=>{const row=e.target.closest('[data-motor-index]');if(row)selectMotorChoice(Number(row.dataset.motorIndex));});
+$('#bkMotor').addEventListener('change',updateMotor);
+$('#bkCatFallback').addEventListener('change',()=>{
+selectedCat=$('#bkCatFallback').value;
+$('#bkCatDisplay').value=catLabel(selectedCat);
+drawServices();
+});
+$('#bkService').onchange=()=>{selected=$('#bkService').value;drawServices();};
+$('#bkAddon').onchange=drawPrice;
+function syncBookingBenefits(){
+const voucherSelected=!!$('#bkVoucher').value;
+const pts=Number($('#bkPoints').value||0);
+$('#bkPoints').disabled=voucherSelected||pointBal<=0;
+$('#bkVoucher').disabled=pts>0;
+$('#bkBenefitHint').textContent=voucherSelected
+  ?'Voucher dipilih. Starpoint Point tidak dapat digunakan bersamaan. Pilih Tanpa voucher jika ingin memakai Point.'
+  :pts>0
+    ?'Starpoint Point dipilih. Voucher tidak dapat digunakan bersamaan. Ubah Point menjadi 0 jika ingin memakai voucher.'
+    :'Voucher dan Starpoint Point tidak dapat digunakan bersamaan. Pilih salah satu.';
+}
+$('#bkVoucher').onchange=()=>{syncBookingBenefits();drawPrice();};
+$('#bkPoints').oninput=()=>{syncBookingBenefits();drawPrice();};
+syncBookingBenefits();
+if(selectedCat){$('#bkCatDisplay').value=catLabel(selectedCat);drawServices();}else updateMotor();
+createBtn.onclick=async()=>{
+const motor=$('#bkMotor').value.trim(),cat=catValue(),when=$('#bkDate').value;
+if(!motor||!cat||!selected||!when){showToast('Motor, kategori, layanan, dan jadwal wajib diisi');return;}
+const d=new Date(when);
+if(d.getHours()<9||d.getHours()>=18||!(d.getTime()>Date.now())){showToast('Pilih jadwal mendatang antara 09:00–18:00');return;}
+createBtn.disabled=true;
+createBtn.innerHTML='<span class="spinner"></span> Membuat booking...';
+try{
+const chosen=params();
+const checked=await rpc('member_booking_quote',chosen);
+if(!checked?.eligible)throw new Error(checked?.reason||'Voucher atau Point tidak berlaku');
+const res=await rpc('member_create_booking_v2',{
+...chosen,p_motor_name:motor,p_scheduled_at:d.toISOString(),p_notes:$('#bkNotes').value.trim()||null
+});
+closeSheet();await reloadData();state.page='booking';
+queryAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page==='booking'));
+render();
+if(res.deposit_required&&Number(res.deposit_amount||0)>0){
+  showToast('Booking dibuat · selesaikan pembayaran dalam 30 menit');
+  openDp(res.id,Number(res.deposit_amount));
+}else{
+  showToast('Booking berhasil dibuat');
+}
+}catch(e){
+showToast(errText(e));
+createBtn.disabled=false;
+createBtn.textContent='Lanjut ke Pembayaran';
+}
+};
+}
+async function preparePaymentProof(file){
+  if(!file)throw new Error('Pilih foto bukti pembayaran');
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw new Error('Bukti harus berupa JPG, PNG, atau WebP');
+  if(file.size<=4500000)return file;
+  try{
+    const bitmap=await createImageBitmap(file);
+    const max=1600,scale=Math.min(1,max/Math.max(bitmap.width,bitmap.height));
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round(bitmap.width*scale));
+    canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+    canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);
+    bitmap.close();
+    const blob=await new Promise((resolve,reject)=>canvas.toBlob(v=>v?resolve(v):reject(new Error('Foto tidak dapat diproses')),'image/jpeg',.84));
+    if(blob.size>5000000)throw new Error('Ukuran bukti pembayaran maksimal 5 MB');
+    return new File([blob],'bukti-pembayaran.jpg',{type:'image/jpeg'});
+  }catch(e){
+    if(file.size>5000000)throw new Error('Ukuran bukti pembayaran maksimal 5 MB');
+    return file;
+  }
+}
+function sessionUserId(){
+  try{
+    const raw=state.session?.access_token?.split('.')[1]||'';
+    const normalized=raw.replace(/-/g,'+').replace(/_/g,'/');
+    const padded=normalized+'='.repeat((4-normalized.length%4)%4);
+    return JSON.parse(atob(padded)).sub||'';
+  }catch{return '';}
+}
+async function uploadPaymentProof(file,bookingId){
+  const prepared=await preparePaymentProof(file);
+  const uid=sessionUserId();
+  if(!uid)throw new Error('Sesi login tidak valid');
+  const ext=prepared.type==='image/png'?'png':prepared.type==='image/webp'?'webp':'jpg';
+  const path=`${uid}/${bookingId}/${Date.now()}-${crypto.randomUUID().slice(0,8)}.${ext}`;
+  const url=SUPABASE_URL+'/storage/v1/object/payment-proofs/'+path.split('/').map(encodeURIComponent).join('/');
+  const send=()=>fetch(url,{method:'POST',headers:{apikey:API_KEY,Authorization:'Bearer '+state.session.access_token,'Content-Type':prepared.type,'x-upsert':'false'},body:prepared});
+  let response=await send();
+  if(response.status===401){await refreshSession();response=await send();}
+  if(!response.ok){
+    let message='Bukti pembayaran gagal diunggah';
+    try{const data=await response.json();message=data.message||data.error||message;}catch{}
+    throw new Error(message);
+  }
+  return path;
+}
+function copyText(v){try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(v);showToast('Nomor rekening disalin');return;}const i=document.createElement('input');i.value=v;document.body.appendChild(i);i.select();document.execCommand('copy');i.remove();showToast('Nomor rekening disalin');}catch{showToast('Salin nomor rekening: '+v);}}
+function paymentSheet(title,amount,onSubmit,opt={}){
+  let method=QRIS_ASSET?'qris_manual':'bank_transfer';
+  window.spgCapturedPaymentProof=null;
+  const proofHTML=opt.requireProof?`<div class="payment-proof-box"><label for="paymentProof">Bukti pembayaran</label><input id="paymentProof" type="file" accept="image/jpeg,image/png,image/webp"><button type="button" class="btn btn-dark" id="proofCameraOpen">Ambil foto bukti dengan kamera</button><div id="proofCameraBox" style="display:none"><video id="proofCameraVideo" autoplay playsinline muted style="width:100%;border-radius:12px;max-height:300px;background:#000"></video><button type="button" class="btn btn-primary" id="proofCameraCapture">Gunakan Foto Ini</button><button type="button" class="btn btn-dark" id="proofCameraCancel">Batalkan Kamera</button></div><small id="proofName">Pilih galeri atau ambil foto dengan kamera (maks. 5 MB).</small><small id="paymentUploadError" role="alert" style="color:#ff9898"></small></div>`:'';
+  const deadlineHTML=opt.deadline?`<div class="payment-deadline sheet-deadline"><strong data-payment-deadline="${esc(opt.deadline)}">${paymentTimeLeft(opt.deadline)}</strong><span>Kirim bukti sebelum ${dt(opt.deadline)} agar booking tidak ditolak otomatis.</span></div>`:'';
+  openSheet(`<div class="sheet-head"><h3>${esc(title)}</h3><button class="close" data-close>×</button></div><div class="payment-total-card"><span>Total pembayaran</span><strong>${rupiah(amount)}</strong></div>${deadlineHTML}${opt.benefitNotice?`<div class="motor-hint" style="margin:8px 0 12px">${esc(opt.benefitNotice)}</div>`:''}${Number(opt.potential||0)>0?`<div class="point-potential quote-reward">${ico('points')}<div><strong>Estimasi reward: ${Number(opt.potential)} Point</strong><span>Point masuk setelah transaksi selesai dan lunas.</span></div></div>`:''}<div class="payment-methods"><button id="methodQris" class="active">QRIS</button><button id="methodBank">Transfer BRI</button></div><div id="paymentPanel"></div>${proofHTML}<button class="btn btn-primary btn-block" id="paymentDone">${opt.requireProof?'Kirim Bukti Pembayaran':'Saya Sudah Bayar'}</button>`);
+  const draw=()=>{
+    const p=$('#paymentPanel');
+    $('#methodQris').classList.toggle('active',method==='qris_manual');
+    $('#methodBank').classList.toggle('active',method==='bank_transfer');
+    p.innerHTML=method==='qris_manual'?`<div class="payment-panel qris-panel"><div class="qris-pay"><img src="${QRIS_ASSET}" alt="QRIS Starpoint Garage"></div><div class="payment-help">Scan QRIS lalu bayar tepat ${rupiah(amount)}.</div></div>`:`<div class="payment-panel bank-box"><div class="bank-line"><small>Bank</small><strong>BRI</strong></div><div class="bank-line"><small>Atas Nama</small><strong>${PAYEE_NAME}</strong></div><div class="bank-line"><small>Nomor Rekening</small><div class="copy-row"><strong>${BRI_ACCOUNT}</strong><button class="btn btn-dark" id="copyBank">${ico('copy')}</button></div></div><div class="payment-help">Transfer tepat ${rupiah(amount)}.</div></div>`;
+    if($('#copyBank'))$('#copyBank').onclick=()=>copyText(BRI_ACCOUNT);
+  };
+  if(!QRIS_ASSET){$('#methodQris').disabled=true;$('#methodQris').textContent='QRIS belum tersedia';$('#methodQris').title='Gambar QRIS resmi belum tersedia; gunakan Transfer BRI';}
+  $('#methodQris').onclick=()=>{if(!QRIS_ASSET){showToast('QRIS belum tersedia. Gunakan Transfer BRI sementara.');return;}method='qris_manual';draw();};
+  $('#methodBank').onclick=()=>{method='bank_transfer';draw();};
+  draw();
+  if($('#paymentProof'))$('#paymentProof').onchange=()=>{window.spgCapturedPaymentProof=null;$('#proofName').textContent=$('#paymentProof').files?.[0]?.name||'Pilih foto bukti pembayaran.';};
+  if($('#proofCameraOpen'))$('#proofCameraOpen').onclick=async()=>{
+    try{
+      if(!navigator.mediaDevices?.getUserMedia)throw new Error('Kamera tidak tersedia di aplikasi ini');
+      const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});
+      window.spgProofCameraStream=stream;
+      $('#proofCameraBox').style.display='grid';
+      const video=$('#proofCameraVideo');video.srcObject=stream;await video.play();
+      $('#paymentUploadError').textContent='';
+    }catch(e){$('#paymentUploadError').textContent='Kamera tidak bisa dibuka: '+(e.message||String(e))+'. Pilih foto dari galeri perangkat.';}
+  };
+  if($('#proofCameraCancel'))$('#proofCameraCancel').onclick=()=>{stopSpgProofCamera();};
+  if($('#proofCameraCapture'))$('#proofCameraCapture').onclick=async()=>{
+    try{
+      const v=$('#proofCameraVideo');
+      if(!v.videoWidth)throw new Error('Kamera belum siap');
+      const c=document.createElement('canvas'),s=Math.min(1,1600/Math.max(v.videoWidth,v.videoHeight));
+      c.width=Math.max(1,Math.round(v.videoWidth*s));c.height=Math.max(1,Math.round(v.videoHeight*s));
+      c.getContext('2d').drawImage(v,0,0,c.width,c.height);
+      const blob=await new Promise((resolve,reject)=>c.toBlob(x=>x?resolve(x):reject(new Error('Foto gagal diproses')),'image/jpeg',.82));
+      window.spgCapturedPaymentProof=new File([blob],'bukti-pembayaran-'+Date.now()+'.jpg',{type:'image/jpeg'});
+      $('#proofName').textContent='Foto siap dikirim ('+Math.ceil(blob.size/1024)+' KB)';
+      $('#paymentUploadError').textContent='';
+      stopSpgProofCamera();
+    }catch(e){$('#paymentUploadError').textContent=e.message||'Tidak bisa mengambil foto';}
+  };
+  
+  
+  $('#paymentDone').onclick=async()=>{
+    const b=$('#paymentDone'),original=b.textContent;
+    b.disabled=true;
+    try{
+      let proofPath=null;
+      if(opt.requireProof){
+        const file=window.spgCapturedPaymentProof||$('#paymentProof')?.files?.[0];
+        if(!file)throw new Error('Pilih foto bukti pembayaran terlebih dahulu');
+        b.innerHTML='<span class="spinner"></span> Mengunggah bukti...';
+        proofPath=await uploadPaymentProof(file,opt.bookingId);
+      }
+      b.innerHTML='<span class="spinner"></span> Mengirim...';
+      await onSubmit(method,proofPath);
+      closeSheet();
+      await reloadData();
+      showToast(opt.requireProof?'Bukti pembayaran berhasil dikirim':'Pembayaran dikirim untuk dikonfirmasi');
+    }catch(e){showToast(errText(e));const el=$('#paymentUploadError');if(el)el.textContent=errText(e);b.disabled=false;b.textContent=original;}
+  };
+}
+function openDp(id,amount){
+  const booking=(state.bookings||[]).find(b=>String(b.id)===String(id));
+  paymentSheet('Pembayaran Booking',amount,(method,proofPath)=>rpc('member_submit_booking_payment',{p_booking_id:id,p_method:method,p_amount:amount,p_proof_path:proofPath}),{requireProof:true,bookingId:id,deadline:booking?.payment_deadline});
+}
+function checkoutActiveVouchers(transactionId){
+const job=(state.history||[]).find(t=>String(t.id)===String(transactionId))||((String(state.home?.active_job?.id||'')===String(transactionId))?state.home.active_job:null);
+if(Number(job?.points_redeemed||0)>0||Number(job?.points_discount_amount||0)>0)return [];
+const used=(state.vouchers||[]).some(v=>v.status==='used'&&String(v.used_transaction_id||'')===String(transactionId));
+if(used)return [];
+const now=Date.now();
+return (state.vouchers||[]).filter(v=>v.status==='active'&&!v.reserved_booking_id&&(!v.expires_at||new Date(v.expires_at).getTime()>now));
+}
+function openJobPayment(id,amount){
+const item=(state.history||[]).find(x=>String(x.id)===String(id))||(String(state.home?.active_job?.id||'')===String(id)?state.home.active_job:null);
+if(!item){showToast('Transaksi belum ditemukan. Muat ulang lalu coba lagi.');return;}
+const pending=Number(item.pending_payment||0);
+const vouchers=(Number(item.amount_paid||0)===0&&pending===0)?checkoutActiveVouchers(id):[];
+openCheckoutVoucher(id,amount,vouchers);
+}
+function openCheckoutVoucher(id,amount,vouchers=[],preferredVoucherId=''){
+const item=(state.history||[]).find(x=>String(x.id)===String(id))||(String(state.home?.active_job?.id||'')===String(id)?state.home.active_job:null);
+if(!item){showToast('Tagihan tidak ditemukan');return;}
+const pending=Number(item.pending_payment||0),alreadyPaid=Number(item.amount_paid||0)>0;
+const canUse=!alreadyPaid&&pending===0&&item.payment_status!=='paid';
+const pointsAlreadyUsed=Number(item.points_redeemed||0)>0||Number(item.points_discount_amount||0)>0;
+const choices=canUse&&!pointsAlreadyUsed?vouchers:[];
+const original=Number(item.final_total||amount);
+openSheet('<div class="sheet-head"><h3>Checkout</h3><button class="close" data-close>×</button></div><div class="card"><div class="row"><span>Transaksi</span><strong>'+esc(item.code||'-')+'</strong></div><div class="row"><span>Sisa tagihan</span><strong>'+rupiah(amount)+'</strong></div></div><div class="field"><label>Gunakan Voucher (opsional)</label><select id="checkoutVoucher"><option value="">Tanpa Voucher</option>'+choices.map(v=>'<option value="'+esc(v.id)+'">'+esc(memberVoucherLabel(v))+' · '+esc(v.code)+'</option>').join('')+'</select></div><div class="card" id="checkoutPreview" aria-live="polite"></div><div class="meta" id="checkoutVoucherMessage" style="margin:12px 0"><span>Voucher dan Starpoint Point tidak dapat digabungkan dalam satu transaksi.</span></div><button class="btn btn-primary btn-block" id="checkoutContinue">Lanjut Checkout</button>');
+const select=$('#checkoutVoucher'),box=$('#checkoutPreview'),hint=$('#checkoutVoucherMessage'),button=$('#checkoutContinue');
+if(preferredVoucherId&&choices.some(v=>String(v.id)===String(preferredVoucherId)))select.value=preferredVoucherId;
+if(!choices.length)hint.textContent=pointsAlreadyUsed?'Starpoint Point sudah digunakan. Voucher tidak dapat digabungkan.':alreadyPaid?'Voucher hanya dapat digunakan sebelum pembayaran pertama.':pending>0?'Pembayaran menunggu konfirmasi. Voucher belum dapat digunakan.':'Belum ada voucher yang bisa digunakan untuk tagihan ini.';
+let requestSeq=0,allowed=false;
+function totals(discount=0,starting=original){
+box.innerHTML='<div class="row"><span>Total sebelum voucher</span><strong>'+rupiah(starting)+'</strong></div><div class="row"><span>Potongan voucher</span><strong>'+(discount?'-'+rupiah(discount):rupiah(0))+'</strong></div><div class="row"><span>Total setelah voucher</span><strong>'+rupiah(Math.max(0,starting-discount))+'</strong></div>';
+}
+async function preview(){
+const seq=++requestSeq,voucherId=select.value;
+allowed=false;button.disabled=!!voucherId;
+if(!voucherId){totals();hint.textContent=choices.length?'Voucher opsional. Lanjut tanpa voucher atau pilih salah satu untuk melihat diskon.':(alreadyPaid?'Voucher tidak berlaku setelah pembayaran pertama.':pending>0?'Tunggu konfirmasi pembayaran untuk memakai voucher.':'Tidak ada voucher aktif yang tersedia.');button.textContent='Lanjut Bayar';return;}
+hint.textContent='Memeriksa voucher...';totals();
+try{
+const p=await rpc('member_preview_voucher',{p_voucher_id:voucherId,p_transaction_id:id});
+if(seq!==requestSeq)return;
+if(p?.eligible){
+totals(Number(p.discount_amount||0),Number(p.original_total||original));
+allowed=true;button.disabled=false;button.textContent='Gunakan Voucher & Lanjut';
+hint.textContent='Voucher memberikan potongan '+rupiah(p.discount_amount)+'. Konfirmasi untuk menerapkan.';
+}else{
+allowed=false;button.disabled=true;button.textContent='Voucher tidak berlaku';
+hint.textContent=p?.reason||'Voucher tidak dapat digunakan pada tagihan ini.';
+}
+}catch(e){if(seq!==requestSeq)return;allowed=false;button.disabled=true;button.textContent='Voucher tidak berlaku';hint.textContent=errText(e);}
+}
+select.onchange=preview;
+button.onclick=async()=>{
+const voucherId=select.value;
+if(voucherId&&!allowed)return;
+button.disabled=true;
+if(!voucherId){closeSheet();openJobPaymentCore(id,amount);return;}
+button.textContent='Menerapkan Voucher...';
+let result;
+try{result=await rpc('member_use_voucher',{p_voucher_id:voucherId,p_transaction_id:id});}
+catch(e){hint.textContent=errText(e);button.textContent='Coba Lagi';await preview();return;}
+closeSheet();
+try{await loadAll();render();}catch(e){showToast('Voucher berhasil dipakai. Muat ulang untuk memperbarui saldo.');}
+const remaining=Number(result.remaining||0);
+if(remaining>0){openJobPaymentCore(id,remaining);showToast('Voucher berhasil · hemat '+rupiah(result.discount_amount));}
+else{showToast('Voucher berhasil · tagihan lunas');}
+};
+preview();
+}
+function openJobPaymentCore(id,amount){
+const item=(state.history||[]).find(x=>x.id===id)||state.home?.active_job||{};
+const finalTotal=Number(item.final_total||amount),potential=Math.floor(finalTotal/10000),bal=Number(state.points?.balance||0);
+const hasVoucher=(state.vouchers||[]).some(v=>v.status==='used'&&String(v.used_transaction_id||'')===String(id));
+const maxPts=hasVoucher?0:Math.min(bal,Math.floor(amount/1000));
+if(maxPts>0){
+openSheet('<div class="sheet-head"><h3>Bayar Tagihan</h3><button class="close" data-close>×</button></div><div class="card"><div class="row"><span>Sisa tagihan</span><strong>'+rupiah(amount)+'</strong></div><div class="row"><span>Starpoint Point</span><strong>'+bal+' Point</strong></div></div><div class="point-potential">'+ico('points')+' Setelah lunas kamu berpotensi mendapat <strong>'+potential+' Point</strong>.</div><div class="field"><label>Gunakan Point</label><input id="usePoints" type="number" min="0" max="'+maxPts+'" value="0" inputmode="numeric"></div><div class="meta"><span>Maksimal '+maxPts+' Point · 1 Point = Rp1.000</span></div><button class="btn btn-dark btn-block icon-btn-label" id="applyPoints" style="margin-top:12px">'+ico('points')+' Gunakan Point</button><button class="btn btn-primary btn-block" id="skipPoints" style="margin-top:9px">Lanjut Bayar Tanpa Point</button>');
+$('#applyPoints').onclick=async()=>{const pts=Math.max(0,Math.min(maxPts,Number($('#usePoints').value||0)));if(!pts){showToast('Masukkan jumlah Point');return;}if(!confirm('Gunakan '+pts+' Point untuk potongan '+rupiah(pts*1000)+'?'))return;const b=$('#applyPoints');b.disabled=true;try{const res=await rpc('member_redeem_points',{p_transaction_id:id,p_points:pts});closeSheet();await loadAll();const remaining=Number(res.remaining||0);if(remaining>0)paymentSheet('Bayar Tagihan',remaining,method=>rpc('member_submit_job_payment',{p_transaction_id:id,p_method:method,p_amount:remaining}),{potential:Math.floor(Number(res.new_final_total||0)/10000)});else{render();showToast('Tagihan lunas dengan Starpoint Point');}}catch(e){showToast(errText(e));b.disabled=false;}};
+$('#skipPoints').onclick=()=>{closeSheet();paymentSheet('Bayar Tagihan',amount,method=>rpc('member_submit_job_payment',{p_transaction_id:id,p_method:method,p_amount:amount}),{potential,benefitNotice:hasVoucher?'Voucher sudah digunakan. Starpoint Point tidak dapat digabungkan.':null});};
+return;
+}
+paymentSheet('Bayar Tagihan',amount,method=>rpc('member_submit_job_payment',{p_transaction_id:id,p_method:method,p_amount:amount}),{potential,benefitNotice:hasVoucher?'Voucher sudah digunakan. Starpoint Point tidak dapat digabungkan.':null});
+}
+function openReschedule(id){openSheet(`<div class="sheet-head"><h3>Ubah Jadwal</h3><button class="close" data-close>×</button></div><div class="field"><label>Jadwal Baru</label><input id="rsDate" type="datetime-local"></div><button class="btn btn-primary btn-block" id="rsSave">Simpan Jadwal</button>`);$('#rsSave').onclick=async()=>{const v=$('#rsDate').value;if(!v){showToast('Pilih jadwal baru');return;}const d=new Date(v);if(d.getHours()<9||d.getHours()>=18){showToast('Pilih jadwal antara 09:00–18:00');return;}const b=$('#rsSave');b.disabled=true;try{await rpc('member_reschedule_booking',{p_booking_id:id,p_new_scheduled_at:d.toISOString()});closeSheet();await reloadData();showToast('Jadwal diperbarui');}catch(e){showToast(errText(e));b.disabled=false;}};}
+function openBilling(){const rows=state.history.filter(h=>h.payment_status!=='paid');openSheet(`<div class="sheet-head"><h3>Tagihan</h3><button class="close" data-close>×</button></div><div class="list">${rows.length?rows.map(h=>{const pending=Number(h.pending_payment||0),due=Math.max(0,Number(h.final_total)-Number(h.amount_paid)-pending);return `<div class="card"><div class="row"><span>${esc(h.code)}<br><small>${dmy(h.date)}</small></span><strong>${rupiah(Math.max(0,Number(h.final_total)-Number(h.amount_paid)))}</strong></div><div class="meta"><span>${payLabel(h.payment_status)}</span></div>${pending>0?`<div class="pay-pending">Menunggu konfirmasi ${rupiah(pending)}</div>`:''}${due>0?`<button class="btn btn-primary btn-block" data-payjob="${h.id}" data-amount="${due}" style="margin-top:10px">Bayar</button>`:''}</div>`;}).join(''):'<div class="empty">Tidak ada tagihan aktif.</div>'}</div>`);queryAll('[data-payjob]').forEach(b=>b.onclick=()=>openJobPayment(b.dataset.payjob,Number(b.dataset.amount)));}
+function openProfile(){const m=state.member||{};openSheet(`<div class="sheet-head"><h3>Edit Profil</h3><button class="close" data-close>×</button></div><div class="field"><label>Nama</label><input id="pfName" value="${esc(m.full_name||m.username)}"></div><div class="field"><label>Tanggal Lahir</label><input id="pfBirth" type="date" value="${esc(m.birth_date||'')}"></div><div class="card" style="margin:12px 0"><div class="row"><span>WhatsApp terdaftar</span><strong>${esc(m.phone||'-')}</strong></div></div><button class="btn btn-primary btn-block" id="pfSave">Simpan Profil</button>`);$('#pfSave').onclick=async()=>{const b=$('#pfSave');b.disabled=true;try{state.member=await rpc('member_update_profile',{p_full_name:$('#pfName').value.trim(),p_phone:m.phone||null,p_birth_date:$('#pfBirth').value||null});closeSheet();await reloadData();showToast('Profil diperbarui');}catch(e){showToast(errText(e));b.disabled=false;}};}
+async function quickLinkPhone(){}
+function openVehicle(){openSheet(`<div class="sheet-head"><h3>Tambah Motor</h3><button class="close" data-close>×</button></div><div class="field"><label>Nama Motor</label><input id="vhName" placeholder="Contoh: NMAX"></div><div class="field"><label>Kategori</label><select id="vhCat">${CATS.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join('')}</select></div><button class="btn btn-primary btn-block" id="vhSave">Simpan Motor</button>`);$('#vhSave').onclick=async()=>{const name=$('#vhName').value.trim();if(!name){showToast('Nama motor wajib diisi');return;}const b=$('#vhSave');b.disabled=true;try{await rpc('member_add_vehicle',{p_motor_name:name,p_vehicle_category:$('#vhCat').value,p_make_primary:true});closeSheet();await reloadData();showToast('Motor ditambahkan');}catch(e){showToast(errText(e));b.disabled=false;}};}
+async function deleteVehicle(id){if(!confirm('Hapus motor ini dari akun?'))return;try{await rpc('member_delete_vehicle',{p_vehicle_id:id});await reloadData();showToast('Motor dihapus');}catch(e){showToast(errText(e));}}
+function openNotifications(){openSheet(`<div class="sheet-head"><h3>Notifikasi</h3><button class="close" data-close>×</button></div><div class="list">${state.notifications.length?state.notifications.map(n=>`<div class="card"><strong>${esc(n.title)}</strong><p style="margin:7px 0 0;color:var(--muted);font-size:13px;line-height:1.45">${esc(n.body)}</p><div class="meta"><span>${dt(n.created_at)}</span></div></div>`).join(''):'<div class="empty">Belum ada notifikasi.</div>'}</div>`);rpc('member_mark_notifications_read').then(()=>{state.notifications.forEach(n=>n.read_at=n.read_at||new Date().toISOString());$('#bellCount').classList.add('hidden');}).catch(()=>{});}
+loadSaved();
+if(state.session?.access_token){
+  document.documentElement.classList.add('spg-restoring-session');
+  $('#authScreen').classList.add('hidden');
+  $('#mainScreen').classList.remove('hidden');
+  try{
+    const cached=JSON.parse(localStorage.getItem('spg_member_startup_cache')||'null');
+    if(cached&&Array.isArray(cached.catalog)){
+      state.catalog=cached.catalog;
+      state.home={promotions:Array.isArray(cached.promotions)?cached.promotions:[]};
+    }
+  }catch(e){}
+  state.page='home';
+  render();
+  enterApp();
+}else{
+  document.documentElement.classList.remove('spg-restoring-session');
+}
+</script>
+<script id="spg-startup-gate-v2">(function(){const splash=document.getElementById('spg-startup');if(!splash)return;let finished=false,probe=null,fallback=null,closing=false;function finish(){if(finished)return;finished=true;clearInterval(probe);clearTimeout(fallback);splash.classList.add('spg-finished');setTimeout(()=>splash.remove(),250)}function ready(){if(closing||finished)return;let active=false;try{active=Boolean(typeof state!=='undefined'&&state&&state.session&&state.session.access_token)}catch{}const auth=document.getElementById('authScreen'),main=document.getElementById('mainScreen');const authVisible=Boolean(auth&&!auth.classList.contains('hidden'));const mainVisible=Boolean(main&&!main.classList.contains('hidden'));if((!active&&authVisible)||(active&&mainVisible)){closing=true;setTimeout(finish,160)}}probe=setInterval(ready,80);fallback=setTimeout(finish,14000);ready()})();</script><script id="spg-live-payment-countdown-59">(function(){'use strict';function update(){document.querySelectorAll('[data-payment-deadline]').forEach(function(el){var t=Date.parse(el.getAttribute('data-payment-deadline')||'');if(!Number.isFinite(t))return;var seconds=Math.max(0,Math.ceil((t-Date.now())/1000));el.textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');});}setInterval(update,1000);document.addEventListener('visibilitychange',update);update();})();</script><script id="spg-website-member-link-routing">(function(){try{var params=new URLSearchParams(location.search);if(params.get('mode')==='daftar'){var auth=document.getElementById('authScreen');var button=document.querySelector('#authTabs button[data-auth="register"]');if(auth&&button&&!auth.classList.contains('hidden'))button.click();}}catch(e){}})();</script></body>
+</html>
