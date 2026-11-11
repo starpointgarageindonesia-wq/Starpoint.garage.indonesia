@@ -1,573 +1,73 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101014">
-<meta name="description" content="Starpoint Garage Surabaya. Perawatan motor profesional dari skuter harian, motor sport, big bike, hingga motor koleksi. Wash, detailing, paint correction & nano coating.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://starpointgarage.com/">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta property="og:type" content="website"><meta property="og:locale" content="id_ID">
-<meta property="og:title" content="Starpoint Garage | Premium Motorcycle Care Surabaya">
-<meta property="og:description" content="Motor harian atau koleksi istimewa, setiap motor berhak mendapatkan perhatian yang tepat. Detailing dan coating di Surabaya.">
-<meta property="og:url" content="https://starpointgarage.com/">
-<meta property="og:image" content="https://starpointgarage.com/assets/store.webp">
-<title>Starpoint Garage Surabaya | Motorcycle Care & Detailing</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{color-scheme:dark;--black:#0d0e10;--panel:#161719;--muted:#a0a3a7;--line:#333439;--white:#f3f2ed;--yellow:#f4cb45;--red:#e53d32;--max:1190px;font-family:Inter,"Segoe UI",Arial,sans-serif}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{margin:0;background:var(--black);color:var(--white);line-height:1.6;overflow-x:hidden}
-body.modal-open{overflow:hidden}
-::selection{background:var(--yellow);color:#121212}
-button,input,select,textarea{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-a{color:inherit;text-decoration:none}
-button{cursor:pointer}
-img{max-width:100%;display:block}
-.w{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
-.skip{position:absolute;left:-9999px;top:12px;z-index:99;background:#fff;color:#000;padding:12px}
-.skip:focus{left:12px}
-.topbar{height:37px;display:flex;align-items:center;background:var(--yellow);color:#191812;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
-.topbar .w{display:flex;justify-content:space-between;gap:15px}
-.topbar .hours{opacity:.8}
-.site-header{position:sticky;top:0;z-index:30;background:rgba(13,14,16,.96);border-bottom:1px solid #ffffff18;backdrop-filter:blur(16px)}
-.header-inner{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{display:inline-flex;gap:12px;align-items:center;min-width:0}
-.logo-mark{height:42px;width:42px;border:2px solid var(--yellow);background:var(--red);display:grid;place-items:center;transform:skew(-7deg);color:white;font-family:Impact,"Arial Black",sans-serif;letter-spacing:-.05em;font-size:19px;box-shadow:5px 5px 0 #f4cb451b}
-.logo-type{font-weight:950;font-size:19px;letter-spacing:-.055em;line-height:1;white-space:nowrap}
-.logo-type span{display:block;color:var(--yellow);font-size:9px;letter-spacing:.3em;font-weight:800;margin-top:7px}
-.nav{display:flex;align-items:center;gap:27px}
-.nav a:not(.nav-cta){font-size:12px;letter-spacing:.08em;font-weight:850;color:#dfdfe0;text-transform:uppercase;transition:color .2s}
-.nav a:not(.nav-cta):hover,.nav a:focus-visible{color:var(--yellow)}
-.nav-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:3px;background:var(--yellow);color:#121212;padding:13px 18px;font-weight:900;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
-.nav-cta:hover,.btn-yellow:hover{background:#ffe182}
-.menu-button{display:none;border:1px solid var(--line);background:transparent;color:white;border-radius:4px;padding:10px;font-size:12px;font-weight:800}
-.hero{position:relative;min-height:640px;overflow:hidden;background:radial-gradient(circle at 70% 32%,#4e22201f,transparent 45%),#111214}
-.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--red),var(--yellow),transparent)}
-.hero-inner{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);min-height:640px;align-items:stretch}
-.hero-copy{position:relative;z-index:2;padding:103px 36px 82px 0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
-.eyebrow{color:var(--yellow);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.23em}
-.eyebrow::before{content:"";display:inline-block;background:var(--red);width:24px;height:3px;margin-right:12px;vertical-align:middle}
-h1,h2,h3,p{margin-top:0}
-h1,.display{font-family:Impact,"Arial Narrow","Arial Black",sans-serif;text-transform:uppercase;letter-spacing:.004em;font-weight:900;line-height:.98}
-h1{font-size:clamp(60px,7.4vw,110px);max-width:700px;margin:23px 0}
-h1 em{display:block;color:var(--yellow);font-style:normal}
-.hero-lead{font-size:16px;max-width:500px;color:#bfc0c2;line-height:1.8}
-.actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:30px}
-.btn{min-height:51px;padding:13px 21px;display:inline-flex;align-items:center;justify-content:center;gap:13px;text-align:center;border-radius:3px;border:1px solid transparent;font-weight:900;letter-spacing:.05em;text-transform:uppercase;font-size:12px;transition:transform .2s,background .2s,border-color .2s}
-.btn:hover{transform:translateY(-2px)}
-.btn-yellow{background:var(--yellow);color:#121212}
-.btn-dark{background:#202125;color:#fff;border-color:#55565a}
-.btn-dark:hover{border-color:var(--yellow)}
-.btn-red{background:var(--red);color:white}
-.hero-note{display:flex;flex-wrap:wrap;gap:25px;margin-top:46px;color:#d1d0cc;font-size:11px;letter-spacing:.08em;font-weight:800;text-transform:uppercase}
-.hero-note span{display:flex;align-items:center;gap:9px}
-.dot{height:7px;width:7px;border-radius:50%;background:var(--yellow);display:inline-block}
-.hero-photo{position:relative;min-height:570px;border-left:1px solid #ffffff18;background:#222}
-.hero-photo img{width:100%;height:100%;min-height:640px;object-fit:cover;object-position:center}
-.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#10111477,transparent 46%),linear-gradient(0deg,#1011149a,transparent 45%)}
-.photo-caption{position:absolute;z-index:1;bottom:35px;left:34px;right:30px;font-size:11px;letter-spacing:.19em;font-weight:850;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.photo-caption b{color:var(--yellow);font-size:12px}
-.stripe{background:var(--yellow);color:#171717;overflow:hidden}
-.stripe-in{display:flex;align-items:center;justify-content:space-between;gap:23px;padding:17px 0;font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.14em;white-space:nowrap}
-.stripe-in .star{font-size:18px;color:var(--red)}
-.section{padding:104px 0}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:40px}
-.section-head .heading-block{max-width:760px}
-.kicker{display:block;color:var(--red);font-size:11px;letter-spacing:.18em;font-weight:900;text-transform:uppercase;margin-bottom:16px}
-.section-title{font-family:Impact,"Arial Narrow","Arial Black",sans-serif;font-size:clamp(42px,5.5vw,72px);line-height:1;letter-spacing:.005em;text-transform:uppercase;margin-bottom:15px}
-.section-title strong{color:var(--yellow);font-weight:inherit}
-.subtext{color:#aeb0b3;font-size:15px;max-width:600px;line-height:1.85}
-.section-note{color:#9da0a5;font-size:12px;max-width:255px}
-.intro{background:#171719;border-top:1px solid #ffffff16;border-bottom:1px solid #ffffff16}
-.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:center}
-.intro-quote{font-family:Impact,"Arial Narrow","Arial Black",sans-serif;font-size:clamp(35px,4.5vw,62px);line-height:1.03;text-transform:uppercase;border-left:5px solid var(--red);padding-left:25px}
-.intro-quote span{color:var(--yellow)}
-.intro-body p{color:#c5c6c7;font-size:16px;line-height:1.9}
-.mini-feature{display:flex;gap:20px;align-items:center;border-top:1px solid #454549;padding:17px 0}
-.mini-feature b{color:var(--yellow);font-family:Impact,sans-serif;font-size:26px}
-.mini-feature span{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.services{background:#0f1012}
-.services-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
-.service-card{position:relative;background:#202124;border:1px solid #3a3a3e;min-height:370px;display:flex;flex-direction:column;overflow:hidden;transition:transform .2s,border-color .2s}
-.service-card:hover{transform:translateY(-4px);border-color:var(--yellow)}
-.service-card .card-top{padding:24px 23px 21px;min-height:149px;background:radial-gradient(circle at 100% 0,#5b37353b,transparent 60%),#252528;border-bottom:1px solid #424247;position:relative;overflow:hidden}
-.service-card .card-top::after{content:attr(data-no);position:absolute;font-family:Impact,sans-serif;right:13px;top:17px;font-size:85px;line-height:1;color:#ffffff0d;pointer-events:none}
-.service-card .card-label{position:relative;z-index:2;font-size:10px;font-weight:900;letter-spacing:.2em;color:var(--yellow);text-transform:uppercase}
-.service-card .card-name{position:relative;z-index:2;font-family:Impact,"Arial Narrow",sans-serif;font-size:28px;line-height:1.04;margin:14px 0 0;text-transform:uppercase}
-.card-body{padding:21px 23px 24px;display:flex;flex-direction:column;flex:1}
-.card-desc{font-size:13px;line-height:1.8;color:#bfc0c4;flex:1}
-.card-time{font-size:12px;color:#999ca2;margin-top:22px}
-.card-price{font-family:Impact,"Arial Narrow",sans-serif;font-size:31px;color:var(--yellow);margin:2px 0 14px}
-.card-price small{font-family:Inter,Arial,sans-serif;font-size:10px;color:#b9bbbe;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:block}
-.card-button{padding:12px 0 0;border:0;border-top:1px solid #414146;background:transparent;color:#f1f1f0;font-weight:900;text-transform:uppercase;font-size:11px;letter-spacing:.1em;text-align:left}
-.card-button::after{content:"";float:right;color:var(--yellow);font-size:20px;line-height:1}
-.service-disclaimer{font-size:12px;color:#a0a2a8;margin-top:16px}
-.category-panel{margin-top:35px;border:1px solid #383a3f;background:#17181b;padding:28px}
-.category-panel h3{font-family:Impact,sans-serif;text-transform:uppercase;font-size:27px;margin-bottom:4px}
-.category-panel p{font-size:12px;color:#abacb2}
-.category-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:22px}
-.category{padding:16px;background:#26272a;border:1px solid #34363b}
-.category b{display:block;color:var(--yellow);font-size:13px;text-transform:uppercase;margin-bottom:6px}
-.category span{color:#c8c9cc;font-size:12px}
-.extras{padding-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.extra-panel{background:#1d1e20;padding:25px;border:1px solid #35363b}
-.extra-panel h3{font-size:17px;letter-spacing:.03em;text-transform:uppercase}
-.price-list{display:grid;gap:0}
-.price-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:11px 0;border-bottom:1px solid #ffffff18;font-size:13px}
-.price-row:last-child{border-bottom:0}
-.price-row span{color:#c5c5c7}.price-row b{color:#f1d16c;white-space:nowrap;font-size:12px}
-.standard{background:#1b1c1e}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.step{padding:25px 21px;border-top:3px solid var(--red);background:#242528}
-.step-num{font-family:Impact,sans-serif;color:var(--yellow);font-size:31px}
-.step h3{font-size:16px;text-transform:uppercase;letter-spacing:.03em;margin:12px 0}
-.step p{font-size:13px;color:#b9bbc0;margin:0}
-.app-section{position:relative;background:#edc942;color:#191916;overflow:hidden}
-.app-section::before{content:"STARPOINT";position:absolute;bottom:-72px;right:-20px;font-family:Impact,sans-serif;font-size:23vw;opacity:.05;white-space:nowrap}
-.app-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:55px}
-.app-text .kicker{color:#b72d27}
-.app-text .section-title strong{color:#d6372d}
-.app-text .subtext{color:#3a3730}
-.app-list{display:grid;gap:15px;margin:32px 0}
-.app-list li{list-style:none;padding-left:30px;position:relative;font-weight:750;font-size:14px}
-.app-list li::before{content:"✓";position:absolute;left:0;color:#c52c2d;font-size:19px;top:-4px}
-.app-photo{align-self:end;margin-top:10px;max-width:540px}
-.app-photo img{width:100%;height:auto;max-height:550px;object-fit:contain;object-position:bottom;filter:drop-shadow(0 30px 28px #29200044)}
-.app-note{font-size:12px;color:#6b5b22}
-.reviews{background:#111214}
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.review{background:#1e1f22;padding:29px;border:1px solid #393a3e;min-height:212px;display:flex;flex-direction:column}
-.stars{color:var(--yellow);letter-spacing:.12em;margin-bottom:21px}
-.review blockquote{margin:0 0 25px;font-size:14px;line-height:1.85;color:#e0e0df;flex:1}
-.review cite{font-style:normal;font-size:12px;color:#a9abb0;font-weight:850}
-.reviews-foot{margin-top:19px;font-size:12px;color:#9b9da2}
-.book{background:linear-gradient(135deg,#24211e,#131416 60%);border-top:1px solid #454140}
-.book-grid{display:grid;grid-template-columns:.83fr 1.17fr;gap:75px}
-.book-benefits{display:grid;gap:15px;margin:30px 0}
-.book-benefit{padding:16px 0;border-top:1px solid #ffffff24;display:flex;gap:15px}
-.book-benefit b{color:var(--yellow);font-family:Impact,sans-serif;font-size:23px;line-height:1}
-.book-benefit div strong{display:block;font-size:14px;text-transform:uppercase}
-.book-benefit div span{display:block;font-size:12px;color:#b2b4b6;line-height:1.6;margin-top:4px}
-.booking-form{background:#f1eee6;color:#202020;padding:35px;border-top:5px solid var(--yellow)}
-.booking-form h3{font-family:Impact,sans-serif;text-transform:uppercase;font-size:32px;letter-spacing:.01em;margin-bottom:7px}
-.booking-form>p{font-size:13px;color:#606063;margin-bottom:26px}
-.field-group{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}
-.field label{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:900}
-.field input,.field select,.field textarea{width:100%;background:#fff;border:1px solid #c7c6c2;border-radius:3px;padding:12px 13px;min-height:46px;color:#1d1d1d;outline-color:#e43b35}
-.field textarea{min-height:90px;resize:vertical}
-.field select{appearance:auto}
-.form-submit{width:100%;background:#171717;color:white;border:0;border-radius:3px;padding:16px;font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
-.form-submit:hover{background:#b62924}
-.form-note{font-size:11px;line-height:1.7;color:#74716c;margin:13px 0 0}
-.location{background:#191a1d}
-.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
-.address-card{padding:30px 0}
-.address{font-family:Impact,sans-serif;line-height:1.13;font-size:clamp(25px,3vw,40px);text-transform:uppercase}
-.address-details{color:#b9babc;font-size:14px}
-.location-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}
-.map{background:#e3e1d9;position:relative;min-height:365px;border:6px solid #2a2a2b}
-.map iframe{display:block;position:absolute;inset:0;height:100%;width:100%;border:0;filter:grayscale(.65)}
-.faq{background:#111214}
-.faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px}
-.faq-list{border-top:1px solid #44454a}
-.faq-list details{border-bottom:1px solid #44454a}
-.faq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 0;font-weight:800;font-size:14px}
-.faq-list summary::-webkit-details-marker{display:none}
-.faq-list summary::after{content:"+";font-size:24px;color:var(--yellow);font-weight:400;line-height:1}
-.faq-list details[open] summary::after{content:"−"}
-.faq-list details p{color:#b9bac0;font-size:13px;margin:0 0 20px;max-width:650px;line-height:1.85}
-.final-cta{background:var(--red);padding:55px 0}
-.final-cta .w{display:flex;align-items:center;justify-content:space-between;gap:30px}
-.final-cta h2{font-family:Impact,sans-serif;font-size:clamp(36px,5vw,65px);margin:0;text-transform:uppercase;line-height:1}
-.final-cta .btn{background:#131313;color:var(--white);white-space:nowrap}
-.site-footer{background:#0a0b0d;padding:48px 0 25px}
-.footer-grid{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:45px}
-.footer-grid p,.footer-grid a{font-size:12px;color:#b9b9bd;line-height:1.8}
-.footer-grid a:hover{color:var(--yellow)}
-.footer-grid h3{font-size:12px;color:white;text-transform:uppercase;letter-spacing:.1em}
-.footer-links{display:grid;gap:7px}
-.legal{margin-top:44px;padding-top:22px;border-top:1px solid #2a2b30;display:flex;justify-content:space-between;gap:16px;font-size:11px;color:#92949b}
-.floating-wa{position:fixed;right:20px;bottom:20px;z-index:25;background:var(--yellow);color:#141414;border:2px solid #121212;box-shadow:0 8px 20px #0008;padding:13px 18px;font-weight:950;font-size:12px;text-transform:uppercase;letter-spacing:.04em;display:flex;gap:10px;align-items:center}
-.floating-wa:hover{background:#ffe58d}
-dialog.service-modal{background:#1b1c20;color:var(--white);border:1px solid #66666b;padding:0;width:min(560px,calc(100% - 30px));max-height:min(85vh,850px);box-shadow:0 25px 80px #000a}
-dialog.service-modal::backdrop{background:#000c;backdrop-filter:blur(4px)}
-.modal-top{display:flex;align-items:center;justify-content:space-between;background:#27282d;padding:19px 23px;border-bottom:1px solid #4a4b50}
-.modal-top span{color:var(--yellow);font-size:12px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
-.modal-close{background:transparent;border:1px solid #666;color:white;width:34px;height:34px;font-size:20px}
-.modal-body{padding:28px}
-.modal-body h2{font-family:Impact,sans-serif;text-transform:uppercase;font-size:39px;line-height:1.05}
-.modal-body p{font-size:14px;color:#c0c1c6;line-height:1.8}
-.modal-meta{display:flex;gap:14px;flex-wrap:wrap;margin:20px 0}
-.modal-meta b{font-size:13px;color:var(--yellow)}
-.modal-body ul{padding-left:20px;color:#ddd;font-size:13px;line-height:2}
-.modal-bottom{border-top:1px solid #494a50;padding-top:22px;margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.modal-bottom .btn{flex:1}
-@media(max-width:1080px){.nav{gap:17px}.nav a:not(.nav-cta){font-size:11px}.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.service-card{min-height:320px}.hero-inner{min-height:585px}.hero-photo img{min-height:585px}}
-@media(max-width:780px){.w{width:min(var(--max),calc(100% - 34px))}.topbar{font-size:9px}.topbar .hours{display:none}.header-inner{height:68px}.logo-type{font-size:17px}.logo-mark{height:38px;width:38px}.menu-button{display:inline-flex}.nav{display:none;position:absolute;top:68px;left:0;right:0;padding:19px 17px 25px;background:#151619;border-bottom:1px solid #515257;flex-direction:column;align-items:stretch;gap:0}.nav.open{display:flex}.nav a:not(.nav-cta){font-size:13px;padding:14px 5px;border-bottom:1px solid #393a3b}.nav .nav-cta{margin-top:14px}.hero-inner{grid-template-columns:1fr}.hero-copy{padding:72px 0 45px}.hero-photo{min-height:340px;border-left:0;border-top:1px solid #ffffff16;max-height:420px}.hero-photo img{min-height:340px;max-height:420px;object-position:center}.hero-photo::after{background:linear-gradient(0deg,#10111492,transparent 55%)}h1{font-size:clamp(59px,13vw,86px)}.hero-note{margin-top:32px}.stripe-in{gap:14px;font-size:10px;overflow:hidden}.section{padding:72px 0}.section-head{display:block;margin-bottom:31px}.section-note{max-width:100%;margin-top:15px}.section-title{font-size:clamp(40px,9vw,61px)}.intro-grid,.app-grid,.book-grid,.location-grid,.faq-grid{grid-template-columns:1fr;gap:30px}.intro-quote{font-size:43px}.category-list{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.app-photo{max-width:470px;margin:0 auto}.review-grid{grid-template-columns:1fr}.review{min-height:0}.app-grid{gap:5px}.book-grid{gap:30px}.map{min-height:335px}.final-cta .w{display:block}.final-cta .btn{margin-top:25px}.footer-grid{grid-template-columns:1fr 1fr;gap:30px}.footer-grid>div:first-child{grid-column:1/-1}}
-@media(max-width:510px){.topbar .w{justify-content:center}.topbar .top-place{font-size:9px}.hero-copy{padding:60px 0 42px}.hero-lead{font-size:14px}.hero-note{gap:13px;font-size:9px}.hero-photo{min-height:310px}.hero-photo img{min-height:310px}.photo-caption{left:18px;bottom:19px;font-size:9px}.services-grid{grid-template-columns:1fr}.service-card{min-height:0}.service-card .card-top{min-height:130px}.service-card .card-name{font-size:31px}.category-panel{padding:21px 15px}.category-list{gap:7px}.category{padding:12px 10px}.category span{font-size:11px}.extras,.steps{grid-template-columns:1fr}.booking-form{padding:24px 19px}.field-group{grid-template-columns:1fr;gap:0}.location-links .btn{width:100%}.faq-grid{gap:15px}.legal{flex-direction:column}.floating-wa{right:13px;bottom:12px;padding:12px 14px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}.modal-body{padding:23px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:0s!important;animation-duration:0s!important}}
-.brand-image{display:block;width:202px;height:auto;max-height:68px;object-fit:contain;mix-blend-mode:screen}@media(max-width:510px){.brand-image{width:166px;max-height:53px}}
-
-/* Premium restoration: old card imagery, category matrix and editorial catalog */
-.header-inner{gap:14px}
-.language-toggle{flex:none;background:#19191b;border:1px solid #5e5040;color:#c7c7cb;padding:10px 13px;border-radius:28px;display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer}
-.language-toggle b{font-weight:850;color:#8e8f95}.language-toggle b.active{color:#f4cb45}
-.nav{gap:20px}.nav a:not(.nav-cta){font-size:11px}
-.services-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.service-card{border:1px solid #675130;border-radius:15px;min-height:0;overflow:hidden;background:#1b1c1f}
-.service-card:hover{border-color:var(--yellow)}
-.service-card .card-body{padding:18px 16px 18px}
-.service-photo,.gallery-pic{position:relative;background-image:none;background-repeat:no-repeat;background-size:200% 200%;background-color:#161719}
-.service-photo{height:162px;border-bottom:1px solid #635137}
-.photo-wash{background-position:0 0}
-.photo-correction{background-position:100% 0}
-.photo-detailing{background-position:0 100%}
-.photo-coating{background-position:100% 100%}
-.service-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#111a,transparent 57%)}
-.service-photo-tag{position:absolute;bottom:9px;left:13px;color:#f3ce6a;text-transform:uppercase;font-size:10px;letter-spacing:.08em;font-weight:900;z-index:1}
-.service-heading{font-size:19px;letter-spacing:-.025em;line-height:1.25;min-height:49px;margin:0 0 10px}
-.card-desc{font-size:12px;line-height:1.63;min-height:83px;margin-bottom:8px}
-.service-card .card-time{margin-top:0;margin-bottom:12px;font-size:11px}
-.full-price-table{border:1px solid #605136;background:#111315;border-radius:12px;padding:8px 12px;margin-bottom:14px}
-.full-price-table>div{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #292a2f;line-height:1.15}
-.full-price-table>div:last-child{border-bottom:0}
-.full-price-table span{font-size:11px;color:#cacbce}
-.full-price-table b{font-size:11px;color:#f5d06c;white-space:nowrap;font-weight:800}
-.service-book-btn{width:100%;margin-top:13px;min-height:42px;padding:10px 12px;border-radius:8px;font-size:10px}
-.card-button{border-top:1px solid #474747;padding-top:13px;font-size:10px}
-.card-button span{float:right;color:#f4cb45;font-size:15px}
-.historical-note{color:#aaa;font-size:12px;margin:19px 0 0}
-.gallery-section{background:#171719}
-.gallery-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:16px}
-.gallery-feature{border:1px solid #605136;min-height:530px;position:relative;overflow:hidden;border-radius:14px}
-.gallery-feature img{height:100%;width:100%;position:absolute;inset:0;object-fit:cover}
-.gallery-feature:after{content:"";position:absolute;bottom:0;left:0;right:0;height:110px;background:linear-gradient(0deg,#050505da,transparent)}
-.gallery-caption{position:absolute;z-index:1;bottom:18px;left:20px;display:grid;gap:3px}
-.gallery-caption b{font-family:Impact,sans-serif;font-size:23px}.gallery-caption span{font-size:12px;color:#f1ce6e}
-.gallery-thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.gallery-card{margin:0;background:#222226;border:1px solid #514632;border-radius:14px;overflow:hidden}
-.gallery-pic{height:179px}
-.gallery-card figcaption{display:grid;gap:5px;padding:13px 15px}.gallery-card figcaption b{font-size:14px}.gallery-card figcaption span{color:#b0b0b4;font-size:11px}
-.gallery-strip{margin-top:18px;padding:26px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#222327;border:1px solid #50483b;border-radius:14px}
-.gallery-strip h3{font-size:20px;letter-spacing:.05em;margin:6px 0}.gallery-strip p{max-width:740px;color:#b8b9bc;font-size:12px;line-height:1.7}
-.gallery-strip .btn{flex:none}
-.policy-section{background:#121315;padding:80px 0;border-top:1px solid #55452d}
-.policy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
-.policy-grid>div{padding:22px;background:#222326;border:1px solid #55452d;border-radius:10px}
-.policy-grid b{display:block;font-size:12px;color:#f4cb45;margin-bottom:10px}.policy-grid p{font-size:12px;color:#c3c3c7;line-height:1.7}
-@media(max-width:1080px){.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.service-photo{height:240px}.service-heading,.card-desc{min-height:0}.policy-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:780px){.language-toggle{margin-left:auto}.nav{gap:0}.gallery-layout{grid-template-columns:1fr}.gallery-feature{min-height:390px}.gallery-feature img{position:absolute}.gallery-pic{height:205px}.gallery-strip{flex-direction:column;align-items:flex-start}}
-@media(max-width:510px){.services-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.service-photo{height:110px}.service-heading{font-size:15px;min-height:44px}.service-card .card-body{padding:12px 10px}.card-desc{font-size:10px;min-height:94px}.full-price-table{padding:5px 6px}.full-price-table>div{padding:8px 0;gap:5px}.full-price-table span,.full-price-table b{font-size:9px}.service-book-btn{font-size:9px;padding:10px 2px}.card-button{font-size:9px}.service-photo-tag{left:7px;font-size:8px}.gallery-thumbs{gap:8px}.gallery-pic{height:120px}.gallery-card figcaption{padding:11px}.gallery-card figcaption b{font-size:12px}.policy-grid{grid-template-columns:1fr}.gallery-strip{padding:20px}.language-toggle{font-size:10px;padding:8px 9px}}
-@media(max-width:360px){.services-grid{grid-template-columns:1fr}.service-photo{height:175px}.card-desc{min-height:0}}
-
-/* EDITORIAL PREMIUM DESIGN SYSTEM - 2026 */
-:root{--black:#101216;--panel:#1b1d21;--muted:#afb3ba;--line:#34383e;--white:#f5f4ef;--yellow:#dfbd7c;--red:#b34840;--max:1240px;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
-html{scroll-padding-top:105px}body{background:var(--black);line-height:1.65}h1,h2,h3{letter-spacing:-.025em}
-h1,.display,.section-title,.intro-quote,.final-cta h2,.gallery-caption b,.address{font-family:"Barlow Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;letter-spacing:-.015em}
-.w{width:min(var(--max),calc(100% - 72px))}
-.topbar{background:#e3c487;color:#181818;height:31px;letter-spacing:.1em}
-.site-header{background:rgba(16,18,21,.95);border-color:#ffffff18}
-.header-inner{height:81px}.brand-image{width:221px;max-height:66px}
-.nav{gap:19px}.nav a:not(.nav-cta){font-size:12px;font-weight:700;letter-spacing:.01em;text-transform:none;color:#d5d6d9}
-.nav-cta{background:#dfbd7c;color:#111;border-radius:50px;padding:12px 19px;font-size:11px}
-.language-toggle{border-color:#515157;background:#232529}.language-toggle b.active{color:#e3be7e}
-.btn{border-radius:50px;min-height:49px;text-transform:none;font-size:12px;letter-spacing:0;padding:13px 24px;font-weight:800}
-.btn-yellow{background:#e4c181;color:#161616}.btn-yellow:hover,.nav-cta:hover{background:#f0d49e}
-.btn-dark{background:#24262b;color:#f1f1ef;border-color:#565a60}.btn-dark:hover{background:#31343a;border-color:#ab8b63}
-.btn-red{background:#a9443d}.kicker{color:#bc9365;letter-spacing:.14em}
-.eyebrow{color:#e2c185;font-size:11px}.eyebrow:before{background:#b45650;width:21px;height:2px}
-.hero{background:radial-gradient(circle at 22% 15%,#252a34 0%,transparent 40%),linear-gradient(145deg,#1b2028,#0d0f12 75%);min-height:0}
-.hero::after{height:2px;background:linear-gradient(90deg,#8e4842,#e4c88c,#1e2024)}
-.hero-inner{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);min-height:640px;gap:42px;align-items:center;padding-top:38px;padding-bottom:38px}
-.hero-copy{padding:66px 0 71px;justify-content:center}.hero-quiet{font-size:10px;letter-spacing:.22em;color:#ece9e2;font-weight:800;margin:29px 0 6px}
-.hero h1{font-size:clamp(68px,8vw,119px);line-height:.9;max-width:650px;letter-spacing:-.025em;margin:14px 0 26px}
-.hero h1 em{display:inline;color:#e2bd7e;font-style:normal}
-.hero-lead{color:#c0c3c9;max-width:530px;font-size:15px;line-height:1.9}
-.hero .actions{margin-top:27px}.hero-note{margin-top:41px;gap:16px;color:#9ca0a6;font-size:11px;text-transform:none;letter-spacing:0}.hero-note .dot{height:5px;width:5px;background:#dfbb7c}
-.premium-stage{border:none;min-height:565px;max-height:585px;display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:1fr 1fr;gap:8px;padding:0;background:transparent;overflow:hidden}
-.premium-stage:after{display:none}
-.stage-main,.stage-side{min-height:0;position:relative;background-image:none;background-repeat:no-repeat;background-size:200% 200%;background-color:#111;border:1px solid #82704d4d;filter:contrast(1.07)}
-.stage-main{grid-column:1;grid-row:1/3;background-position:100% 100%;border-radius:12px 0 0 12px}
-.stage-side{grid-column:2;grid-row:1;background-position:0 100%;border-radius:0 12px 0 0}
-.stage-main:after,.stage-side:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#080808a6,transparent 62%)}
-.stage-overlay{z-index:2;pointer-events:none;grid-column:1;grid-row:2;align-self:end;padding:25px;background:linear-gradient(0deg,#101114df,transparent)}
-.stage-overlay span{display:block;font-size:10px;color:#e0c18a;letter-spacing:.16em;font-weight:800}
-.stage-overlay strong{display:block;font:700 36px/1.05 "Barlow Condensed",Impact,sans-serif;text-transform:uppercase;margin-top:9px}
-.stage-overlay p{font-size:10px;color:#c1c3c9;letter-spacing:.15em;margin:11px 0 0}
-.stage-studio{grid-column:2;grid-row:2;border:1px solid #685f4a59;background:#25272b;border-radius:0 0 12px 0;overflow:hidden;display:flex;flex-direction:column}
-.stage-studio img{display:block;flex:0 0 62%;height:62%;min-height:0;max-height:none;object-fit:cover;object-position:center;width:100%}
-.stage-studio div{display:flex;flex-direction:column;justify-content:center;flex:1;padding:12px 14px;gap:4px}
-.stage-studio small{font-size:9px;color:#deb976;font-weight:850;letter-spacing:.09em}
-.stage-studio b{font-size:12px;color:#fff5e5;line-height:1.35}
-.stripe{background:#e2c384;color:#1d1b17}.stripe-in{padding:12px 0;font-size:10px}.stripe-in .star{font-size:12px;color:#a34e44}
-.rider-section{background:#eeece5;color:#1a1c21;padding:96px 0}
-.rider-heading{display:grid;grid-template-columns:1.2fr .8fr;gap:62px;align-items:end;margin-bottom:34px}
-.rider-heading h2{font:700 clamp(43px,5vw,67px)/.98 "Barlow Condensed",Impact,sans-serif;letter-spacing:-.005em;margin:0}
-.rider-heading h2 strong{color:#af7955;font-weight:700}
-.rider-heading>p{font-size:14px;color:#6e7072;line-height:1.87;margin-bottom:0}
-.rider-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.rider-tile{border:1px solid #d7d3cb;background:#faf8f2;min-height:236px;padding:24px 22px 23px;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
-.rider-tile:hover{border-color:#bc935c;transform:translateY(-3px)}
-.rider-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#26282c;color:#e9c98d;font:700 15px "Barlow Condensed",sans-serif}
-.rider-tile h3{font-size:18px;line-height:1.2;margin:24px 0 10px;letter-spacing:-.04em}
-.rider-tile p{font-size:12px;color:#707277;line-height:1.7;flex:1;margin:0}
-.rider-tile>span:last-child{font-size:9px;color:#b17e52;letter-spacing:.07em;font-weight:900;padding-top:12px;border-top:1px solid #ded9d0;margin-top:18px}
-.rider-footnote{margin:16px 0 0;max-width:100%;font-size:11px;color:#858580}
-.section{padding:100px 0}.section-title{font-size:clamp(48px,5.5vw,76px);line-height:.97;letter-spacing:0}
-.section-title strong{color:#e3c084}.section-head{margin-bottom:34px}.subtext{color:#b5b8be;line-height:1.85}
-.intro{background:#1c1e22}.intro-quote{border-left:3px solid #b05d4f;font-size:clamp(45px,5.6vw,76px);line-height:1;letter-spacing:-.01em}.intro-quote span{color:#dfbd83}
-.mini-feature b{font-family:"Barlow Condensed",sans-serif;color:#dfbf89}.mini-feature span{letter-spacing:0;text-transform:none}
-.services{background:#111318}.services-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.service-card{background:#1e2025;border:1px solid #3b3f45;border-radius:12px;transition:transform .2s,border-color .2s}
-.service-card:hover{border-color:#b89663;transform:translateY(-3px)}
-.service-photo{height:250px;border-bottom:1px solid #494441}
-.service-photo-tag{font-size:10px;left:20px;bottom:18px;color:#f0d6a6;letter-spacing:.1em}
-.service-card .card-body{padding:25px 28px 27px;display:grid;grid-template-columns:1fr 1fr;column-gap:25px;align-items:start}
-.service-heading{grid-column:1;grid-row:1;font-size:25px;line-height:1.16;min-height:0;letter-spacing:-.045em;margin-bottom:12px}
-.service-card .card-desc{grid-column:1;grid-row:2;font-size:13px;min-height:100px;line-height:1.8;color:#bcc0c3}
-.service-card .card-time{grid-column:1;grid-row:3;margin:0;color:#e6c68b;font-size:12px}
-.full-price-table{grid-column:2;grid-row:1/4;margin:0;padding:10px 15px;background:#14161a;border-color:#42464b;border-radius:9px}
-.full-price-table>div{padding:11px 0;border-color:#2c2e32}
-.full-price-table span,.full-price-table b{font-size:12px}.full-price-table b{color:#e9c88b}
-.card-button{grid-column:1;grid-row:4;align-self:end;margin-top:23px;font-size:11px;padding-top:13px}
-.service-book-btn{grid-column:2;grid-row:4;align-self:end;margin-top:23px;min-height:47px;font-size:12px;border-radius:50px}
-.category-panel,.extra-panel{background:#1b1d22;border:1px solid #383d43;border-radius:10px}.category-panel{margin-top:32px}
-.category-panel h3{font-family:"Barlow Condensed",sans-serif;font-size:30px}
-.category{background:#282a2e;border-color:#41444a;border-radius:6px}.category b{color:#e2bb82}
-.historical-note,.service-disclaimer{font-size:11px;color:#94979d}
-.standard{background:#eeece5;color:#1a1e22}.standard .subtext{color:#6b6d70}.standard .section-title strong{color:#a67754}
-.standard .step{background:#faf8f1;border-top:2px solid #ab7755;min-height:220px}.standard .step-num{font-family:"Barlow Condensed",sans-serif;color:#ad7c58}.standard .step h3{letter-spacing:0}.standard .step p{color:#707277}
-.ownership-section{padding:98px 0;background:#1b1d22;border-top:1px solid #33383d;border-bottom:1px solid #33383d}
-.ownership-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:84px}
-.ownership-inner h2{font:700 clamp(52px,6vw,82px)/.98 "Barlow Condensed",Impact,sans-serif;letter-spacing:0;margin:12px 0 0}
-.ownership-inner h2 strong{color:#dcb982;font-weight:700}
-.ownership-inner p{font-size:16px;color:#c3c6ca;line-height:1.95;max-width:610px}
-.subtle-link{display:inline-flex;gap:18px;border-bottom:1px solid #bc9b66;padding:12px 0;color:#e3c48e;font-size:13px;font-weight:800}
-.app-section{background:#dfc38f}.app-text .section-title strong{color:#9d5145}.app-list li:before{color:#a94f44}
-.reviews{background:#121417}.review{background:#1c1e23;border:1px solid #3e4148;border-radius:9px}
-.gallery-section{background:#1b1d22}.gallery-feature{border-radius:10px}.gallery-card{border-radius:9px;background:#25272c;border-color:#4c473e}
-.gallery-strip{background:#24262b;border-radius:10px}.gallery-strip h3{font-family:"Barlow Condensed",sans-serif;font-size:30px;letter-spacing:0}
-.policy-section{background:#eeece5;color:#1b1c1e;padding:84px 0}
-.policy-section .section-title strong{color:#ac7853}.policy-grid>div{background:#faf8f3;border:1px solid #d3cec5;border-radius:8px}.policy-grid b{color:#a16c49}.policy-grid p{color:#6e7173}
-.book{background:#16181c}.book-grid{grid-template-columns:.94fr 1.06fr;gap:52px}
-.booking-form{background:#f3f0e9;border:1px solid #dad3c6;border-top:3px solid #bc9a6d;border-radius:10px;box-shadow:0 20px 60px #0002}
-.booking-form h3{font-family:"Barlow Condensed",sans-serif;font-size:35px}.booking-form .form-submit{background:#22252a;border-radius:5px}.booking-form .form-submit:hover{background:#a15b4c}
-.location{background:#191b1e}.address{font-weight:700}
-.faq{background:#121417}.final-cta{background:#ae5149;padding:60px 0}.final-cta h2{font-size:clamp(43px,5.3vw,72px)}.final-cta .btn{border-radius:100px}.site-footer{background:#0e0f12}
-.floating-wa{background:#e0bd7c;color:#171717;border:1px solid #c29f64;border-radius:50px;box-shadow:0 10px 30px #0008}.floating-wa:hover{background:#f0d59b}
-.modal-body h2{font-family:"Barlow Condensed",sans-serif}
-@media(max-width:1110px){.hero-inner{grid-template-columns:1fr 1fr;gap:25px}.hero h1{font-size:clamp(64px,8vw,104px)}.rider-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.services-grid{gap:15px}.service-card .card-body{grid-template-columns:1fr;padding:23px}.service-heading,.service-card .card-desc,.service-card .card-time,.full-price-table,.card-button,.service-book-btn{grid-column:1;grid-row:auto}.service-card .card-desc{min-height:0}.full-price-table{margin-top:16px}.service-photo{height:215px}.service-book-btn,.card-button{margin-top:14px}}
-@media(max-width:780px){.w{width:min(var(--max),calc(100% - 38px))}.header-inner{height:68px}.brand-image{width:168px}.nav{top:68px}.hero-inner{grid-template-columns:1fr;min-height:0;padding-top:0;padding-bottom:35px;gap:5px}.hero-copy{padding:67px 0 24px}.hero h1{font-size:clamp(64px,12vw,97px)}.premium-stage{min-height:410px;max-height:440px}.rider-section{padding:69px 0}.rider-heading{grid-template-columns:1fr;gap:12px}.rider-heading h2{font-size:52px}.section{padding:75px 0}.ownership-section{padding:74px 0}.ownership-inner{grid-template-columns:1fr;gap:24px}.book-grid{grid-template-columns:1fr}.language-toggle{margin-left:auto}.section-title{font-size:clamp(46px,9vw,66px)}}
-@media(max-width:550px){.w{width:calc(100% - 32px)}.hero-copy{padding:57px 0 20px}.hero h1{font-size:clamp(56px,14vw,78px)}.hero-lead{font-size:13px}.hero-quiet{font-size:9px;letter-spacing:.14em}.hero-note{margin-top:26px}.premium-stage{min-height:338px;max-height:358px;gap:6px}.stage-overlay{padding:17px 12px}.stage-overlay strong{font-size:24px}.stage-overlay p{font-size:8px}.stage-studio div{padding:8px}.stage-studio b{font-size:10px}.rider-heading h2{font-size:43px}.rider-grid{grid-template-columns:1fr 1fr;gap:9px}.rider-tile{min-height:244px;padding:17px 14px}.rider-tile h3{font-size:16px;margin-top:17px}.rider-tile p{font-size:11px}.rider-tile>span:last-child{font-size:8px}.services-grid{grid-template-columns:1fr;gap:17px}.service-photo{height:208px}.service-card .card-body{padding:23px}.service-heading{font-size:25px}.service-card .card-desc{font-size:13px}.full-price-table>div{padding:12px 0}.full-price-table span,.full-price-table b{font-size:12px}.service-book-btn{width:100%;min-height:50px}.card-button{font-size:11px}.booking-form{padding:24px 18px}.section-title{font-size:clamp(43px,10vw,56px)}.intro-quote{font-size:47px}.final-cta .btn{width:100%;white-space:normal}.floating-wa{bottom:14px;right:14px}}
-@media(max-width:380px){.rider-grid{grid-template-columns:1fr}.rider-tile{min-height:0}.rider-tile p{margin-bottom:14px}}
-@media(prefers-reduced-motion:reduce){.rider-tile:hover,.service-card:hover{transform:none}}
-
-
-.collector-care{margin-top:20px;padding:26px 29px;background:linear-gradient(110deg,#24262b,#17191e);border:1px solid #756044;display:flex;align-items:center;justify-content:space-between;gap:30px;border-radius:10px}
-.collector-care h3{font:700 32px/1.05 "Barlow Condensed",Impact,sans-serif;margin:8px 0;text-transform:uppercase}
-.collector-care h3 strong{color:#e3c185;font-weight:700}
-.collector-care p{font-size:12px;color:#c7c8cc;margin:5px 0 0;max-width:690px;line-height:1.75}
-.collector-care .btn{flex:none;max-width:265px}
-@media(max-width:780px){.collector-care{align-items:flex-start;flex-direction:column;padding:22px}.collector-care .btn{max-width:none;width:100%}}
-.brand-image{mix-blend-mode:normal;object-fit:contain;width:225px;max-height:72px;height:auto}@media(max-width:780px){.brand-image{width:172px;max-height:57px}}@media(max-width:410px){.brand-image{width:148px;max-height:50px}}
-/* ORIGINAL SERVICE ARTWORK RESTORED FROM STARPOINT MEMBER APP: 720x720 */
-.service-photo,.gallery-pic,.stage-main,.stage-side{background-size:cover!important;background-repeat:no-repeat!important;filter:none!important}
-.photo-wash{background-image:url("/assets/app-services/signature-wash.webp")!important;background-position:center 54%!important}
-.photo-correction{background-image:url("/assets/app-services/paint-correction.webp")!important;background-position:center 53%!important}
-.photo-detailing{background-image:url("/assets/app-services/deep-detailing.webp")!important;background-position:center 50%!important}
-.photo-coating{background-image:url("/assets/app-services/nano-coating-10h.webp")!important;background-position:center 53%!important}
-.service-photo{image-rendering:auto;min-height:0}
-.gallery-pic{image-rendering:auto}
-.gallery-more{margin-top:44px}
-.gallery-more-intro{margin-bottom:20px}
-.gallery-more-intro h3{font:700 clamp(28px,4vw,42px)/1.1 "Barlow Condensed",Impact,sans-serif;margin:6px 0}
-.gallery-more-intro h3 strong{color:#dfbd7c}
-.gallery-more-intro p{font-size:13px;color:#afb2b7}
-.gallery-more-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.gallery-more-card{margin:0;background:#23252a;border:1px solid #3a3e45;border-radius:10px;overflow:hidden}
-.gallery-more-card img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;display:block}
-.gallery-more-card figcaption{padding:14px 16px;display:flex;flex-direction:column;gap:3px}
-.gallery-more-card b{font-size:13px;font-weight:800}
-.gallery-more-card span{font-size:11px;color:#aeb1b7}
-.gallery-more-card:hover{border-color:#bd9a66}
-@media(max-width:780px){.gallery-more-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.gallery-more-card figcaption{padding:10px 12px}}
-
-.nav .member-nav-link{color:#ecc887!important;font-weight:900!important}.nav .member-nav-link:hover{color:#ffe2a6!important}
-
-/* Keep all original site sections and expose App + Member as separate navigation targets. */
-@media(min-width:781px){.header-inner{gap:12px}.nav{gap:clamp(8px,1vw,14px)}.nav a:not(.nav-cta){font-size:11px}.nav .nav-cta{padding:11px 15px}.brand-image{width:200px}.language-toggle{padding:9px 11px;gap:4px}}
-@media(min-width:781px) and (max-width:1190px){.menu-button{display:inline-flex;order:3}.language-toggle{order:2;margin-left:auto}.nav{display:none;position:absolute;top:81px;left:0;right:0;padding:20px max(18px,calc((100% - 1000px)/2));background:#151619;border-bottom:1px solid #515257;flex-direction:column;align-items:stretch;gap:0;z-index:40}.nav.open{display:flex}.nav a:not(.nav-cta){font-size:13px;padding:13px 6px;border-bottom:1px solid #393a3b}.nav .nav-cta{margin-top:14px}}
-/* No decorative ordinal numbering or arrow characters; practical prices and service data stay untouched. */
-.card-button::after{content:none!important;display:none!important}
-.rider-tile h3{margin-top:9px}.mini-feature,.book-benefit{gap:0}.step h3{margin-top:8px}
-
-
-/* The Member portal is separate from the site menu and next to the language toggle. */
-.member-button{display:inline-flex;align-items:center;justify-content:center;flex:none;min-height:42px;padding:10px 18px;border:1px solid #ee505c;border-radius:40px;background:#d62838;color:#fff!important;font:850 12px/1 'DM Sans',Inter,Arial,sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 5px 18px #d6283838;transition:background .2s ease,transform .2s ease}
-.member-button:hover,.member-button:focus-visible{background:#f13d4f;transform:translateY(-1px)}
-@media(max-width:1190px){.member-button{min-height:39px;padding:9px 14px;font-size:11px}}
-@media(max-width:780px){.member-button{margin-left:auto;min-height:36px;padding:9px 12px;font-size:11px}.language-toggle{margin-left:0!important}.header-inner{gap:8px}.brand-image{width:154px}.menu-button{order:5}}
-@media(max-width:400px){.member-button{min-height:34px;padding:8px 10px;font-size:10px}.brand-image{width:129px}.language-toggle{padding:7px 8px;font-size:9px;gap:3px}.header-inner{gap:5px}}
-@media(max-width:360px){.brand-image{width:109px}.member-button{padding:8px 9px;font-size:9px}.language-toggle{padding:6px 7px}.menu-button{padding:8px;font-size:10px}}
-</style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutomotiveBusiness","name":"Starpoint Garage","url":"https://starpointgarage.com/","image":"https://starpointgarage.com/assets/store.webp","telephone":"+6281345115758","description":"Premium motorcycle wash, paint correction, detailing, coating dan perawatan kendaraan di Surabaya.","address":{"@type":"PostalAddress","streetAddress":"Jl. Raya Kendangsari Industri No. 58B, Kutisari, Tenggilis Mejoyo","addressLocality":"Surabaya","addressRegion":"Jawa Timur","postalCode":"60291","addressCountry":"ID"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"18:00"}],"currenciesAccepted":"IDR"}</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101115">
+  <meta name="description" content="Starpoint Garage Showroom di Surabaya. Jelajahi informasi unit motor pilihan, mulai dari motor harian, sport, hingga big bike.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Starpoint Garage Showroom | Motor Pilihan Surabaya</title>
+  <style>
+    :root{--bg:#101115;--panel:#1a1c21;--line:#32353c;--ink:#f5f3ef;--muted:#a5a9b1;--red:#e22d38;--gold:#d9b577}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{max-width:100%;height:auto}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+    .topline{background:var(--gold);color:#161518;font-size:11px;letter-spacing:.15em;font-weight:800;padding:8px 0;text-transform:uppercase}
+    header{position:sticky;top:0;z-index:20;background:rgba(16,17,21,.96);border-bottom:1px solid #ffffff17;backdrop-filter:blur(12px)}
+    .nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:138px;max-height:56px;object-fit:contain}.brand small{border-left:1px solid var(--line);padding-left:12px;font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--gold)}.links{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:700}.links a:hover{color:var(--gold)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;border-radius:100px;background:var(--red);border:1px solid var(--red);font-weight:800;font-size:13px;letter-spacing:.02em;min-height:49px;padding:12px 24px;transition:.2s}.btn:hover{background:#ba1f29}.btn.outline{background:transparent;border-color:#666b76}.btn.outline:hover{border-color:var(--gold);color:var(--gold)}
+    .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(circle at 74% 36%,#3b2025 0,transparent 30%),radial-gradient(circle at 35% 110%,#34313b 0,transparent 38%),var(--bg)}.hero:after{content:"SHOWROOM";position:absolute;right:-3vw;bottom:-10vw;font-size:clamp(140px,22vw,400px);line-height:1;white-space:nowrap;font-weight:1000;letter-spacing:-.1em;color:#fff;opacity:.023;pointer-events:none}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:55px;align-items:center;padding:90px 0 100px}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold);letter-spacing:.2em;font-size:12px;text-transform:uppercase;font-weight:900}.eyebrow:before{content:"";display:block;width:30px;height:3px;background:var(--red)}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(54px,7.5vw,108px);line-height:.98;letter-spacing:-.07em;margin:25px 0}h1 em{color:var(--gold);font-style:normal}.lead{font-size:17px;color:#c4c5cb;max-width:580px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.hero-side{border:1px solid #ffffff35;background:linear-gradient(145deg,#24252b,#111217);border-radius:22px;min-height:380px;display:flex;flex-direction:column;justify-content:space-between;padding:30px;box-shadow:0 30px 90px #0008}.hero-side .mark{color:var(--red);font-size:12px;letter-spacing:.3em;font-weight:900}.hero-side strong{font-size:clamp(40px,5vw,72px);line-height:1.02;letter-spacing:-.055em}.hero-side .rule{height:4px;width:70px;background:var(--gold)}.hero-side p{font-size:13px;color:var(--muted);margin:0}
+    section{padding:86px 0}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:30px}h2{font-size:clamp(31px,4vw,52px);line-height:1.1;letter-spacing:-.05em;margin:12px 0}.muted{color:var(--muted)}
+    .tabs{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.tab{background:#202228;border:1px solid #3a3c43;border-radius:30px;color:#dedee2;padding:9px 17px;font-weight:700;font-size:13px}.tab.active,.tab:hover{background:var(--gold);border-color:var(--gold);color:#161518}
+    .units{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.unit{overflow:hidden;border:1px solid var(--line);border-radius:17px;background:var(--panel)}.unit-image{height:210px;width:100%;object-fit:cover;background:#23252b}.unit-body{padding:20px}.unit h3{margin:4px 0;font-size:21px}.unit .category{font-size:11px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;font-weight:800}.unit .price{font-size:20px;font-weight:900;color:#fff;margin:12px 0}.unit .more{font-size:13px;font-weight:800;color:var(--gold)}
+    .empty{grid-column:1/-1;text-align:center;border:1px dashed #565861;border-radius:20px;background:linear-gradient(135deg,#1b1d22,#17181d);padding:65px 25px}.empty-icon{display:inline-flex;align-items:center;justify-content:center;color:var(--gold);border:1px solid #6b5a3c;border-radius:100%;height:58px;width:58px;font-size:28px;margin-bottom:18px}.empty h3{font-size:26px;letter-spacing:-.03em;margin-bottom:8px}.empty p{max-width:540px;margin:0 auto 22px;color:var(--muted)}
+    .features{background:#181a1f;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{border:1px solid #383a41;padding:26px;border-radius:16px;min-height:185px}.feature .no{display:block;color:var(--gold);font-size:11px;letter-spacing:.15em;font-weight:900;margin-bottom:22px}.feature h3{font-size:21px;letter-spacing:-.03em;margin-bottom:5px}.feature p{font-size:14px;color:var(--muted);margin:0}
+    .contact{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;background:linear-gradient(120deg,#292126,#16181d);border:1px solid #544348;padding:40px;border-radius:20px}.contact p{margin:0;color:#c9c9cc}
+    footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    @media(max-width:850px){.hero-grid{grid-template-columns:1fr;padding:70px 0;gap:32px}.hero-side{min-height:240px}.links a.navlink{display:none}.units,.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.contact{grid-template-columns:1fr}}
+    @media(max-width:560px){.wrap{width:calc(100% - 30px)}.nav{min-height:69px}.brand img{width:114px}.brand small{font-size:10px;padding-left:9px}.links{gap:0}.links .btn{min-height:39px;padding:8px 12px;font-size:11px}.hero-grid{padding:56px 0 65px}h1{font-size:58px}.hero-side{padding:25px}.section-head{display:block}section{padding:62px 0}.units,.feature-grid{grid-template-columns:1fr}.empty{padding:44px 20px}.contact{padding:27px}.contact .btn{width:100%}}
+  </style>
 </head>
 <body>
-<a class="skip" href="#main">Lewati ke konten</a>
-<div class="topbar"><div class="w"><span class="top-place">Premium motorcycle care · Surabaya, Indonesia</span><span class="hours">Setiap hari · 09.00-18.00 WIB</span></div></div>
-<header class="site-header">
-  <div class="w header-inner">
-    <a class="logo" href="#top" aria-label="Starpoint Garage, kembali ke atas"><img class="brand-image" src="/assets/starpoint-official.svg" alt="Logo resmi Star Point Garage" width="1280" height="409"></a>
-    <button type="button" class="menu-button" id="menuButton" aria-controls="mainNav" aria-expanded="false">☰ MENU</button>
-    <nav class="nav" id="mainNav" aria-label="Navigasi utama"><a href="#layanan" data-i18n="services">Layanan</a><a href="#mengapa" data-i18n="standards">Keunggulan</a><a href="#galeri" data-i18n="gallery">Galeri</a><a href="#aplikasi" data-i18n="app">Aplikasi</a><a href="#ulasan" data-i18n="reviews">Ulasan</a><a href="#lokasi" data-i18n="location">Lokasi</a><a class="nav-cta" href="#booking" data-i18n="bookNow">BOOKING SEKARANG </a></nav><a href="/member.html" class="member-button" aria-label="Buka portal Member Starpoint Garage">Member</a><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch website language" aria-pressed="false"><b id="langId">ID</b><span aria-hidden="true">/</span><b id="langEn">EN</b></button>
-  </div>
-</header>
-<main id="main">
-<section class="hero" id="top" aria-labelledby="heroTitle">
-  <div class="w hero-inner">
-    <div class="hero-copy">
-      <div class="eyebrow">Motorcycle Care Studio · Surabaya</div>
-      <p class="hero-quiet">FOR THOSE WHO CARE ABOUT EVERY DETAIL.</p>
-      <h1 id="heroTitle">EVERY BIKE.<br><em>DESERVES CARE.</em></h1>
-      <p class="hero-lead" data-i18n="heroLead">Dari motor yang menemani aktivitas sehari-hari sampai koleksi istimewa, setiap unit pantas dirawat dengan perhatian yang sama. Kami memilih treatment berdasarkan kondisi motor, material, dan kebutuhan pemiliknya.</p>
-      <div class="actions"><a class="btn btn-yellow" href="#layanan">Jelajahi treatment </a><a class="btn btn-dark" href="#booking">Konsultasi perawatan </a></div>
-      <div class="hero-note"><span><i class="dot" aria-hidden="true"></i> Surabaya · Since 2021</span><span><i class="dot" aria-hidden="true"></i> Motorcycle-first</span><span><i class="dot" aria-hidden="true"></i> By condition, not price</span></div>
-    </div>
-    <div class="hero-photo premium-stage" aria-label="Visual layanan Starpoint Garage">
-      <div class="stage-main photo-coating" role="img" aria-label="Visual detailing dan finishing motor"></div>
-      <div class="stage-side photo-detailing" role="img" aria-label="Visual proses perawatan area mesin"></div>
-      <div class="stage-overlay"><span>THE STARPOINT APPROACH</span><strong>Care is in the details.</strong><p>INSPECT. TREAT. REFINE.</p></div>
-      <div class="stage-studio"><img src="/assets/store.webp" alt="Foto asli lokasi Starpoint Garage Kendangsari Surabaya" loading="eager" width="640" height="315"><div><small>VISIT OUR STUDIO</small><b>Kendangsari, Surabaya</b></div></div>
-    </div>
-  </div>
-</section>
-<div class="stripe" aria-label="Spesialisasi layanan"><div class="w stripe-in"><span>PREMIUM WASH</span><span class="star">✦</span><span>PAINT CORRECTION</span><span class="star">✦</span><span>DEEP DETAILING</span><span class="star">✦</span><span>NANO COATING</span><span class="star">✦</span><span>REPAINT</span></div></div>
-
-<section class="rider-section" id="setiap-motor"><div class="w">
- <div class="rider-heading"><div><span class="kicker">Satu studio. Beragam karakter.</span><h2>BUKAN SOAL HARGA MOTOR.<br><strong>SOAL BAGAIMANA MERAWATNYA.</strong></h2></div><p>Motor kecil maupun koleksi eksklusif memiliki kebutuhan yang berbeda. Yang tidak berubah adalah standar perhatian saat menangani setiap unit.</p></div>
- <div class="rider-grid">
-  <article class="rider-tile"><h3>Daily & City</h3><p>Motor harian, skuter, dan commuter. Perawatan rutin yang tetap memperhatikan detail kecil.</p><span>BEAT · VESPA · NMAX</span></article>
-  <article class="rider-tile"><h3>Sport & Performance</h3><p>Fairing, velg, panel, dan permukaan dengan karakter material yang berbeda.</p><span>ZX-25R · R25 · CBR</span></article>
-  <article class="rider-tile"><h3>Touring & Big Bike</h3><p>Unit berukuran besar, komponen beragam, dan area yang memerlukan ketelitian lebih.</p><span>BMW · HARLEY · ADVENTURE</span></article>
-  <article class="rider-tile"><h3>Collector & Exotic</h3><p>Kendaraan koleksi yang membutuhkan assessment material dan treatment sebelum pengerjaan.</p><span>H2 · LIMITED EDITION · EXOTIC</span></article>
- </div><p class="rider-footnote">Setiap kendaraan ditangani berdasarkan karakter material, kondisi aktual, dan kebutuhan pemiliknya.</p>
-</div></section>
-<section class="section intro" id="tentang">
-  <div class="w intro-grid">
-    <div><span class="kicker">The philosophy</span><h2 class="intro-quote">GOOD CARE IS <span>INTENTIONAL.</span></h2></div>
-    <div class="intro-body"><p>Mencuci dan merawat adalah dua hal berbeda. Kami memahami kondisi permukaan, jenis material, serta hasil yang ingin dicapai sebelum merekomendasikan pekerjaan. Tujuannya sederhana: motor terjaga tanpa treatment yang tidak diperlukan.</p><div class="mini-feature"><span>Assessment sebelum treatment</span></div><div class="mini-feature"><span>Proses dan estimasi transparan</span></div><div class="mini-feature"><span>Quality check sebelum penyerahan</span></div></div>
-  </div>
-</section>
-<section class="section services" id="layanan">
-  <div class="w">
-    <div class="section-head"><div class="heading-block"><span class="kicker">Signature treatments</span><h2 class="section-title">RIGHT CARE. <strong>RIGHT REASON.</strong></h2><p class="subtext">Dari perawatan rutin sampai finishing mendalam. Pilih berdasarkan kondisi kendaraan dan hasil yang ingin dicapai. Harga ditampilkan secara terbuka untuk lima kategori motor.</p></div><p class="section-note">Harga indikatif per kategori. Nilai akhir dan slot pengerjaan dikonfirmasi admin.</p></div>
-    <div class="services-grid"><article class="service-card" id="service-wash"><div class="service-photo photo-wash" role="img" aria-label="Arsip foto Premium Signature Wash dari aplikasi Starpoint Garage"><span class="service-photo-tag">Essential care</span></div><div class="card-body"><h3 class="service-heading">Premium Signature Wash</h3><p class="card-desc">Pembersihan area luar dan sela motor dengan foam wash, pengeringan, dan sentuhan akhir.</p><span class="card-time">Estimasi ±40 menit</span><div class="full-price-table" aria-label="Harga berdasarkan kategori motor"><div><span>Small</span><b>Rp30.000</b></div><div><span>Medium</span><b>Rp40.000</b></div><div><span>Large</span><b>Rp50.000</b></div><div><span>Big Bike</span><b>Rp70.000</b></div><div><span>Luxury</span><b>Rp120.000</b></div></div><button class="card-button" type="button" data-service="wash">LIHAT DETAIL & HARGA </button><a class="btn btn-yellow service-book-btn" href="#booking" data-prefill="wash">BOOKING SEKARANG </a></div></article>
-<article class="service-card" id="service-correction"><div class="service-photo photo-correction" role="img" aria-label="Arsip foto Paint Correction & Gloss Booster dari aplikasi Starpoint Garage"><span class="service-photo-tag">Restore the shine</span></div><div class="card-body"><h3 class="service-heading">Paint Correction & Gloss Booster</h3><p class="card-desc">Perawatan swirl dan baret ringan sesuai kondisi permukaan untuk mengembalikan kilau cat.</p><span class="card-time">Estimasi 1-1,5 jam</span><div class="full-price-table" aria-label="Harga berdasarkan kategori motor"><div><span>Small</span><b>Rp125.000</b></div><div><span>Medium</span><b>Rp175.000</b></div><div><span>Large</span><b>Rp300.000</b></div><div><span>Big Bike</span><b>Rp400.000</b></div><div><span>Luxury</span><b>Rp600.000</b></div></div><button class="card-button" type="button" data-service="correction">LIHAT DETAIL & HARGA </button><a class="btn btn-yellow service-book-btn" href="#booking" data-prefill="correction">BOOKING SEKARANG </a></div></article>
-<article class="service-card" id="service-detailing"><div class="service-photo photo-detailing" role="img" aria-label="Arsip foto Deep Body & Engine Detailing dari aplikasi Starpoint Garage"><span class="service-photo-tag">In-depth treatment</span></div><div class="card-body"><h3 class="service-heading">Deep Body & Engine Detailing</h3><p class="card-desc">Deep cleaning bodi, area mesin, dan sela sesuai kondisi serta akses perawatan.</p><span class="card-time">Estimasi 5-7 jam</span><div class="full-price-table" aria-label="Harga berdasarkan kategori motor"><div><span>Small</span><b>Rp350.000</b></div><div><span>Medium</span><b>Rp450.000</b></div><div><span>Large</span><b>Rp700.000</b></div><div><span>Big Bike</span><b>Rp900.000</b></div><div><span>Luxury</span><b>Rp1.200.000</b></div></div><button class="card-button" type="button" data-service="detailing">LIHAT DETAIL & HARGA </button><a class="btn btn-yellow service-book-btn" href="#booking" data-prefill="detailing">BOOKING SEKARANG </a></div></article>
-<article class="service-card" id="service-coating"><div class="service-photo photo-coating" role="img" aria-label="Arsip foto Nano Coating 10H dari aplikasi Starpoint Garage"><span class="service-photo-tag">Premium protection</span></div><div class="card-body"><h3 class="service-heading">Nano Coating 10H</h3><p class="card-desc">Persiapan permukaan dan aplikasi lapisan pelindung dua layer untuk motor yang terawat.</p><span class="card-time">Estimasi 7-9 jam</span><div class="full-price-table" aria-label="Harga berdasarkan kategori motor"><div><span>Small</span><b>Rp1.000.000</b></div><div><span>Medium</span><b>Rp1.200.000</b></div><div><span>Large</span><b>Rp1.500.000</b></div><div><span>Big Bike</span><b>Rp2.000.000</b></div><div><span>Luxury</span><b>Rp3.000.000</b></div></div><button class="card-button" type="button" data-service="coating">LIHAT DETAIL & HARGA </button><a class="btn btn-yellow service-book-btn" href="#booking" data-prefill="coating">BOOKING SEKARANG </a></div></article></div>
-    <div class="category-panel">
-      <h3>CEK KATEGORI MOTOR</h3><p>Setiap motor memiliki karakter berbeda. Contoh berikut membantu Anda memahami kategori harga sebelum tim kami memeriksa kebutuhan unit.</p>
-      <div class="category-list"><div class="category"><b>Small</b><span>Beat, Fazzio</span></div><div class="category"><b>Medium</b><span>NMAX, ADV, Filano, PCX</span></div><div class="category"><b>Large</b><span>XMAX, Forza, Royal Enfield</span></div><div class="category"><b>Big Bike</b><span>Moge ≥250 cc</span></div><div class="category"><b>Luxury</b><span>Harley, H2</span></div></div>
-    </div>
-    <aside class="collector-care"><div><span class="kicker">Special surfaces · Bespoke discussion</span><h3>FINISH KHUSUS? <strong>ASSESSMENT DAHULU.</strong></h3><p>Cat matte, warna custom, exposed carbon, panel restorasi, hingga material yang sensitif tidak sebaiknya diperlakukan sama. Konsultasikan detail kendaraan agar treatment sesuai dengan kondisi permukaannya.</p></div><a class="btn btn-yellow" href="https://wa.me/6281345115758?text=Halo%20Starpoint%20Garage%2C%20saya%20ingin%20konsultasi%20treatment%20untuk%20motor%20dengan%20material%20atau%20finishing%20khusus." target="_blank" rel="noopener noreferrer">Konsultasi material motor </a></aside>
-    <div class="historical-note">Harga ditampilkan sebagai acuan katalog. Tarif final dikonfirmasi sebelum pengerjaan berdasarkan kondisi dan kebutuhan unit.</div><div class="extras">
-      <div class="extra-panel"><span class="kicker">Specific-area treatments</span><h3>ALA CARTE DETAILING</h3><div class="price-list"><div class="price-row"><span>Deep Tar Removal</span><b>Rp25.000</b></div><div class="price-row"><span>Deep Rust Remover</span><b>Rp25.000</b></div><div class="price-row"><span>Deep Ultimate Degreaser</span><b>Rp25.000</b></div><div class="price-row"><span>All-in Ala Carte</span><b>Rp50.000</b></div></div></div>
-      <div class="extra-panel"><span class="kicker">More at Starpoint</span><h3>LAYANAN TAMBAHAN</h3><div class="price-list"><div class="price-row"><span>Helmet Care · 2-4 hari</span><b>Konsultasi</b></div><div class="price-row"><span>Full Body Repaint · 3-5 hari</span><b>Konsultasi</b></div><div class="price-row"><span>Wheel Repaint · 2-3 hari</span><b>Konsultasi</b></div><div class="price-row"><span>Car Care · Wash / Polish / Coating</span><b>Konsultasi</b></div></div></div>
-    </div>
-    <p class="service-disclaimer">Harga layanan tambahan, cakupan, kapasitas, dan ketersediaan jadwal dikonfirmasi melalui admin Starpoint Garage.</p>
-  </div>
-</section>
-<section class="section standard" id="mengapa">
- <div class="w"><div class="section-head"><div class="heading-block"><span class="kicker">The Starpoint standard</span><h2 class="section-title">A STANDARD <strong>YOU CAN TRUST.</strong></h2><p class="subtext">Perawatan yang baik dimulai dari penjelasan jelas, metode sesuai material, dan kontrol kualitas sebelum motor kembali kepada pemiliknya.</p></div></div>
-  <div class="steps"><div class="step"><h3>Inspeksi awal</h3><p>Cek kebutuhan dan kondisi unit agar treatment yang dipilih tepat sasaran.</p></div><div class="step"><h3>Detail-oriented</h3><p>Perhatian pada sela, permukaan dan area yang sering terlewat.</p></div><div class="step"><h3>Experienced hands</h3><p>Pengerjaan menggunakan metode dan produk yang disesuaikan dengan karakter material.</p></div><div class="step"><h3>Quality check</h3><p>Unit diperiksa kembali sebelum diserahkan kepada pemiliknya.</p></div></div>
- </div>
-</section>
-<section class="section app-section" id="aplikasi"><div class="w app-grid"><div class="app-text"><span class="kicker">Connected garage experience</span><h2 class="section-title">YOUR BIKE.<br><strong>YOUR UPDATES.</strong></h2><p class="subtext">Starpoint Garage juga memiliki aplikasi member untuk membantu pelanggan mengakses informasi layanan dan memantau progres pengerjaan.</p><ul class="app-list"><li>Informasi status: mulai, proses, dan selesai</li><li>Riwayat layanan kendaraan</li><li>Informasi booking dan promo</li></ul><p class="app-note">Informasi akses dan ketersediaan aplikasi dapat ditanyakan kepada admin.</p><div class="actions"><a href="/member.html?mode=daftar" class="btn btn-red">Daftar Member Gratis </a><a class="btn btn-dark" href="/member.html?mode=masuk">Masuk Member </a></div></div><div class="app-photo"><img src="/assets/app-showcase.webp" alt="Tampilan promosi aplikasi member Starpoint Garage" width="900" height="1000" loading="lazy"></div></div></section>
-<section class="ownership-section"><div class="w ownership-inner"><div><span class="kicker">Ownership, respected.</span><h2>MOTOR BERHARGA,<br><strong>PERAWATAN BERARTI.</strong></h2></div><div><p>Nilai sebuah motor bukan hanya angka di atas kertas. Ada perjalanan, waktu, dan perhatian pemiliknya. Karena itu, rekomendasi layanan harus masuk akal. Kami menjelaskan kondisi dan langkah perawatan yang sesuai sebelum melakukan pekerjaan.</p><a class="subtle-link" href="#booking">Ceritakan kondisi motor Anda </a></div></div></section>
-<section class="section reviews" id="ulasan"><div class="w"><div class="section-head"><div class="heading-block"><span class="kicker">Customer stories</span><h2 class="section-title">DON'T TAKE <strong>OUR WORD FOR IT.</strong></h2><p class="subtext">Kepercayaan dibangun melalui pengalaman pelanggan, bukan sekadar janji pemasaran.</p></div><a class="btn btn-dark" href="https://www.google.com/search?q=star+point+garage+surabaya+reviews" target="_blank" rel="noopener noreferrer">Lihat ulasan Google </a></div><div class="review-grid"><article class="review"><div class="stars" aria-label="5 bintang">★★★★★</div><blockquote>“Detailing disini mantab sekali. Pemiliknya ramah & informatif… cuci motornya detail banget…”</blockquote><cite>Muhammad Ismail · Google Review</cite></article><article class="review"><div class="stars" aria-label="5 bintang">★★★★★</div><blockquote>“Selalu Puas Cuci, Detailing dan Coating disini, Selalu dengan Hasil Maksimal”</blockquote><cite>Ali Novaal · Google Review</cite></article><article class="review"><div class="stars" aria-label="5 bintang">★★★★★</div><blockquote>“Pengerjaan nya bagus, hasil akhirnya mantapp, detail banget, top pokoknya…”</blockquote><cite>Josh Beckham · Google Review</cite></article></div><p class="reviews-foot">Baca ulasan pelanggan dan rating terbaru secara langsung melalui Google.</p></div></section>
-<section class="section gallery-section" id="galeri"><div class="w"><div class="section-head"><div class="heading-block"><span class="kicker">Our gallery</span><h2 class="section-title">THE DETAILS <strong>UP CLOSE.</strong></h2><p class="subtext">Perhatikan detail permukaan, proses treatment, dan karakter kendaraan yang memerlukan penanganan berbeda. Lihat dokumentasi terbaru melalui kanal resmi Starpoint Garage.</p></div><a class="btn btn-dark" href="https://www.instagram.com/starpoint.garage/" target="_blank" rel="noopener noreferrer">Lihat Instagram </a></div><div class="gallery-layout"><div class="gallery-feature"><img src="/assets/store.webp" alt="Foto asli tampak depan Starpoint Garage di Kendangsari Surabaya" loading="lazy" width="800" height="950"><div class="gallery-caption"><b>STARPOINT GARAGE</b><span>Lokasi workshop · Surabaya</span></div></div><div class="gallery-thumbs"><figure class="gallery-card"><div class="gallery-pic photo-wash" role="img" aria-label="Dokumentasi foto perawatan: Signature Wash"></div><figcaption><b>Signature Wash</b><span>Dokumentasi layanan</span></figcaption></figure><figure class="gallery-card"><div class="gallery-pic photo-correction" role="img" aria-label="Dokumentasi foto perawatan: Paint Correction"></div><figcaption><b>Paint Correction</b><span>Dokumentasi layanan</span></figcaption></figure><figure class="gallery-card"><div class="gallery-pic photo-detailing" role="img" aria-label="Dokumentasi foto perawatan: Deep Detailing"></div><figcaption><b>Deep Detailing</b><span>Dokumentasi layanan</span></figcaption></figure><figure class="gallery-card"><div class="gallery-pic photo-coating" role="img" aria-label="Dokumentasi foto perawatan: Nano Coating 10H"></div><figcaption><b>Nano Coating 10H</b><span>Dokumentasi layanan</span></figcaption></figure></div></div><div class="gallery-more"><div class="gallery-more-intro"><span class="kicker">More services at Starpoint</span><h3>PILIH PERAWATAN <strong>YANG SESUAI.</strong></h3><p>Visual katalog layanan yang digunakan dalam aplikasi Starpoint Garage Member.</p></div><div class="gallery-more-grid"><figure class="gallery-more-card"><img src="/assets/app-services/full-body-repaint.webp" loading="lazy" decoding="async" alt="Visual katalog aplikasi Starpoint Garage untuk layanan Full Body Repaint" width="720" height="720"><figcaption><b>Full Body Repaint</b><span>Perawatan cat bodi</span></figcaption></figure><figure class="gallery-more-card"><img src="/assets/app-services/helmet-care.webp" loading="lazy" decoding="async" alt="Visual katalog aplikasi Starpoint Garage untuk layanan Helmet Care" width="720" height="720"><figcaption><b>Helmet Care</b><span>Perawatan helm</span></figcaption></figure><figure class="gallery-more-card"><img src="/assets/app-services/wheel-repaint.webp" loading="lazy" decoding="async" alt="Visual katalog aplikasi Starpoint Garage untuk layanan Wheel Repaint" width="720" height="720"><figcaption><b>Wheel Repaint</b><span>Finishing velg</span></figcaption></figure><figure class="gallery-more-card"><img src="/assets/app-services/deep-tar-removal.webp" loading="lazy" decoding="async" alt="Visual katalog aplikasi Starpoint Garage untuk layanan Deep Tar Removal" width="720" height="720"><figcaption><b>Deep Tar Removal</b><span>Pembersihan residu</span></figcaption></figure><figure class="gallery-more-card"><img src="/assets/app-services/deep-rust-remover.webp" loading="lazy" decoding="async" alt="Visual katalog aplikasi Starpoint Garage untuk layanan Deep Rust Remover" width="720" height="720"><figcaption><b>Deep Rust Remover</b><span>Perawatan area berkarat</span></figcaption></figure><figure class="gallery-more-card"><img src="/assets/app-services/ultimate-degreaser.webp" loading="lazy" decoding="async" alt="Visual katalog aplikasi Starpoint Garage untuk layanan Ultimate Degreaser" width="720" height="720"><figcaption><b>Ultimate Degreaser</b><span>Pembersihan area berminyak</span></figcaption></figure><figure class="gallery-more-card"><img src="/assets/app-services/all-in-ala-carte.webp" loading="lazy" decoding="async" alt="Visual katalog aplikasi Starpoint Garage untuk layanan All-in Ala Carte" width="720" height="720"><figcaption><b>All-in Ala Carte</b><span>Perawatan detail</span></figcaption></figure><figure class="gallery-more-card"><img src="/assets/app-services/car-care.webp" loading="lazy" decoding="async" alt="Visual katalog aplikasi Starpoint Garage untuk layanan Car Care" width="720" height="720"><figcaption><b>Car Care</b><span>Perawatan mobil</span></figcaption></figure></div></div><div class="gallery-strip"><div><span class="kicker">Motorcycle first</span><h3>REAL MACHINES. REAL ATTENTION.</h3><p>Lihat proses pengerjaan dan hasil perawatan terkini melalui kanal resmi kami. Anda juga dapat mengirim foto unit untuk mendapatkan rekomendasi treatment yang sesuai.</p></div><a class="btn btn-yellow" href="https://wa.me/6281345115758?text=Halo%20Starpoint%20Garage%2C%20saya%20ingin%20konsultasi%20perawatan%20motor." target="_blank" rel="noopener noreferrer">TANYA LAYANAN MOTOR ANDA </a></div></div></section>
-<section class="policy-section" id="ketentuan"><div class="w"><span class="kicker">Booking & service policy</span><h2 class="section-title">CONFIDENCE <strong>BEFORE CARE.</strong></h2><div class="policy-grid"><div><b>Reservasi premium</b><p>Ketentuan deposit, harga, dan jadwal akan dijelaskan admin saat reservasi. Tidak ada pembayaran otomatis melalui website ini.</p></div><div><b>Ubah jadwal</b><p>Perubahan jadwal dapat dikonsultasikan langsung dengan admin, mengikuti ketersediaan slot pengerjaan.</p></div><div><b>Pembayaran</b><p>Pilihan pembayaran dan instruksi transfer resmi dikonfirmasi langsung melalui admin Starpoint.</p></div><div><b>Antar-jemput & home service</b><p>Antar-jemput dan home service tersedia untuk layanan tertentu. Jangkauan, biaya, dan jadwal dikonfirmasi sebelum pemesanan.</p></div></div></div></section>
-<section class="section book" id="booking"><div class="w book-grid"><div><span class="kicker">Let's book</span><h2 class="section-title">LET'S DISCUSS <strong>YOUR BIKE.</strong></h2><p class="subtext">Ceritakan model motor dan kebutuhan Anda. Tim kami akan membantu memilih treatment, memperkirakan biaya, dan mengonfirmasi jadwal sebelum booking.</p><div class="book-benefits"><div class="book-benefit"><div><strong>Pilih treatment</strong><span>Tentukan layanan, tipe motor, dan jadwal yang diinginkan.</span></div></div><div class="book-benefit"><div><strong>Konsultasi via WhatsApp</strong><span>Admin mengonfirmasi harga, slot, dan ketentuan sebelum booking.</span></div></div><div class="book-benefit"><div><strong>Datang atau antar-jemput</strong><span>Antar-jemput sesuai ketersediaan dan ketentuan admin.</span></div></div></div></div><form class="booking-form" id="bookingForm"><h3>FORM PERMINTAAN BOOKING</h3><p>Form akan menyiapkan pesan WhatsApp. Jadwal belum terkonfirmasi sampai admin membalas.</p><div class="field-group"><div class="field"><label for="customerName">Nama</label><input id="customerName" name="customerName" autocomplete="name" required maxlength="80" placeholder="Nama kamu"></div><div class="field"><label for="customerPhone">WhatsApp</label><input id="customerPhone" name="customerPhone" type="tel" autocomplete="tel" required maxlength="22" pattern="[0-9+\s-]{8,22}" placeholder="08xxxxxxxxxx"></div></div><div class="field-group"><div class="field"><label for="customerService">Layanan</label><select id="customerService" name="customerService" required><option value="">Pilih layanan</option><option>Premium Signature Wash</option><option>Paint Correction & Gloss Booster</option><option>Deep Body & Engine Detailing</option><option>Nano Coating 10H</option><option>Ala Carte</option><option>Helmet Care</option><option>Full Body Repaint</option><option>Wheel Repaint</option><option>Car Care</option><option>Konsultasi dulu</option></select></div><div class="field"><label for="customerCategory">Kategori motor</label><select id="customerCategory" name="customerCategory"><option value="">Belum yakin</option><option>Small</option><option>Medium</option><option>Large</option><option>Big Bike</option><option>Luxury</option><option>Mobil / lainnya</option></select></div></div><div class="field-group"><div class="field"><label for="customerBike">Merek / model kendaraan</label><input id="customerBike" name="customerBike" maxlength="80" placeholder="Contoh: Yamaha XMAX"></div><div class="field"><label for="customerDate">Tanggal diinginkan</label><input id="customerDate" name="customerDate" type="date"></div></div><div class="field"><label for="customerNotes">Keluhan / permintaan</label><textarea id="customerNotes" name="customerNotes" maxlength="500" placeholder="Ceritakan kondisi motor, baret, atau kebutuhan lainnya..."></textarea></div><button class="form-submit" type="submit">LANJUTKAN KE WHATSAPP </button><p class="form-note">Sudah bergabung? <a href="/member.html" style="color:#8a4c31;font-weight:800;text-decoration:underline">Daftar atau masuk Member Starpoint</a> untuk menggunakan akun yang sama seperti di aplikasi.</p><p class="form-note">Informasi yang diisi tidak disimpan oleh website ini; data dikirim ketika kamu melanjutkan melalui WhatsApp. Harga dan jadwal wajib dikonfirmasi admin.</p></form></div></section>
-<section class="section location" id="lokasi"><div class="w location-grid"><div class="address-card"><span class="kicker">Find our garage</span><h2 class="section-title">YOUR BIKE.<br><strong>OUR GARAGE.</strong></h2><p class="address">Jl. Raya Kendangsari Industri No. 58B, Surabaya</p><p class="address-details">Kutisari, Tenggilis Mejoyo, Surabaya, Jawa Timur 60291<br>Patokan: sebelah Panin Bank<br>Jam yang tercantum: setiap hari, 09.00-18.00 WIB</p><div class="location-links"><a class="btn btn-yellow" href="https://www.google.com/maps/search/?api=1&amp;query=Starpoint%20Garage%20Jl.%20Raya%20Kendangsari%20Industri%2058B%20Surabaya" target="_blank" rel="noopener noreferrer">Buka Google Maps </a><a class="btn btn-dark wa-link" href="https://wa.me/6281345115758" target="_blank" rel="noopener noreferrer">Hubungi WhatsApp </a></div></div><div class="map"><iframe title="Peta lokasi Starpoint Garage" src="https://www.google.com/maps?q=Jl.%20Raya%20Kendangsari%20Industri%20No.%2058B%20Surabaya&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div></section>
-<section class="section faq" id="faq"><div class="w faq-grid"><div><span class="kicker">Frequently asked</span><h2 class="section-title">GOOD TO <strong>KNOW.</strong></h2><p class="subtext">Pertanyaan yang sering muncul sebelum melakukan treatment.</p><a class="btn btn-dark" style="margin-top:15px" href="#booking">Tanya langsung </a></div><div class="faq-list">
-<details><summary>Coating itu apa?</summary><p>Coating adalah lapisan proteksi setelah persiapan permukaan. Nano Coating 10H Starpoint menggunakan dua layer; performa tetap dipengaruhi cara penggunaan dan perawatan.</p></details>
-<details><summary>Apakah paint correction bisa menghilangkan baret?</summary><p>Dapat membantu mengurangi swirl dan baret ringan. Baret yang sudah dalam tidak dijanjikan hilang sepenuhnya; admin akan membantu menilai kondisi unit terlebih dahulu.</p></details>
-<details><summary>Apakah cat doff / matte bisa di-coating?</summary><p>Bisa untuk kondisi dan jenis material yang sesuai. Treatment disesuaikan supaya karakter hasil akhir matte tidak berubah sembarangan.</p></details>
-<details><summary>Apa yang dikerjakan saat deep detailing?</summary><p>Mulai dari bodi luar, celah, hingga area internal/mesin yang membutuhkan akses lebih dalam. Pembongkaran panel hanya dilakukan jika diperlukan.</p></details>
-<details><summary>Berapa lama detailing dan coating?</summary><p>Deep Detailing umumnya 5-7 jam, sedangkan Nano Coating 7-9 jam. Durasi dapat berubah berdasarkan kondisi motor dan persiapan pengerjaan.</p></details>
-<details><summary>Apakah ada layanan home service?</summary><p>Tersedia untuk layanan tertentu. Premium Signature Wash dan Helmet Care tetap dikerjakan di workshop. Konfirmasi kelayakan dan biaya kepada admin.</p></details>
-<details><summary>Bisakah antar-jemput kendaraan?</summary><p>Terdapat layanan pickup/delivery gratis dalam radius 3 km menurut kebijakan website sebelumnya. Di luar radius, biaya mengikuti jarak. Konfirmasikan cakupan saat booking.</p></details>
-<details><summary>Bagaimana dengan DP dan reschedule?</summary><p>Ketentuan website sebelumnya mencantumkan DP Rp50.000 untuk detailing/coating (dipotong dari tagihan akhir, tidak dapat dikembalikan) dan reschedule maksimal dua kali, paling lambat 5 jam sebelumnya. Minta admin memastikan aturan yang berlaku sebelum membayar.</p></details>
-<details><summary>Apa saja metode pembayaran?</summary><p>Website sebelumnya mencantumkan QRIS, tunai dan transfer. Konfirmasi instruksi pembayaran resmi langsung kepada admin.</p></details>
-</div></div></section>
-<section class="final-cta"><div class="w"><h2>GOOD CARE STARTS<br>WITH A CONVERSATION.</h2><a class="btn" href="https://wa.me/6281345115758?text=Halo%20Starpoint%20Garage%2C%20saya%20ingin%20konsultasi%20tentang%20perawatan%20kendaraan." target="_blank" rel="noopener noreferrer">CHAT STARPOINT GARAGE </a></div></section>
-</main>
-<footer class="site-footer"><div class="w"><div class="footer-grid"><div><a class="logo" href="#top" aria-label="Kembali ke atas"><img class="brand-image" src="/assets/starpoint-official.svg" alt="Star Point Garage , logo resmi" width="1280" height="409"></a><p style="margin-top:18px;max-width:280px">Premium motorcycle care di Surabaya. Perawatan yang tepat untuk kendaraan yang berarti lebih dari sekadar transportasi.</p></div><div><h3>Jelajahi</h3><div class="footer-links"><a href="#layanan">Layanan & harga</a><a href="#mengapa">Standar Starpoint</a><a href="/member.html">Daftar / Masuk Member</a><a href="#booking">Booking</a><a href="#aplikasi">Aplikasi member</a><a href="#faq">FAQ</a></div></div><div><h3>Kontak & lokasi</h3><div class="footer-links"><a href="https://wa.me/6281345115758" target="_blank" rel="noopener noreferrer">0813-4511-5758</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Starpoint%20Garage%20Surabaya" target="_blank" rel="noopener noreferrer">Kendangsari, Surabaya</a><a href="https://www.instagram.com/starpoint.garage/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.tiktok.com/@starpointgarage" target="_blank" rel="noopener noreferrer">TikTok</a><a href="https://www.google.com/search?q=star+point+garage+surabaya+reviews" target="_blank" rel="noopener noreferrer">Google Review</a></div></div></div><div class="legal"><span>© <span id="year">2026</span> Starpoint Garage. All rights reserved.</span><span>Surabaya, Indonesia · Crafted for riders who care.</span></div></div></footer>
-<a class="floating-wa" href="https://wa.me/6281345115758?text=Halo%20Starpoint%20Garage%2C%20saya%20ingin%20bertanya%20tentang%20layanan." target="_blank" rel="noopener noreferrer" aria-label="Chat Starpoint Garage melalui WhatsApp"><span aria-hidden="true">✆</span> CHAT WHATSAPP</a>
-<dialog id="serviceDialog" class="service-modal" aria-labelledby="modalTitle"><div class="modal-top"><span>Detail treatment</span><button class="modal-close" type="button" id="modalClose" aria-label="Tutup detail layanan">×</button></div><div class="modal-body"><h2 id="modalTitle"></h2><p id="modalDescription"></p><div class="modal-meta"><b id="modalPrice"></b><b id="modalTime"></b></div><h3 style="font-size:13px;text-transform:uppercase;letter-spacing:.1em">Cakupan utama</h3><ul id="modalList"></ul><p style="font-size:12px">Harga akhir dapat berubah menurut kategori, kondisi kendaraan dan cakupan pengerjaan.</p><div class="modal-bottom"><button type="button" class="btn btn-dark" id="modalBack">Tutup</button><a id="modalBook" class="btn btn-yellow" href="#booking">Pilih layanan </a></div></div></dialog>
-<script>
-(function(){
-'use strict';
-var WA='6281345115758';
-var localized={services:['Layanan','Services'],standards:['Keunggulan','Why Starpoint'],gallery:['Galeri','Gallery'],app:['Aplikasi','Member app'],reviews:['Ulasan','Reviews'],location:['Lokasi','Location'],bookNow:['BOOKING SEKARANG ','BOOK NOW '],heroLead:['Dari motor yang menemani aktivitas sehari-hari sampai koleksi istimewa, setiap unit pantas dirawat dengan perhatian yang sama. Kami memilih treatment berdasarkan kondisi motor, material, dan kebutuhan pemiliknya.','From everyday rides to treasured collections, every motorcycle deserves thoughtful attention. We recommend care based on its condition, materials and the owner’s priorities.']};
-var premiumTranslationPairs=[[".rider-heading .kicker","One studio. Many riding styles."],[".rider-heading h2","NOT ABOUT THE PRICE TAG.<br><strong>ABOUT THE CARE.</strong>"],[".rider-heading>p","Every motorcycle has different needs. What never changes is the attention we bring to every bike."],[".rider-tile:nth-child(1) p","For daily bikes, scooters and commuters: thoughtful routine care and clean finishes."],[".rider-tile:nth-child(2) p","Fairings, wheels, panels and different materials deserve the right method."],[".rider-tile:nth-child(3) p","Larger motorcycles with varied components and areas that need careful attention."],[".rider-tile:nth-child(4) p","Collectible motorcycles call for material assessment and careful treatment planning."],[".rider-footnote","Each vehicle is assessed according to its materials, actual condition and the owner's needs."],[".intro-quote","GOOD CARE IS <span>INTENTIONAL.</span>"],[".intro-body>p","Motorcycle washing and care are different. We examine surface condition, materials and your expectations before recommending work."],[".services .section-title","RIGHT CARE. <strong>RIGHT REASON.</strong>"],[".services .subtext","From routine cleaning to detailed finishing. Choose a service that suits your motorcycle condition and your goals."],[".services .section-note","Indicative prices by category. Your final quote and service slot will be confirmed by our team."],[".service-card:nth-child(1) .card-desc","Detailed foam wash, accessible crevices, careful drying and suitable finishing."],[".service-card:nth-child(2) .card-desc","Care for light swirl marks and fine surface defects to help restore paint gloss."],[".service-card:nth-child(3) .card-desc","Deeper bodywork and engine-area cleaning according to access and condition."],[".service-card:nth-child(4) .card-desc","Surface preparation and application of two protective coating layers."],[".category-panel h3","CHECK YOUR MOTORCYCLE CATEGORY"],[".category-panel p","Every motorcycle is different. These examples help explain indicative pricing before our team assesses your unit."],[".historical-note","Indicative prices only. Final costs depend on your motorcycle and the treatment scope."],[".standard .section-title","A STANDARD <strong>YOU CAN TRUST.</strong>"],[".standard .subtext","Proper care starts with clear communication, appropriate techniques and quality control before handover."],[".ownership-inner h2","YOUR BIKE MATTERS.<br><strong>YOUR CARE SHOULD TOO.</strong>"],[".ownership-inner p","A motorcycle is more than a number. It carries personal journeys, time and pride. We discuss its condition and suitable care before starting work."],[".ownership-inner .subtle-link","Tell us about your bike "],[".reviews .subtext","Trust is earned through customer experiences, not marketing promises alone."],[".gallery-section .section-title","THE DETAILS <strong>UP CLOSE.</strong>"],[".gallery-section .subtext","See the details of different finishes and treatments. Explore more of our work on official Starpoint channels."],[".gallery-strip p","See more recent service highlights on our official channels. You can also send your motorcycle photos to discuss suitable treatments."],[".policy-section .section-title","CONFIDENCE <strong>BEFORE CARE.</strong>"],[".book .section-title","LET US DISCUSS <strong>YOUR BIKE.</strong>"],[".book .subtext","Tell us about your motorcycle. We can help identify a suitable treatment, estimate the cost and confirm available dates."],[".booking-form h3","BOOKING REQUEST"],[".booking-form>p","This form prepares a WhatsApp message. Your booking is only confirmed after our team replies."],[".faq .section-title","GOOD TO <strong>KNOW.</strong>"],[".faq .subtext","Common questions to help you choose a treatment."]];
-premiumTranslationPairs.push(...[[".booking-form label[for='customerName']","Name"],[".booking-form label[for='customerPhone']","WhatsApp"],[".booking-form label[for='customerService']","Treatment"],[".booking-form label[for='customerCategory']","Motorcycle category"],[".booking-form label[for='customerBike']","Motorcycle model"],[".booking-form label[for='customerDate']","Preferred date"],[".booking-form label[for='customerNotes']","Your concerns"],[".booking-form .form-submit","CONTINUE TO WHATSAPP "],[".card-button","VIEW DETAILS & PRICES "],[".service-card:nth-child(1) .service-book-btn","BOOK A SESSION "],[".service-card:nth-child(2) .service-book-btn","BOOK A SESSION "],[".service-card:nth-child(3) .service-book-btn","BOOK A SESSION "],[".service-card:nth-child(4) .service-book-btn","BOOK A SESSION "],[".category-panel h3","CHECK YOUR MOTORCYCLE CATEGORY"],[".final-cta h2","GREAT CARE BEGINS<br>WITH A CONVERSATION."],[".gallery-strip h3","REAL MACHINES. REAL ATTENTION."]]);
-premiumTranslationPairs.push(...[[".collector-care .kicker","Special surfaces · Personalised assessment"],[".collector-care h3","SPECIAL FINISH? <strong>ASSESS FIRST.</strong>"],[".collector-care p","Matte paint, custom colours, exposed carbon, restored panels and delicate finishes deserve different approaches. Share your bike details so we can discuss the correct treatment."],[".collector-care .btn","Discuss my motorcycle finish "]]);
-var premiumOriginalContent=new Map();
-function translatePremium(en){premiumTranslationPairs.forEach(function(entry){var el=document.querySelector(entry[0]);if(!el)return;if(!premiumOriginalContent.has(el))premiumOriginalContent.set(el,el.innerHTML);el.innerHTML=en?entry[1]:premiumOriginalContent.get(el);});}
-var langToggle=document.getElementById('languageToggle');
-function setLanguage(lang){var en=lang==='en';document.documentElement.lang=en?'en':'id';Object.keys(localized).forEach(function(key){document.querySelectorAll('[data-i18n="'+key+'"]').forEach(function(node){node.textContent=localized[key][en?1:0];});});document.getElementById('langId').classList.toggle('active',!en);document.getElementById('langEn').classList.toggle('active',en);langToggle.setAttribute('aria-pressed',String(en));translatePremium(en);try{localStorage.setItem('starpoint-lang',lang);}catch(e){}}
-langToggle.addEventListener('click',function(){setLanguage(document.documentElement.lang==='en'?'id':'en');});
-try{setLanguage(localStorage.getItem('starpoint-lang')==='en'?'en':'id');}catch(e){setLanguage('id');}
-
-var menu=document.getElementById('menuButton');
-var nav=document.getElementById('mainNav');
-menu.addEventListener('click',function(){var expanded=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!expanded));nav.classList.toggle('open',!expanded);menu.textContent=expanded?'☰ MENU':'× TUTUP';});
-nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰ MENU';});});
-document.getElementById('year').textContent=String(new Date().getFullYear());
-var dateInput=document.getElementById('customerDate');
-var today=new Date();var localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);dateInput.min=localDate;
-var services={
- wash:{title:'Premium Signature Wash',price:'Mulai Rp30.000',time:'±40 menit',description:'Perawatan rutin untuk menjaga kebersihan, termasuk area yang mudah terlewat saat pencucian biasa.',list:['Foam wash dan pembersihan bodi','Pembersihan celah yang dapat dijangkau','Pengeringan microfiber / compressor','Perawatan vinyl dan plastik sesuai kebutuhan'],value:'Premium Signature Wash'},
- correction:{title:'Paint Correction & Gloss Booster',price:'Mulai Rp125.000',time:'1-1,5 jam',description:'Perawatan permukaan untuk membantu mengurangi swirl dan baret ringan sekaligus meningkatkan kilau. Baret dalam perlu pengecekan terlebih dahulu.',list:['Pemeriksaan kondisi permukaan','Koreksi cacat ringan yang memungkinkan','Penyempurnaan kilau','Pemeriksaan hasil akhir'],value:'Paint Correction & Gloss Booster'},
- detailing:{title:'Deep Body & Engine Detailing',price:'Mulai Rp350.000',time:'5-7 jam',description:'Pembersihan menyeluruh untuk area bodi dan mesin berdasarkan kondisi unit dan akses pengerjaan yang aman.',list:['Inspeksi area yang membutuhkan treatment','Pembersihan body dan detail sela','Pengerjaan area engine sesuai kebutuhan','Pengecekan menyeluruh sebelum handover'],value:'Deep Body & Engine Detailing'},
- coating:{title:'Nano Coating 10H',price:'Mulai Rp1.000.000',time:'7-9 jam',description:'Persiapan dan aplikasi dua lapis nano coating pada permukaan yang sesuai. Hasil dan daya tahan dipengaruhi pemakaian serta maintenance.',list:['Persiapan dan inspeksi permukaan','Treatment awal sesuai kondisi','Aplikasi pelapis dua layer','Arahan perawatan setelah coating'],value:'Nano Coating 10H'}
-};
-var servicesEn={"wash":{"title":"Premium Signature Wash","price":"From Rp30,000","time":"Approx. 40 minutes","description":"A detailed routine wash for bodywork and accessible areas, with care appropriate to the motorcycle.","list":["Foam wash and surface cleaning","Attention to accessible small areas","Microfiber or compressor drying","Suitable plastic and vinyl finishing"],"value":"Premium Signature Wash"},"correction":{"title":"Paint Correction & Gloss Booster","price":"From Rp125,000","time":"Approx. 1-1.5 hours","description":"Surface treatment designed to improve gloss and reduce light swirl marks; deep scratches require a separate assessment.","list":["Surface condition assessment","Light defect correction where suitable","Gloss refinement","Final inspection"],"value":"Paint Correction & Gloss Booster"},"detailing":{"title":"Deep Body & Engine Detailing","price":"From Rp350,000","time":"Approx. 5-7 hours","description":"A more thorough cleaning of bodywork and engine areas, according to safe access and each motorcycle's condition.","list":["Assessment and work planning","Detailed bodywork cleaning","Engine-area care where appropriate","Final quality inspection"],"value":"Deep Body & Engine Detailing"},"coating":{"title":"Nano Coating 10H","price":"From Rp1,000,000","time":"Approx. 7-9 hours","description":"Surface preparation and two protective coating layers for compatible motorcycle finishes. Ongoing care remains essential.","list":["Surface inspection and preparation","Preparation based on finish","Two-layer coating application","Aftercare recommendations"],"value":"Nano Coating 10H"}};
-var dialog=document.getElementById('serviceDialog');
-function closeDialog(){if(dialog.open)dialog.close();}
-document.querySelectorAll('[data-service]').forEach(function(button){
-button.addEventListener('click',function(){var serviceKey=button.getAttribute('data-service');var d=(document.documentElement.lang==='en'?servicesEn:services)[serviceKey];if(!d)return;document.getElementById('modalTitle').textContent=d.title;document.getElementById('modalDescription').textContent=d.description;document.getElementById('modalPrice').textContent=d.price;document.getElementById('modalTime').textContent=d.time;var ul=document.getElementById('modalList');ul.replaceChildren();d.list.forEach(function(item){var li=document.createElement('li');li.textContent=item;ul.appendChild(li);});document.getElementById('modalBook').setAttribute('data-value',d.value);if(typeof dialog.showModal==='function'){dialog.showModal();document.body.classList.add('modal-open');}else{var select=document.getElementById('customerService');select.value=d.value;window.location.hash='booking';}});
-});
-document.getElementById('modalClose').addEventListener('click',closeDialog);
-document.getElementById('modalBack').addEventListener('click',closeDialog);
-dialog.addEventListener('close',function(){document.body.classList.remove('modal-open');});
-dialog.addEventListener('click',function(event){if(event.target===dialog)closeDialog();});
-document.querySelectorAll('[data-prefill]').forEach(function(a){a.addEventListener('click',function(){var d=services[a.getAttribute('data-prefill')];if(d)document.getElementById('customerService').value=d.value;});});
-document.getElementById('modalBook').addEventListener('click',function(){document.getElementById('customerService').value=this.getAttribute('data-value');closeDialog();});
-document.getElementById('bookingForm').addEventListener('submit',function(event){
-event.preventDefault();if(!this.reportValidity())return;
-var form=new FormData(this), lines=[
-'Halo Starpoint Garage, saya ingin konsultasi/booking:',
-'',
-'Nama: '+String(form.get('customerName')||'').trim(),
-'WhatsApp: '+String(form.get('customerPhone')||'').trim(),
-'Layanan: '+String(form.get('customerService')||'').trim(),
-'Kategori: '+String(form.get('customerCategory')||'Belum yakin'),
-'Motor: '+String(form.get('customerBike')||'Belum diisi').trim(),
-'Tanggal yang diinginkan: '+String(form.get('customerDate')||'Belum ditentukan'),
-'Keluhan / permintaan: '+String(form.get('customerNotes')||'Tidak ada').trim(),
-'',
-'Mohon konfirmasi harga, ketersediaan slot, dan ketentuan booking. Terima kasih.'
-];
-var url='https://wa.me/'+WA+'?text='+encodeURIComponent(lines.join('\n'));window.location.assign(url);
-});
-})();
-</script>
+  <div class="topline"><div class="wrap">Starpoint Garage Showroom &nbsp;·&nbsp; Surabaya, Indonesia</div></div>
+  <header><div class="wrap nav">
+    <a class="brand" href="/" aria-label="Starpoint Garage Showroom"><img src="/assets/starpoint-official.svg" alt="Logo Starpoint Garage"><small>SHOWROOM</small></a>
+    <nav class="links" aria-label="Navigasi"><a class="navlink" href="#koleksi">Koleksi Motor</a><a class="navlink" href="#tentang">Tentang</a><a class="btn" href="#kontak">Hubungi Kami</a></nav>
+  </div></header>
+  <main>
+    <section class="hero"><div class="wrap hero-grid">
+      <div><div class="eyebrow">Starpoint Garage · Showroom</div><h1>YOUR NEXT<br><em>RIDE.</em></h1><p class="lead">Ruang untuk menemukan motor yang sesuai dengan karakter dan kebutuhanmu. Dari motor harian hingga big bike, jelajahi informasi unit Starpoint Garage di satu tempat.</p><div class="actions"><a class="btn" href="#koleksi">Lihat Katalog</a><a class="btn outline" href="https://starpointgarage.com/" target="_blank" rel="noopener">Website Bengkel</a></div></div>
+      <div class="hero-side" aria-label="Identitas showroom"><span class="mark">STARPOINT GARAGE / SURABAYA</span><div><div class="rule"></div><br><strong>THE ROAD<br>IS YOURS.</strong></div><p>Showroom motor · Informasi unit dan konsultasi melalui kontak resmi Starpoint Garage.</p></div>
+    </div></section>
+    <section id="koleksi"><div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Katalog showroom</div><h2>Jelajahi unit motor</h2><p class="muted">Daftar motor akan ditampilkan di sini setelah data unit, foto, dan harga terverifikasi.</p></div></div>
+      <div class="tabs" role="group" aria-label="Filter motor"><button class="tab active" data-filter="Semua" type="button">Semua</button><button class="tab" data-filter="Harian" type="button">Harian</button><button class="tab" data-filter="Sport" type="button">Sport</button><button class="tab" data-filter="Big Bike" type="button">Big Bike</button><button class="tab" data-filter="Koleksi" type="button">Koleksi</button></div>
+      <div id="unit-grid" class="units" aria-live="polite"><div class="empty"><span class="empty-icon" aria-hidden="true">✦</span><h3>Katalog sedang dipersiapkan</h3><p>Belum ada unit yang dipublikasikan. Informasi motor akan ditampilkan setelah stok dan spesifikasinya dikonfirmasi.</p><a class="btn outline" href="#kontak">Tanyakan Ketersediaan</a></div></div>
+    </div></section>
+    <section class="features" id="tentang"><div class="wrap"><div class="eyebrow">Starpoint Garage</div><h2>Informasi jelas.<br>Pilihan lebih nyaman.</h2><div class="feature-grid">
+      <article class="feature"><span class="no">KATALOG</span><h3>Foto Unit</h3><p>Foto tiap unit yang tersedia akan ditampilkan agar mudah ditinjau sebelum menghubungi showroom.</p></article>
+      <article class="feature"><span class="no">DETAIL MOTOR</span><h3>Spesifikasi</h3><p>Tahun, kilometer, kondisi, dan detail penting dapat ditampilkan pada halaman unit.</p></article>
+      <article class="feature"><span class="no">KONTAK</span><h3>Komunikasi Langsung</h3><p>Hubungi tim Starpoint Garage untuk menanyakan informasi dan ketersediaan unit.</p></article>
+    </div></div></section>
+    <section id="kontak"><div class="wrap"><div class="contact"><div><div class="eyebrow">Butuh informasi unit?</div><h2>Temukan motor yang kamu cari.</h2><p>Hubungi Starpoint Garage untuk menanyakan stok dan detail motor. Ketersediaan mengikuti konfirmasi tim.</p></div><a class="btn" href="https://wa.me/6282229879989?text=Halo%20Starpoint%20Garage%2C%20saya%20ingin%20bertanya%20tentang%20unit%20motor%20showroom." target="_blank" rel="noopener noreferrer">Chat WhatsApp</a></div></div></section>
+  </main>
+  <footer><div class="wrap foot"><span>© <span id="year"></span> Starpoint Garage Showroom, Surabaya.</span><a href="https://starpointgarage.com/">Kembali ke website bengkel</a></div></footer>
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const grid=document.getElementById('unit-grid');
+    const filters=[...document.querySelectorAll('[data-filter]')];
+    let inventory=[];
+    const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function render(filter){
+      const chosen=inventory.filter(item=>filter==='Semua'||item.kategori===filter);
+      if(!chosen.length){grid.innerHTML='<div class="empty"><span class="empty-icon" aria-hidden="true">✦</span><h3>Belum ada unit yang dipublikasikan</h3><p>Stok showroom belum tercantum untuk kategori ini. Hubungi tim untuk menanyakan ketersediaan.</p><a class="btn outline" href="#kontak">Tanyakan Ketersediaan</a></div>';return}
+      grid.innerHTML=chosen.map(item=>{
+        const title=safe(item.nama),category=safe(item.kategori),desc=safe(item.detail),price=safe(item.harga),photo=safe(item.foto||'/assets/store.webp');
+        const msg=encodeURIComponent('Halo Starpoint Garage, saya ingin menanyakan unit '+(item.nama||'')+'.');
+        return '<article class="unit"><img class="unit-image" src="'+photo+'" alt="Foto '+title+'" loading="lazy"><div class="unit-body"><span class="category">'+category+'</span><h3>'+title+'</h3><p class="muted">'+desc+'</p><div class="price">'+price+'</div><a class="more" href="https://wa.me/6282229879989?text='+msg+'" target="_blank" rel="noopener noreferrer">Tanyakan unit</a></div></article>'
+      }).join('');
+    }
+    filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.toggle('active',b===btn));render(btn.dataset.filter)}));
+    fetch('/units.json',{cache:'no-store'}).then(r=>r.ok?r.json():[]).then(data=>{inventory=Array.isArray(data)?data.filter(x=>x&&x.nama&&x.kategori):[];render('Semua')}).catch(()=>render('Semua'));
+  </script>
 </body>
 </html>
