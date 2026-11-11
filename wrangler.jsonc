@@ -3,5 +3,11 @@
   "compatibility_date": "2026-11-05",
   "assets": {
     "directory": "./public"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "showroom.starpointgarage.com",
+      "custom_domain": true
+    }
+  ]
 }
