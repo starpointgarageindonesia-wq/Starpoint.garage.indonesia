@@ -2,12 +2,17 @@
   "name": "starpoint-showroom",
   "compatibility_date": "2026-11-05",
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/api/*"
+    ]
   },
   "routes": [
     {
       "pattern": "showroom.starpointgarage.com",
       "custom_domain": true
     }
-  ]
+  ],
+  "main": "./worker/showroom-login.js"
 }
