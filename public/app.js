@@ -95,6 +95,7 @@ async function saveRecord(form){
   if(qty<1||sold>qty)throw Error("Jumlah terjual tidak boleh lebih dari stok.");
   if(sold>0&&g("purpose")!=="resale")throw Error("Pilih 'Dijual Terpisah' jika sparepart telah dijual.");
   if(sold>0&&c("actual_sale_price")<=0)throw Error("Isi harga jual aktual untuk sparepart yang sudah terjual.");
+  if(sold>0&&g("status")==="planned")throw Error("Sparepart yang sudah terjual tidak boleh berstatus rencana pembelian.");
   table=tables.parts;
   row={motor_id:motor,name:g("name"),part_code:g("part_code"),quantity:qty,unit_cost:c("unit_cost"),estimated_sale_price:c("estimated_sale_price"),actual_sale_price:c("actual_sale_price"),qty_sold:sold,purpose:g("purpose"),status:g("status"),purchase_date:optional("purchase_date"),sold_date:optional("sold_date"),notes:g("notes")};
   if(sold>0&&!row.sold_date)throw Error("Tanggal penjualan sparepart wajib diisi jika sudah terjual.");
@@ -168,7 +169,7 @@ document.addEventListener("click",async e=>{
    if(what==="open-motor"){openMotor(id);return}
    if(what==="detail-tab"){state.detailTab=target.dataset.value;renderPage();return}
    if(what==="new-motor"){showForm("motor");return}
-   if(what==="archive-motor"){if(window.confirm("Arsipkan motor ini? Riwayat dan biayanya tetap tersimpan.")){await store(tables.motors,{status:"archived"},id);await reload(true);notice("Unit berhasil diarsipkan.")}return}
+   if(what==="archive-motor"){if(state.data.motors.some(m=>m.id===id&&m.status==="sold"))throw Error("Motor terjual tetap disimpan dalam laporan dan tidak dapat diarsipkan.");if(window.confirm("Arsipkan motor ini? Riwayat dan biayanya tetap tersimpan.")){await store(tables.motors,{status:"archived"},id);await reload(true);notice("Unit berhasil diarsipkan.")}return}
    if(what==="edit-motor"){showForm("motor",id);return}
    for(const kind of ["task","part","expense","capital"]){
     if(what==="new-"+kind){showForm(kind,"",id||state.selected);return}
