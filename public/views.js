@@ -1,6 +1,6 @@
 import {state,esc,money,num,shortMoney,number,fmtDate,unitName,statusName,priorityName,taskName,partPurpose,partStatus,finance,metrics,ledger,canEdit,unitTasks,unitParts,unitExpenses,unitPhotos,partPhotos,photoSrc,photoForMotor,photoForPart} from "./core.js";
 const eid=v=>esc(v||"");
-const b=(text,act,id="",css="btn btn-sm")=>'<button class="'+css+'" data-action="'+act+'"'+(id?' data-id="'+eid(id)+'"':'')+(canEdit()?'':' disabled')+'>'+text+'</button>';
+const b=(text,act,id="",css="btn btn-sm")=>'<button class="'+css+'" data-action="'+act+'"'+(id?' data-id="'+eid(id)+'"':'')+(canEdit()||act.startsWith('export-')?'':' disabled')+'>'+text+'</button>';
 const act=(name,id,text="Ubah")=>b(text,name,id,"btn btn-icon btn-sm");
 const label=(s,c="stock")=>'<span class="badge-status '+eid(c)+'">'+esc(s)+'</span>';
 const iconImg=(src,cl="thumb")=>src?'<img class="'+cl+'" src="'+eid(src)+'" alt="Foto unit" loading="lazy">':'<div class="'+cl+' thumb-placeholder">✦</div>';
