@@ -18,8 +18,8 @@ async function reload(silent=false){
 async function granted(user){
  await memberAccess(user);
  $("#authView").hidden=true;$("#appView").hidden=false;
- $("#userEmail").textContent=user.email||"Akun internal";
- $("#userRole").textContent=state.access.role==="owner"?"Owner":state.access.role==="editor"?"Editor":"Viewer";
+ $("#userEmail").textContent="Akun mandiri pembukuan";
+ $("#userRole").textContent="Owner Showroom";
  await reload(true);
  subscribe(()=>reload(true),setSync);
  if(refreshTimer)clearInterval(refreshTimer);
@@ -40,7 +40,7 @@ async function initialize(){
   const {data,error}=await db.auth.getUser();
   if(error||!data?.user){locked();return}
   await granted(data.user);
- }catch(e){console.error(e);locked(e.message||"Tidak dapat menghubungi server.")}
+ }catch(e){console.error(e);await db.auth.signOut();locked("Silakan masuk dengan akun khusus showroom.");}
 }
 $("#loginForm").addEventListener("submit",async e=>{
  e.preventDefault();const form=e.currentTarget,btn=$("#loginButton");
@@ -53,7 +53,7 @@ $("#loginForm").addEventListener("submit",async e=>{
     const status=error?.context?.status;
     if(status===429)throw Error("Percobaan login terlalu banyak. Coba lagi nanti.");
     if(status===503)throw Error("Layanan autentikasi sementara tidak tersedia.");
-    throw Error("Kata sandi akun Owner belum cocok.");
+    throw Error("Username atau kata sandi khusus showroom tidak cocok.");
   }
   if(!data?.ok||!data?.access_token||!data?.refresh_token)throw Error("Login tidak berhasil.");
   const {data:sessionData,error:sessionError}=await db.auth.setSession({
