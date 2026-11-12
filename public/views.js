@@ -40,9 +40,23 @@ function filteredMotors(){
 function motors(){
  const arr=filteredMotors();
  const controls='<div class="toolbar"><input id="motorSearch" class="search-input" type="search" placeholder="Cari motor..." aria-label="Cari motor" value="'+id(state.search)+'"><select id="statusFilter" class="select-filter" aria-label="Filter status">'+[["all","Semua status"],["stock","Stok"],["work","Dalam PR"],["ready","Siap jual"],["sold","Terjual"],["archived","Arsip"]].map(([key,name])=>'<option value="'+key+'"'+(state.filter===key?" selected":"")+'>'+name+'</option>').join("")+'</select></div>';
- const rows=arr.map(m=>{const f=finance(m);return '<tr class="clickable" data-action="open-motor" data-id="'+id(m.id)+'"><td><div class="unit-cell">'+photo(photoForMotor(m.id))+'<div><strong>'+esc(unitName(m))+'</strong><small>'+esc([m.model_year,m.plate_no].filter(Boolean).join(" · "))+'</small></div></div></td><td>'+pill(statusName[m.status],m.status)+'</td><td class="mono">'+money(m.purchase_price)+'</td><td class="mono">'+money(m.status==="sold"?m.actual_sale_price:m.target_sale_price)+'</td><td class="mono">'+mVal(m.status==="sold"?f.actualProfit:f.expectedProfit)+'</td></tr>'});
+ const rows=arr.map(m=>{
+  const f=finance(m),name=unitName(m),value=m.status==="sold"?f.actualProfit:f.expectedProfit;
+  return '<div class="swipe-motor" data-swipe-motor data-id="'+id(m.id)+'">'+
+    '<div class="swipe-behind swipe-behind-delete" aria-hidden="true">Hapus</div>'+
+    '<div class="swipe-behind swipe-behind-edit" aria-hidden="true">Edit</div>'+
+    '<button type="button" class="swipe-surface" data-action="open-motor" data-id="'+id(m.id)+'" aria-label="Buka '+esc(name)+'. Geser kiri untuk edit, geser kanan untuk hapus.">'+
+      '<span class="swipe-motor-name">'+photo(photoForMotor(m.id))+'<span><strong>'+esc(name)+'</strong><small>'+esc([m.model_year,m.plate_no].filter(Boolean).join(" · ")||m.unit_code||"")+'</small></span></span>'+
+      '<span class="swipe-motor-state">'+pill(statusName[m.status],m.status)+'</span>'+
+      '<span class="swipe-motor-price"><small>Harga beli</small><strong>'+money(m.purchase_price)+'</strong></span>'+
+      '<span class="swipe-motor-price"><small>Target / terjual</small><strong>'+money(m.status==="sold"?m.actual_sale_price:m.target_sale_price)+'</strong></span>'+
+      '<span class="swipe-motor-profit"><small>Laba</small><strong>'+mVal(value)+'</strong></span>'+
+    '</button></div>';
+ }).join("");
  return title("Motor","",canEdit()?btn("+ Motor","new-motor","","btn btn-red"):"")+
- '<section class="panel">'+controls+table(["Motor","Status","Harga beli","Target / terjual","Laba"],rows,"Tidak ada motor.")+'</section>';
+ '<section class="panel">'+controls+
+ (arr.length?'<div class="swipe-unit-list"><div class="swipe-help">Geser kiri untuk edit · kanan untuk hapus</div>'+rows+'</div>':empty("Tidak ada motor."))+
+ '</section>';
 }
 function detail(){
  const m=state.data.motors.find(x=>x.id===state.selected);
@@ -75,7 +89,7 @@ function detailSummary(m,f){
 }
 function detailTasks(m){
  const rows=unitTasks(m.id).slice().sort((a,b)=>({todo:0,doing:1,done:2}[a.status]??3)-({todo:0,doing:1,done:2}[b.status]??3)).map(t=>
-  '<div class="record-row"><button class="task-check '+(t.status==="done"?"checked":"")+'" data-action="toggle-task" data-id="'+id(t.id)+'" aria-label="Ubah status '+esc(t.title)+'"'+(canEdit()?"":" disabled")+'>'+(t.status==="done"?"✓":t.status==="doing"?"◐":"○")+'</button>'+
+  '<div class="record-row"><button class="task-check '+(t.status==="done"?"checked":"")+'" data-action="toggle-task" data-id="'+id(t.id)+'" aria-label="Centang PR '+esc(t.title)+'"'+(canEdit()?"":" disabled")+'>'+(t.status==="done"?"✓":t.status==="doing"?"◐":"○")+'</button>'+
   '<div class="record-main"><strong>'+esc(t.title)+'</strong><small>'+pill(taskName[t.status],t.status==="done"?"ready":"stock")+' · '+esc(priorityName[t.priority])+(t.due_date?' · '+fmtDate(t.due_date):"")+'</small>'+(t.notes?'<small>'+esc(t.notes)+'</small>':"")+'</div>'+
   '<div class="record-price mono">'+money(t.estimated_cost)+'</div><div class="record-actions">'+btn("Ubah","edit-task",t.id)+btn("Hapus","delete-task",t.id,"btn btn-text-danger btn-sm")+'</div></div>'
  ).join("");
