@@ -142,32 +142,27 @@
 
 
 
-/* Keep branding visible while Safari scrolls to the password field. */
-.auth-panel { overflow:visible; }
-.auth-brand-shell {
- position:sticky;top:0;z-index:8;min-height:166px;
- padding-top:25px;padding-bottom:32px;margin-bottom:29px;
+/* Logo stays within page flow; never covers the login form while scrolling. */
+.auth-panel{overflow:visible;justify-content:flex-start}
+.auth-brand-shell{
+ position:relative;top:auto;z-index:1;
+ min-height:156px;padding-top:24px;padding-bottom:34px;margin-bottom:26px;
  background:
-  radial-gradient(ellipse at 85% 0%,rgba(172,41,59,.33) 0%,transparent 54%),
-  radial-gradient(ellipse at 8% 35%,rgba(208,165,101,.13) 0%,transparent 51%),
-  linear-gradient(140deg,#111923 0%,#222d3a 68%,#35404b 88%,#f5f7fa 100%);
- box-shadow:none;
+  radial-gradient(ellipse at 85% 0%,rgba(172,41,59,.29) 0%,transparent 50%),
+  radial-gradient(ellipse at 10% 36%,rgba(208,165,101,.12) 0%,transparent 50%),
+  linear-gradient(135deg,#101923 0%,#222d3a 60%,#f4f6f9 100%);
+ background-size:130% 130%;
 }
-.auth-brand-shell:after{
- background:linear-gradient(180deg,transparent 0%,transparent 80%,#f5f7fa 100%);
-}
-.auth-logo img { width:clamp(166px,18vw,224px); max-height:77px; }
-.auth-logo>span { color:#fff; }
-.auth-panel h1 { margin-top:13px; }
+.auth-brand-shell:after{background:linear-gradient(180deg,transparent 10%,transparent 76%,#f4f6f9 100%)}
+.auth-logo img{width:clamp(170px,18vw,230px);max-height:75px}
+.auth-logo>span{color:#fff}
+.auth-panel h1{margin-top:14px}
 @media(max-width:860px){
- .auth-brand-shell{
-  position:sticky;top:0;min-height:118px;padding:14px 26px 25px;
-  margin:0 -26px 28px;
- }
- .auth-logo img{width:155px;max-height:62px;}
+ .auth-brand-shell{position:relative;top:auto;min-height:120px;padding:16px 26px 26px;margin:0 -26px 27px}
+ .auth-logo img{width:160px;max-height:62px}
 }
 @media(max-width:460px){
- .auth-brand-shell{min-height:102px;padding:11px 21px 20px;margin:0 -21px 24px;}
- .auth-logo img{width:137px;max-height:56px;}
- .auth-logo{gap:10px;}
+ .auth-brand-shell{position:relative;min-height:105px;padding:12px 21px 23px;margin:0 -21px 23px}
+ .auth-logo img{width:143px;max-height:57px}
+ .auth-logo{gap:11px}
 }
