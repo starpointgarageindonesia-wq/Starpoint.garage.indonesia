@@ -22,13 +22,13 @@ export default {
   }catch{return reply({error:"INVALID_REQUEST"},400)}
   if(!data||typeof data!=="object"||typeof data.username!=="string"||typeof data.password!=="string")return reply({error:"INVALID_REQUEST"},400);
   try{
-   const remote=await fetch(SUPABASE_FUNCTION,{method:"POST",headers:{"content-type":"application/json","apikey":PUBLIC_ANON_KEY},body:JSON.stringify({username:data.username,password:data.password}),redirect:"error"});
+   const remote=await fetch(SUPABASE_FUNCTION,{method:"POST",headers:{"content-type":"application/json","apikey":PUBLIC_ANON_KEY,"origin":"https://showroom.starpointgarage.com"},body:JSON.stringify({username:data.username,password:data.password}),redirect:"follow"});
    const body=await remote.text();
    // Never cache, log, or expose password in the response.
    let result;
    try{result=JSON.parse(body)}catch{return reply({error:"AUTH_UPSTREAM_ERROR"},502)}
    if(!result||typeof result!=="object")return reply({error:"AUTH_UPSTREAM_ERROR"},502);
    return reply(result,remote.status);
-  }catch{return reply({error:"AUTH_NETWORK_UNAVAILABLE"},503)}
+  }catch{return reply({error:"AUTH_NETWORK_UNAVAILABLE",stage:"upstream_fetch"},503)}
  }
 };
