@@ -101,7 +101,7 @@ export const photoForPart=id=>{const p=partPhotos(id)[0];return p?photoSrc(p.sto
 export async function memberAccess(user){
  const {data,error}=await db.from("showroom_access").select("user_id,role,active").eq("user_id",user.id).maybeSingle();
  if(error)throw new Error(error.message);
- if(!data?.active)throw new Error("Akun ini belum mendapatkan izin pembukuan showroom. Gunakan akun Owner.");
+ if(!data?.active||data.role!=="owner")throw new Error("Akses ini khusus satu akun Owner Showroom.");
  state.access=data;state.authUser=user;
 }
 export async function store(table,payload,id){
