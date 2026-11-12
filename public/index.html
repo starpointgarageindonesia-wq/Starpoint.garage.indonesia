@@ -8,7 +8,7 @@
 <meta name="description" content="Sistem pembukuan internal Starpoint Garage Showroom.">
 <title>Pembukuan Showroom | Starpoint Garage</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/style.css?v=20261112-1526fix">
+<link rel="stylesheet" href="/style.css?v=20261112-login-fix-2">
 </head>
 <body>
 <div id="authView" class="auth-layout">
@@ -19,7 +19,7 @@
   <p class="auth-desc">Pembukuan modal pembelian, harga jual, PR pengerjaan, sparepart, biaya, foto, dan laporan showroom dalam satu dashboard.</p>
   <form id="loginForm" class="login-box">
    <div class="single-account"><div><small>AKUN OWNER</small><strong>starpointgarageindonesia.com</strong></div><span class="account-lock" aria-hidden="true">●</span></div><input type="hidden" name="username" value="starpointgarageindonesia.com">
-   <label for="loginPassword">Kata sandi</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required>
+   <label for="loginPassword">Kata sandi</label><div class="password-field"><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" spellcheck="false" required><button id="togglePassword" class="password-toggle" type="button" aria-label="Lihat kata sandi" aria-controls="loginPassword" aria-pressed="false">Lihat</button></div>
    <button class="btn btn-red btn-wide" type="submit" id="loginButton">Masuk ke Pembukuan</button>
    <p id="authError" class="form-error" role="alert"></p>
   </form>
@@ -48,6 +48,6 @@
 <div id="modalRoot" class="modal-root" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <input id="photoPicker" type="file" accept="image/*" multiple hidden>
-<script type="module" src="/app.js?v=20261112-1526fix"></script>
+<script type="module" src="/app.js?v=20261112-login-fix-2"></script>
 </body>
 </html>
