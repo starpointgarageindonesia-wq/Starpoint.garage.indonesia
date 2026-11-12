@@ -53,12 +53,12 @@ function detail(){
  const m=state.data.motors.find(x=>x.id===state.selected);
  if(!m){state.view="motors";return motors()}
  const f=finance(m);
- const nav='<div class="tabs">'+[["summary","Ringkasan"],["tasks","PR Pengerjaan"],["parts","Sparepart"],["expenses","Pengeluaran"],["photos","Foto"]].map(([key,name])=>'<button class="'+(state.detailTab===key?"active":"")+'" data-action="detail-tab" data-value="'+key+'">'+name+'</button>').join("")+'</div>';
+ const nav='<div class="tabs">'+[["summary","Ringkasan"],["tasks","PR Pengerjaan"],["parts","Sparepart"],["expenses","Pengeluaran"],["photos","Foto"],["history","Riwayat"]].map(([key,name])=>'<button class="'+(state.detailTab===key?"active":"")+'" data-action="detail-tab" data-value="'+key+'">'+name+'</button>').join("")+'</div>';
  const info='<div class="detail-grid"><div>'+iconImg(photoForMotor(m.id),"detail-photo"+(photoForMotor(m.id)?"":" photo-placeholder"))+'</div><div class="panel"><div class="panel-head"><h3>Identitas Unit</h3></div><div class="panel-body"><div class="detail-meta">'+
  [['Kode stok',m.unit_code],['Tahun',m.model_year||"-"],['Odometer',m.odometer_km?number(m.odometer_km)+" km":"-"],['Nomor polisi',m.plate_no],['Nomor rangka',m.chassis_no],['Tanggal beli',fmtDate(m.purchase_date)]].map(x=>'<div><small>'+x[0]+'</small><b>'+esc(x[1]||"-")+'</b></div>').join("")+'</div></div></div></div>';
  const price='<div class="stat-grid">'+box("Harga Beli",shortMoney(m.purchase_price),"Modal pembelian unit","gold","▣")+box("HPP Realisasi",shortMoney(f.cost),"Harga beli + biaya aktual","red","⌁")+box("Target / Harga Jual",shortMoney(f.motorRevenue),m.status==="sold"?"Harga jual aktual":"Target jual motor","","↗")+box("Estimasi / Laba",cashStat(m.status==="sold"?f.actualProfit:f.expectedProfit),m.status==="sold"?"Setelah unit terjual":"Proyeksi termasuk biaya rencana","green","✓")+'</div>';
- const panels={summary:detailSummary(m,f),tasks:detailTasks(m),parts:detailParts(m),expenses:detailExpenses(m),photos:detailPhotos(m)};
- return '<div class="unit-hero"><div><button class="back-link" data-nav="motors">‹ Kembali ke daftar motor</button><h1>'+esc(unitName(m))+'</h1><div class="flex wrap"><span class="code">'+esc(m.unit_code||"Tanpa kode unit")+'</span>'+label(statusName[m.status]||m.status,m.status)+'</div></div><div class="page-actions">'+(canEdit()?b("+ Foto","upload-motor",m.id,"btn")+" "+b("Ubah Unit","edit-motor",m.id,"btn")+" "+b("Hapus Unit","delete-motor",m.id,"btn btn-danger"):"")+'</div></div>'+price+info+'<div class="panel">'+nav+panels[state.detailTab]+'</div>';
+ const panels={summary:detailSummary(m,f),tasks:detailTasks(m),parts:detailParts(m),expenses:detailExpenses(m),photos:detailPhotos(m),history:detailHistory(m)};
+ return '<div class="unit-hero"><div><button class="back-link" data-nav="motors">‹ Kembali ke daftar motor</button><h1>'+esc(unitName(m))+'</h1><div class="flex wrap"><span class="code">'+esc(m.unit_code||"Tanpa kode unit")+'</span>'+label(statusName[m.status]||m.status,m.status)+'</div></div><div class="page-actions">'+(canEdit()?b("+ Foto","upload-motor",m.id,"btn")+" "+b("Ubah Unit","edit-motor",m.id,"btn")+" "+b("Arsipkan Unit","archive-motor",m.id,"btn btn-danger"):"")+'</div></div>'+price+info+'<div class="panel">'+nav+panels[state.detailTab]+'</div>';
 }
 function detailSummary(m,f){
  return '<div class="panel-body"><div class="section-grid"><div><h3>Rincian Harga Pokok Penjualan (HPP)</h3>'+
@@ -92,6 +92,21 @@ function detailPhotos(m){
  const photos=unitPhotos(m.id);
  return '<div class="panel-head"><div><h3>Dokumentasi Motor</h3><p class="panel-sub">Unggah foto kondisi, detail body, odometer, dan dokumen visual yang relevan.</p></div>'+(canEdit()?b("+ Upload Foto","upload-motor",m.id,"btn btn-red btn-sm"):"")+'</div><div class="panel-body">'+(photos.length?'<div class="photo-grid">'+photos.map(photoCard).join("")+'</div>':noData("Belum ada foto motor","Gunakan tombol Upload Foto. Berkas tersimpan privat di Supabase."))+'</div>';
 }
+
+function detailHistory(m){
+ if(state.access?.role!=="owner")return '<div class="panel-body">'+noData("Riwayat terbatas","Hanya Owner yang dapat melihat jejak perubahan data.")+'</div>';
+ const all=(state.data.activity||[]).filter(a=>a.motor_id===m.id).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)));
+ const names={showroom_motorcycles:"Motor",showroom_tasks:"PR Pengerjaan",showroom_parts:"Sparepart",showroom_expenses:"Pengeluaran",showroom_photos:"Foto",showroom_capital:"Modal"};
+ const changes={purchase_price:"Harga beli",target_sale_price:"Target jual",actual_sale_price:"Harga jual aktual",status:"Status",title:"Nama",amount:"Nominal",unit_cost:"Harga sparepart",estimated_sale_price:"Estimasi harga part",qty_sold:"Jumlah terjual",expense_date:"Tanggal biaya",purchase_date:"Tanggal beli",is_planned:"Jenis biaya",name:"Nama sparepart"};
+ const cards=all.slice(0,90).map(a=>{
+  const old=a.before_data||{},cur=a.after_data||{};
+  const differences=Object.keys(changes).filter(k=>JSON.stringify(old[k]??null)!==JSON.stringify(cur[k]??null)).map(k=>'<div class="tiny"><b>'+changes[k]+':</b> '+esc(old[k]??"-")+' → '+esc(cur[k]??"-")+'</div>').slice(0,8).join("");
+  const operation={INSERT:"Ditambahkan",UPDATE:"Diperbarui",DELETE:"Dihapus"}[a.operation]||a.operation;
+  return '<div class="item-card"><div class="status-icon">↺</div><div class="item-main"><strong>'+esc(names[a.entity]||a.entity)+' · '+esc(operation)+'</strong><small>'+new Date(a.created_at).toLocaleString("id-ID")+'</small>'+(differences||'<small>Perubahan data telah dicatat di sistem.</small>')+'</div></div>'
+ }).join("");
+ return '<div class="panel-head"><div><h3>Jejak Perubahan</h3><p class="panel-sub">Rekam perubahan angka, status, dan informasi. Hanya terlihat oleh Owner.</p></div></div><div class="panel-body">'+(cards||noData("Belum ada aktivitas","Semua perubahan berikutnya akan tercatat otomatis."))+'</div>';
+}
+
 function parts(){
  const s=(state.partSearch||"").toLowerCase(),items=state.data.parts.filter(p=>(p.name+" "+p.part_code).toLowerCase().includes(s)).slice().sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)));
  const total=items.filter(p=>p.status!=="planned").reduce((a,p)=>a+num(p.unit_cost)*num(p.quantity),0),revenue=items.filter(p=>p.purpose==="resale").reduce((a,p)=>a+num(p.estimated_sale_price)*(num(p.quantity)-num(p.qty_sold)),0);
