@@ -14,7 +14,7 @@ URL produksi: https://showroom.starpointgarage.com/
 - Pembaruan antarperangkat dengan Supabase Realtime Postgres Changes + pemuatan ulang berkala saat aktif.
 
 ## Akses dan keamanan
-- Login menggunakan **Supabase Auth** (email + password) yang sudah dimiliki akun Owner aplikasi Starpoint Garage.
+- Login showroom menggunakan **satu username tetap** `starpointgarageindonesia.com` dan kata sandi akun Owner Supabase yang sudah ada. Form login tidak memerlukan pengisian email atau pembuatan mailbox. Edge Function `showroom-owner-login` memetakan username tersebut ke akun Owner aktif di sisi server dan menerapkan rate limit. Kata sandi tidak ditulis di kode GitHub.
 - Bootstrap `showroom_access`: hanya satu akun `staff_profiles.role=owner` yang aktif. Member dan teknisi tidak otomatis diberi hak melihat pembukuan.
 - Tabel terpisah dengan prefiks `showroom_`, RLS per tabel, Storage privat, audit trail.
 - Tidak ada service-role key pada frontend. Hanya Supabase publishable key.
@@ -39,7 +39,9 @@ URL produksi: https://showroom.starpointgarage.com/
 - `public/core.js`: Supabase Auth, database, RLS client usage, kalkulasi, foto dan Realtime.
 - `public/views.js`: ringkasan, motor, sparepart, arus kas, laporan, riwayat.
 - `public/forms.js`: formulir unit, PR, sparepart, pengeluaran, modal.
-- `public/app.js`: interaksi, CRUD, autentikasi, ekspor CSV.
+- `public/app.js`: interaksi, CRUD, autentikasi satu username, ekspor CSV.
+- Edge Function `showroom-owner-login`: verifikasi Owner melalui Supabase Auth; sesi diberikan hanya setelah password Owner terverifikasi.
+- Login Owner aplikasi lain tidak diubah; perubahan password ke nilai lain harus dikelola terpisah karena berbagi identitas Supabase.
 - `public/robots.txt` dan meta noindex menjaga halaman tidak dipromosikan untuk pencarian umum.
 
 ## Catatan implementasi
