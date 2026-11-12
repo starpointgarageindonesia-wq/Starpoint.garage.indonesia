@@ -1,3 +1,2 @@
 User-agent: *
 Allow: /
-Sitemap: https://showroom.starpointgarage.com/sitemap.xml
