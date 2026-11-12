@@ -43,48 +43,33 @@ async function initialize(){
  }catch(e){console.error(e);await db.auth.signOut();locked("Silakan masuk dengan akun khusus showroom.");}
 }
 $("#loginForm").addEventListener("submit",async e=>{
- e.preventDefault();const form=e.currentTarget,btn=$("#loginButton");
+ e.preventDefault();
+ const form=e.currentTarget,btn=$("#loginButton");
  btn.disabled=true;btn.textContent="Memeriksa akses...";$("#authError").textContent="";
  try{
   const username=form.elements.namedItem("username").value;
   const password=form.elements.namedItem("password").value;
-  // Same-origin endpoint avoids browser CORS preflight against the Supabase function.
-  const response=await fetch("/api/showroom-login",{
-    method:"POST",headers:{"content-type":"application/json"},
-    cache:"no-store",credentials:"same-origin",
-    body:JSON.stringify({username,password})
+  if(username!=="starpointgarageindonesia.com")throw Error("Username showroom tidak dikenal.");
+  // Dedicated Supabase Auth account. No APK staff login, no Worker relay.
+  const {data,error}=await db.auth.signInWithPassword({
+    email:"showroom-only@starpointgarage.com",password
   });
-  const data=await response.json().catch(()=>null);
-  if(!response.ok){
-    if(response.status===401)throw Error("Kata sandi showroom tidak cocok.");
-    if(response.status===429)throw Error("Percobaan login terlalu banyak. Coba lagi nanti.");
-    if(response.status===503||response.status===502){
-      const reason=String(data?.error||"");
-      const details={
-        SERVICE_UNAVAILABLE:"Konfigurasi server login showroom belum lengkap.",
-        SECURITY_UNAVAILABLE:"Izin keamanan server showroom bermasalah.",
-        AUTH_UNAVAILABLE:"Layanan akun khusus showroom tidak tersedia.",
-        ACCESS_UNAVAILABLE:"Akses database showroom belum tersedia.",
-        ACCOUNT_CREATE_FAILED:"Pembuatan akun khusus showroom gagal.",
-        AUTH_NETWORK_UNAVAILABLE:"Koneksi Cloudflare ke server login showroom terputus.",
-        AUTH_UPSTREAM_ERROR:"Respons server login showroom tidak sesuai."
-      };
-      throw Error(details[reason]||"Server login showroom bermasalah ("+(reason||response.status)+").");
-    }
-    if(response.status===403)throw Error("Akses login ditolak. Buka halaman showroom dari domain resminya.");
-    throw Error("Gagal menghubungkan login showroom (status "+response.status+").");
+  if(error){
+    if(error.status===429)throw Error("Terlalu banyak percobaan login. Coba lagi nanti.");
+    if(error.status===400||error.status===401||error.code==="invalid_credentials")
+      throw Error("Kata sandi showroom tidak cocok.");
+    throw Error("Koneksi autentikasi showroom bermasalah: "+(error.message||error.status||"jaringan"));
   }
-  if(!data?.ok||!data?.access_token||!data?.refresh_token)throw Error("Sesi login belum tersedia. Coba segarkan halaman.");
-  const {data:sessionData,error:sessionError}=await db.auth.setSession({
-    access_token:data.access_token,refresh_token:data.refresh_token
-  });
-  if(sessionError||!sessionData?.user)throw Error("Sesi login tidak bisa dibuat.");
-  await granted(sessionData.user);
+  if(!data?.user||!data?.session||data.user.email?.toLowerCase()!=="showroom-only@starpointgarage.com")
+    throw Error("Akun showroom tidak ditemukan.");
+  await granted(data.user);
   form.reset();
  }catch(err){
   $("#authError").textContent=err.message||"Gagal masuk.";
   if(state.access===null)await db.auth.signOut();
- }finally{btn.disabled=false;btn.textContent="Masuk ke Pembukuan";}
+ }finally{
+  btn.disabled=false;btn.textContent="Masuk ke Pembukuan";
+ }
 });
 db.auth.onAuthStateChange((event)=>{
  if(event==="SIGNED_OUT"&&state.authUser)locked();
