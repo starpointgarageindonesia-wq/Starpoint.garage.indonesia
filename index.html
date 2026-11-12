@@ -13,19 +13,19 @@
 <body>
 <div id="authView" class="auth-layout">
  <div class="auth-panel">
-  <div class="auth-logo"><img src="/assets/starpoint-official.svg" alt="Starpoint Garage"><span>SHOWROOM<br><small>FINANCE</small></span></div>
+  <div class="auth-logo"><div class="auth-logo-plate"><img src="/assets/starpoint-official.svg" alt="Logo resmi Starpoint Garage"></div><span>SHOWROOM <small>FINANCE</small></span></div>
   <div class="auth-kicker"><span class="status-dot"></span> SISTEM INTERNAL TERLINDUNGI</div>
   <h1>Kelola setiap unit.<br><span>Ketahui setiap rupiah.</span></h1>
   <p class="auth-desc">Pembukuan modal pembelian, harga jual, PR pengerjaan, sparepart, biaya, foto, dan laporan showroom dalam satu dashboard.</p>
   <form id="loginForm" class="login-box">
-   <label for="loginEmail">Email Owner</label><input id="loginEmail" name="email" type="email" autocomplete="username" placeholder="Email akun Owner" required>
+   <div class="single-account"><div><small>AKUN OWNER</small><strong>starpointgarageindonesia.com</strong></div><span class="account-lock" aria-hidden="true">●</span></div><input type="hidden" name="username" value="starpointgarageindonesia.com">
    <label for="loginPassword">Kata sandi</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required>
    <button class="btn btn-red btn-wide" type="submit" id="loginButton">Masuk ke Pembukuan</button>
    <p id="authError" class="form-error" role="alert"></p>
   </form>
-  <p class="auth-footer">Hanya pengguna yang telah diberi izin yang dapat melihat data keuangan.</p>
+  <p class="auth-footer">Akses pribadi untuk satu akun Owner. Semua data keuangan tetap terlindungi.</p>
  </div>
- <div class="auth-side"><div class="auth-watermark">S</div><div class="auth-side-content"><div class="eyebrow">STARPOINT GARAGE</div><div class="auth-side-number">01<span> / </span>01</div><h2>STOCK.<br>COST.<br>PROFIT.</h2><p>Satu tempat untuk mengawasi semua unit dan keputusan finansial.</p></div></div>
+ <div class="auth-side"><div class="auth-luxury-glow" aria-hidden="true"></div><div class="auth-side-content"><div class="eyebrow">STARPOINT GARAGE</div><h2>STOCK.<br>COST.<br>PROFIT.</h2><p>Satu tempat untuk mengawasi semua unit dan keputusan finansial.</p></div></div>
 </div>
 <div id="appView" class="app-layout" hidden>
  <aside class="sidebar" id="sidebar">
