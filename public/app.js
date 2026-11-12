@@ -1,6 +1,6 @@
 import {db,state,tables,canEdit,memberAccess,loadAll,subscribe,unsubscribe,store,remove,uploadPhotos,deletePhoto,today,finance,ledger,money,num,unitName} from "./core.js";
 import {renderPage} from "./views.js";
-import {formHtml,inlinePartRow} from "./forms.js?v=20261112-multiparts-1";
+import {formHtml,inlinePartRow} from "./forms.js?v=20261112-simple-v1";
 const $=sel=>document.querySelector(sel);
 let loading=false,toastTimer,refreshTimer,lastLoad=0,inlinePartCounter=0;
 const knownKind={motor:"motors",task:"tasks",part:"parts",expense:"expenses",capital:"capital"};
@@ -99,7 +99,7 @@ function openMotor(id){
 function showForm(kind,id="",motor=""){
  if(!canEdit()){notice("Akun tidak punya izin mengedit.",true);return}
  const root=$("#modalRoot");root.innerHTML=formHtml(kind,id,motor);root.hidden=false;document.body.classList.add("modal-open");
- const focus=root.querySelector("input:not([type=hidden])");if(focus)focus.focus();
+ const focus=root.querySelector("input:not([type=hidden])");if(focus)focus.focus({preventScroll:true});
 }
 function closeModal(){const root=$("#modalRoot");root.hidden=true;root.innerHTML="";document.body.classList.remove("modal-open");}
 function inlinePartField(row,key){
@@ -261,6 +261,7 @@ document.addEventListener("click",async e=>{
    if(what==="close-modal"){closeModal();return}
    if(what==="logout"){await db.auth.signOut();locked();return}
    if(what==="open-motor"){openMotor(id);return}
+   if(what==="open-motor-part"){openMotor(id);state.detailTab="parts";renderPage();return}
    if(what==="detail-tab"){state.detailTab=target.dataset.value;renderPage();return}
    if(what==="add-inline-part"){addInlinePart();return}
    if(what==="remove-inline-part"){target.closest("[data-inline-part]")?.remove();refreshInlineParts();return}
@@ -308,7 +309,13 @@ $("#photoPicker").addEventListener("change",async e=>{
  }catch(ex){notice("Gagal unggah foto: "+ex.message,true)}
 });
 $("#modalRoot").addEventListener("input",e=>{if(e.target.closest("[data-inline-part]"))refreshInlineParts()});
-$("#modalRoot").addEventListener("change",e=>{if(e.target.closest("[data-inline-part]"))refreshInlineParts()});
+$("#modalRoot").addEventListener("change",e=>{
+ if(e.target.closest("[data-inline-part]"))refreshInlineParts();
+ if(e.target.id==="f-status"){
+  const section=$("#saleFields");
+  if(section)section.hidden=e.target.value!=="sold";
+ }
+});
 document.addEventListener("input",e=>{
  if(e.target.id==="motorSearch"||e.target.id==="partsSearch"){
   const id=e.target.id,pos=e.target.selectionStart;
