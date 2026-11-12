@@ -174,3 +174,63 @@
 .password-toggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);height:38px;min-width:86px;border:0;background:#eef1f5;color:#303a49;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;padding:0 11px;z-index:1}
 .password-toggle:hover,.password-toggle:focus-visible{background:#dfe5eb;outline:2px solid #b9c6d4;outline-offset:1px}
 @media (max-width:570px){.password-toggle{min-width:82px}.password-field input{padding-right:106px!important}}
+
+
+/* Inline multi-sparepart editor inside the Add/Edit Motorcycle modal */
+.inline-parts-section{
+ margin:24px 0 8px;padding:20px;border:1px solid #dfe5eb;
+ border-radius:14px;background:linear-gradient(145deg,#f9fafc,#f4f6f9);
+}
+.inline-parts-header{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:14px;flex-wrap:wrap;margin-bottom:13px;
+}
+.inline-parts-header h3{margin:4px 0 5px;font-size:19px;color:#202833}
+.inline-parts-header p{color:#6a7583;font-size:12px;margin:0;max-width:430px}
+.inline-parts-header .btn{border:1px solid #cfdae5;color:#b42633;background:#fff}
+.inline-parts-header .btn:hover,.form-foot-actions .btn-inline-part:hover{background:#fff0f1}
+.inline-parts-list{display:flex;flex-direction:column;gap:12px}
+.inline-parts-empty{
+ color:#89929f;border:1px dashed #cbd3de;border-radius:10px;
+ background:#fff;text-align:center;padding:23px 15px;font-size:12px;
+}
+.inline-part-card{
+ border:1px solid #dde2e9;border-radius:12px;padding:17px;
+ background:#fff;box-shadow:0 3px 16px #1b25310a;
+}
+.inline-part-card-header{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid #edf0f4;
+}
+.inline-part-chip{
+ font-size:10px;letter-spacing:.14em;color:#a82433;
+ font-weight:850;background:#fff0f2;border-radius:7px;padding:6px 9px;
+}
+.inline-part-remove{font-size:12px;color:#ae2532;font-weight:750;padding:7px 9px}
+.inline-part-card .form-grid{column-gap:13px;row-gap:13px}
+.inline-part-card .field label{font-size:12px}
+.inline-part-card .field input,.inline-part-card .field select{
+ min-height:42px
+}
+.inline-part-card .field textarea{min-height:62px}
+.inline-parts-summary{
+ display:flex;flex-wrap:wrap;gap:8px 20px;
+ padding:13px 15px;margin-top:13px;background:#fff;
+ border:1px solid #dce5ed;border-radius:10px;
+ color:#586573;font-size:12px;
+}
+.inline-parts-summary strong{color:#1f2935;font-weight:850;font-variant-numeric:tabular-nums}
+.inline-parts-hint{font-size:11px;color:#788492;line-height:1.55;margin:12px 0 0}
+.form-foot-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap}
+.form-foot-actions .btn-inline-part{background:#fff;color:#b92b38;border-color:#e5cdd2;min-height:43px}
+.form-foot-actions .btn-red{min-height:43px}
+@media(max-width:570px){
+ .inline-parts-section{padding:14px;margin-top:20px}
+ .inline-parts-header .btn-inline-part{width:100%}
+ .inline-part-card{padding:13px}
+ .form-foot{gap:5px}
+ .form-foot .btn{font-size:12px}
+ .form-foot-actions{gap:6px}
+ .form-foot-actions .btn-inline-part{padding:8px 10px}
+ .form-foot-actions .btn-red{padding:8px 11px}
+}
