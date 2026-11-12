@@ -62,6 +62,40 @@ function capitalFields(x){return [
  cash("Nominal (Rp) *","amount",x.amount??0),
  text("Catatan transaksi","notes",x.notes||"")
  ].join("")}
+
+/** Each row is attached to the motor being saved. IDs are only for input accessibility. */
+export function inlinePartRow(index){
+ const id="quick-part-"+index;
+ const input=(label,key,type,more="",value="")=>
+  '<div class="field"><label for="'+id+'-'+key+'">'+label+'</label><input id="'+id+'-'+key+'" data-part-field="'+key+'" type="'+type+'" value="'+esc(value)+'" '+more+'></div>';
+ const choose=(label,key,options)=>
+  '<div class="field"><label for="'+id+'-'+key+'">'+label+'</label><select id="'+id+'-'+key+'" data-part-field="'+key+'">'+
+   options.map(([value,text])=>'<option value="'+value+'">'+text+'</option>').join("")+'</select></div>';
+ return '<div class="inline-part-card" data-inline-part>'+
+  '<div class="inline-part-card-header"><span class="inline-part-chip">SPAREPART MOTOR</span><button type="button" class="btn-smallink inline-part-remove" data-action="remove-inline-part">Hapus</button></div>'+
+  '<div class="form-grid">'+
+   '<div class="field wide"><label for="'+id+'-name">Nama sparepart *</label><input id="'+id+'-name" data-part-field="name" type="text" placeholder="Contoh: Knalpot, velg, kaliper" required maxlength="250"></div>'+
+   input("Jumlah (pcs) *","quantity","number",'min="1" max="100000" step="1" required inputmode="numeric"',"1")+
+   choose("Peruntukan","purpose",[["maintenance","Untuk motor"],["resale","Dijual terpisah"]])+
+   input("Harga beli per pcs (Rp)","unit_cost","number",'min="0" step="1" inputmode="numeric"',"0")+
+   input("Perkiraan jual per pcs (Rp)","estimated_sale_price","number",'min="0" step="1" inputmode="numeric"',"0")+
+   choose("Status pembelian","status",[["planned","Rencana / belum dibeli"],["purchased","Sudah dibeli"],["installed","Terpasang"]])+
+   input("Merek / kode sparepart","part_code","text",'maxlength="150" placeholder="Opsional"')+
+   '<div class="field wide"><label for="'+id+'-notes">Catatan sparepart</label><textarea id="'+id+'-notes" data-part-field="notes" rows="2" placeholder="Kondisi, lokasi penyimpanan, keterangan tambahan (opsional)"></textarea></div>'+
+  '</div>'+
+ '</div>';
+}
+function inlinePartsSection(){
+ return '<section class="inline-parts-section" aria-label="Sparepart untuk motor ini">'+
+ '<div class="inline-parts-header"><div><span class="eyebrow">INVENTARIS PER MOTOR</span><h3>Sparepart Motor</h3><p>Tambahkan beberapa sparepart sekaligus. Semuanya otomatis terhubung ke motor ini.</p></div>'+
+ '<button type="button" class="btn btn-sm btn-inline-part" data-action="add-inline-part">+ Tambah Sparepart</button></div>'+
+ '<div id="inlinePartsList" class="inline-parts-list" aria-live="polite"></div>'+
+ '<div id="inlinePartsEmpty" class="inline-parts-empty">Belum ada sparepart. Bisa ditambahkan sekarang atau nanti dari Detail Motor.</div>'+
+ '<div id="inlinePartsSummary" class="inline-parts-summary" hidden><span>Rencana pembelian: <strong id="inlinePartsPlanned">Rp0</strong></span><span>Sudah dibeli / terpasang: <strong id="inlinePartsBought">Rp0</strong></span></div>'+
+ '<p class="inline-parts-hint">Harga sparepart yang sudah dibeli masuk HPP motor. Sparepart berstatus rencana hanya masuk proyeksi biaya.</p>'+
+ '</section>';
+}
+
 export function formHtml(kind,id="",motorId=""){
  const defs={motor:{table:"motors",title:"Motor",fields:motorFields},task:{table:"tasks",title:"PR Pengerjaan",fields:taskFields},part:{table:"parts",title:"Sparepart",fields:partFields},expense:{table:"expenses",title:"Pengeluaran",fields:expenseFields},capital:{table:"capital",title:"Setoran / Penarikan",fields:capitalFields}};
  const d=defs[kind];if(!d)return "";const data=state.data[d.table].find(x=>x.id===id)||{};
@@ -69,7 +103,7 @@ export function formHtml(kind,id="",motorId=""){
  return '<div class="modal" role="dialog" aria-modal="true" aria-label="'+esc(title)+'">'+
  '<div class="modal-head"><div><span class="eyebrow">STARPOINT SHOWROOM</span><h2>'+esc(title)+'</h2></div><button class="close-modal" type="button" data-action="close-modal" aria-label="Tutup">×</button></div>'+
  '<form id="entityForm" class="modal-form" data-kind="'+kind+'" data-id="'+esc(id)+'" data-motor="'+esc(motorId||data.motor_id||"")+'">'+
- '<div class="form-grid">'+d.fields(data)+'</div>'+
+ '<div class="form-grid">'+d.fields(data)+'</div>'+(kind==="motor"?inlinePartsSection():"")+
  '<p id="formError" class="form-error"></p>'+
- '<div class="form-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><button type="submit" class="btn btn-red" id="saveBtn">Simpan Data</button></div></form></div>';
+ '<div class="form-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><div class="form-foot-actions">'+(kind==="motor"?'<button type="button" class="btn btn-sm btn-inline-part" data-action="add-inline-part">+ Sparepart</button>':"")+'<button type="submit" class="btn btn-red" id="saveBtn">Simpan Data</button></div></div></form></div>';
 }
