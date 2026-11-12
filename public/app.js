@@ -42,6 +42,17 @@ async function initialize(){
   await granted(data.user);
  }catch(e){console.error(e);await db.auth.signOut();locked("Silakan masuk dengan akun khusus showroom.");}
 }
+const passwordInput=$("#loginPassword");
+const passwordToggle=$("#togglePassword");
+passwordToggle.addEventListener("click",()=>{
+ const visible=passwordInput.type==="password";
+ passwordInput.type=visible?"text":"password";
+ passwordToggle.textContent=visible?"Sembunyikan":"Lihat";
+ passwordToggle.setAttribute("aria-pressed",String(visible));
+ passwordToggle.setAttribute("aria-label",visible?"Sembunyikan kata sandi":"Lihat kata sandi");
+ passwordInput.focus({preventScroll:true});
+});
+
 $("#loginForm").addEventListener("submit",async e=>{
  e.preventDefault();
  const form=e.currentTarget,btn=$("#loginButton");
