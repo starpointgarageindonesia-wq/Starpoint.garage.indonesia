@@ -98,8 +98,16 @@ function openMotor(id){
 }
 function showForm(kind,id="",motor=""){
  if(!canEdit()){notice("Akun tidak punya izin mengedit.",true);return}
- const root=$("#modalRoot");root.innerHTML=formHtml(kind,id,motor);root.hidden=false;document.body.classList.add("modal-open");
- const focus=root.querySelector("input:not([type=hidden])");if(focus)focus.focus({preventScroll:true});
+ const root=$("#modalRoot");
+ // Safari scrolls the form under its header if the first input receives focus.
+ // Open at scroll position zero without automatic focus or keyboard activation.
+ if(document.activeElement?.blur)document.activeElement.blur();
+ root.innerHTML=formHtml(kind,id,motor);
+ root.hidden=false;
+ document.body.classList.add("modal-open");
+ const scroller=root.querySelector(".modal-form");
+ if(scroller)scroller.scrollTop=0;
+ requestAnimationFrame(()=>{if(!root.hidden&&scroller)scroller.scrollTop=0;});
 }
 function closeModal(){const root=$("#modalRoot");root.hidden=true;root.innerHTML="";document.body.classList.remove("modal-open");}
 function inlinePartField(row,key){
