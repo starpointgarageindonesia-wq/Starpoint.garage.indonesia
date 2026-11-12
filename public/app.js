@@ -1,6 +1,6 @@
 import {db,state,tables,canEdit,memberAccess,loadAll,subscribe,unsubscribe,store,remove,uploadPhotos,deletePhoto,today,finance,ledger,money,num,unitName} from "./core.js";
 import {renderPage} from "./views.js";
-import {formHtml,inlinePartRow} from "./forms.js";
+import {formHtml,inlinePartRow} from "./forms.js?v=20261112-multiparts-1";
 const $=sel=>document.querySelector(sel);
 let loading=false,toastTimer,refreshTimer,lastLoad=0,inlinePartCounter=0;
 const knownKind={motor:"motors",task:"tasks",part:"parts",expense:"expenses",capital:"capital"};
