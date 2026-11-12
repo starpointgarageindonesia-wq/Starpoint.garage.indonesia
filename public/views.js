@@ -16,7 +16,7 @@ export function renderPage(){
  const area=document.getElementById("contentArea");
  area.innerHTML=({dashboard:dashboard,motors:motors,detail:detail,parts:parts,cash:cash,reports:reports}[view]||dashboard)();
 }
-const cashStat=v=>'<span class="'+(v>=0?"positive":"negative")+'">'+money(v)+'</span>';
+const cashStat=v=>v===null||v===undefined?'<span class="muted">Belum ada target</span>':'<span class="'+(v>=0?"positive":"negative")+'">'+money(v)+'</span>';
 function dashboard(){
  const m=metrics(),recent=state.data.motors.slice().sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).slice(0,6);
  const active=state.data.motors.filter(x=>!["sold","archived"].includes(x.status));
@@ -58,7 +58,7 @@ function detail(){
  [['Kode stok',m.unit_code],['Tahun',m.model_year||"-"],['Odometer',m.odometer_km?number(m.odometer_km)+" km":"-"],['Nomor polisi',m.plate_no],['Nomor rangka',m.chassis_no],['Tanggal beli',fmtDate(m.purchase_date)]].map(x=>'<div><small>'+x[0]+'</small><b>'+esc(x[1]||"-")+'</b></div>').join("")+'</div></div></div></div>';
  const price='<div class="stat-grid">'+box("Harga Beli",shortMoney(m.purchase_price),"Modal pembelian unit","gold","▣")+box("HPP Realisasi",shortMoney(f.cost),"Harga beli + biaya aktual","red","⌁")+box("Target / Harga Jual",shortMoney(f.motorRevenue),m.status==="sold"?"Harga jual aktual":"Target jual motor","","↗")+box("Estimasi / Laba",cashStat(m.status==="sold"?f.actualProfit:f.expectedProfit),m.status==="sold"?"Setelah unit terjual":"Proyeksi termasuk biaya rencana","green","✓")+'</div>';
  const panels={summary:detailSummary(m,f),tasks:detailTasks(m),parts:detailParts(m),expenses:detailExpenses(m),photos:detailPhotos(m),history:detailHistory(m)};
- return '<div class="unit-hero"><div><button class="back-link" data-nav="motors">‹ Kembali ke daftar motor</button><h1>'+esc(unitName(m))+'</h1><div class="flex wrap"><span class="code">'+esc(m.unit_code||"Tanpa kode unit")+'</span>'+label(statusName[m.status]||m.status,m.status)+'</div></div><div class="page-actions">'+(canEdit()?b("+ Foto","upload-motor",m.id,"btn")+" "+b("Ubah Unit","edit-motor",m.id,"btn")+" "+b("Arsipkan Unit","archive-motor",m.id,"btn btn-danger"):"")+'</div></div>'+price+info+'<div class="panel">'+nav+panels[state.detailTab]+'</div>';
+ return '<div class="unit-hero"><div><button class="back-link" data-nav="motors">‹ Kembali ke daftar motor</button><h1>'+esc(unitName(m))+'</h1><div class="flex wrap"><span class="code">'+esc(m.unit_code||"Tanpa kode unit")+'</span>'+label(statusName[m.status]||m.status,m.status)+'</div></div><div class="page-actions">'+(canEdit()?b("+ Foto","upload-motor",m.id,"btn")+" "+b("Ubah Unit","edit-motor",m.id,"btn")+" "+(m.status==="sold"?"":b("Arsipkan Unit","archive-motor",m.id,"btn btn-danger")):"")+'</div></div>'+price+info+'<div class="panel">'+nav+panels[state.detailTab]+'</div>';
 }
 function detailSummary(m,f){
  return '<div class="panel-body"><div class="section-grid"><div><h3>Rincian Harga Pokok Penjualan (HPP)</h3>'+
