@@ -63,7 +63,7 @@ function nav(page){
  if(page==="motors"){state.selected=null;state.detailTab="summary"}
  $("#sidebar").classList.remove("open");
  renderPage();
- window.scrollTo({top:0,behavior:"instant"});
+ window.scrollTo({top:0,behavior:"auto"});
 }
 function openMotor(id){
  if(!state.data.motors.some(x=>x.id===id)){notice("Unit tidak ditemukan.",true);return}
