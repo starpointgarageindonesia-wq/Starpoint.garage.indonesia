@@ -32,7 +32,7 @@ function locked(error=""){
  $("#authError").textContent=error;
  $("#sidebar").classList.remove("open");
  state.authUser=null;state.access=null;
- state.data={motors:[],tasks:[],parts:[],expenses:[],capital:[],photos:[]};
+ state.data={motors:[],tasks:[],parts:[],expenses:[],capital:[],photos:[],activity:[]};
  state.photoUrls.clear();
 }
 async function initialize(){
@@ -46,7 +46,7 @@ $("#loginForm").addEventListener("submit",async e=>{
  e.preventDefault();const form=e.currentTarget,btn=$("#loginButton");
  btn.disabled=true;btn.textContent="Memeriksa akses...";$("#authError").textContent="";
  try{
-  const {data,error}=await db.auth.signInWithPassword({email:form.email.value.trim(),password:form.password.value});
+  const {data,error}=await db.auth.signInWithPassword({email:form.elements.namedItem("email").value.trim(),password:form.elements.namedItem("password").value});
   if(error)throw Error("Email atau kata sandi tidak cocok.");
   await granted(data.user);
   form.reset();
@@ -168,6 +168,7 @@ document.addEventListener("click",async e=>{
    if(what==="open-motor"){openMotor(id);return}
    if(what==="detail-tab"){state.detailTab=target.dataset.value;renderPage();return}
    if(what==="new-motor"){showForm("motor");return}
+   if(what==="archive-motor"){if(window.confirm("Arsipkan motor ini? Riwayat dan biayanya tetap tersimpan.")){await store(tables.motors,{status:"archived"},id);await reload(true);notice("Unit berhasil diarsipkan.")}return}
    if(what==="edit-motor"){showForm("motor",id);return}
    for(const kind of ["task","part","expense","capital"]){
     if(what==="new-"+kind){showForm(kind,"",id||state.selected);return}
