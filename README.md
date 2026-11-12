@@ -14,13 +14,14 @@ URL produksi: https://showroom.starpointgarage.com/
 - Pembaruan antarperangkat dengan Supabase Realtime Postgres Changes + pemuatan ulang berkala saat aktif.
 
 ## Akses dan keamanan
-- Login showroom menggunakan **satu username tetap** `starpointgarageindonesia.com` dan kata sandi akun Owner Supabase yang sudah ada. Form login tidak memerlukan pengisian email atau pembuatan mailbox. Edge Function `showroom-owner-login` memetakan username tersebut ke akun Owner aktif di sisi server dan menerapkan rate limit. Kata sandi tidak ditulis di kode GitHub.
-- Bootstrap `showroom_access`: hanya satu akun `staff_profiles.role=owner` yang aktif. Member dan teknisi tidak otomatis diberi hak melihat pembukuan.
-- Tabel terpisah dengan prefiks `showroom_`, RLS per tabel, Storage privat, audit trail.
-- Tidak ada service-role key pada frontend. Hanya Supabase publishable key.
-- Halaman memakai `noindex`; tidak ditujukan untuk pencarian publik.
-- Akses tambahan Editor/Viewer harus ditambahkan secara khusus ke tabel `showroom_access` oleh admin, bukan terbuka untuk pendaftaran umum.
-- Jika email/password akun Owner tidak diketahui, lakukan reset password melalui pengaturan akun Auth sesuai proses resmi; jangan membagikan kata sandi melalui chat.
+- **Showroom benar-benar memiliki login mandiri**, tidak menggunakan akun, password, izin, atau layanan login APK Owner.
+- Username tunggal yang ditampilkan: `starpointgarageindonesia.com`. Tidak perlu membuat atau mengetik mailbox email.
+- Edge Function `showroom-owner-login` memverifikasi kata sandi khusus showroom (hanya hash PBKDF2 bersalt di sisi server), melakukan rate limiting, dan mengaktifkan akun Auth **khusus showroom** saat login pertama. Akun Auth ini berbeda dari APK Owner.
+- Izin APK Owner sebelumnya telah dihapus dari `showroom_access`. Tabel `staff_profiles`, `staff_access`, dan akun Auth APK Owner tidak dimodifikasi.
+- Tabel pembukuan memakai prefiks `showroom_`, RLS, serta bucket Storage privat `showroom-private`. Tidak ada service-role key di frontend.
+- Saat ini hanya satu Owner Showroom yang diizinkan. Peran Member dan Teknisi tidak memiliki akses.
+- Halaman memakai `noindex`; sistem bukan situs katalog untuk publik.
+- Infrastruktur Supabase masih dalam proyek teknis yang sama, tetapi identitas Auth, izin, data bisnis, dan API login showroom terpisah. Jika pemisahan sampai ke proyek Supabase fisik diperlukan, lakukan migrasi proyek tersendiri tanpa mengubah APK.
 
 ## Perhitungan
 - HPP realisasi = harga pembelian motor + harga pembelian sparepart yang sudah dibeli + pengeluaran aktual.
@@ -40,8 +41,8 @@ URL produksi: https://showroom.starpointgarage.com/
 - `public/views.js`: ringkasan, motor, sparepart, arus kas, laporan, riwayat.
 - `public/forms.js`: formulir unit, PR, sparepart, pengeluaran, modal.
 - `public/app.js`: interaksi, CRUD, autentikasi satu username, ekspor CSV.
-- Edge Function `showroom-owner-login`: verifikasi Owner melalui Supabase Auth; sesi diberikan hanya setelah password Owner terverifikasi.
-- Login Owner aplikasi lain tidak diubah; perubahan password ke nilai lain harus dikelola terpisah karena berbagi identitas Supabase.
+- Edge Function `showroom-owner-login`: verifikasi kata sandi khusus showroom dan membuat identitas Auth mandiri saat login pertama.
+- Kata sandi APK Owner sama sekali tidak digunakan dan tidak diubah.
 - `public/robots.txt` dan meta noindex menjaga halaman tidak dipromosikan untuk pencarian umum.
 
 ## Catatan implementasi
