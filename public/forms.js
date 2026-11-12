@@ -11,6 +11,7 @@ function motorFields(x){
  field("Model *","model",x.model,"text",'required maxlength="100" placeholder="ZX-25RR"')+
  price("Harga beli *","purchase_price",x.purchase_price)+
  price("Target jual","target_sale_price",x.target_sale_price)+
+ '</div><div class="form-grid motor-date-status">'+
  date("Tanggal beli","purchase_date",x.purchase_date)+
  select("Status","status",x.status||"stock",motorcycleStatuses)+
  '</div>'+
@@ -88,6 +89,26 @@ export function inlinePartRow(i){
   '<label class="field wide"><span>Catatan</span><textarea data-part-field="notes" rows="2"></textarea></label></div></details>'+
  '</div>';
 }
+export function inlineTaskRow(index){
+ const id="task-inline-"+index;
+ return '<div class="inline-part-card inline-task-card" data-inline-task>'+
+  '<div class="inline-part-head"><label class="task-row-check"><input data-task-field="done" type="checkbox"><span>PR selesai</span></label>'+
+  '<button type="button" data-action="remove-inline-task" class="text-danger">Hapus</button></div>'+
+  '<div class="form-grid">'+
+  '<label class="field wide"><span>Pekerjaan *</span><input id="'+id+'-title" data-task-field="title" type="text" maxlength="250" required placeholder="Contoh: Ganti kampas rem"></label>'+
+  '<label class="field"><span>Estimasi biaya</span><input data-task-field="estimated_cost" type="number" min="0" step="1" value="0" inputmode="numeric"></label>'+
+  '<label class="field"><span>Prioritas</span><select data-task-field="priority"><option value="normal">Normal</option><option value="high">Penting</option><option value="low">Rendah</option></select></label>'+
+  '</div><details class="more-fields compact"><summary>Catatan</summary>'+
+  '<label class="field wide"><span>Catatan PR</span><textarea data-task-field="notes" rows="2"></textarea></label>'+
+  '</details></div>';
+}
+function taskSection(){
+ return '<section class="inline-parts-section inline-tasks-section">'+
+ '<div class="inline-parts-header"><h3>PR motor</h3><button type="button" class="btn btn-outline btn-sm" data-action="add-inline-task">+ Tambah PR</button></div>'+
+ '<div id="inlineTasksList" class="inline-parts-list"></div>'+
+ '<div id="inlineTasksEmpty" class="inline-parts-empty">Belum ada PR</div>'+
+ '</section>';
+}
 function partSection(){
  return '<section class="inline-parts-section">'+
  '<div class="inline-parts-header"><h3>Sparepart</h3><button type="button" class="btn btn-outline btn-sm" data-action="add-inline-part">+ Tambah sparepart</button></div>'+
@@ -104,7 +125,7 @@ export function formHtml(kind,id="",motorId=""){
  return '<div class="modal" role="dialog" aria-modal="true" aria-label="'+esc(title)+'">'+
  '<div class="modal-head"><h2>'+title+'</h2><button type="button" class="close-modal" data-action="close-modal" aria-label="Tutup">×</button></div>'+
  '<form id="entityForm" class="modal-form" data-kind="'+kind+'" data-id="'+esc(id)+'" data-motor="'+esc(motorId||x.motor_id||"")+'">'+
-  d.fields(x)+(kind==="motor"?partSection():"")+
+  d.fields(x)+(kind==="motor"?taskSection()+partSection():"")+
  '<p id="formError" class="form-error" role="alert"></p>'+
  '<div class="form-foot"><button type="submit" class="btn btn-red" id="saveBtn">Simpan</button></div>'+
  '</form></div>';
