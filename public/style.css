@@ -14,35 +14,128 @@
 @media(max-width:570px){h1{font-size:27px}.stat-grid{gap:9px}.stat{padding:15px}.stat .value{font-size:20px;margin:10px 0 3px}.stat-label{font-size:10px}.panel-head{padding:16px}.panel-body{padding:15px}.page-intro{display:block}.page-actions{margin-top:14px}.topbar .crumb{font-size:10px}.topbar .crumb span{padding:0 5px}.btn-sm{padding:7px 10px}.toolbar{padding:12px;gap:8px}.toolbar .search-input{width:100%}.toolbar .select-filter{width:100%}.detail-meta{gap:10px}.detail-photo{min-height:190px}.photo-grid{grid-template-columns:repeat(2,1fr)}.modal-root{padding:7px}.modal{max-height:97dvh;border-radius:13px}.modal-form{padding:16px}.modal-head{padding:16px}.form-grid{gap:11px}.form-grid .field{grid-column:1/-1}.form-foot{bottom:-16px}.summary-grid{grid-template-columns:1fr}.hide-mobile{display:none}.unit-cell{min-width:170px}.auth-panel h1{font-size:35px}.stat .hint{font-size:10px}}
 @media print{.sidebar,.topbar,.btn,.toolbar,.logout,.top-actions{display:none!important}.app-layout{display:block}.content{max-width:100%;padding:0}.panel,.stat{box-shadow:none}.main-shell{margin:0}body{background:white}.print-only{display:block}}
 
-/* Private showroom: premium animated sign-in, single Owner account */
-.auth-layout{background:#f9fafb}
-.auth-panel{position:relative;z-index:2}
-.auth-logo{gap:16px;align-items:center;margin-bottom:56px}
-.auth-logo-plate{display:flex;align-items:center;justify-content:center;width:202px;height:84px;padding:15px 18px;border-radius:16px;background:linear-gradient(143deg,#202832 0%,#0f141b 76%);box-shadow:0 15px 40px #141e2c1d,inset 0 1px 0 #ffffff24;flex:none}
-.auth-logo-plate img{display:block;width:100%;max-width:166px;max-height:60px;object-fit:contain;filter:drop-shadow(0 3px 3px #0007)}
-.auth-logo>span{border:0;padding:0;font-size:11px;letter-spacing:.18em;line-height:1.6;color:#313944}
-.auth-logo>span small{display:block;font-size:10px;color:#a87e43}
-.auth-kicker{letter-spacing:.11em}
-.login-box{margin-top:22px;background:linear-gradient(150deg,#fcfcfd,#f4f6f9);box-shadow:0 12px 45px #181c2610;border-color:#e7e9ed}
-.single-account{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:3px 0 12px;padding:14px 16px;background:#fff;border:1px solid #e2e5eb;border-radius:11px}
-.single-account small{display:block;letter-spacing:.12em;color:#8b929e;font-weight:850;font-size:10px;margin-bottom:3px}
-.single-account strong{display:block;font-weight:850;font-size:14px;letter-spacing:-.01em;overflow-wrap:anywhere;color:#232a35}
-.account-lock{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#e9f6f0;color:#218b60;font-size:12px;flex:none}
+
+
+/* Showroom login, full-width architectural brand background */
+.auth-layout{background:#f5f7fa}
+.auth-panel{
+  position:relative;isolation:isolate;z-index:2;max-width:none;margin:0;
+  min-height:100dvh;display:flex;flex-direction:column;justify-content:flex-start;
+  padding:0 clamp(28px,7.5vw,126px) 45px;
+  background:linear-gradient(167deg,#f4f6f9 0%,#fbfcfd 49%,#f2f5f9 100%);
+}
+.auth-brand-shell{
+  isolation:isolate;position:relative;flex:none;
+  margin:0 calc(-1 * clamp(28px,7.5vw,126px)) 47px;
+  padding:44px clamp(28px,7.5vw,126px) 65px;
+  min-height:230px;display:flex;align-items:center;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 78% 0%,rgba(161,35,53,.36) 0%,transparent 50%),
+    radial-gradient(ellipse at 9% 55%,rgba(205,153,92,.16) 0%,transparent 48%),
+    linear-gradient(145deg,#101822 0%,#1d2834 55%,#2b2831 78%,#f4f6f9 100%);
+  background-size:130% 130%;
+  animation:showroomBrandDrift 16s ease-in-out infinite alternate;
+}
+.auth-brand-shell:after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:linear-gradient(180deg,transparent 0%,transparent 62%,#f4f6f9 100%);
+}
+.auth-logo{
+  position:relative;z-index:1;display:flex;align-items:center;gap:24px;
+  margin:0;min-width:0;
+}
+.auth-logo img{
+  width:clamp(174px,20vw,265px);height:auto;max-height:93px;
+  object-fit:contain;display:block;filter:drop-shadow(0 5px 12px rgba(0,0,0,.32));
+  background:transparent;border:none;box-shadow:none;border-radius:0;
+}
+.auth-logo>span{
+  color:#f5f7fb;border:0;padding:0;display:block;
+  font-size:12px;font-weight:850;letter-spacing:.18em;
+  line-height:1.55;text-shadow:0 2px 12px rgba(0,0,0,.26);
+}
+.auth-logo>span small{
+  display:block;color:#e3bd7f;margin-top:3px;
+  font-weight:800;letter-spacing:.23em;font-size:10px;
+}
+.auth-logo-plate{display:contents!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;padding:0!important}
+.auth-kicker{font-size:11px;letter-spacing:.12em;color:#168461}
+.auth-panel h1{margin:20px 0 13px}
+.auth-desc{max-width:530px;line-height:1.7}
+.login-box{
+  max-width:620px;margin-top:24px;border:1px solid #e4e8ed;
+  background:rgba(255,255,255,.8);border-radius:18px;
+  padding:25px;box-shadow:0 22px 54px rgba(25,36,50,.085);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.single-account{
+  background:#fff;border:1px solid #e0e5ec;border-radius:12px;
+  padding:15px 17px;display:flex;align-items:center;justify-content:space-between;
+  margin:2px 0 13px;gap:12px;
+}
+.single-account small{display:block;font-size:10px;letter-spacing:.12em;color:#818b9a;font-weight:800;margin-bottom:4px}
+.single-account strong{display:block;font-size:14px;overflow-wrap:anywhere;color:#222a36;letter-spacing:-.02em}
+.account-lock{display:grid;place-items:center;min-width:34px;height:34px;border-radius:10px;background:#e5f5ef;color:#19885d}
 .login-box>label{margin-top:0}
-.login-box input[type=password]{background:#fff;min-height:52px;font-size:15px}
-.login-box .btn-red{min-height:50px;box-shadow:0 9px 20px #b9203133}
-.auth-side{isolation:isolate;overflow:hidden;background:linear-gradient(138deg,#10131a 0%,#22212c 46%,#0f1117 100%);background-size:180% 180%;animation:showroomGradientDrift 19s ease-in-out infinite alternate}
-.auth-side::before{content:"";position:absolute;inset:-38%;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 75% 28%,#e1354557 0%,transparent 33%),radial-gradient(ellipse at 18% 62%,#ae854c39 0%,transparent 31%),radial-gradient(ellipse at 56% 88%,#84232f59 0%,transparent 30%);filter:blur(48px);animation:showroomAuroraDrift 17s ease-in-out infinite alternate;will-change:transform}
-.auth-side::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 70% 18%,#ffffff0f 0%,transparent 39%),linear-gradient(180deg,transparent 0%,#0b101466 95%);opacity:.9}
-.auth-luxury-glow{position:absolute;z-index:0;pointer-events:none;width:58vw;height:58vw;max-width:950px;max-height:950px;border-radius:50%;right:-43%;top:-42%;border:120px solid #ab39451c;filter:blur(50px);box-shadow:0 0 130px #d3a15d33;animation:showroomOrbit 26s ease-in-out infinite alternate}
-.auth-side-content{z-index:2;left:13%;right:9%;bottom:11%}
-.auth-side .eyebrow{color:#dabc86;font-weight:850;letter-spacing:.21em}
+.login-box input[type=password]{background:#fff;min-height:51px}
+.login-box .btn-red{min-height:51px;box-shadow:0 8px 22px rgba(206,35,51,.22)}
+.auth-footer{margin-top:23px}
+/* Coordinated animated luxury background on the right */
+.auth-side{
+  isolation:isolate;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0c1018,#231c29 52%,#111821);
+  background-size:180% 180%;
+  animation:showroomGradientDrift 18s ease-in-out infinite alternate;
+}
+.auth-side::before{
+  content:"";position:absolute;inset:-40%;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 77% 28%,rgba(221,49,72,.35),transparent 32%),
+    radial-gradient(ellipse at 25% 72%,rgba(214,162,98,.2),transparent 39%),
+    radial-gradient(ellipse at 51% 80%,rgba(131,33,54,.33),transparent 30%);
+  filter:blur(44px);animation:showroomAuroraDrift 18s ease-in-out infinite alternate;
+}
+.auth-side::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 0%,rgba(4,8,14,.45) 100%);
+}
+.auth-luxury-glow{
+  position:absolute;z-index:0;pointer-events:none;width:55vw;height:55vw;
+  max-width:880px;max-height:880px;right:-40%;top:-42%;border-radius:50%;
+  border:120px solid rgba(170,44,65,.11);filter:blur(48px);
+  animation:showroomOrbit 25s ease-in-out infinite alternate;
+}
+.auth-side-content{z-index:2;left:13%;right:9%;bottom:10%}
+.auth-side .eyebrow{color:#dabc86;letter-spacing:.2em}
+.auth-side h2{position:relative;color:#fbfaf9;font-size:clamp(66px,6.5vw,116px);letter-spacing:-.08em;line-height:.94;margin:26px 0 32px;text-shadow:0 12px 35px rgba(0,0,0,.45)}
+.auth-side-content p{color:#d7d4d8;line-height:1.8}
 .auth-side-number,.auth-watermark{display:none!important}
-.auth-side h2{position:relative;color:#f9fafc;font-size:clamp(66px,6.5vw,116px);letter-spacing:-.08em;line-height:.94;margin:26px 0 32px;text-shadow:0 12px 35px #0007}
-.auth-side-content p{color:#d5d3d5;max-width:420px;font-size:15px;line-height:1.8}
+@keyframes showroomBrandDrift{0%{background-position:0% 15%}100%{background-position:100% 70%}}
 @keyframes showroomGradientDrift{0%{background-position:0% 20%}100%{background-position:100% 75%}}
 @keyframes showroomAuroraDrift{0%{transform:translate3d(-7%,-2%,0) rotate(-8deg) scale(1)}50%{transform:translate3d(6%,5%,0) rotate(7deg) scale(1.08)}100%{transform:translate3d(-3%,10%,0) rotate(-3deg) scale(1.02)}}
 @keyframes showroomOrbit{0%{transform:translate3d(-12%,10%,0) scale(.86)}100%{transform:translate3d(12%,-13%,0) scale(1.12)}}
-@media(max-width:860px){.auth-panel{min-height:100dvh}.auth-logo{margin-bottom:44px}.auth-logo-plate{width:155px;height:69px;padding:13px}.auth-logo-plate img{max-width:132px}.auth-side{display:none}.login-box{padding:21px}}
-@media(max-width:460px){.auth-logo{gap:12px}.auth-logo-plate{width:146px;height:64px}.auth-logo>span{font-size:10px}.auth-logo>span small{font-size:9px}.single-account strong{font-size:13px}.auth-panel{padding:33px 22px 43px}}
-@media(prefers-reduced-motion:reduce){.auth-side,.auth-side::before,.auth-luxury-glow{animation:none!important;will-change:auto}}
+@media(max-width:1220px){
+  .auth-panel{padding-inline:clamp(25px,5vw,80px)}
+  .auth-brand-shell{margin-inline:calc(-1 * clamp(25px,5vw,80px));padding-inline:clamp(25px,5vw,80px)}
+  .auth-logo img{width:clamp(150px,18vw,220px)}
+}
+@media(max-width:860px){
+  .auth-panel{min-height:100dvh;padding:0 26px 44px;justify-content:flex-start}
+  .auth-brand-shell{margin:0 -26px 40px;padding:34px 26px 53px;min-height:180px}
+  .auth-logo{gap:18px}
+  .auth-logo img{width:clamp(142px,26vw,195px)}
+  .auth-side{display:none}
+  .login-box{padding:21px}
+}
+@media(max-width:460px){
+  .auth-panel{padding:0 21px 39px}
+  .auth-brand-shell{margin:0 -21px 35px;padding:28px 21px 45px;min-height:160px}
+  .auth-logo{gap:12px}
+  .auth-logo img{width:145px}
+  .auth-logo>span{font-size:10px;letter-spacing:.12em}
+  .auth-logo>span small{font-size:9px}
+  .auth-panel h1{font-size:33px}
+}
+@media(prefers-reduced-motion:reduce){
+  .auth-brand-shell,.auth-side,.auth-side::before,.auth-luxury-glow{animation:none!important}
+}
