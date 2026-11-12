@@ -1,8 +1,8 @@
 import {db,state,tables,canEdit,memberAccess,loadAll,subscribe,unsubscribe,store,remove,uploadPhotos,deletePhoto,today,finance,ledger,money,num,unitName} from "./core.js";
 import {renderPage} from "./views.js";
-import {formHtml,inlinePartRow} from "./forms.js?v=20261112-simple-v1";
+import {formHtml,inlinePartRow,inlineTaskRow} from "./forms.js?v=20261112-pr-swipe-1";
 const $=sel=>document.querySelector(sel);
-let loading=false,toastTimer,refreshTimer,lastLoad=0,inlinePartCounter=0;
+let loading=false,toastTimer,refreshTimer,lastLoad=0,inlinePartCounter=0,inlineTaskCounter=0;
 const knownKind={motor:"motors",task:"tasks",part:"parts",expense:"expenses",capital:"capital"};
 function notice(message,isError=false){
  const t=$("#toast");t.textContent=message;t.className="toast show"+(isError?" error":"");
@@ -140,6 +140,36 @@ function addInlinePart(){
   if(field)field.focus({preventScroll:true});
  }
 }
+function addInlineTask(){
+ const form=$("#entityForm");
+ if(!form||form.dataset.kind!=="motor")return;
+ const list=form.querySelector("#inlineTasksList");
+ if(!list)return;
+ if(list.children.length>=60){notice("Maksimal 60 PR dalam sekali simpan.",true);return}
+ list.insertAdjacentHTML("beforeend",inlineTaskRow(++inlineTaskCounter));
+ const empty=form.querySelector("#inlineTasksEmpty");
+ if(empty)empty.hidden=true;
+ const last=list.lastElementChild;
+ last?.scrollIntoView({block:"nearest",behavior:"smooth"});
+ last?.querySelector('[data-task-field="title"]')?.focus({preventScroll:true});
+}
+function updateTaskEmpty(){
+ const form=$("#entityForm");
+ const list=form?.querySelector("#inlineTasksList");
+ const empty=form?.querySelector("#inlineTasksEmpty");
+ if(list&&empty)empty.hidden=!!list.children.length;
+}
+function collectInlineTasks(form){
+ return Array.from(form.querySelectorAll("[data-inline-task]")).map((row,i)=>{
+  const read=k=>String(row.querySelector('[data-task-field="'+k+'"]')?.value??"").trim();
+  const title=read("title"),estimated_cost=read("estimated_cost")===""?0:Number(read("estimated_cost"));
+  const priority=read("priority");
+  if(!title||title.length>250)throw Error("Nama PR ke-"+(i+1)+" harus diisi.");
+  if(!Number.isFinite(estimated_cost)||estimated_cost<0)throw Error("Estimasi biaya PR tidak valid.");
+  if(!["normal","high","low"].includes(priority))throw Error("Prioritas PR tidak valid.");
+  return {title,estimated_cost,priority,status:row.querySelector('[data-task-field="done"]')?.checked?"done":"todo",notes:read("notes")};
+ });
+}
 function collectInlineParts(form){
  const rows=Array.from(form.querySelectorAll("[data-inline-part]"));
  return rows.map((row,index)=>{
@@ -188,31 +218,31 @@ async function saveRecord(form){
   if(!g("person_name")||c("amount")<=0)throw Error("Isi nama pemodal dan nominal lebih besar dari nol.");
   table=tables.capital;row={person_name:g("person_name"),entry_type:g("entry_type"),entry_date:g("entry_date")||today(),amount:c("amount"),notes:g("notes")};
  }else throw Error("Jenis pencatatan tidak diketahui.");
- let result,addedParts=0;
+ let result,addedParts=0,addedTasks=0;
  if(kind==="motor"){
-  const parts=collectInlineParts(form);
-  addedParts=parts.length;
-  // A single database transaction saves the motor and every attached sparepart.
-  const {data,error}=await db.rpc("showroom_save_motor_with_parts",{
-   motor_data:row,part_rows:parts,motor_id:id
+  const parts=collectInlineParts(form),tasks=collectInlineTasks(form);
+  addedParts=parts.length;addedTasks=tasks.length;
+  // Motor, spareparts and PR are committed together or rolled back together.
+  const {data,error}=await db.rpc("showroom_save_motor_with_items",{
+   motor_data:row,part_rows:parts,task_rows:tasks,motor_id:id
   });
-  if(error)throw Error("Gagal menyimpan motor dan sparepart: "+error.message);
-  if(!data)throw Error("Motor belum tersimpan. Periksa koneksi lalu coba lagi.");
+  if(error)throw Error("Gagal menyimpan: "+error.message);
+  if(!data)throw Error("Data belum tersimpan. Coba kembali.");
   result={id:data};
  }else{
   result=await store(table,row,id);
  }
  closeModal();
- if(kind==="motor"){state.selected=result.id;state.view="detail";state.detailTab=addedParts?"parts":"summary"}
+ if(kind==="motor"){state.selected=result.id;state.view="detail";state.detailTab=addedTasks?"tasks":addedParts?"parts":"summary"}
  await reload(true);
- notice(addedParts?"Motor dan "+addedParts+" sparepart berhasil disimpan.":"Data berhasil disimpan.");
+ notice("Data berhasil disimpan.");
 }
 $("#modalRoot").addEventListener("submit",async e=>{
  if(e.target.id!=="entityForm")return;
  e.preventDefault();
  const btn=$("#saveBtn"),err=$("#formError");btn.disabled=true;btn.textContent="Menyimpan...";err.textContent="";
  try{await saveRecord(e.target)}
- catch(ex){err.textContent=ex.message||"Tidak dapat menyimpan.";btn.disabled=false;btn.textContent="Simpan Data";}
+ catch(ex){err.textContent=ex.message||"Tidak dapat menyimpan.";btn.disabled=false;btn.textContent="Simpan";}
 });
 async function erase(kind,id){
  const key=knownKind[kind];if(!key||!canEdit())return;
@@ -264,6 +294,8 @@ document.addEventListener("click",async e=>{
    if(what==="open-motor-part"){openMotor(id);state.detailTab="parts";renderPage();return}
    if(what==="detail-tab"){state.detailTab=target.dataset.value;renderPage();return}
    if(what==="add-inline-part"){addInlinePart();return}
+   if(what==="add-inline-task"){addInlineTask();return}
+   if(what==="remove-inline-task"){target.closest("[data-inline-task]")?.remove();updateTaskEmpty();return}
    if(what==="remove-inline-part"){target.closest("[data-inline-part]")?.remove();refreshInlineParts();return}
    if(what==="new-motor"){showForm("motor");return}
    if(what==="archive-motor"){if(state.data.motors.some(m=>m.id===id&&m.status==="sold"))throw Error("Motor terjual tetap disimpan dalam laporan dan tidak dapat diarsipkan.");if(window.confirm("Arsipkan motor ini? Riwayat dan biayanya tetap tersimpan.")){await store(tables.motors,{status:"archived"},id);await reload(true);notice("Unit berhasil diarsipkan.")}return}
@@ -281,7 +313,7 @@ document.addEventListener("click",async e=>{
    }
    if(what==="toggle-task"){
     const t=state.data.tasks.find(x=>x.id===id);if(!t||!canEdit())return;
-    const status={todo:"doing",doing:"done",done:"todo"}[t.status];
+    const status=t.status==="done"?"todo":"done";
     await store(tables.tasks,{status},id);await reload(true);notice("Status PR diperbarui.");return;
    }
    if(what==="upload-motor"||what==="upload-part"){
