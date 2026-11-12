@@ -8,46 +8,45 @@
 <meta name="description" content="Sistem pembukuan internal Starpoint Garage Showroom.">
 <title>Pembukuan Showroom | Starpoint Garage</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/style.css?v=20261112-multiparts-1">
+<link rel="stylesheet" href="/style.css?v=20261112-simple-v1">
 </head>
 <body>
 <div id="authView" class="auth-layout">
  <div class="auth-panel">
   <div class="auth-brand-shell"><div class="auth-logo"><img src="/assets/starpoint-official.svg" alt="Logo resmi Starpoint Garage"><span>SHOWROOM <small>FINANCE</small></span></div></div>
-  <div class="auth-kicker"><span class="status-dot"></span> SISTEM INTERNAL TERLINDUNGI</div>
-  <h1>Kelola setiap unit.<br><span>Ketahui setiap rupiah.</span></h1>
-  <p class="auth-desc">Pembukuan modal pembelian, harga jual, PR pengerjaan, sparepart, biaya, foto, dan laporan showroom dalam satu dashboard.</p>
+  <div class="auth-kicker"><span class="status-dot"></span> KHUSUS OWNER</div>
+  <h1>Catatan motor.<br><span>Modal dan laba.</span></h1>
+  <p class="auth-desc">Semua motor dan pengeluaran tercatat di sini.</p>
   <form id="loginForm" class="login-box">
    <div class="single-account"><div><small>AKUN OWNER</small><strong>starpointgarageindonesia.com</strong></div><span class="account-lock" aria-hidden="true">●</span></div><input type="hidden" name="username" value="starpointgarageindonesia.com">
    <label for="loginPassword">Kata sandi</label><div class="password-field"><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" spellcheck="false" required><button id="togglePassword" class="password-toggle" type="button" aria-label="Lihat kata sandi" aria-controls="loginPassword" aria-pressed="false">Lihat</button></div>
    <button class="btn btn-red btn-wide" type="submit" id="loginButton">Masuk ke Pembukuan</button>
    <p id="authError" class="form-error" role="alert"></p>
   </form>
-  <p class="auth-footer">Akses pribadi untuk satu akun Owner. Semua data keuangan tetap terlindungi.</p>
+  <p class="auth-footer">Data showroom hanya untuk Owner.</p>
  </div>
- <div class="auth-side"><div class="auth-luxury-glow" aria-hidden="true"></div><div class="auth-side-content"><div class="eyebrow">STARPOINT GARAGE</div><h2>STOCK.<br>COST.<br>PROFIT.</h2><p>Satu tempat untuk mengawasi semua unit dan keputusan finansial.</p></div></div>
+ <div class="auth-side"><div class="auth-luxury-glow" aria-hidden="true"></div><div class="auth-side-content"><div class="eyebrow">STARPOINT GARAGE</div><h2>STOK.<br>MODAL.<br>LABA.</h2><p>Pembukuan showroom.</p></div></div>
 </div>
 <div id="appView" class="app-layout" hidden>
  <aside class="sidebar" id="sidebar">
-  <a class="side-brand" href="#dashboard" data-nav="dashboard"><img src="/assets/starpoint-official.svg" alt="Starpoint Garage"><span>SHOWROOM<br><b>BOOKKEEPING</b></span></a>
-  <div class="side-label">MENU UTAMA</div>
+  <a class="side-brand" href="#dashboard" data-nav="dashboard"><img src="/assets/starpoint-official.svg" alt="Starpoint Garage"><span>SHOWROOM<br><b>PEMBUKUAN</b></span></a>
+  <div class="side-label">MENU</div>
   <nav class="side-menu" aria-label="Navigasi pembukuan">
    <button class="nav-item active" data-nav="dashboard"><span class="nav-icon">▦</span> Ringkasan</button>
-   <button class="nav-item" data-nav="motors"><span class="nav-icon">▤</span> Unit Motor</button>
+   <button class="nav-item" data-nav="motors"><span class="nav-icon">▤</span> Motor</button>
    <button class="nav-item" data-nav="parts"><span class="nav-icon">⚙</span> Sparepart</button>
-   <button class="nav-item" data-nav="cash"><span class="nav-icon">⇅</span> Arus Kas</button>
-   <button class="nav-item" data-nav="reports"><span class="nav-icon">▥</span> Laporan</button>
+   <button class="nav-item" data-nav="cash"><span class="nav-icon">⇅</span> Keuangan</button>
   </nav>
   <div class="side-bottom"><span class="live-dot"></span> <span id="syncStatus">Menghubungkan...</span><div class="side-divider"></div><div class="side-user"><div class="avatar">SG</div><div><b id="userRole">Akun Owner</b><small id="userEmail"></small></div></div><button class="logout" data-action="logout">Keluar akun</button></div>
  </aside>
  <main class="main-shell">
-  <header class="topbar"><div class="top-left"><button class="mobile-menu" data-action="menu" aria-label="Buka menu">☰</button><div class="crumb">STARPOINT GARAGE <span>/</span> <b id="pageTitle">Ringkasan</b></div></div><div class="top-actions"><span class="top-live"><span class="live-dot"></span> Data real-time</span><button class="btn btn-red btn-sm" data-action="new-motor" id="topAdd">+ Tambah Motor</button></div></header>
+  <header class="topbar"><div class="top-left"><button class="mobile-menu" data-action="menu" aria-label="Buka menu">☰</button><div class="crumb">SHOWROOM <span>/</span> <b id="pageTitle">Ringkasan</b></div></div><div class="top-actions"><span class="top-live"><span class="live-dot"></span> Tersinkron</span></div></header>
   <div class="content"><div id="contentArea" aria-live="polite"><div class="loading">Memuat data pembukuan...</div></div></div>
  </main>
 </div>
 <div id="modalRoot" class="modal-root" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <input id="photoPicker" type="file" accept="image/*" multiple hidden>
-<script type="module" src="/app.js?v=20261112-multiparts-1"></script>
+<script type="module" src="/app.js?v=20261112-simple-v1"></script>
 </body>
 </html>
