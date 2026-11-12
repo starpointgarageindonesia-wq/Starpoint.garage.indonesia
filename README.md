@@ -16,8 +16,8 @@ URL produksi: https://showroom.starpointgarage.com/
 ## Akses dan keamanan
 - **Showroom benar-benar memiliki login mandiri**, tidak menggunakan akun, password, izin, atau layanan login APK Owner.
 - Username tunggal yang ditampilkan: `starpointgarageindonesia.com`. Tidak perlu membuat atau mengetik mailbox email.
-- Edge Function `showroom-owner-login` memverifikasi kata sandi khusus showroom (hanya hash PBKDF2 bersalt di sisi server), melakukan rate limiting, dan mengaktifkan akun Auth **khusus showroom** saat login pertama. Akun Auth ini berbeda dari APK Owner.
-- Izin APK Owner sebelumnya telah dihapus dari `showroom_access`. Tabel `staff_profiles`, `staff_access`, dan akun Auth APK Owner tidak dimodifikasi.
+- Login langsung memakai Supabase Auth melalui akun tunggal khusus showroom dengan email identitas internal tersembunyi dan password bcrypt; tidak ada relay Cloudflare atau Edge Function tambahan. Akun ini dibuat dan diberi izin showroom, bukan akun APK.
+- Izin APK Owner sebelumnya telah dihapus dari `showroom_access`. Profil akun APK dan data operasional tidak diubah. Trigger registrasi Auth bersama hanya diberi pengecualian sempit untuk identitas showroom yang ditandai oleh admin.
 - Tabel pembukuan memakai prefiks `showroom_`, RLS, serta bucket Storage privat `showroom-private`. Tidak ada service-role key di frontend.
 - Saat ini hanya satu Owner Showroom yang diizinkan. Peran Member dan Teknisi tidak memiliki akses.
 - Halaman memakai `noindex`; sistem bukan situs katalog untuk publik.
@@ -40,8 +40,8 @@ URL produksi: https://showroom.starpointgarage.com/
 - `public/core.js`: Supabase Auth, database, RLS client usage, kalkulasi, foto dan Realtime.
 - `public/views.js`: ringkasan, motor, sparepart, arus kas, laporan, riwayat.
 - `public/forms.js`: formulir unit, PR, sparepart, pengeluaran, modal.
-- `public/app.js`: interaksi, CRUD, autentikasi satu username, ekspor CSV.
-- Edge Function `showroom-owner-login`: verifikasi kata sandi khusus showroom dan membuat identitas Auth mandiri saat login pertama.
+- `public/app.js`: interaksi, CRUD, autentikasi satu username, ekspor CSV, login langsung dengan Supabase Auth.
+- Tidak memakai lagi Edge Function `showroom-owner-login`; halaman login langsung menggunakan `db.auth.signInWithPassword` untuk akun showroom khusus.
 - Kata sandi APK Owner sama sekali tidak digunakan dan tidak diubah.
 - `public/robots.txt` dan meta noindex menjaga halaman tidak dipromosikan untuk pencarian umum.
 
