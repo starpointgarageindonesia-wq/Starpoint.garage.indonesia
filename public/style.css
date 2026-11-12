@@ -166,3 +166,11 @@
  .auth-logo img{width:143px;max-height:57px}
  .auth-logo{gap:11px}
 }
+
+
+/* Show or hide showroom owner password without changing layout */
+.password-field{position:relative;display:flex;align-items:center;margin-bottom:10px;width:100%}
+.password-field input{width:100%;min-height:52px;margin:0!important;padding-right:116px!important}
+.password-toggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);height:38px;min-width:86px;border:0;background:#eef1f5;color:#303a49;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;padding:0 11px;z-index:1}
+.password-toggle:hover,.password-toggle:focus-visible{background:#dfe5eb;outline:2px solid #b9c6d4;outline-offset:1px}
+@media (max-width:570px){.password-toggle{min-width:82px}.password-field input{padding-right:106px!important}}
