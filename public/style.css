@@ -320,3 +320,86 @@ td small{display:block;color:#8b96a0;font-size:11px;margin-top:3px}
 }
 @media(prefers-reduced-motion:reduce){.auth-side::before,.sidebar{animation:none;transition:none}}
 @media print{.sidebar,.topbar,.btn,.tabs,.page-actions,.toolbar{display:none!important}.app-layout{display:block}.content{max-width:none}.panel,.stat-grid{border:1px solid #ddd}body{background:white}}
+
+
+/* Showroom iPad form fit: do not let native date/select intrinsics overflow the grid */
+.modal,.modal-form,.form-grid,.motor-date-status,.field{min-inline-size:0;max-inline-size:100%}
+.form-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.form-grid>.field{min-width:0;width:100%;max-width:100%;overflow:visible}
+.form-grid>.field>input,.form-grid>.field>select,.form-grid>.field>textarea{
+ box-sizing:border-box;display:block;width:100%;max-width:100%;min-width:0;min-inline-size:0;inline-size:100%;
+}
+.field input[type="date"]{max-inline-size:100%;min-inline-size:0;-webkit-min-logical-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.field input[type="date"]::-webkit-date-and-time-value{text-align:left;min-width:0}
+.field select{min-width:0;max-width:100%;text-overflow:ellipsis;padding-right:29px}
+.motor-date-status{margin-top:14px}
+@media(max-width:1180px){
+ .motor-date-status{grid-template-columns:minmax(0,1fr)}
+ .motor-date-status>.field{grid-column:1/-1;min-width:0}
+}
+@media(max-width:570px){
+ .form-grid{grid-template-columns:minmax(0,1fr)}
+ .form-grid>.field,.form-grid>.field.wide{grid-column:1/-1}
+}
+
+/* PR checklist inserted directly when entering a motor */
+.inline-tasks-section{padding-bottom:4px}
+.inline-task-card{background:#fff}
+.inline-task-card .more-fields{padding-top:8px;margin-top:9px}
+.inline-task-card .more-fields .field{margin-top:11px}
+.task-row-check{display:inline-flex;align-items:center;gap:9px;color:#40515d;font-size:12px;font-weight:750;cursor:pointer;user-select:none}
+.task-row-check input{accent-color:#16845e;width:19px;height:19px;margin:0;cursor:pointer}
+.inline-task-card:has(.task-row-check input:checked){background:#f5faf7;border-color:#bad9c8}
+.inline-task-card:has(.task-row-check input:checked) .task-row-check{color:#147a51}
+.task-check{font-size:19px;line-height:1}
+.task-check.checked{font-size:17px}
+
+/* Ledger rows: swipe left edits, swipe right deletes. No duplicate action buttons. */
+.swipe-unit-list{padding:8px 15px 15px}
+.swipe-help{font-size:11px;color:#99a2ac;padding:9px 8px 15px}
+.swipe-motor{
+ --swipe-x:0px;position:relative;isolation:isolate;border-radius:10px;
+ overflow:hidden;margin-bottom:9px;background:#eef0f2;
+ min-width:0;contain:paint;
+}
+.swipe-motor:last-child{margin-bottom:0}
+.swipe-behind{
+ position:absolute;top:0;bottom:0;width:110px;display:flex;align-items:center;
+ justify-content:center;font-size:13px;font-weight:800;z-index:0;pointer-events:none;
+}
+.swipe-behind-delete{left:0;background:#bc2638;color:white}
+.swipe-behind-edit{right:0;background:#223b52;color:white}
+.swipe-surface{
+ position:relative;z-index:1;display:grid;grid-template-columns:minmax(170px,2.3fr) minmax(75px,.7fr) minmax(120px,1fr) minmax(125px,1fr) minmax(125px,1fr);
+ gap:17px;align-items:center;text-align:left;width:100%;min-width:0;
+ padding:15px 17px;border:1px solid #e3e7e9;border-radius:10px;background:#fff;color:var(--ink);
+ cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:pan-y;
+ transform:translate3d(var(--swipe-x),0,0);transition:transform .18s cubic-bezier(.2,.75,.3,1),background .13s;
+}
+.swipe-motor.swiping .swipe-surface{transition:none}
+.swipe-surface:hover{background:#fafbfb}
+.swipe-motor-name{display:flex;align-items:center;gap:12px;min-width:0}
+.swipe-motor-name>span{min-width:0;overflow:hidden}
+.swipe-motor-name strong{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.swipe-motor-name small{display:block;color:#8b959e;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+.swipe-motor-price,.swipe-motor-profit{min-width:0;display:flex;flex-direction:column;gap:4px}
+.swipe-motor-price small,.swipe-motor-profit small{display:block;font-size:10px;color:#8e97a0}
+.swipe-motor-price strong,.swipe-motor-profit strong{font-size:12px;font-weight:760;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.swipe-motor-profit .muted{color:#a2a9af;font-size:12px}
+.swipe-surface:focus-visible{outline:3px solid #9eb3c2;outline-offset:-4px}
+@media(max-width:1150px){
+ .swipe-surface{grid-template-columns:minmax(170px,1.8fr) minmax(82px,.75fr) minmax(115px,1fr) minmax(115px,1fr);gap:12px}
+ .swipe-motor-profit{display:none}
+}
+@media(max-width:720px){
+ .swipe-unit-list{padding:7px 10px 12px}
+ .swipe-surface{grid-template-columns:minmax(0,1fr) auto;gap:7px 10px;padding:13px 12px}
+ .swipe-motor-name{grid-column:1;grid-row:1/3}
+ .swipe-motor-state{grid-column:2;grid-row:1;justify-self:end}
+ .swipe-motor-price{grid-column:2;grid-row:2;text-align:right;align-items:flex-end}
+ .swipe-motor-price:nth-of-type(4){display:none}
+ .swipe-motor-profit{display:none}
+ .swipe-motor-price small{font-size:10px}
+ .swipe-motor-name .thumb{width:45px;height:45px}
+ .swipe-help{padding:8px 7px 12px;font-size:11px}
+}
