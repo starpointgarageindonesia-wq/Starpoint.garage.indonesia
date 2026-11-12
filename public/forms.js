@@ -1,109 +1,111 @@
-import {state,esc,today,unitName,statusName,partPurpose,partStatus,canEdit} from "./core.js";
-const field=(label,name,v="",type="text",extra="",wide=false,hint="")=>'<div class="field'+(wide?' wide':'')+'"><label for="f-'+name+'">'+label+'</label><input id="f-'+name+'" name="'+name+'" type="'+type+'" value="'+esc(v??"")+'" '+extra+'>'+(hint?'<small class="hint">'+hint+'</small>':"")+'</div>';
-const sel=(label,name,v="",entries=[],wide=false,hint="")=>'<div class="field'+(wide?' wide':'')+'"><label for="f-'+name+'">'+label+'</label><select id="f-'+name+'" name="'+name+'">'+entries.map(([key,text])=>'<option value="'+esc(key)+'"'+(String(v||"")===String(key)?" selected":"")+'>'+esc(text)+'</option>').join("")+'</select>'+(hint?'<small class="hint">'+hint+'</small>':"")+'</div>';
-const text=(label,name,v="",wide=true,hint="")=>'<div class="field'+(wide?' wide':'')+'"><label for="f-'+name+'">'+label+'</label><textarea id="f-'+name+'" name="'+name+'" rows="3">'+esc(v??"")+'</textarea>'+(hint?'<small class="hint">'+hint+'</small>':"")+'</div>';
-const cash=(l,n,v=0,wide=false,h="")=>field(l,n,v,"number",'min="0" step="1000" inputmode="decimal"',wide,h);
-const dates=(l,n,v,wide=false)=>field(l,n,v||today(),"date","",wide);
-const statuses=[["stock","Stok"],["work","Dalam PR"],["ready","Siap Jual"],["sold","Terjual"],["archived","Arsip"]];
-const taskStatuses=[["todo","Belum dikerjakan"],["doing","Sedang dikerjakan"],["done","Selesai"]];
-const partStatuses=[["planned","Rencana pembelian"],["purchased","Sudah dibeli"],["installed","Terpasang di motor"],["sold","Dijual sebagian / seluruhnya"]];
-function motorFields(x){return [
- field("Merek motor *","brand",x.brand||"","text","required maxlength=100"),
- field("Model *","model",x.model||"","text","required maxlength=100"),
- field("Varian / tipe","variant",x.variant||"","text","maxlength=100"),
- field("Kode stok internal","unit_code",x.unit_code||"","text","maxlength=100"),
- field("Tahun","model_year",x.model_year||"","number",'min="1900" max="2100"'),
- field("Odometer (km)","odometer_km",x.odometer_km??"","number",'min="0" step="1"'),
- field("Nomor polisi","plate_no",x.plate_no||"","text","maxlength=60"),
- field("Nomor rangka","chassis_no",x.chassis_no||"","text","maxlength=100"),
- dates("Tanggal pembelian","purchase_date",x.purchase_date),
- sel("Status motor","status",x.status||"stock",statuses),
- cash("Harga beli motor (Rp) *","purchase_price",x.purchase_price||0),
- cash("Perkiraan harga jual motor (Rp)","target_sale_price",x.target_sale_price||0),
- cash("Harga jual aktual (jika terjual)","actual_sale_price",x.actual_sale_price??0),
- field("Tanggal terjual (jika terjual)","sold_date",x.sold_date||"","date",""),
- text("Catatan unit","notes",x.notes||"",true,"Kondisi awal, asal unit, kelengkapan surat, dan catatan lainnya.")
- ].join("")}
-function taskFields(x){return [
- field("PR / pekerjaan *","title",x.title||"","text","required maxlength=250",true),
- sel("Prioritas","priority",x.priority||"normal",[["low","Rendah"],["normal","Normal"],["high","Tinggi"]]),
- sel("Status PR","status",x.status||"todo",taskStatuses),
- field("Target selesai (opsional)","due_date",x.due_date||"","date"),
- cash("Estimasi biaya PR (Rp)","estimated_cost",x.estimated_cost||0,false,"Referensi saja, tidak langsung menambah HPP."),
- cash("Biaya aktual (catatan)","actual_cost",x.actual_cost||0,false,"Catat pengeluaran sebenarnya di menu Pengeluaran agar masuk HPP."),
- text("Catatan pekerjaan","notes",x.notes||"")
- ].join("")}
-function partFields(x){return [
- field("Nama sparepart *","name",x.name||"","text","required maxlength=250",true),
- field("Kode part / merek","part_code",x.part_code||"","text","maxlength=150"),
- sel("Peruntukan","purpose",x.purpose||"maintenance",[["maintenance","Dipakai / dipasang pada motor"],["resale","Akan dijual terpisah"]]),
- field("Jumlah pcs *","quantity",x.quantity??1,"number",'min="1" step="1" required'),
- sel("Status stok / pemasangan","status",x.status||"planned",partStatuses),
- cash("Harga beli per pcs (Rp)","unit_cost",x.unit_cost||0),
- cash("Perkiraan harga jual per pcs (Rp)","estimated_sale_price",x.estimated_sale_price||0,false,"Untuk sparepart yang dijual terpisah."),
- field("Jumlah sudah terjual (pcs)","qty_sold",x.qty_sold??0,"number",'min="0" step="1"'),
- cash("Harga jual aktual per pcs (Rp)","actual_sale_price",x.actual_sale_price||0),
- field("Tanggal beli (opsional)","purchase_date",x.purchase_date||"","date"),
- field("Tanggal terjual (opsional)","sold_date",x.sold_date||"","date"),
- text("Catatan sparepart","notes",x.notes||"",true,"Foto sparepart ditambahkan dari tabel setelah disimpan.")
- ].join("")}
-function expenseFields(x){return [
- field("Nama pengeluaran *","title",x.title||"","text","required maxlength=250",true),
- sel("Kategori","category",x.category||"servis",[["servis","Servis"],["transport","Transport"],["pajak","Pajak / surat"],["administrasi","Administrasi"],["detail","Detailing"],["komisi","Komisi"],["lainnya","Lainnya"]]),
- dates("Tanggal transaksi","expense_date",x.expense_date),
- cash("Nominal (Rp) *","amount",x.amount??0),
- '<div class="field wide"><label class="field-row"><input type="checkbox" name="is_planned" '+(x.is_planned?"checked":"")+'><b>Masih rencana, belum dibayar</b></label><small class="hint">Pengeluaran rencana hanya masuk proyeksi; pengeluaran aktual masuk HPP dan arus kas.</small></div>',
- text("Catatan pengeluaran","notes",x.notes||"")
- ].join("")}
-function capitalFields(x){return [
- field("Nama pemodal / partner *","person_name",x.person_name||"","text","required maxlength=200",true),
- sel("Jenis transaksi","entry_type",x.entry_type||"deposit",[["deposit","Setoran modal"],["withdrawal","Penarikan modal"]]),
- dates("Tanggal transaksi","entry_date",x.entry_date),
- cash("Nominal (Rp) *","amount",x.amount??0),
- text("Catatan transaksi","notes",x.notes||"")
- ].join("")}
-
-/** Each row is attached to the motor being saved. IDs are only for input accessibility. */
-export function inlinePartRow(index){
- const id="quick-part-"+index;
- const input=(label,key,type,more="",value="")=>
-  '<div class="field"><label for="'+id+'-'+key+'">'+label+'</label><input id="'+id+'-'+key+'" data-part-field="'+key+'" type="'+type+'" value="'+esc(value)+'" '+more+'></div>';
- const choose=(label,key,options)=>
-  '<div class="field"><label for="'+id+'-'+key+'">'+label+'</label><select id="'+id+'-'+key+'" data-part-field="'+key+'">'+
-   options.map(([value,text])=>'<option value="'+value+'">'+text+'</option>').join("")+'</select></div>';
+import {state,esc,today} from "./core.js";
+const field=(label,name,value="",type="text",opts="",wide=false)=>'<label class="field'+(wide?' wide':'')+'"><span>'+label+'</span><input id="f-'+name+'" name="'+name+'" type="'+type+'" value="'+esc(value??"")+'" '+opts+'></label>';
+const select=(label,name,value,choices,wide=false)=>'<label class="field'+(wide?' wide':'')+'"><span>'+label+'</span><select id="f-'+name+'" name="'+name+'">'+choices.map(([v,l])=>'<option value="'+esc(v)+'"'+(String(value??"")===String(v)?" selected":"")+'>'+esc(l)+'</option>').join("")+'</select></label>';
+const notes=(label,name,value="",wide=true)=>'<label class="field'+(wide?' wide':'')+'"><span>'+label+'</span><textarea id="f-'+name+'" name="'+name+'" rows="2">'+esc(value)+'</textarea></label>';
+const price=(label,name,value=0,wide=false)=>field(label,name,value??0,"number",'min="0" step="1" inputmode="numeric"',wide);
+const date=(label,name,value)=>field(label,name,value||today(),"date");
+const motorcycleStatuses=[["stock","Stok"],["work","Dalam PR"],["ready","Siap jual"],["sold","Terjual"],["archived","Arsip"]];
+function motorFields(x){
+ return '<div class="form-section-title">Data motor</div><div class="form-grid">'+
+ field("Merek *","brand",x.brand,"text",'required maxlength="100" placeholder="Kawasaki"')+
+ field("Model *","model",x.model,"text",'required maxlength="100" placeholder="ZX-25RR"')+
+ price("Harga beli *","purchase_price",x.purchase_price)+
+ price("Target jual","target_sale_price",x.target_sale_price)+
+ date("Tanggal beli","purchase_date",x.purchase_date)+
+ select("Status","status",x.status||"stock",motorcycleStatuses)+
+ '</div>'+
+ '<div id="saleFields" class="form-grid sale-fields" '+(x.status==="sold"?"":"hidden")+'>'+
+ price("Harga terjual","actual_sale_price",x.actual_sale_price??0)+
+ field("Tanggal terjual","sold_date",x.sold_date||"","date")+
+ '</div>'+
+ '<details class="more-fields"'+(x.model_year||x.odometer_km||x.plate_no||x.chassis_no||x.variant||x.unit_code||x.notes?' open':'')+'><summary>Detail lainnya</summary><div class="form-grid">'+
+ field("Varian","variant",x.variant||"","text",'maxlength="100"')+
+ field("Tahun","model_year",x.model_year??"","number",'min="1900" max="2100"')+
+ field("Odometer (km)","odometer_km",x.odometer_km??"","number",'min="0" step="1"')+
+ field("Nomor polisi","plate_no",x.plate_no||"","text",'maxlength="60"')+
+ field("Kode stok","unit_code",x.unit_code||"","text",'maxlength="100"')+
+ field("Nomor rangka","chassis_no",x.chassis_no||"","text",'maxlength="100"')+
+ notes("Catatan motor","notes",x.notes||"")+
+ '</div></details>';
+}
+function taskFields(x){
+ return '<div class="form-grid">'+
+ field("Pekerjaan *","title",x.title||"","text",'required maxlength="250" placeholder="Contoh: Ganti ban depan"',true)+
+ select("Status","status",x.status||"todo",[["todo","Belum"],["doing","Dikerjakan"],["done","Selesai"]])+
+ select("Prioritas","priority",x.priority||"normal",[["low","Rendah"],["normal","Normal"],["high","Penting"]])+
+ field("Target selesai","due_date",x.due_date||"","date")+
+ price("Estimasi biaya","estimated_cost",x.estimated_cost||0)+
+ '<div class="field"><span>Biaya aktual</span><input id="f-actual_cost" name="actual_cost" type="number" min="0" step="1" value="'+esc(x.actual_cost??0)+'"></div>'+
+ notes("Catatan","notes",x.notes||"")+'</div>';
+}
+function partFields(x){
+ return '<div class="form-grid">'+
+ field("Nama sparepart *","name",x.name||"","text",'required maxlength="250"',true)+
+ field("Jumlah *","quantity",x.quantity??1,"number",'required min="1" step="1"')+
+ select("Jenis","purpose",x.purpose||"maintenance",[["maintenance","Untuk motor"],["resale","Dijual terpisah"]])+
+ price("Harga beli / pcs","unit_cost",x.unit_cost)+
+ price("Estimasi jual / pcs","estimated_sale_price",x.estimated_sale_price)+
+ select("Status","status",x.status||"planned",[["planned","Rencana"],["purchased","Dibeli"],["installed","Terpasang"],["sold","Terjual"]])+
+ field("Jumlah terjual","qty_sold",x.qty_sold??0,"number",'min="0" step="1"')+
+ price("Harga jual aktual / pcs","actual_sale_price",x.actual_sale_price)+
+ field("Tanggal beli","purchase_date",x.purchase_date||"","date")+
+ field("Tanggal terjual","sold_date",x.sold_date||"","date")+
+ field("Kode / merek","part_code",x.part_code||"","text",'maxlength="150"',true)+
+ notes("Catatan","notes",x.notes||"")+'</div>';
+}
+function expenseFields(x){
+ return '<div class="form-grid">'+
+ field("Untuk apa? *","title",x.title||"","text",'required maxlength="250"',true)+
+ price("Jumlah biaya *","amount",x.amount??0)+
+ date("Tanggal","expense_date",x.expense_date)+
+ select("Kategori","category",x.category||"servis",[["servis","Servis"],["transport","Transport"],["pajak","Pajak / surat"],["administrasi","Administrasi"],["detail","Detailing"],["komisi","Komisi"],["lainnya","Lainnya"]])+
+ '<label class="check-field"><input type="checkbox" name="is_planned"'+(x.is_planned?" checked":"")+'><span>Masih rencana (belum dibayar)</span></label>'+
+ notes("Catatan","notes",x.notes||"")+'</div>';
+}
+function capitalFields(x){
+ return '<div class="form-grid">'+
+ field("Nama pemodal *","person_name",x.person_name||"","text",'required maxlength="200"',true)+
+ price("Jumlah *","amount",x.amount??0)+
+ select("Jenis","entry_type",x.entry_type||"deposit",[["deposit","Setoran"],["withdrawal","Penarikan"]])+
+ date("Tanggal","entry_date",x.entry_date)+
+ notes("Catatan","notes",x.notes||"")+'</div>';
+}
+export function inlinePartRow(i){
+ const id="inpart-"+i;
+ const inp=(k,label,t,opts="",val="")=>'<label class="field"><span>'+label+'</span><input id="'+id+'-'+k+'" data-part-field="'+k+'" type="'+t+'" value="'+esc(val)+'" '+opts+'></label>';
+ const pick=(k,label,choices)=>'<label class="field"><span>'+label+'</span><select data-part-field="'+k+'">'+choices.map(([v,l])=>'<option value="'+v+'">'+l+'</option>').join("")+'</select></label>';
  return '<div class="inline-part-card" data-inline-part>'+
-  '<div class="inline-part-card-header"><span class="inline-part-chip">SPAREPART MOTOR</span><button type="button" class="btn-smallink inline-part-remove" data-action="remove-inline-part">Hapus</button></div>'+
+  '<div class="inline-part-head"><span>Sparepart</span><button type="button" data-action="remove-inline-part" class="text-danger">Hapus</button></div>'+
   '<div class="form-grid">'+
-   '<div class="field wide"><label for="'+id+'-name">Nama sparepart *</label><input id="'+id+'-name" data-part-field="name" type="text" placeholder="Contoh: Knalpot, velg, kaliper" required maxlength="250"></div>'+
-   input("Jumlah (pcs) *","quantity","number",'min="1" max="100000" step="1" required inputmode="numeric"',"1")+
-   choose("Peruntukan","purpose",[["maintenance","Untuk motor"],["resale","Dijual terpisah"]])+
-   input("Harga beli per pcs (Rp)","unit_cost","number",'min="0" step="1" inputmode="numeric"',"0")+
-   input("Perkiraan jual per pcs (Rp)","estimated_sale_price","number",'min="0" step="1" inputmode="numeric"',"0")+
-   choose("Status pembelian","status",[["planned","Rencana / belum dibeli"],["purchased","Sudah dibeli"],["installed","Terpasang"]])+
-   input("Merek / kode sparepart","part_code","text",'maxlength="150" placeholder="Opsional"')+
-   '<div class="field wide"><label for="'+id+'-notes">Catatan sparepart</label><textarea id="'+id+'-notes" data-part-field="notes" rows="2" placeholder="Kondisi, lokasi penyimpanan, keterangan tambahan (opsional)"></textarea></div>'+
-  '</div>'+
+   inp("name","Nama *","text",'placeholder="Nama sparepart" required maxlength="250"')+
+   inp("quantity","Jumlah","number",'min="1" step="1" required',"1")+
+   inp("unit_cost","Harga beli / pcs","number",'min="0" step="1" inputmode="numeric"',"0")+
+   inp("estimated_sale_price","Estimasi jual / pcs","number",'min="0" step="1" inputmode="numeric"',"0")+
+   pick("purpose","Jenis",[["maintenance","Untuk motor"],["resale","Dijual terpisah"]])+
+   pick("status","Status",[["planned","Rencana"],["purchased","Dibeli"],["installed","Terpasang"]])+
+  '</div><details class="more-fields compact"><summary>Detail lainnya</summary><div class="form-grid">'+
+  inp("part_code","Kode / merek","text",'maxlength="150"')+
+  '<label class="field wide"><span>Catatan</span><textarea data-part-field="notes" rows="2"></textarea></label></div></details>'+
  '</div>';
 }
-function inlinePartsSection(){
- return '<section class="inline-parts-section" aria-label="Sparepart untuk motor ini">'+
- '<div class="inline-parts-header"><div><span class="eyebrow">INVENTARIS PER MOTOR</span><h3>Sparepart Motor</h3><p>Tambahkan beberapa sparepart sekaligus. Semuanya otomatis terhubung ke motor ini.</p></div>'+
- '<button type="button" class="btn btn-sm btn-inline-part" data-action="add-inline-part">+ Tambah Sparepart</button></div>'+
- '<div id="inlinePartsList" class="inline-parts-list" aria-live="polite"></div>'+
- '<div id="inlinePartsEmpty" class="inline-parts-empty">Belum ada sparepart. Bisa ditambahkan sekarang atau nanti dari Detail Motor.</div>'+
- '<div id="inlinePartsSummary" class="inline-parts-summary" hidden><span>Rencana pembelian: <strong id="inlinePartsPlanned">Rp0</strong></span><span>Sudah dibeli / terpasang: <strong id="inlinePartsBought">Rp0</strong></span></div>'+
- '<p class="inline-parts-hint">Harga sparepart yang sudah dibeli masuk HPP motor. Sparepart berstatus rencana hanya masuk proyeksi biaya.</p>'+
+function partSection(){
+ return '<section class="inline-parts-section">'+
+ '<div class="inline-parts-header"><h3>Sparepart</h3><button type="button" class="btn btn-outline btn-sm" data-action="add-inline-part">+ Tambah sparepart</button></div>'+
+ '<div id="inlinePartsList" class="inline-parts-list"></div>'+
+ '<div id="inlinePartsEmpty" class="inline-parts-empty">Belum ada sparepart</div>'+
+ '<div id="inlinePartsSummary" class="inline-parts-summary" hidden><span>Rencana <b id="inlinePartsPlanned">Rp0</b></span><span>Dibeli <b id="inlinePartsBought">Rp0</b></span></div>'+
  '</section>';
 }
-
 export function formHtml(kind,id="",motorId=""){
- const defs={motor:{table:"motors",title:"Motor",fields:motorFields},task:{table:"tasks",title:"PR Pengerjaan",fields:taskFields},part:{table:"parts",title:"Sparepart",fields:partFields},expense:{table:"expenses",title:"Pengeluaran",fields:expenseFields},capital:{table:"capital",title:"Setoran / Penarikan",fields:capitalFields}};
- const d=defs[kind];if(!d)return "";const data=state.data[d.table].find(x=>x.id===id)||{};
- const title=(id?"Ubah ":"Tambah ")+d.title;
+ const defs={motor:{table:"motors",name:"Motor",fields:motorFields},task:{table:"tasks",name:"PR",fields:taskFields},part:{table:"parts",name:"Sparepart",fields:partFields},expense:{table:"expenses",name:"Biaya",fields:expenseFields},capital:{table:"capital",name:"Modal",fields:capitalFields}};
+ const d=defs[kind];if(!d)return "";
+ const x=state.data[d.table].find(item=>item.id===id)||{};
+ const title=(id?"Ubah ":"Tambah ")+d.name;
  return '<div class="modal" role="dialog" aria-modal="true" aria-label="'+esc(title)+'">'+
- '<div class="modal-head"><div><span class="eyebrow">STARPOINT SHOWROOM</span><h2>'+esc(title)+'</h2></div><button class="close-modal" type="button" data-action="close-modal" aria-label="Tutup">×</button></div>'+
- '<form id="entityForm" class="modal-form" data-kind="'+kind+'" data-id="'+esc(id)+'" data-motor="'+esc(motorId||data.motor_id||"")+'">'+
- '<div class="form-grid">'+d.fields(data)+'</div>'+(kind==="motor"?inlinePartsSection():"")+
- '<p id="formError" class="form-error"></p>'+
- '<div class="form-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><div class="form-foot-actions">'+(kind==="motor"?'<button type="button" class="btn btn-sm btn-inline-part" data-action="add-inline-part">+ Sparepart</button>':"")+'<button type="submit" class="btn btn-red" id="saveBtn">Simpan Data</button></div></div></form></div>';
+ '<div class="modal-head"><h2>'+title+'</h2><button type="button" class="close-modal" data-action="close-modal" aria-label="Tutup">×</button></div>'+
+ '<form id="entityForm" class="modal-form" data-kind="'+kind+'" data-id="'+esc(id)+'" data-motor="'+esc(motorId||x.motor_id||"")+'">'+
+  d.fields(x)+(kind==="motor"?partSection():"")+
+ '<p id="formError" class="form-error" role="alert"></p>'+
+ '<div class="form-foot"><button type="submit" class="btn btn-red" id="saveBtn">Simpan</button></div>'+
+ '</form></div>';
 }
