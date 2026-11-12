@@ -1,8 +1,8 @@
 import {db,state,tables,canEdit,memberAccess,loadAll,subscribe,unsubscribe,store,remove,uploadPhotos,deletePhoto,today,finance,ledger,money,num,unitName} from "./core.js";
 import {renderPage} from "./views.js";
-import {formHtml} from "./forms.js";
+import {formHtml,inlinePartRow} from "./forms.js";
 const $=sel=>document.querySelector(sel);
-let loading=false,toastTimer,refreshTimer,lastLoad=0;
+let loading=false,toastTimer,refreshTimer,lastLoad=0,inlinePartCounter=0;
 const knownKind={motor:"motors",task:"tasks",part:"parts",expense:"expenses",capital:"capital"};
 function notice(message,isError=false){
  const t=$("#toast");t.textContent=message;t.className="toast show"+(isError?" error":"");
@@ -102,6 +102,60 @@ function showForm(kind,id="",motor=""){
  const focus=root.querySelector("input:not([type=hidden])");if(focus)focus.focus();
 }
 function closeModal(){const root=$("#modalRoot");root.hidden=true;root.innerHTML="";document.body.classList.remove("modal-open");}
+function inlinePartField(row,key){
+ return row.querySelector('[data-part-field="'+key+'"]');
+}
+function refreshInlineParts(){
+ const form=$("#entityForm");
+ if(!form||form.dataset.kind!=="motor")return;
+ const rows=Array.from(form.querySelectorAll("[data-inline-part]"));
+ const empty=form.querySelector("#inlinePartsEmpty");
+ const summary=form.querySelector("#inlinePartsSummary");
+ if(empty)empty.hidden=rows.length>0;
+ if(summary)summary.hidden=rows.length===0;
+ let planned=0,bought=0;
+ for(const row of rows){
+  const qty=Number(inlinePartField(row,"quantity")?.value)||0;
+  const price=Number(inlinePartField(row,"unit_cost")?.value)||0;
+  const amount=Math.max(0,qty)*Math.max(0,price);
+  const status=inlinePartField(row,"status")?.value;
+  if(status==="planned")planned+=amount;
+  else bought+=amount;
+ }
+ if(form.querySelector("#inlinePartsPlanned"))form.querySelector("#inlinePartsPlanned").textContent=money(planned);
+ if(form.querySelector("#inlinePartsBought"))form.querySelector("#inlinePartsBought").textContent=money(bought);
+}
+function addInlinePart(){
+ const form=$("#entityForm");
+ if(!form||form.dataset.kind!=="motor")return;
+ const list=form.querySelector("#inlinePartsList");
+ if(!list)return;
+ if(list.children.length>=60){notice("Maksimal 60 sparepart per penyimpanan.",true);return}
+ list.insertAdjacentHTML("beforeend",inlinePartRow(++inlinePartCounter));
+ refreshInlineParts();
+ const last=list.lastElementChild;
+ if(last){
+  last.scrollIntoView({block:"center",behavior:"smooth"});
+  const field=inlinePartField(last,"name");
+  if(field)field.focus({preventScroll:true});
+ }
+}
+function collectInlineParts(form){
+ const rows=Array.from(form.querySelectorAll("[data-inline-part]"));
+ return rows.map((row,index)=>{
+  const read=k=>String(inlinePartField(row,k)?.value??"").trim();
+  const name=read("name"),quantity=Number(read("quantity"));
+  const unit_cost=read("unit_cost")===""?0:Number(read("unit_cost"));
+  const estimated_sale_price=read("estimated_sale_price")===""?0:Number(read("estimated_sale_price"));
+  const purpose=read("purpose"),status=read("status");
+  if(!name)throw Error("Sparepart ke-"+(index+1)+" belum diberi nama.");
+  if(!Number.isInteger(quantity)||quantity<1||quantity>100000)throw Error("Jumlah untuk "+name+" harus minimal 1.");
+  if(!Number.isFinite(unit_cost)||unit_cost<0||!Number.isFinite(estimated_sale_price)||estimated_sale_price<0)throw Error("Harga sparepart "+name+" tidak valid.");
+  if(!["maintenance","resale"].includes(purpose)||!["planned","purchased","installed"].includes(status))throw Error("Status sparepart "+name+" tidak valid.");
+  return {name,part_code:read("part_code"),quantity,unit_cost,estimated_sale_price,purpose,status,notes:read("notes")};
+ });
+}
+
 async function saveRecord(form){
  const kind=form.dataset.kind,id=form.dataset.id||null,motor=form.dataset.motor||state.selected||null;
  const f=new FormData(form),g=k=>String(f.get(k)||"").trim(),c=k=>num(f.get(k)),optional=k=>g(k)||null;
@@ -134,11 +188,24 @@ async function saveRecord(form){
   if(!g("person_name")||c("amount")<=0)throw Error("Isi nama pemodal dan nominal lebih besar dari nol.");
   table=tables.capital;row={person_name:g("person_name"),entry_type:g("entry_type"),entry_date:g("entry_date")||today(),amount:c("amount"),notes:g("notes")};
  }else throw Error("Jenis pencatatan tidak diketahui.");
- const result=await store(table,row,id);
+ let result,addedParts=0;
+ if(kind==="motor"){
+  const parts=collectInlineParts(form);
+  addedParts=parts.length;
+  // A single database transaction saves the motor and every attached sparepart.
+  const {data,error}=await db.rpc("showroom_save_motor_with_parts",{
+   motor_data:row,part_rows:parts,motor_id:id
+  });
+  if(error)throw Error("Gagal menyimpan motor dan sparepart: "+error.message);
+  if(!data)throw Error("Motor belum tersimpan. Periksa koneksi lalu coba lagi.");
+  result={id:data};
+ }else{
+  result=await store(table,row,id);
+ }
  closeModal();
- if(kind==="motor"){state.selected=result.id;state.view="detail";state.detailTab="summary"}
+ if(kind==="motor"){state.selected=result.id;state.view="detail";state.detailTab=addedParts?"parts":"summary"}
  await reload(true);
- notice("Data berhasil disimpan.");
+ notice(addedParts?"Motor dan "+addedParts+" sparepart berhasil disimpan.":"Data berhasil disimpan.");
 }
 $("#modalRoot").addEventListener("submit",async e=>{
  if(e.target.id!=="entityForm")return;
@@ -195,6 +262,8 @@ document.addEventListener("click",async e=>{
    if(what==="logout"){await db.auth.signOut();locked();return}
    if(what==="open-motor"){openMotor(id);return}
    if(what==="detail-tab"){state.detailTab=target.dataset.value;renderPage();return}
+   if(what==="add-inline-part"){addInlinePart();return}
+   if(what==="remove-inline-part"){target.closest("[data-inline-part]")?.remove();refreshInlineParts();return}
    if(what==="new-motor"){showForm("motor");return}
    if(what==="archive-motor"){if(state.data.motors.some(m=>m.id===id&&m.status==="sold"))throw Error("Motor terjual tetap disimpan dalam laporan dan tidak dapat diarsipkan.");if(window.confirm("Arsipkan motor ini? Riwayat dan biayanya tetap tersimpan.")){await store(tables.motors,{status:"archived"},id);await reload(true);notice("Unit berhasil diarsipkan.")}return}
    if(what==="edit-motor"){showForm("motor",id);return}
@@ -238,6 +307,8 @@ $("#photoPicker").addEventListener("change",async e=>{
   else notice(out.count+" foto berhasil disimpan.");
  }catch(ex){notice("Gagal unggah foto: "+ex.message,true)}
 });
+$("#modalRoot").addEventListener("input",e=>{if(e.target.closest("[data-inline-part]"))refreshInlineParts()});
+$("#modalRoot").addEventListener("change",e=>{if(e.target.closest("[data-inline-part]"))refreshInlineParts()});
 document.addEventListener("input",e=>{
  if(e.target.id==="motorSearch"||e.target.id==="partsSearch"){
   const id=e.target.id,pos=e.target.selectionStart;
