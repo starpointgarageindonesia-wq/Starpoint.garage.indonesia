@@ -403,3 +403,122 @@ td small{display:block;color:#8b96a0;font-size:11px;margin-top:3px}
  .swipe-motor-name .thumb{width:45px;height:45px}
  .swipe-help{padding:8px 7px 12px;font-size:11px}
 }
+
+
+
+/* iPad/Safari form layout: stable rows, no date/select collision.
+   Purposefully override desktop-site viewport scaling as well as tablet breakpoints. */
+.modal-root{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:clamp(9px,2.5vh,20px);
+}
+.modal{
+  display:flex;
+  flex-direction:column;
+  width:min(860px,100%);
+  max-width:100%;
+  min-width:0;
+  max-height:calc(100dvh - clamp(18px,5vh,40px));
+  overflow:hidden;
+}
+.modal-head{
+  flex:0 0 auto;
+  position:relative;
+  z-index:2;
+  background:#fff;
+}
+.modal-form{
+  flex:1 1 auto;
+  min-height:0;
+  min-width:0;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  overflow-x:hidden;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  overflow-anchor:none;
+  -webkit-overflow-scrolling:touch;
+}
+.modal-form>.form-grid, .modal-form .form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  min-width:0;
+  width:100%;
+  column-gap:20px;
+  row-gap:17px;
+}
+.modal-form .field{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  margin:0;
+  overflow:visible;
+}
+.modal-form .field input,.modal-form .field select,.modal-form .field textarea{
+  display:block;
+  box-sizing:border-box;
+  margin:0;
+  inline-size:100%;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  min-inline-size:0;
+  max-inline-size:100%;
+  height:auto;
+  min-height:48px;
+  line-height:1.25;
+}
+.modal-form .field input[type="date"]{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  min-inline-size:0;
+  -webkit-min-logical-width:0;
+  overflow:clip;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.modal-form .field input[type="date"]::-webkit-date-and-time-value{
+  min-width:0;
+  text-align:left;
+}
+.modal-form .field select{padding-right:34px;max-width:100%;}
+/* Separate full-width rows, even in Safari's desktop-site mode, for absolute stability */
+.modal-form .motor-date-status,
+.modal-form .sale-fields{
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:16px;
+}
+.modal-form .motor-date-status>.field,
+.modal-form .sale-fields>.field{
+  grid-column:1/-1!important;
+  width:100%;
+  max-width:100%;
+}
+.modal-form .form-section-title{margin-bottom:14px}
+.modal-form>.form-grid+.form-grid{margin-top:17px}
+.modal-form>.more-fields{margin-top:22px}
+.modal-form .form-foot{
+  z-index:3;
+  background:#fff;
+  margin-top:18px;
+  box-shadow:0 -6px 14px #ffffffd9;
+}
+@media(max-width:700px){
+  .modal-form>.form-grid, .modal-form .form-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:13px;
+  }
+  .modal-form .field,.modal-form .field.wide{grid-column:1/-1;}
+  .modal{max-height:calc(100dvh - 16px)}
+}
