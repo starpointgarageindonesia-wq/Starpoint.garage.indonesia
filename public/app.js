@@ -48,14 +48,21 @@ $("#loginForm").addEventListener("submit",async e=>{
  try{
   const username=form.elements.namedItem("username").value;
   const password=form.elements.namedItem("password").value;
-  const {data,error}=await db.functions.invoke("showroom-owner-login",{body:{username,password}});
-  if(error){
-    const status=error?.context?.status;
-    if(status===429)throw Error("Percobaan login terlalu banyak. Coba lagi nanti.");
-    if(status===503)throw Error("Layanan autentikasi sementara tidak tersedia.");
-    throw Error("Username atau kata sandi khusus showroom tidak cocok.");
+  // Same-origin endpoint avoids browser CORS preflight against the Supabase function.
+  const response=await fetch("/api/showroom-login",{
+    method:"POST",headers:{"content-type":"application/json"},
+    cache:"no-store",credentials:"same-origin",
+    body:JSON.stringify({username,password})
+  });
+  const data=await response.json().catch(()=>null);
+  if(!response.ok){
+    if(response.status===401)throw Error("Kata sandi showroom tidak cocok.");
+    if(response.status===429)throw Error("Percobaan login terlalu banyak. Coba lagi nanti.");
+    if(response.status===503||response.status===502)throw Error("Server login showroom belum dapat dihubungi.");
+    if(response.status===403)throw Error("Akses login ditolak. Buka halaman showroom dari domain resminya.");
+    throw Error("Gagal menghubungkan login showroom (status "+response.status+").");
   }
-  if(!data?.ok||!data?.access_token||!data?.refresh_token)throw Error("Login tidak berhasil.");
+  if(!data?.ok||!data?.access_token||!data?.refresh_token)throw Error("Sesi login belum tersedia. Coba segarkan halaman.");
   const {data:sessionData,error:sessionError}=await db.auth.setSession({
     access_token:data.access_token,refresh_token:data.refresh_token
   });
