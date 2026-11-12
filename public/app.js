@@ -246,8 +246,11 @@ $("#modalRoot").addEventListener("submit",async e=>{
 });
 async function erase(kind,id){
  const key=knownKind[kind];if(!key||!canEdit())return;
- const extra=kind==="motor"?" Semua PR, sparepart, dan biaya terkait akan ikut terhapus.":"";
- if(!window.confirm("Hapus data "+kind+" ini secara permanen?"+extra))return;
+ const motorRecord=kind==="motor"?state.data.motors.find(m=>m.id===id):null;
+ const message=kind==="motor"
+  ?"Hapus "+unitName(motorRecord||{})+"? Semua PR, sparepart, biaya, dan foto juga terhapus. Tidak dapat dibatalkan."
+  :"Hapus "+kind+" ini?";
+ if(!window.confirm(message))return;
  const table=tables[key];
  try{
   if(kind==="motor"){
@@ -280,6 +283,58 @@ function doExport(kind){
   exportCSV("laporan-unit-starpoint-showroom.csv",["Unit","Kode Stok","Status","Tanggal Beli","Harga Beli","HPP Aktual","HPP Proyeksi","Harga Motor / Target","Pendapatan Sparepart","Proyeksi Laba / Laba Aktual"],state.data.motors.map(m=>{const f=finance(m);return[unitName(m),m.unit_code,m.status,m.purchase_date,m.purchase_price,f.cost,f.expectedCost,f.motorRevenue,f.resaleRevenue,m.status==="sold"?f.actualProfit:f.expectedProfit]}));
  }
 }
+// In the motor list, one horizontal swipe performs its assigned action.
+// Vertical scrolling stays native (pan-y) on iPad/iPhone.
+let activeMotorSwipe=null,blockedMotorClick=null;
+const clearMotorSwipe=()=>{
+ if(activeMotorSwipe?.row){
+  const row=activeMotorSwipe.row;
+  row.style.setProperty("--swipe-x","0px");
+  row.classList.remove("swiping");
+  delete row.dataset.swipeDirection;
+ }
+ activeMotorSwipe=null;
+};
+document.addEventListener("pointerdown",e=>{
+ const row=e.target.closest("[data-swipe-motor]");
+ if(!row||!canEdit()||(e.pointerType==="mouse"&&e.button!==0))return;
+ activeMotorSwipe={row,id:row.dataset.id,startX:e.clientX,startY:e.clientY,pointerId:e.pointerId,swiping:false};
+},{passive:true});
+document.addEventListener("pointermove",e=>{
+ const swipe=activeMotorSwipe;
+ if(!swipe||swipe.pointerId!==e.pointerId)return;
+ const dx=e.clientX-swipe.startX,dy=e.clientY-swipe.startY;
+ if(!swipe.swiping){
+  if(Math.abs(dy)>12&&Math.abs(dy)>Math.abs(dx)){clearMotorSwipe();return}
+  if(Math.abs(dx)<16||Math.abs(dx)<Math.abs(dy)*1.35)return;
+  swipe.swiping=true;
+  swipe.row.classList.add("swiping");
+ }
+ const offset=Math.max(-98,Math.min(98,dx));
+ swipe.row.style.setProperty("--swipe-x",offset+"px");
+ swipe.row.dataset.swipeDirection=dx<0?"left":"right";
+},{passive:true});
+document.addEventListener("pointerup",e=>{
+ const swipe=activeMotorSwipe;
+ if(!swipe||swipe.pointerId!==e.pointerId)return;
+ const dx=e.clientX-swipe.startX,dy=e.clientY-swipe.startY;
+ const complete=swipe.swiping&&Math.abs(dx)>=76&&Math.abs(dx)>Math.abs(dy)*1.3;
+ const targetId=swipe.id;
+ clearMotorSwipe();
+ if(!complete)return;
+ blockedMotorClick={id:targetId,until:Date.now()+650};
+ if(dx<0)showForm("motor",targetId);
+ else void erase("motor",targetId);
+},{passive:true});
+document.addEventListener("pointercancel",clearMotorSwipe,{passive:true});
+document.addEventListener("click",e=>{
+ const row=e.target.closest("[data-swipe-motor]");
+ if(row&&blockedMotorClick?.id===row.dataset.id&&Date.now()<blockedMotorClick.until){
+  e.preventDefault();
+  e.stopImmediatePropagation();
+ }
+},true);
+
 document.addEventListener("click",async e=>{
  const target=e.target.closest("[data-action],[data-nav]");
  if(!target)return;
@@ -357,7 +412,13 @@ document.addEventListener("input",e=>{
  }
 });
 document.addEventListener("change",e=>{if(e.target.id==="statusFilter"){state.filter=e.target.value;renderPage()}});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){closeModal();return}
+ const row=e.target.closest?.("[data-swipe-motor]");
+ if(!row||!canEdit())return;
+ if(e.key==="ArrowLeft"){e.preventDefault();showForm("motor",row.dataset.id)}
+ else if(e.key==="ArrowRight"){e.preventDefault();void erase("motor",row.dataset.id)}
+});
 $("#modalRoot").addEventListener("click",e=>{if(e.target.id==="modalRoot")closeModal()});
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&state.authUser&&Date.now()-lastLoad>20000)reload(true)});
 initialize();
