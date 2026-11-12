@@ -1,7 +1,7 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.113.0/+esm";
 export const db=createClient("https://msvdxyicostwztisvbvl.supabase.co", "sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk", {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
-export const tables={motors:"showroom_motorcycles",tasks:"showroom_tasks",parts:"showroom_parts",expenses:"showroom_expenses",capital:"showroom_capital",photos:"showroom_photos"};
-export const state={authUser:null,access:null,view:"dashboard",selected:null,detailTab:"summary",search:"",filter:"all",partSearch:"",photosTarget:null,loading:false,online:false,channel:null,data:{motors:[],tasks:[],parts:[],expenses:[],capital:[],photos:[]},photoUrls:new Map()};
+export const tables={motors:"showroom_motorcycles",tasks:"showroom_tasks",parts:"showroom_parts",expenses:"showroom_expenses",capital:"showroom_capital",photos:"showroom_photos",activity:"showroom_activity"};
+export const state={authUser:null,access:null,view:"dashboard",selected:null,detailTab:"summary",search:"",filter:"all",partSearch:"",photosTarget:null,loading:false,online:false,channel:null,data:{motors:[],tasks:[],parts:[],expenses:[],capital:[],photos:[],activity:[]},photoUrls:new Map()};
 export const formatIDR=new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0});
 export const num=v=>Number(v)||0;
 export const money=v=>formatIDR.format(num(v));
@@ -86,6 +86,7 @@ export async function loadAll(){
  await loadPhotoUrls();
 }
 export async function loadPhotoUrls(){
+ for(const [path,o] of state.photoUrls)if(o.expires<Date.now())state.photoUrls.delete(path);
  const pending=state.data.photos.filter(p=>p.storage_path&&!state.photoUrls.has(p.storage_path));
  await Promise.all(pending.map(async p=>{
   try{const {data,error}=await db.storage.from("showroom-private").createSignedUrl(p.storage_path,3600);
