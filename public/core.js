@@ -36,7 +36,7 @@ export function finance(m){
   const actualPartsRevenue=parts.filter(p=>p.purpose==="resale").reduce((a,p)=>a+num(p.qty_sold)*num(p.actual_sale_price),0);
   const motorRevenue=m.status==="sold"?num(m.actual_sale_price):num(m.target_sale_price);
   const targetRevenue=motorRevenue+resaleRevenue;
-  const expectedProfit=targetRevenue-expectedCost;
+  const expectedProfit=motorRevenue>0?targetRevenue-expectedCost:null;
   const sold=m.status==="sold";
   const actualProfit=sold?(num(m.actual_sale_price)+actualPartsRevenue-cost):null;
   const pendingTasks=unitTasks(m.id).filter(t=>t.status!=="done").length;
@@ -50,7 +50,7 @@ export function metrics(){
    committed:all.reduce((s,m)=>s+finance(m).cost,0),
    currentCapital:active.reduce((s,m)=>s+finance(m).cost,0),
    expectedSales:active.reduce((s,m)=>s+finance(m).targetRevenue,0),
-   expectedProfit:active.reduce((s,m)=>s+finance(m).expectedProfit,0),
+   expectedProfit:active.reduce((s,m)=>s+num(finance(m).expectedProfit),0),
    realizedProfit:sold.reduce((s,m)=>s+finance(m).actualProfit,0),
    pendingTasks:state.data.tasks.filter(t=>t.status!=="done").length,
    cash:ledger().reduce((s,row)=>s+row.amount,0)
