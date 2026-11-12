@@ -46,9 +46,21 @@ $("#loginForm").addEventListener("submit",async e=>{
  e.preventDefault();const form=e.currentTarget,btn=$("#loginButton");
  btn.disabled=true;btn.textContent="Memeriksa akses...";$("#authError").textContent="";
  try{
-  const {data,error}=await db.auth.signInWithPassword({email:form.elements.namedItem("email").value.trim(),password:form.elements.namedItem("password").value});
-  if(error)throw Error("Email atau kata sandi tidak cocok.");
-  await granted(data.user);
+  const username=form.elements.namedItem("username").value;
+  const password=form.elements.namedItem("password").value;
+  const {data,error}=await db.functions.invoke("showroom-owner-login",{body:{username,password}});
+  if(error){
+    const status=error?.context?.status;
+    if(status===429)throw Error("Percobaan login terlalu banyak. Coba lagi nanti.");
+    if(status===503)throw Error("Layanan autentikasi sementara tidak tersedia.");
+    throw Error("Kata sandi akun Owner belum cocok.");
+  }
+  if(!data?.ok||!data?.access_token||!data?.refresh_token)throw Error("Login tidak berhasil.");
+  const {data:sessionData,error:sessionError}=await db.auth.setSession({
+    access_token:data.access_token,refresh_token:data.refresh_token
+  });
+  if(sessionError||!sessionData?.user)throw Error("Sesi login tidak bisa dibuat.");
+  await granted(sessionData.user);
   form.reset();
  }catch(err){
   $("#authError").textContent=err.message||"Gagal masuk.";
