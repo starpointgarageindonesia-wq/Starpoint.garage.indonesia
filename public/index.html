@@ -1,80 +1,53 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <link rel="canonical" href="https://showroom.starpointgarage.com/">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://showroom.starpointgarage.com/">
-  <meta property="og:title" content="Starpoint Garage Showroom | Motor Pilihan Surabaya">
-  <meta property="og:description" content="Showroom Starpoint Garage di Surabaya. Katalog dan informasi motor pilihan dari harian hingga big bike.">
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101115">
-  <meta name="description" content="Starpoint Garage Showroom di Surabaya. Jelajahi informasi unit motor pilihan, mulai dari motor harian, sport, hingga big bike.">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <title>Starpoint Garage Showroom | Motor Pilihan Surabaya</title>
-  <style>
-    :root{--bg:#101115;--panel:#1a1c21;--line:#32353c;--ink:#f5f3ef;--muted:#a5a9b1;--red:#e22d38;--gold:#d9b577}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{max-width:100%;height:auto}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
-    .topline{background:var(--gold);color:#161518;font-size:11px;letter-spacing:.15em;font-weight:800;padding:8px 0;text-transform:uppercase}
-    header{position:sticky;top:0;z-index:20;background:rgba(16,17,21,.96);border-bottom:1px solid #ffffff17;backdrop-filter:blur(12px)}
-    .nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:138px;max-height:56px;object-fit:contain}.brand small{border-left:1px solid var(--line);padding-left:12px;font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--gold)}.links{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:700}.links a:hover{color:var(--gold)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;border-radius:100px;background:var(--red);border:1px solid var(--red);font-weight:800;font-size:13px;letter-spacing:.02em;min-height:49px;padding:12px 24px;transition:.2s}.btn:hover{background:#ba1f29}.btn.outline{background:transparent;border-color:#666b76}.btn.outline:hover{border-color:var(--gold);color:var(--gold)}
-    .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(circle at 74% 36%,#3b2025 0,transparent 30%),radial-gradient(circle at 35% 110%,#34313b 0,transparent 38%),var(--bg)}.hero:after{content:"SHOWROOM";position:absolute;right:-3vw;bottom:-10vw;font-size:clamp(140px,22vw,400px);line-height:1;white-space:nowrap;font-weight:1000;letter-spacing:-.1em;color:#fff;opacity:.023;pointer-events:none}
-    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:55px;align-items:center;padding:90px 0 100px}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold);letter-spacing:.2em;font-size:12px;text-transform:uppercase;font-weight:900}.eyebrow:before{content:"";display:block;width:30px;height:3px;background:var(--red)}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(54px,7.5vw,108px);line-height:.98;letter-spacing:-.07em;margin:25px 0}h1 em{color:var(--gold);font-style:normal}.lead{font-size:17px;color:#c4c5cb;max-width:580px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.hero-side{border:1px solid #ffffff35;background:linear-gradient(145deg,#24252b,#111217);border-radius:22px;min-height:380px;display:flex;flex-direction:column;justify-content:space-between;padding:30px;box-shadow:0 30px 90px #0008}.hero-side .mark{color:var(--red);font-size:12px;letter-spacing:.3em;font-weight:900}.hero-side strong{font-size:clamp(40px,5vw,72px);line-height:1.02;letter-spacing:-.055em}.hero-side .rule{height:4px;width:70px;background:var(--gold)}.hero-side p{font-size:13px;color:var(--muted);margin:0}
-    section{padding:86px 0}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:30px}h2{font-size:clamp(31px,4vw,52px);line-height:1.1;letter-spacing:-.05em;margin:12px 0}.muted{color:var(--muted)}
-    .tabs{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.tab{background:#202228;border:1px solid #3a3c43;border-radius:30px;color:#dedee2;padding:9px 17px;font-weight:700;font-size:13px}.tab.active,.tab:hover{background:var(--gold);border-color:var(--gold);color:#161518}
-    .units{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.unit{overflow:hidden;border:1px solid var(--line);border-radius:17px;background:var(--panel)}.unit-image{height:210px;width:100%;object-fit:cover;background:#23252b}.unit-body{padding:20px}.unit h3{margin:4px 0;font-size:21px}.unit .category{font-size:11px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;font-weight:800}.unit .price{font-size:20px;font-weight:900;color:#fff;margin:12px 0}.unit .more{font-size:13px;font-weight:800;color:var(--gold)}
-    .empty{grid-column:1/-1;text-align:center;border:1px dashed #565861;border-radius:20px;background:linear-gradient(135deg,#1b1d22,#17181d);padding:65px 25px}.empty-icon{display:inline-flex;align-items:center;justify-content:center;color:var(--gold);border:1px solid #6b5a3c;border-radius:100%;height:58px;width:58px;font-size:28px;margin-bottom:18px}.empty h3{font-size:26px;letter-spacing:-.03em;margin-bottom:8px}.empty p{max-width:540px;margin:0 auto 22px;color:var(--muted)}
-    .features{background:#181a1f;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{border:1px solid #383a41;padding:26px;border-radius:16px;min-height:185px}.feature .no{display:block;color:var(--gold);font-size:11px;letter-spacing:.15em;font-weight:900;margin-bottom:22px}.feature h3{font-size:21px;letter-spacing:-.03em;margin-bottom:5px}.feature p{font-size:14px;color:var(--muted);margin:0}
-    .contact{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;background:linear-gradient(120deg,#292126,#16181d);border:1px solid #544348;padding:40px;border-radius:20px}.contact p{margin:0;color:#c9c9cc}
-    footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
-    @media(max-width:850px){.hero-grid{grid-template-columns:1fr;padding:70px 0;gap:32px}.hero-side{min-height:240px}.links a.navlink{display:none}.units,.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.contact{grid-template-columns:1fr}}
-    @media(max-width:560px){.wrap{width:calc(100% - 30px)}.nav{min-height:69px}.brand img{width:114px}.brand small{font-size:10px;padding-left:9px}.links{gap:0}.links .btn{min-height:39px;padding:8px 12px;font-size:11px}.hero-grid{padding:56px 0 65px}h1{font-size:58px}.hero-side{padding:25px}.section-head{display:block}section{padding:62px 0}.units,.feature-grid{grid-template-columns:1fr}.empty{padding:44px 20px}.contact{padding:27px}.contact .btn{width:100%}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#11141a">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="Sistem pembukuan internal Starpoint Garage Showroom.">
+<title>Pembukuan Showroom | Starpoint Garage</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="topline"><div class="wrap">Starpoint Garage Showroom &nbsp;·&nbsp; Surabaya, Indonesia</div></div>
-  <header><div class="wrap nav">
-    <a class="brand" href="/" aria-label="Starpoint Garage Showroom"><img src="/assets/starpoint-official.svg" alt="Logo Starpoint Garage"><small>SHOWROOM</small></a>
-    <nav class="links" aria-label="Navigasi"><a class="navlink" href="#koleksi">Koleksi Motor</a><a class="navlink" href="#tentang">Tentang</a><a class="btn" href="#kontak">Hubungi Kami</a></nav>
-  </div></header>
-  <main>
-    <section class="hero"><div class="wrap hero-grid">
-      <div><div class="eyebrow">Starpoint Garage · Showroom</div><h1>YOUR NEXT<br><em>RIDE.</em></h1><p class="lead">Ruang untuk menemukan motor yang sesuai dengan karakter dan kebutuhanmu. Dari motor harian hingga big bike, jelajahi informasi unit Starpoint Garage di satu tempat.</p><div class="actions"><a class="btn" href="#koleksi">Lihat Katalog</a><a class="btn outline" href="https://starpointgarage.com/" target="_blank" rel="noopener">Website Bengkel</a></div></div>
-      <div class="hero-side" aria-label="Identitas showroom"><span class="mark">STARPOINT GARAGE / SURABAYA</span><div><div class="rule"></div><br><strong>THE ROAD<br>IS YOURS.</strong></div><p>Showroom motor · Informasi unit dan konsultasi melalui kontak resmi Starpoint Garage.</p></div>
-    </div></section>
-    <section id="koleksi"><div class="wrap">
-      <div class="section-head"><div><div class="eyebrow">Katalog showroom</div><h2>Jelajahi unit motor</h2><p class="muted">Daftar motor akan ditampilkan di sini setelah data unit, foto, dan harga terverifikasi.</p></div></div>
-      <div class="tabs" role="group" aria-label="Filter motor"><button class="tab active" data-filter="Semua" type="button">Semua</button><button class="tab" data-filter="Harian" type="button">Harian</button><button class="tab" data-filter="Sport" type="button">Sport</button><button class="tab" data-filter="Big Bike" type="button">Big Bike</button><button class="tab" data-filter="Koleksi" type="button">Koleksi</button></div>
-      <div id="unit-grid" class="units" aria-live="polite"><div class="empty"><span class="empty-icon" aria-hidden="true">✦</span><h3>Katalog sedang dipersiapkan</h3><p>Belum ada unit yang dipublikasikan. Informasi motor akan ditampilkan setelah stok dan spesifikasinya dikonfirmasi.</p><a class="btn outline" href="#kontak">Tanyakan Ketersediaan</a></div></div>
-    </div></section>
-    <section class="features" id="tentang"><div class="wrap"><div class="eyebrow">Starpoint Garage</div><h2>Informasi jelas.<br>Pilihan lebih nyaman.</h2><div class="feature-grid">
-      <article class="feature"><span class="no">KATALOG</span><h3>Foto Unit</h3><p>Foto tiap unit yang tersedia akan ditampilkan agar mudah ditinjau sebelum menghubungi showroom.</p></article>
-      <article class="feature"><span class="no">DETAIL MOTOR</span><h3>Spesifikasi</h3><p>Tahun, kilometer, kondisi, dan detail penting dapat ditampilkan pada halaman unit.</p></article>
-      <article class="feature"><span class="no">KONTAK</span><h3>Komunikasi Langsung</h3><p>Hubungi tim Starpoint Garage untuk menanyakan informasi dan ketersediaan unit.</p></article>
-    </div></div></section>
-    <section id="kontak"><div class="wrap"><div class="contact"><div><div class="eyebrow">Butuh informasi unit?</div><h2>Temukan motor yang kamu cari.</h2><p>Hubungi Starpoint Garage untuk menanyakan stok dan detail motor. Ketersediaan mengikuti konfirmasi tim.</p></div><a class="btn" href="https://wa.me/6282229879989?text=Halo%20Starpoint%20Garage%2C%20saya%20ingin%20bertanya%20tentang%20unit%20motor%20showroom." target="_blank" rel="noopener noreferrer">Chat WhatsApp</a></div></div></section>
-  </main>
-  <footer><div class="wrap foot"><span>© <span id="year"></span> Starpoint Garage Showroom, Surabaya.</span><a href="https://starpointgarage.com/">Kembali ke website bengkel</a></div></footer>
-  <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
-    const grid=document.getElementById('unit-grid');
-    const filters=[...document.querySelectorAll('[data-filter]')];
-    let inventory=[];
-    const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    function render(filter){
-      const chosen=inventory.filter(item=>filter==='Semua'||item.kategori===filter);
-      if(!chosen.length){grid.innerHTML='<div class="empty"><span class="empty-icon" aria-hidden="true">✦</span><h3>Belum ada unit yang dipublikasikan</h3><p>Stok showroom belum tercantum untuk kategori ini. Hubungi tim untuk menanyakan ketersediaan.</p><a class="btn outline" href="#kontak">Tanyakan Ketersediaan</a></div>';return}
-      grid.innerHTML=chosen.map(item=>{
-        const title=safe(item.nama),category=safe(item.kategori),desc=safe(item.detail),price=safe(item.harga),photo=safe(item.foto||'/assets/store.webp');
-        const msg=encodeURIComponent('Halo Starpoint Garage, saya ingin menanyakan unit '+(item.nama||'')+'.');
-        return '<article class="unit"><img class="unit-image" src="'+photo+'" alt="Foto '+title+'" loading="lazy"><div class="unit-body"><span class="category">'+category+'</span><h3>'+title+'</h3><p class="muted">'+desc+'</p><div class="price">'+price+'</div><a class="more" href="https://wa.me/6282229879989?text='+msg+'" target="_blank" rel="noopener noreferrer">Tanyakan unit</a></div></article>'
-      }).join('');
-    }
-    filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.toggle('active',b===btn));render(btn.dataset.filter)}));
-    fetch('/units.json',{cache:'no-store'}).then(r=>r.ok?r.json():[]).then(data=>{inventory=Array.isArray(data)?data.filter(x=>x&&x.nama&&x.kategori):[];render('Semua')}).catch(()=>render('Semua'));
-  </script>
+<div id="authView" class="auth-layout">
+ <div class="auth-panel">
+  <div class="auth-logo"><img src="/assets/starpoint-official.svg" alt="Starpoint Garage"><span>SHOWROOM<br><small>FINANCE</small></span></div>
+  <div class="auth-kicker"><span class="status-dot"></span> SISTEM INTERNAL TERLINDUNGI</div>
+  <h1>Kelola setiap unit.<br><span>Ketahui setiap rupiah.</span></h1>
+  <p class="auth-desc">Pembukuan modal pembelian, harga jual, PR pengerjaan, sparepart, biaya, foto, dan laporan showroom dalam satu dashboard.</p>
+  <form id="loginForm" class="login-box">
+   <label for="loginEmail">Email Owner</label><input id="loginEmail" name="email" type="email" autocomplete="username" placeholder="Email akun Owner" required>
+   <label for="loginPassword">Kata sandi</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required>
+   <button class="btn btn-red btn-wide" type="submit" id="loginButton">Masuk ke Pembukuan</button>
+   <p id="authError" class="form-error" role="alert"></p>
+  </form>
+  <p class="auth-footer">Hanya pengguna yang telah diberi izin yang dapat melihat data keuangan.</p>
+ </div>
+ <div class="auth-side"><div class="auth-watermark">S</div><div class="auth-side-content"><div class="eyebrow">STARPOINT GARAGE</div><div class="auth-side-number">01<span> / </span>01</div><h2>STOCK.<br>COST.<br>PROFIT.</h2><p>Satu tempat untuk mengawasi semua unit dan keputusan finansial.</p></div></div>
+</div>
+<div id="appView" class="app-layout" hidden>
+ <aside class="sidebar" id="sidebar">
+  <a class="side-brand" href="#dashboard" data-nav="dashboard"><img src="/assets/starpoint-official.svg" alt="Starpoint Garage"><span>SHOWROOM<br><b>BOOKKEEPING</b></span></a>
+  <div class="side-label">MENU UTAMA</div>
+  <nav class="side-menu" aria-label="Navigasi pembukuan">
+   <button class="nav-item active" data-nav="dashboard"><span class="nav-icon">▦</span> Ringkasan</button>
+   <button class="nav-item" data-nav="motors"><span class="nav-icon">▤</span> Unit Motor</button>
+   <button class="nav-item" data-nav="parts"><span class="nav-icon">⚙</span> Sparepart</button>
+   <button class="nav-item" data-nav="cash"><span class="nav-icon">⇅</span> Arus Kas</button>
+   <button class="nav-item" data-nav="reports"><span class="nav-icon">▥</span> Laporan</button>
+  </nav>
+  <div class="side-bottom"><span class="live-dot"></span> <span id="syncStatus">Menghubungkan...</span><div class="side-divider"></div><div class="side-user"><div class="avatar">SG</div><div><b id="userRole">Akun Owner</b><small id="userEmail"></small></div></div><button class="logout" data-action="logout">Keluar akun</button></div>
+ </aside>
+ <main class="main-shell">
+  <header class="topbar"><div class="top-left"><button class="mobile-menu" data-action="menu" aria-label="Buka menu">☰</button><div class="crumb">STARPOINT GARAGE <span>/</span> <b id="pageTitle">Ringkasan</b></div></div><div class="top-actions"><span class="top-live"><span class="live-dot"></span> Data real-time</span><button class="btn btn-red btn-sm" data-action="new-motor" id="topAdd">+ Tambah Motor</button></div></header>
+  <div class="content"><div id="contentArea" aria-live="polite"><div class="loading">Memuat data pembukuan...</div></div></div>
+ </main>
+</div>
+<div id="modalRoot" class="modal-root" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<input id="photoPicker" type="file" accept="image/*" multiple hidden>
+<script type="module" src="/app.js"></script>
 </body>
 </html>
