@@ -58,7 +58,19 @@ $("#loginForm").addEventListener("submit",async e=>{
   if(!response.ok){
     if(response.status===401)throw Error("Kata sandi showroom tidak cocok.");
     if(response.status===429)throw Error("Percobaan login terlalu banyak. Coba lagi nanti.");
-    if(response.status===503||response.status===502)throw Error("Server login showroom belum dapat dihubungi.");
+    if(response.status===503||response.status===502){
+      const reason=String(data?.error||"");
+      const details={
+        SERVICE_UNAVAILABLE:"Konfigurasi server login showroom belum lengkap.",
+        SECURITY_UNAVAILABLE:"Izin keamanan server showroom bermasalah.",
+        AUTH_UNAVAILABLE:"Layanan akun khusus showroom tidak tersedia.",
+        ACCESS_UNAVAILABLE:"Akses database showroom belum tersedia.",
+        ACCOUNT_CREATE_FAILED:"Pembuatan akun khusus showroom gagal.",
+        AUTH_NETWORK_UNAVAILABLE:"Koneksi Cloudflare ke server login showroom terputus.",
+        AUTH_UPSTREAM_ERROR:"Respons server login showroom tidak sesuai."
+      };
+      throw Error(details[reason]||"Server login showroom bermasalah ("+(reason||response.status)+").");
+    }
     if(response.status===403)throw Error("Akses login ditolak. Buka halaman showroom dari domain resminya.");
     throw Error("Gagal menghubungkan login showroom (status "+response.status+").");
   }
