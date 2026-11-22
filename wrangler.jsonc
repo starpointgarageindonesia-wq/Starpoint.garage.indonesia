@@ -1,7 +1,6 @@
 {
-  "name": "starpointgarage",
-  "compatibility_date": "2026-11-05",
-  "assets": {
-    "directory": "./public"
-  }
+  "name": "owner-spg",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-22",
+  "workers_dev": false
 }
