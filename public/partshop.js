@@ -320,7 +320,7 @@ $('loginForm').addEventListener('submit',async ev=>{
 });
 $('togglePassword').onclick=()=>{const pass=$('loginPassword');pass.type=pass.type==='password'?'text':'password';$('togglePassword').textContent=pass.type==='password'?'Lihat':'Sembunyikan'};
 const signOut=async()=>{try{await api('logout')}catch{}sessionToken='';sessionStorage.removeItem(SESSION_NAME);$('loginPassword').value='';displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
-$('addMotor').onclick=()=>openModal('motor');$('addMotorMobile').onclick=()=>openModal('motor');
+$('addMotor').onclick=()=>openModal('motor');
 $('searchBox').addEventListener('input',ev=>{query=ev.target.value;render()});
 $('yearFilter').addEventListener('change',ev=>{selectedYear=ev.target.value;render()});
 $('closeModal').onclick=closeModal;$('cancelModal').onclick=closeModal;
