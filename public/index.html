@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/partshop.css?v=20261124c">
+  <link rel="stylesheet" href="/partshop.css?v=20261124d">
 </head>
 <body>
   <div class="login-wrap" id="loginView">
@@ -30,22 +30,22 @@
     <aside class="sidebar">
       <div class="brand"><img src="/assets/starpoint-official.svg" alt="Starpoint Garage"><span>SECOND PARTSHOP</span></div>
       <div class="side-title">MENU INVENTARIS</div>
-      <button class="side-nav active" data-nav="all"><span class="side-ico">▦</span> Dashboard</button>
-      <button class="side-nav" data-nav="motor"><span class="side-ico">♧</span> List Motor</button>
-      <button class="side-nav" data-nav="parts"><span class="side-ico">⚙</span> Part Motor</button>
-      <button class="side-nav" data-nav="sold"><span class="side-ico">◇</span> Terjual</button>
-      <button class="side-nav" data-nav="available"><span class="side-ico">◷</span> Belum Terjual</button>
-      <button class="side-nav" data-nav="report"><span class="side-ico">▥</span> Laporan</button>
+      <button class="side-nav active" data-nav="all"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span> Dashboard</button>
+      <button class="side-nav" data-nav="motor"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M8 17h5l3-7h3l2 4M5 17l4-9h4l3 9M12 7H9M16 7h3"/></svg></span> List Motor</button>
+      <button class="side-nav" data-nav="parts"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19 13.5 1.5 1.2-1.5 2.6-1.9-.6a7 7 0 0 1-2 1.1l-.4 2H9.4l-.4-2a7 7 0 0 1-2-1.1l-1.9.6-1.5-2.6 1.5-1.2a7 7 0 0 1 0-3l-1.5-1.2 1.5-2.6 1.9.6a7 7 0 0 1 2-1.1l.4-2h5.2l.4 2a7 7 0 0 1 2 1.1l1.9-.6 1.5 2.6-1.5 1.2a7 7 0 0 1 0 3z"/></svg></span> Part Motor</button>
+      <button class="side-nav" data-nav="sold"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 12 9-9h7a2 2 0 0 1 2 2v7l-9 9-9-9z"/><circle cx="16.5" cy="7.5" r="1"/></svg></span> Terjual</button>
+      <button class="side-nav" data-nav="available"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14M5 21h14M7 3v4a5 5 0 0 0 2 4l3 1 3-1a5 5 0 0 0 2-4V3M7 21v-4a5 5 0 0 1 2-4l3-1 3 1a5 5 0 0 1 2 4v4"/></svg></span> Belum Terjual</button>
+      <button class="side-nav" data-nav="report"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V11M9 21V6M14 21V13M19 21V3M2 21h20"/></svg></span> Laporan</button>
       <div class="sidebar-bottom"><span id="accountText">Akses owner</span><button id="logoutButton" class="logout">Keluar</button></div>
     </aside>
     <div class="main-area">
       <header class="topbar"><div class="heading"><img class="header-logo" src="/assets/starpoint-official.svg" alt="Starpoint Garage"><span class="header-caption">SECOND PARTSHOP</span></div><div class="top-actions"><input id="searchBox" type="search" placeholder="Cari nama motor atau tahun..." aria-label="Cari motor"><button id="addMotor" class="btn primary">+ Tambah Motor</button><button id="logoutTop" type="button" class="btn outline small">Keluar</button></div></header>
       <main class="content">
         <div class="stat-grid">
-          <article class="stat"><span class="stat-symbol symbol-bike">♧</span><span class="stat-label">TOTAL MOTOR</span><strong id="statTotal">0</strong><small>Unit tercatat</small></article>
-          <article class="stat"><span class="stat-symbol symbol-done">✓</span><span class="stat-label">TERJUAL</span><strong id="statSold">0</strong><small>Unit terjual</small></article>
-          <article class="stat"><span class="stat-symbol symbol-clock">◷</span><span class="stat-label">BELUM TERJUAL</span><strong id="statAvailable">0</strong><small>Unit tersedia</small></article>
-          <article class="stat"><span class="stat-symbol symbol-money">Rp</span><span class="stat-label">TOTAL MODAL</span><strong class="currency" id="statCapital">Rp 0</strong><small>Modal motor + sparepart</small></article>
+          <article class="stat"><span class="stat-symbol symbol-bike"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M8 17h5l3-7h3l2 4M5 17l4-9h4l3 9M12 7H9M16 7h3"/></svg></span><span class="stat-label">TOTAL MOTOR</span><strong id="statTotal">0</strong><small>Unit tercatat</small></article>
+          <article class="stat"><span class="stat-symbol symbol-done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/></svg></span><span class="stat-label">TERJUAL</span><strong id="statSold">0</strong><small>Unit terjual</small></article>
+          <article class="stat"><span class="stat-symbol symbol-clock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14M5 21h14M7 3v4a5 5 0 0 0 2 4l3 1 3-1a5 5 0 0 0 2-4V3M7 21v-4a5 5 0 0 1 2-4l3-1 3 1a5 5 0 0 1 2 4v4"/></svg></span><span class="stat-label">BELUM TERJUAL</span><strong id="statAvailable">0</strong><small>Unit tersedia</small></article>
+          <article class="stat"><span class="stat-symbol symbol-money"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7.5" ry="3.5"/><path d="M4.5 6v5c0 2 3.4 3.5 7.5 3.5s7.5-1.5 7.5-3.5V6M4.5 11v5c0 2 3.4 3.5 7.5 3.5s7.5-1.5 7.5-3.5v-5"/></svg></span><span class="stat-label">TOTAL MODAL</span><strong class="currency" id="statCapital">Rp 0</strong><small>Modal motor + sparepart</small></article>
         </div>
         <div class="dashboard-grid">
           <section class="panel motor-panel"><div class="section-head"><div><small>DATA INVENTARIS</small><h2>List Motor</h2></div><button id="addMotorMobile" class="btn outline small">+ Motor</button></div>
