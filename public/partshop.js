@@ -2,6 +2,7 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 const db = createClient('https://msvdxyicostwztisvbvl.supabase.co','sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk', { auth:{autoRefreshToken:true,persistSession:true} });
 const BUCKET='starpoint-partshop-private';
+const PARTSHOP_EMAIL='starpointgarageindonesia+partshop@gmail.com';
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const rupiah=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0});
@@ -14,9 +15,15 @@ function displayLogin(message=''){$('appView').hidden=true;$('loginView').hidden
 async function enterApp(){
   const {data:{user},error}=await db.auth.getUser();
   if(error||!user){displayLogin();return}
-  const access=await db.from('partshop_access').select('role,active').eq('user_id',user.id).maybeSingle();
+  let access=await db.from('partshop_access').select('role,active').eq('user_id',user.id).maybeSingle();
+  if((!access.data?.active||access.data.role!=='owner')&&user.email?.toLowerCase()===PARTSHOP_EMAIL){
+    const result=await db.rpc('partshop_claim_access');
+    if(!result.error&&result.data===true){
+      access=await db.from('partshop_access').select('role,active').eq('user_id',user.id).maybeSingle();
+    }
+  }
   if(access.error||!access.data?.active||access.data.role!=='owner'){
-    await db.auth.signOut();displayLogin('Akun ini belum mendapat akses Second Partshop.');return;
+    await db.auth.signOut();displayLogin('Akun belum mendapat izin Second Partshop. Pastikan konfirmasi email sudah selesai.');return;
   }
   $('loginView').hidden=true;$('appView').hidden=false;$('accountText').textContent=user.email?.startsWith('starpointpart@')?'starpointpart':(user.email||'Owner');
   await loadData();
@@ -260,12 +267,31 @@ async function handleAction(el){
 $('loginForm').addEventListener('submit',async ev=>{
   ev.preventDefault();$('loginButton').disabled=true;$('loginError').textContent='';
   const username=$('loginUsername').value.trim().toLowerCase(),password=$('loginPassword').value;
-  const email=['starpointpart','starpointgarage'].includes(username)?'starpointgarageindonesia@gmail.com':(username.includes('@')?username:null);
+  const email=username==='starpointpart'?PARTSHOP_EMAIL:(username==='starpointgarage'?'starpointgarageindonesia@gmail.com':(username.includes('@')?username:null));
   if(!email){$('loginError').textContent='Username tidak dikenal.';$('loginButton').disabled=false;return}
   const {error}=await db.auth.signInWithPassword({email,password});
-  if(error)$('loginError').textContent='Login gagal. Gunakan password akun Owner Starpoint Garage yang sudah ada.';
+  if(error)$('loginError').textContent=username==='starpointpart'?'Login belum aktif atau password salah. Jika baru pertama kali, tekan Aktifkan login starpointpart.':'Login gagal. Periksa kredensial akun Owner.';
   else await enterApp();
   $('loginButton').disabled=false;
+});
+$('activatePartshop').addEventListener('click',async()=>{
+  const status=$('activationStatus'),button=$('activatePartshop');
+  status.textContent='';$('loginError').textContent='';
+  if($('loginUsername').value.trim().toLowerCase()!=='starpointpart'){
+    status.textContent='Isi username starpointpart untuk aktivasi khusus Partshop.';return;
+  }
+  const password=$('loginPassword').value;
+  if(password.length<8){
+    status.textContent='Isi password khusus Partshop minimal 8 karakter.';return;
+  }
+  button.disabled=true;button.textContent='Mengirim aktivasi...';
+  try{
+    const {data,error}=await db.auth.signUp({email:PARTSHOP_EMAIL,password});
+    if(error)throw error;
+    if(data?.session){await enterApp();return;}
+    status.textContent='Permintaan aktivasi dikirim. Periksa email starpointgarageindonesia@gmail.com, klik konfirmasi, kemudian masuk kembali menggunakan username starpointpart dan password Partshop.';
+  }catch(e){status.textContent='Aktivasi gagal: '+errText(e)}
+  finally{button.disabled=false;button.textContent='Aktifkan login starpointpart'}
 });
 $('togglePassword').onclick=()=>{const pass=$('loginPassword');pass.type=pass.type==='password'?'text':'password';$('togglePassword').textContent=pass.type==='password'?'Lihat':'Sembunyikan'};
 const signOut=async()=>{await db.auth.signOut();$('loginPassword').value='';displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
