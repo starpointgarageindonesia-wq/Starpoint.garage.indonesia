@@ -62,3 +62,8 @@ body[data-view="motor"] .row-tools{grid-column:3;grid-row:2;display:flex;flex-wr
 body[data-view="sold"] .stat-grid{display:none}
 body[data-view="sold"] .section-head h2{color:#25262a}
 body[data-view="sold"] #inventoryScope{font-weight:700}
+
+/* Single-brand header and a single Add Motor action. */
+.topbar{justify-content:flex-end}
+.topbar .top-actions{margin-left:auto}
+@media(max-width:800px){.topbar .top-actions{margin-left:0}}
