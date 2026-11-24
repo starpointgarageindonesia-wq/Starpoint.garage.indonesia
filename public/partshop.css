@@ -67,3 +67,6 @@ body[data-view="sold"] #inventoryScope{font-weight:700}
 .topbar{justify-content:flex-end}
 .topbar .top-actions{margin-left:auto}
 @media(max-width:800px){.topbar .top-actions{margin-left:0}}
+
+/* Compatibility guard: old cached markup must not show duplicated controls. */
+.topbar .heading,.motor-panel #addMotorMobile{display:none!important}
