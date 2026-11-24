@@ -1,6 +1,10 @@
 /
-  Cache-Control: no-cache, must-revalidate
+  Cache-Control: no-store, max-age=0, must-revalidate
   X-Robots-Tag: noindex, nofollow
 /index.html
-  Cache-Control: no-cache, must-revalidate
+  Cache-Control: no-store, max-age=0, must-revalidate
   X-Robots-Tag: noindex, nofollow
+/partshop.css
+  Cache-Control: no-store, max-age=0, must-revalidate
+/partshop.js
+  Cache-Control: no-store, max-age=0, must-revalidate
