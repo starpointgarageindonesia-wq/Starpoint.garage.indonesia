@@ -260,10 +260,10 @@ async function handleAction(el){
 $('loginForm').addEventListener('submit',async ev=>{
   ev.preventDefault();$('loginButton').disabled=true;$('loginError').textContent='';
   const username=$('loginUsername').value.trim().toLowerCase(),password=$('loginPassword').value;
-  const email=username==='starpointpart'?'starpointpart@starpointgarage.com':(username.includes('@')?username:null);
+  const email=['starpointpart','starpointgarage'].includes(username)?'starpointgarageindonesia@gmail.com':(username.includes('@')?username:null);
   if(!email){$('loginError').textContent='Username tidak dikenal.';$('loginButton').disabled=false;return}
   const {error}=await db.auth.signInWithPassword({email,password});
-  if(error)$('loginError').textContent='Login gagal. Periksa username dan kata sandi, atau pastikan akun sudah aktif.';
+  if(error)$('loginError').textContent='Login gagal. Gunakan password akun Owner Starpoint Garage yang sudah ada.';
   else await enterApp();
   $('loginButton').disabled=false;
 });
