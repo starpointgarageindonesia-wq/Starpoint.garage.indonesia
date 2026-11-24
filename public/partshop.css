@@ -57,3 +57,8 @@ body[data-view="motor"] .row-tools{grid-column:3;grid-row:2;display:flex;flex-wr
 .stat-symbol svg{width:31px;height:31px;display:block}
 @media(max-width:800px){.side-ico svg{width:17px;height:17px}.stat-symbol svg{width:23px;height:23px}}
 
+
+/* The dashboard and list show active motorcycles only. Sold motorcycles belong to Arsip. */
+body[data-view="sold"] .stat-grid{display:none}
+body[data-view="sold"] .section-head h2{color:#25262a}
+body[data-view="sold"] #inventoryScope{font-weight:700}
