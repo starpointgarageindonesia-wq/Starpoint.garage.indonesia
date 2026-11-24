@@ -132,7 +132,7 @@ function renderPartRow(p,showMotor){
   const mot=motors.find(m=>m.id===p.motorcycle_id);
   return '<div class="part-row"><div class="part-name">'+photoElement(p.photo_path)+'<strong>'+esc(p.name)+(showMotor&&mot?'<small style="display:block;font-weight:400">'+esc(mot.name)+'</small>':'')+'</strong></div>'+
     '<div class="part-cell condition">'+esc(p.condition)+'</div><div class="part-cell cost">'+money(p.capital)+'</div>'+
-    '<div class="part-cell status-cell"><span class="status '+esc(p.status)+'">'+({sold:'Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||'Belum Terjual')+'</span></div>'+
+    '<div class="part-cell status-cell"><span class="status '+esc(p.status)+'">'+({sold:'Fix Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||'Belum Terjual')+'</span></div>'+
     '<div class="part-actions"><button class="icon-button" data-action="editPart" data-id="'+esc(p.id)+'" title="Edit dan upload foto">Edit</button>'+
     '<button class="icon-button red" data-action="deletePart" data-id="'+esc(p.id)+'" title="Hapus part">×</button></div></div>';
 }
@@ -277,7 +277,7 @@ function exportInventoryCSV(){
   for(const m of motors){
     rows.push(['Motor',m.name,m.model_year||'',m.name,'',m.capital??0,m.sale_price??'',m.status==='sold'?'Terjual':'Belum Terjual',m.notes||'']);
     for(const p of parts.filter(x=>x.motorcycle_id===m.id)){
-      rows.push(['Part',m.name,m.model_year||'',p.name,p.condition||'',p.capital??0,p.sale_price??'',({sold:'Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||p.status),p.notes||'']);
+      rows.push(['Part',m.name,m.model_year||'',p.name,p.condition||'',p.capital??0,p.sale_price??'',({sold:'Fix Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||p.status),p.notes||'']);
     }
   }
   const csv='\uFEFFsep=;\r\n'+rows.map(row=>row.map(v=>{let value=String(v??'');if(/^[\s]*[=+@-]/.test(value))value="'"+value;return '"'+value.replace(/"/g,'""')+'"'}).join(';')).join('\r\n');
