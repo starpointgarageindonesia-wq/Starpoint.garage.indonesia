@@ -161,7 +161,7 @@ function openModal(type,id=null,motorId=null){
     '<label>Modal beli motor (Rp)<input name="capital" type="text" inputmode="numeric" data-rupiah required placeholder="Rp 0" value="'+esc(formatRupiah(motor?.capital??''))+'"></label>'+
     '<label>Status<select name="status"><option value="available" '+(motor?.status!=='sold'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(motor?.status==='sold'?'selected':'')+'>Fix Terjual</option></select></label>'+
     '<label>Harga terjual motor (Rp)<input name="sale_price" type="text" inputmode="numeric" data-rupiah placeholder="Rp 0 (opsional)" value="'+esc(formatRupiah(motor?.sale_price??''))+'"></label>'+
-    '<label class="span2">Upload foto motor<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · bisa diganti saat edit.</div>'+
+    '<label class="span2">Upload foto motor<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · otomatis dihapus setelah 30 hari.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(motor?.notes||'')+'</textarea></label></div>':
     '<div class="form-grid"><label class="span2">Motor pemilik part *<select name="motorcycle_id" required>'+motors.map(m=>'<option value="'+esc(m.id)+'" '+(m.id===(part?.motorcycle_id||selectedId)?'selected':'')+'>'+esc(m.name)+'</option>').join('')+'</select></label>'+
     '<label class="span2">Nama sparepart *<input name="name" required maxlength="130" placeholder="Contoh: Kaliper Brembo GP4RS" value="'+esc(part?.name||'')+'"></label>'+
@@ -169,7 +169,7 @@ function openModal(type,id=null,motorId=null){
     '<label>Modal part (Rp)<input name="capital" type="text" inputmode="numeric" data-rupiah required placeholder="Rp 0" value="'+esc(formatRupiah(part?.capital??''))+'"></label>'+
     '<label>Status<select name="status"><option value="available" '+(!part||part.status==='available'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(part?.status==='sold'?'selected':'')+'>Fix Terjual</option><option value="installed" '+(part?.status==='installed'?'selected':'')+'>Terpasang</option></select></label>'+
     '<label>Harga jual part (Rp)<input name="sale_price" type="text" inputmode="numeric" data-rupiah placeholder="Rp 0 (opsional)" value="'+esc(formatRupiah(part?.sale_price??''))+'"></label>'+
-    '<label class="span2">Upload foto part<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · bisa diganti saat edit.</div>'+
+    '<label class="span2">Upload foto part<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · otomatis dihapus setelah 30 hari.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(part?.notes||'')+'</textarea></label></div>';
   $('formFields').insertAdjacentHTML('beforeend','<div class="form-photo-preview" id="photoPreview" hidden></div>');
   $('modalBackdrop').hidden=false;$('editorForm').reset();releasePreview();
