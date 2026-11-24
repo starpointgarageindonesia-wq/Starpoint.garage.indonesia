@@ -1,4 +1,5 @@
 import { createMotorPartsEditor } from './partshop-inline.js?v=20261124-parts1';
+import { formatRupiah, parseRupiah, bindRupiahInputs } from './partshop-currency.js?v=20261124-rupiah1';
 const API_ENDPOINT='https://msvdxyicostwztisvbvl.supabase.co/functions/v1/second-partshop-api';
 const PUBLIC_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
 const SESSION_NAME='second-partshop-session';
@@ -22,7 +23,7 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt
 const rupiah=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0});
 const money=n=>rupiah.format(Number(n)||0);
 let motors=[],parts=[],selectedId=null,filter='all',query='',selectedYear='',modalType='',editingId=null,photoCache=new Map(),previewUrl=null;
-const inlineParts=createMotorPartsEditor();
+const inlineParts=createMotorPartsEditor({bindRupiahInputs,parseRupiah});
 let toastTimer;
 function toast(message){const t=$('toast');t.textContent=message;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),3800)}
 function errText(error){return error?.message||String(error||'Terjadi kesalahan')}
@@ -147,26 +148,26 @@ function openModal(type,id=null,motorId=null){
   if(type==='part'&&motorId)selectedId=motorId;
   const data=type==='motor'?motor:part;
   $('modalTitle').textContent=(id?'Edit ':'Tambah ')+(type==='motor'?'Motor':'Part Motor');
-  const yearNow=new Date().getFullYear();
   $('formFields').innerHTML=type==='motor'?'<div class="form-grid">'+
     '<label class="span2">Nama motor *<input name="name" required maxlength="120" placeholder="Contoh: Kawasaki ZX-25RR 2025" value="'+esc(motor?.name||'')+'"></label>'+
-    '<label>Tahun<input name="model_year" type="number" min="1950" max="2100" value="'+esc(motor?.model_year||yearNow)+'"></label>'+
-    '<label>Modal beli motor (Rp)<input name="capital" type="number" required min="0" step="1" value="'+esc(motor?.capital??0)+'"></label>'+
+    '<label>Tahun<input name="model_year" type="number" min="1950" max="2100" placeholder="Isi tahun" value="'+esc(motor?.model_year??'')+'"></label>'+
+    '<label>Modal beli motor (Rp)<input name="capital" type="text" inputmode="numeric" data-rupiah required placeholder="Rp 0" value="'+esc(formatRupiah(motor?.capital??''))+'"></label>'+
     '<label>Status<select name="status"><option value="available" '+(motor?.status!=='sold'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(motor?.status==='sold'?'selected':'')+'>Fix Terjual</option></select></label>'+
-    '<label>Harga terjual motor (Rp)<input name="sale_price" type="number" min="0" step="1" placeholder="Opsional" value="'+esc(motor?.sale_price??'')+'"></label>'+
+    '<label>Harga terjual motor (Rp)<input name="sale_price" type="text" inputmode="numeric" data-rupiah placeholder="Rp 0 (opsional)" value="'+esc(formatRupiah(motor?.sale_price??''))+'"></label>'+
     '<label class="span2">Upload foto motor<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · bisa diganti saat edit.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(motor?.notes||'')+'</textarea></label></div>':
     '<div class="form-grid"><label class="span2">Motor pemilik part *<select name="motorcycle_id" required>'+motors.map(m=>'<option value="'+esc(m.id)+'" '+(m.id===(part?.motorcycle_id||selectedId)?'selected':'')+'>'+esc(m.name)+'</option>').join('')+'</select></label>'+
     '<label class="span2">Nama sparepart *<input name="name" required maxlength="130" placeholder="Contoh: Kaliper Brembo GP4RS" value="'+esc(part?.name||'')+'"></label>'+
     '<label>Kondisi<select name="condition"><option value="Bekas" '+(part?.condition!=='Baru'?'selected':'')+'>Bekas</option><option value="Baru" '+(part?.condition==='Baru'?'selected':'')+'>Baru</option></select></label>'+
-    '<label>Modal part (Rp)<input name="capital" type="number" required min="0" step="1" value="'+esc(part?.capital??0)+'"></label>'+
+    '<label>Modal part (Rp)<input name="capital" type="text" inputmode="numeric" data-rupiah required placeholder="Rp 0" value="'+esc(formatRupiah(part?.capital??''))+'"></label>'+
     '<label>Status<select name="status"><option value="available" '+(!part||part.status==='available'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(part?.status==='sold'?'selected':'')+'>Fix Terjual</option><option value="installed" '+(part?.status==='installed'?'selected':'')+'>Terpasang</option></select></label>'+
-    '<label>Harga jual part (Rp)<input name="sale_price" type="number" min="0" step="1" placeholder="Opsional" value="'+esc(part?.sale_price??'')+'"></label>'+
+    '<label>Harga jual part (Rp)<input name="sale_price" type="text" inputmode="numeric" data-rupiah placeholder="Rp 0 (opsional)" value="'+esc(formatRupiah(part?.sale_price??''))+'"></label>'+
     '<label class="span2">Upload foto part<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · bisa diganti saat edit.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(part?.notes||'')+'</textarea></label></div>';
   $('formFields').insertAdjacentHTML('beforeend','<div class="form-photo-preview" id="photoPreview" hidden></div>');
   $('modalBackdrop').hidden=false;$('editorForm').reset();releasePreview();
   if(type==='motor')inlineParts.mount($('formFields'),motor,parts,money);
+  bindRupiahInputs($('editorForm'));
   const inp=$('editorForm').querySelector('input[name="photo"]');
   inp.addEventListener('change',()=>{
     releasePreview();const file=inp.files?.[0],out=$('photoPreview');
@@ -206,7 +207,7 @@ async function submitForm(ev){
     const f=new FormData(ev.target);const type=modalType;
     const photo=ev.target.querySelector('input[name="photo"]').files?.[0];
     if(photo&&(photo.size>8388608||!['image/jpeg','image/png','image/webp'].includes(photo.type)))throw Error('Foto harus JPG/PNG/WebP dengan ukuran maksimal 8 MB.');
-    const payload={name:String(f.get('name')||'').trim(),capital:Number(f.get('capital')||0),sale_price:f.get('sale_price')!==''?Number(f.get('sale_price')):null,status:String(f.get('status')),notes:String(f.get('notes')||'').trim(),updated_at:new Date().toISOString()};
+    const payload={name:String(f.get('name')||'').trim(),capital:parseRupiah(f.get('capital'),{required:true}),sale_price:parseRupiah(f.get('sale_price')),status:String(f.get('status')),notes:String(f.get('notes')||'').trim(),updated_at:new Date().toISOString()};
     if(!payload.name)throw Error('Nama tidak boleh kosong.');
     if(!Number.isFinite(payload.capital)||payload.capital<0)throw Error('Modal harus bernilai nol atau lebih.');
     if(payload.sale_price!==null&&(!Number.isFinite(payload.sale_price)||payload.sale_price<0))throw Error('Harga jual tidak valid.');
