@@ -1,4 +1,4 @@
-import { createMotorPartsEditor } from './partshop-inline.js?v=20261124-rupiah1';
+import { createMotorPartsEditor } from './partshop-inline.js?v=20261124-photo30d';
 import { formatRupiah, parseRupiah, bindRupiahInputs } from './partshop-currency.js?v=20261124-rupiah1';
 const API_ENDPOINT='https://msvdxyicostwztisvbvl.supabase.co/functions/v1/second-partshop-api';
 const PUBLIC_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
