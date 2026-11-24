@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const rupiah=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0});
 const money=n=>rupiah.format(Number(n)||0);
-let motors=[],parts=[],selectedId=null,filter='all',query='',selectedYear='',modalType='',editingId=null,photoCache=new Map();
+let motors=[],parts=[],selectedId=null,filter='all',query='',selectedYear='',modalType='',editingId=null,photoCache=new Map(),previewUrl=null;
 let toastTimer;
 function toast(message){const t=$('toast');t.textContent=message;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),3800)}
 function errText(error){return error?.message||String(error||'Terjadi kesalahan')}
@@ -44,6 +44,7 @@ async function hydratePhotos(){
   }
 }
 function render(){
+  document.body.dataset.view=filter;
   const sold=motors.filter(m=>m.status==='sold').length;
   const capital=motors.reduce((sum,m)=>sum+Number(m.capital||0),0)+parts.reduce((sum,p)=>sum+Number(p.capital||0),0);
   $('statTotal').textContent=motors.length;
@@ -82,7 +83,7 @@ function render(){
     $('detailTitle').textContent='Laporan';
     const sales=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.sale_price||0),0)+parts.filter(p=>p.status==='sold').reduce((a,p)=>a+Number(p.sale_price||0),0);
     const soldCapital=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.capital||0),0)+parts.filter(p=>p.status==='sold').reduce((a,p)=>a+Number(p.capital||0),0);
-    $('motorDetail').innerHTML='<div class="report-grid"><div class="report-box"><small>Total Modal Tercatat</small><strong>'+money(capital)+'</strong></div><div class="report-box"><small>Total Penjualan Tercatat</small><strong>'+money(sales)+'</strong></div><div class="report-box"><small>Selisih Penjualan - Modal Item Terjual</small><strong>'+money(sales-soldCapital)+'</strong></div><div class="report-box"><small>Motor / Part Terjual</small><strong>'+sold+' motor · '+parts.filter(p=>p.status==='sold').length+' part</strong></div><p class="report-note">Ringkasan ini mengikuti harga jual yang dicatat. Jangan menghitung part dua kali apabila modalnya sudah termasuk dalam modal motor.</p></div>';return;
+    $('motorDetail').innerHTML='<div class="report-controls"><button class="btn primary small" data-action="exportCSV">↓ Ekspor Data (CSV)</button></div><div class="report-grid"><div class="report-box"><small>Total Modal Tercatat</small><strong>'+money(capital)+'</strong></div><div class="report-box"><small>Total Penjualan Tercatat</small><strong>'+money(sales)+'</strong></div><div class="report-box"><small>Selisih Penjualan - Modal Item Terjual</small><strong>'+money(sales-soldCapital)+'</strong></div><div class="report-box"><small>Motor / Part Terjual</small><strong>'+sold+' motor · '+parts.filter(p=>p.status==='sold').length+' part</strong></div><p class="report-note">Ringkasan ini mengikuti harga jual yang dicatat. Jangan menghitung part dua kali apabila modalnya sudah termasuk dalam modal motor.</p></div>';return;
   }
   if(filter==='parts'){
     $('detailTitle').textContent='Daftar Semua Part';
@@ -121,6 +122,8 @@ function openModal(type,id=null,motorId=null){
   modalType=type;editingId=id;
   const motor=type==='motor'?motors.find(x=>x.id===id):null;
   const part=type==='part'?parts.find(x=>x.id===id):null;
+  if(type==='part'&&!motors.length){toast('Tambahkan motor terlebih dahulu sebelum memasukkan sparepart.');return}
+  if(type==='part'&&part)selectedId=part.motorcycle_id;
   if(type==='part'&&motorId)selectedId=motorId;
   const data=type==='motor'?motor:part;
   $('modalTitle').textContent=(id?'Edit ':'Tambah ')+(type==='motor'?'Motor':'Part Motor');
@@ -133,19 +136,31 @@ function openModal(type,id=null,motorId=null){
     '<label>Harga terjual motor (Rp)<input name="sale_price" type="number" min="0" step="1" placeholder="Opsional" value="'+esc(motor?.sale_price??'')+'"></label>'+
     '<label class="span2">Upload foto motor<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · bisa diganti saat edit.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(motor?.notes||'')+'</textarea></label></div>':
-    '<div class="form-grid"><label class="span2">Nama sparepart *<input name="name" required maxlength="130" placeholder="Contoh: Kaliper Brembo GP4RS" value="'+esc(part?.name||'')+'"></label>'+
+    '<div class="form-grid"><label class="span2">Motor pemilik part *<select name="motorcycle_id" required>'+motors.map(m=>'<option value="'+esc(m.id)+'" '+(m.id===(part?.motorcycle_id||selectedId)?'selected':'')+'>'+esc(m.name)+'</option>').join('')+'</select></label>'+
+    '<label class="span2">Nama sparepart *<input name="name" required maxlength="130" placeholder="Contoh: Kaliper Brembo GP4RS" value="'+esc(part?.name||'')+'"></label>'+
     '<label>Kondisi<select name="condition"><option value="Bekas" '+(part?.condition!=='Baru'?'selected':'')+'>Bekas</option><option value="Baru" '+(part?.condition==='Baru'?'selected':'')+'>Baru</option></select></label>'+
     '<label>Modal part (Rp)<input name="capital" type="number" required min="0" step="1" value="'+esc(part?.capital??0)+'"></label>'+
     '<label>Status<select name="status"><option value="available" '+(!part||part.status==='available'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(part?.status==='sold'?'selected':'')+'>Terjual</option><option value="installed" '+(part?.status==='installed'?'selected':'')+'>Terpasang</option></select></label>'+
     '<label>Harga terjual part (Rp)<input name="sale_price" type="number" min="0" step="1" placeholder="Opsional" value="'+esc(part?.sale_price??'')+'"></label>'+
     '<label class="span2">Upload foto part<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · bisa diganti saat edit.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(part?.notes||'')+'</textarea></label></div>';
-  $('modalBackdrop').hidden=false;
-  $('editorForm').reset();
-  // Reset can revert dropdown and input defaults correctly to the rendered values.
+  $('formFields').insertAdjacentHTML('beforeend','<div class="form-photo-preview" id="photoPreview" hidden></div>');
+  $('modalBackdrop').hidden=false;$('editorForm').reset();releasePreview();
+  const inp=$('editorForm').querySelector('input[name="photo"]');
+  inp.addEventListener('change',()=>{
+    releasePreview();const file=inp.files?.[0],out=$('photoPreview');
+    if(!file){out.hidden=true;out.innerHTML='';return}
+    if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>8388608){
+      inp.value='';out.hidden=true;toast('Pilih foto JPG, PNG, atau WebP maksimal 8 MB.');return;
+    }
+    previewUrl=URL.createObjectURL(file);
+    out.innerHTML='<img src="'+previewUrl+'" alt="Pratinjau foto"><div><strong>Pratinjau foto</strong><small>'+esc(file.name)+' · '+(file.size/1048576).toFixed(2)+' MB</small></div>';
+    out.hidden=false;
+  });
   $('editorForm').querySelector('[name="name"]').focus();
 }
-function closeModal(){$('modalBackdrop').hidden=true;editingId=null}
+function releasePreview(){if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl=null}}
+function closeModal(){releasePreview();$('modalBackdrop').hidden=true;editingId=null}
 async function uploadPhoto(file,kind,id){
   if(!file)return null;
   if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw Error('Format harus JPG, PNG, atau WebP.');
@@ -171,7 +186,8 @@ async function submitForm(ev){
       if(editingId)oldPath=motors.find(x=>x.id===editingId)?.photo_path;
     }else{
       table='partshop_parts';payload.condition=String(f.get('condition'));
-      if(!editingId)payload.motorcycle_id=selectedId;
+      payload.motorcycle_id=String(f.get('motorcycle_id')||selectedId||'');
+      if(!motors.some(m=>m.id===payload.motorcycle_id))throw Error('Pilih motor pemilik sparepart.');
       if(editingId)oldPath=parts.find(x=>x.id===editingId)?.photo_path;
     }
     let result;
@@ -180,6 +196,7 @@ async function submitForm(ev){
     if(result.error)throw result.error;
     const id=result.data.id;
     if(type==='motor')selectedId=id;
+    if(type==='part')selectedId=payload.motorcycle_id;
     let uploadIssue=null;
     if(photo){
       try{
@@ -207,6 +224,20 @@ async function deleteRecord(kind,id){
   if(isMotor)selectedId=null;
   await loadData();toast('Data dihapus.');
 }
+function exportInventoryCSV(){
+  const rows=[['Jenis','Motor','Tahun','Nama Item','Kondisi','Modal (Rp)','Harga Jual (Rp)','Status','Catatan']];
+  for(const m of motors){
+    rows.push(['Motor',m.name,m.model_year||'',m.name,'',m.capital??0,m.sale_price??'',m.status==='sold'?'Terjual':'Belum Terjual',m.notes||'']);
+    for(const p of parts.filter(x=>x.motorcycle_id===m.id)){
+      rows.push(['Part',m.name,m.model_year||'',p.name,p.condition||'',p.capital??0,p.sale_price??'',({sold:'Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||p.status),p.notes||'']);
+    }
+  }
+  const csv='\uFEFFsep=;\r\n'+rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');
+  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+  const a=document.createElement('a');a.href=url;a.download='starpoint-second-partshop-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  toast('Data inventaris berhasil diekspor ke CSV.');
+}
 async function handleAction(el){
   const action=el.dataset.action,id=el.dataset.id;
   if(action==='editMotor')openModal('motor',id);
@@ -214,6 +245,7 @@ async function handleAction(el){
   if(action==='editPart')openModal('part',id);
   if(action==='deleteMotor')await deleteRecord('motor',id);
   if(action==='deletePart')await deleteRecord('part',id);
+  if(action==='exportCSV')exportInventoryCSV();
 }
 $('loginForm').addEventListener('submit',async ev=>{
   ev.preventDefault();$('loginButton').disabled=true;$('loginError').textContent='';
