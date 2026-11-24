@@ -40,7 +40,7 @@
       <div class="sidebar-bottom"><span id="accountText">Akses owner</span><button id="logoutButton" class="logout">Keluar</button></div>
     </aside>
     <div class="main-area">
-      <header class="topbar"><div class="heading"><img class="header-logo" src="/assets/starpoint-official.svg" alt="Starpoint Garage"><span class="header-caption">SECOND PARTSHOP</span></div><div class="top-actions"><input id="searchBox" type="search" placeholder="Cari nama motor atau tahun..." aria-label="Cari motor"><button id="addMotor" class="btn primary">+ Tambah Motor</button><button id="logoutTop" type="button" class="btn outline small">Keluar</button></div></header>
+      <header class="topbar"><div class="top-actions"><input id="searchBox" type="search" placeholder="Cari nama motor atau tahun..." aria-label="Cari motor"><button id="addMotor" class="btn primary">+ Tambah Motor</button><button id="logoutTop" type="button" class="btn outline small">Keluar</button></div></header>
       <main class="content">
         <div class="stat-grid">
           <article class="stat"><span class="stat-symbol symbol-bike"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M8 17h5l3-7h3l2 4M5 17l4-9h4l3 9M12 7H9M16 7h3"/></svg></span><span class="stat-label">MOTOR BELUM TERJUAL</span><strong id="statTotal">0</strong><small>Stok motor aktif</small></article>
@@ -49,7 +49,7 @@
           <article class="stat"><span class="stat-symbol symbol-money"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7.5" ry="3.5"/><path d="M4.5 6v5c0 2 3.4 3.5 7.5 3.5s7.5-1.5 7.5-3.5V6M4.5 11v5c0 2 3.4 3.5 7.5 3.5s7.5-1.5 7.5-3.5v-5"/></svg></span><span class="stat-label">MODAL STOK AKTIF</span><strong class="currency" id="statCapital">Rp 0</strong><small>Motor dan part belum terjual</small></article>
         </div>
         <div class="dashboard-grid">
-          <section class="panel motor-panel"><div class="section-head"><div><small id="listEyebrow">STOK AKTIF</small><h2 id="listTitle">Motor Belum Terjual</h2></div><button id="addMotorMobile" class="btn outline small">+ Motor</button></div>
+          <section class="panel motor-panel"><div class="section-head"><div><small id="listEyebrow">STOK AKTIF</small><h2 id="listTitle">Motor Belum Terjual</h2></div></div>
             <div class="filter-bar"><span class="pill selected"><span id="scopeLabel">Belum Terjual</span> (<span id="filterAll">0</span>)</span><select id="yearFilter" class="year-filter" aria-label="Filter tahun"><option value="">Semua Tahun</option></select></div>
             <div class="motor-table-header"><span>Motor</span><span>Tahun</span><span>Modal</span><span>Status</span><span>Part</span><span>Aksi</span></div><div id="motorList" class="motor-list"><div class="empty">Belum ada data motor.</div></div>
           </section>
@@ -61,6 +61,6 @@
   </div>
   <div id="modalBackdrop" class="modal-backdrop" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><h2 id="modalTitle">Tambah Motor</h2><button class="close-btn" id="closeModal" aria-label="Tutup">×</button></div><form id="editorForm"><div id="formFields"></div><div class="modal-actions"><button type="button" id="cancelModal" class="btn outline">Batal</button><button type="submit" id="saveButton" class="btn primary">Simpan</button></div></form></section></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script type="module" src="/partshop.js?v=20261124-archive1"></script>
+  <script type="module" src="/partshop.js?v=20261124-cleanheader1"></script>
 </body>
 </html>
