@@ -1,0 +1,45 @@
+
+/* Additional part editor inside Tambah / Edit Motor */
+.modal{width:min(95vw,680px)}
+.modal-header{position:sticky;top:0;z-index:5;background:#fff}
+.modal-actions{position:sticky;bottom:0;z-index:5;background:#fff;border-top:1px solid #e4e5e9;padding-top:15px}
+.inline-parts-section{border-top:1px solid #e1e3e8;margin:17px 22px 8px;padding:20px 0 8px;color:#1b1c20}
+.inline-parts-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px;flex-wrap:wrap}
+.inline-parts-heading h3{margin:0;font-family:'Barlow Condensed',Inter,sans-serif;font-size:23px;font-weight:850;letter-spacing:-.025em}
+.inline-parts-heading p{margin:5px 0 0;color:#737781;font-size:11px;line-height:1.6}
+.inline-parts-heading .btn{flex:none}
+.inline-part-rows{display:flex;flex-direction:column;gap:10px}
+.inline-part-card{background:#f7f8fa;border:1px solid #d7d9df;border-radius:10px;padding:13px;min-width:0}
+.inline-part-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;gap:10px}
+.inline-part-top strong{font-size:13px;color:#191b1e}
+.inline-part-remove{background:#fff;color:#b51d2c;border:1px solid #e9c6cd;border-radius:6px;font-size:11px;font-weight:650;padding:7px 12px;cursor:pointer}
+.inline-part-remove:disabled{color:#969ba4;background:#f1f2f4;border-color:#d7d9dd;cursor:default}
+.inline-part-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:11px;row-gap:6px}
+.inline-part-fields .span2{grid-column:1/-1}
+.inline-part-fields label{display:block;font-size:11px;font-weight:700;line-height:1.5;color:#393c44;margin-bottom:7px;min-width:0}
+.inline-part-fields input,.inline-part-fields select{display:block;width:100%;min-width:0;font-size:13px;margin-top:6px;padding:11px 12px;border:1px solid #cfd3dc;background:#fff;color:#17191c;border-radius:7px;min-height:42px}
+.inline-part-fields input[type="file"]{font-size:11px;padding:9px}
+.inline-part-fields input:focus-visible,.inline-part-fields select:focus-visible{outline:2px solid #dc192c;outline-offset:1px}
+.inline-part-preview{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e2e7;border-radius:8px;padding:7px;margin-top:7px}
+.inline-part-preview[hidden]{display:none}
+.inline-part-preview img{width:82px;height:64px;object-fit:contain;border-radius:5px;background:#eef0f3}
+.inline-part-preview small{font-size:11px;color:#5c616b;overflow-wrap:anywhere}
+.inline-existing{padding:11px 12px;border:1px solid #e3e4e8;border-radius:9px;background:#fafafa;margin-bottom:11px}
+.inline-existing>strong{display:block;font-size:12px;margin-bottom:7px;color:#3a3d43}
+.inline-existing-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;border-top:1px solid #e7e8eb;padding:8px 0;font-size:11px}
+.inline-existing-row span:first-child{flex:1;min-width:110px;font-weight:650}
+.inline-existing-row .status{font-size:10px}
+.inline-parts-error{padding:10px 12px;border:1px solid #e8b4bd;border-radius:8px;background:#fff1f2;color:#a31425;font-size:12px;line-height:1.6;margin:11px 0}
+.inline-parts-error[hidden]{display:none}
+@media(max-width:540px){
+ .modal{width:100%;max-height:92dvh}
+ .modal-header{padding:15px 16px}
+ .form-grid{padding:16px 16px 0;column-gap:9px}
+ .inline-parts-section{margin:13px 16px 5px;padding-top:16px}
+ .inline-parts-heading h3{font-size:21px}
+ .inline-parts-heading p{font-size:10px}
+ .inline-part-card{padding:10px}
+ .inline-part-fields{column-gap:9px}
+ .inline-part-fields input,.inline-part-fields select{font-size:12px;padding:9px;min-height:40px}
+ .modal-actions{padding:13px 16px}
+}
