@@ -1,8 +1,21 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.1/+esm';
-
-const db = createClient('https://msvdxyicostwztisvbvl.supabase.co','sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk', { auth:{autoRefreshToken:true,persistSession:true} });
-const BUCKET='starpoint-partshop-private';
-const PARTSHOP_EMAIL='starpointgarageindonesia+partshop@gmail.com';
+const API_ENDPOINT='https://msvdxyicostwztisvbvl.supabase.co/functions/v1/second-partshop-api';
+const PUBLIC_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
+const SESSION_NAME='second-partshop-session';
+let sessionToken=sessionStorage.getItem(SESSION_NAME)||'';
+async function api(action,data={}){
+  const res=await fetch(API_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':PUBLIC_KEY,...(sessionToken?{'Authorization':'Bearer '+sessionToken}:{})},
+    body:JSON.stringify({action,...data}),
+    cache:'no-store'
+  });
+  const json=await res.json().catch(()=>({error:'Gagal membaca respons server.'}));
+  if(res.status===401 && action!=='login'){
+    sessionToken='';sessionStorage.removeItem(SESSION_NAME);displayLogin('Sesi berakhir. Silakan masuk kembali.');
+  }
+  if(!res.ok)throw Error(json.error||'Permintaan gagal.');
+  return json;
+}
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const rupiah=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0});
@@ -13,29 +26,17 @@ function toast(message){const t=$('toast');t.textContent=message;t.classList.add
 function errText(error){return error?.message||String(error||'Terjadi kesalahan')}
 function displayLogin(message=''){$('appView').hidden=true;$('loginView').hidden=false;$('loginError').textContent=message}
 async function enterApp(){
-  const {data:{user},error}=await db.auth.getUser();
-  if(error||!user){displayLogin();return}
-  let access=await db.from('partshop_access').select('role,active').eq('user_id',user.id).maybeSingle();
-  if((!access.data?.active||access.data.role!=='owner')&&user.email?.toLowerCase()===PARTSHOP_EMAIL){
-    const result=await db.rpc('partshop_claim_access');
-    if(!result.error&&result.data===true){
-      access=await db.from('partshop_access').select('role,active').eq('user_id',user.id).maybeSingle();
-    }
-  }
-  if(access.error||!access.data?.active||access.data.role!=='owner'){
-    await db.auth.signOut();displayLogin('Akun belum mendapat izin Second Partshop. Pastikan konfirmasi email sudah selesai.');return;
-  }
-  $('loginView').hidden=true;$('appView').hidden=false;$('accountText').textContent=user.email?.startsWith('starpointpart@')?'starpointpart':(user.email||'Owner');
+  if(!sessionToken){displayLogin();return}
   await loadData();
+  $('loginView').hidden=true;
+  $('appView').hidden=false;
+  $('accountText').textContent='starpointpart';
 }
 async function loadData(){
-  const [m,p]=await Promise.all([
-    db.from('partshop_motorcycles').select('*').order('created_at',{ascending:false}),
-    db.from('partshop_parts').select('*').order('created_at',{ascending:false})
-  ]);
-  if(m.error||p.error){toast('Gagal membaca data: '+errText(m.error||p.error));return}
-  motors=m.data||[];parts=p.data||[];
-  if(!motors.find(m=>m.id===selectedId))selectedId=motors[0]?.id||null;
+  const data=await api('load');
+  motors=data.motors||[];
+  parts=data.parts||[];
+  if(!motors.some(m=>m.id===selectedId))selectedId=motors[0]?.id||null;
   render();
 }
 function photoElement(path,extra=''){
@@ -44,10 +45,12 @@ function photoElement(path,extra=''){
 async function hydratePhotos(){
   for(const element of document.querySelectorAll('[data-photo]')){
     const path=element.getAttribute('data-photo');if(!path)continue;
-    const cache=photoCache.get(path);
-    if(cache&&Date.now()<cache.expires){element.innerHTML='<img alt="Foto produk" src="'+esc(cache.url)+'">';continue}
-    const res=await db.storage.from(BUCKET).createSignedUrl(path,1800);
-    if(!res.error&&res.data?.signedUrl){const url=res.data.signedUrl;photoCache.set(path,{url,expires:Date.now()+1500000});if(element.isConnected)element.innerHTML='<img alt="Foto produk" src="'+esc(url)+'">'}
+    const cached=photoCache.get(path);
+    if(cached && Date.now()<cached.expires){element.innerHTML='<img alt="Foto produk" src="'+esc(cached.url)+'">';continue}
+    try{
+      const res=await api('photo',{path});
+      if(res.url){photoCache.set(path,{url:res.url,expires:Date.now()+1500000});if(element.isConnected)element.innerHTML='<img alt="Foto produk" src="'+esc(res.url)+'">'}
+    }catch(e){if(!sessionToken)return}
   }
 }
 function render(){
@@ -175,15 +178,22 @@ function openModal(type,id=null,motorId=null){
 }
 function releasePreview(){if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl=null}}
 function closeModal(){releasePreview();$('modalBackdrop').hidden=true;editingId=null}
-async function uploadPhoto(file,kind,id){
+async function uploadPhoto(file,type,id){
   if(!file)return null;
-  if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw Error('Format harus JPG, PNG, atau WebP.');
-  if(file.size>8388608)throw Error('Ukuran foto maksimal 8 MB.');
-  const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';
-  const path=kind+'/'+id+'/'+crypto.randomUUID()+'.'+ext;
-  const {error}=await db.storage.from(BUCKET).upload(path,file,{contentType:file.type,upsert:false});
-  if(error)throw error;
-  return path;
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>8388608)throw Error('Foto harus JPG, PNG, atau WebP maksimal 8MB.');
+  const form=new FormData();
+  form.append('type',type);
+  form.append('id',id);
+  form.append('file',file);
+  const response=await fetch(API_ENDPOINT,{
+    method:'POST',
+    headers:{'apikey':PUBLIC_KEY,'Authorization':'Bearer '+sessionToken},
+    body:form,
+    cache:'no-store'
+  });
+  const data=await response.json().catch(()=>({error:'Upload gagal'}));
+  if(!response.ok)throw Error(data.error||'Gagal mengunggah foto');
+  return data.path;
 }
 async function submitForm(ev){
   ev.preventDefault();
@@ -197,31 +207,21 @@ async function submitForm(ev){
     if(!Number.isFinite(payload.capital)||payload.capital<0)throw Error('Modal harus bernilai nol atau lebih.');
     if(payload.sale_price!==null&&(!Number.isFinite(payload.sale_price)||payload.sale_price<0))throw Error('Harga jual tidak valid.');
     if(payload.status==='sold'&&(!payload.sale_price||payload.sale_price<=0))throw Error('Isi harga jual sebelum menandai terjual.');
-    let table,oldPath;
     if(type==='motor'){
-      table='partshop_motorcycles';payload.model_year=f.get('model_year')?Number(f.get('model_year')):null;
-      if(editingId)oldPath=motors.find(x=>x.id===editingId)?.photo_path;
+      payload.model_year=f.get('model_year')?Number(f.get('model_year')):null;
     }else{
-      table='partshop_parts';payload.condition=String(f.get('condition'));
+      payload.condition=String(f.get('condition'));
       payload.motorcycle_id=String(f.get('motorcycle_id')||selectedId||'');
       if(!motors.some(m=>m.id===payload.motorcycle_id))throw Error('Pilih motor pemilik sparepart.');
-      if(editingId)oldPath=parts.find(x=>x.id===editingId)?.photo_path;
     }
-    let result;
-    if(editingId)result=await db.from(table).update(payload).eq('id',editingId).select('id').single();
-    else result=await db.from(table).insert(payload).select('id').single();
-    if(result.error)throw result.error;
-    const id=result.data.id;
+    const saved=await api('save',{type,id:editingId||null,payload});
+    const id=saved.id;
     if(type==='motor')selectedId=id;
-    if(type==='part')selectedId=payload.motorcycle_id;
+    else selectedId=payload.motorcycle_id;
     let uploadIssue=null;
     if(photo){
-      try{
-        const path=await uploadPhoto(photo,type==='motor'?'motors':'parts',id);
-        const up=await db.from(table).update({photo_path:path}).eq('id',id);
-        if(up.error)throw up.error;
-        if(oldPath)await db.storage.from(BUCKET).remove([oldPath]);
-      }catch(e){uploadIssue=errText(e)}
+      try{await uploadPhoto(photo,type,id)}
+      catch(e){uploadIssue=errText(e)}
     }
     closeModal();await loadData();toast(uploadIssue?'Data tersimpan, tetapi foto gagal: '+uploadIssue:'Data berhasil disimpan.');
   }catch(e){toast('Gagal menyimpan: '+errText(e))}
@@ -233,11 +233,8 @@ async function deleteRecord(kind,id){
   if(!record)return;
   const prompt=isMotor?'Hapus motor "'+record.name+'" BESERTA seluruh daftar part di dalamnya?':'Hapus part "'+record.name+'"?';
   if(!confirm(prompt))return;
-  const table=isMotor?'partshop_motorcycles':'partshop_parts';
-  const {error}=await db.from(table).delete().eq('id',id);
-  if(error){toast('Gagal menghapus: '+errText(error));return}
-  const paths=isMotor?[record.photo_path,...parts.filter(p=>p.motorcycle_id===id).map(p=>p.photo_path)].filter(Boolean):[record.photo_path].filter(Boolean);
-  if(paths.length)await db.storage.from(BUCKET).remove(paths);
+  try{await api('delete',{type:kind,id})}
+  catch(e){toast('Gagal menghapus: '+errText(e));return}
   if(isMotor)selectedId=null;
   await loadData();toast('Data dihapus.');
 }
@@ -265,17 +262,22 @@ async function handleAction(el){
   if(action==='exportCSV')exportInventoryCSV();
 }
 $('loginForm').addEventListener('submit',async ev=>{
-  ev.preventDefault();$('loginButton').disabled=true;$('loginError').textContent='';
-  const username=$('loginUsername').value.trim().toLowerCase(),password=$('loginPassword').value;
-  const email=username==='starpointpart'?PARTSHOP_EMAIL:(username==='starpointgarage'?'starpointgarageindonesia@gmail.com':(username.includes('@')?username:null));
-  if(!email){$('loginError').textContent='Username tidak dikenal.';$('loginButton').disabled=false;return}
-  const {error}=await db.auth.signInWithPassword({email,password});
-  if(error)$('loginError').textContent='Username atau kata sandi tidak cocok.';
-  else await enterApp();
-  $('loginButton').disabled=false;
+  ev.preventDefault();
+  $('loginButton').disabled=true;
+  $('loginError').textContent='';
+  try{
+    const username=$('loginUsername').value.trim().toLowerCase();
+    const password=$('loginPassword').value;
+    const data=await api('login',{username,password});
+    sessionToken=data.token;
+    sessionStorage.setItem(SESSION_NAME,sessionToken);
+    $('loginPassword').value='';
+    await enterApp();
+  }catch(e){$('loginError').textContent=errText(e)}
+  finally{$('loginButton').disabled=false}
 });
 $('togglePassword').onclick=()=>{const pass=$('loginPassword');pass.type=pass.type==='password'?'text':'password';$('togglePassword').textContent=pass.type==='password'?'Lihat':'Sembunyikan'};
-const signOut=async()=>{await db.auth.signOut();$('loginPassword').value='';displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
+const signOut=async()=>{try{await api('logout')}catch{}sessionToken='';sessionStorage.removeItem(SESSION_NAME);$('loginPassword').value='';displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
 $('addMotor').onclick=()=>openModal('motor');$('addMotorMobile').onclick=()=>openModal('motor');
 $('searchBox').addEventListener('input',ev=>{query=ev.target.value;render()});
 $('yearFilter').addEventListener('change',ev=>{selectedYear=ev.target.value;render()});
