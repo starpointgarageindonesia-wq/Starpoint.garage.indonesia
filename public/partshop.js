@@ -45,6 +45,7 @@ async function hydratePhotos(){
 }
 function render(){
   document.body.dataset.view=filter;
+  $('searchBox').placeholder=filter==='parts'?'Cari sparepart atau nama motor...':'Cari nama motor atau tahun...';
   const sold=motors.filter(m=>m.status==='sold').length;
   const capital=motors.reduce((sum,m)=>sum+Number(m.capital||0),0)+parts.reduce((sum,p)=>sum+Number(p.capital||0),0);
   $('statTotal').textContent=motors.length;
@@ -87,7 +88,12 @@ function render(){
   }
   if(filter==='parts'){
     $('detailTitle').textContent='Daftar Semua Part';
-    $('motorDetail').innerHTML='<div class="detail-wrap"><div class="parts-title"><h3>Sparepart Tercatat ('+parts.length+')</h3><button class="btn primary small" data-action="addPart" data-id="'+esc(selectedId||'')+'" '+(!selectedId?'disabled':'')+'>+ Tambah Part</button></div><div class="parts-table">'+renderPartHead()+(parts.length?parts.map(p=>renderPartRow(p,true)).join(''):'<div class="empty">Belum ada sparepart.</div>')+'</div></div>';hydratePhotos();return;
+    const q=query.trim().toLowerCase();
+    const matchingParts=parts.filter(p=>{
+      const owner=motors.find(m=>m.id===p.motorcycle_id);
+      return !q||(p.name+' '+(owner?.name||'')+' '+(owner?.model_year||'')).toLowerCase().includes(q);
+    });
+    $('motorDetail').innerHTML='<div class="detail-wrap"><div class="parts-title"><h3>Sparepart Tercatat ('+matchingParts.length+')</h3><button class="btn primary small" data-action="addPart" data-id="'+esc(selectedId||'')+'" '+(!selectedId?'disabled':'')+'>+ Tambah Part</button></div><div class="parts-table">'+renderPartHead()+(matchingParts.length?matchingParts.map(p=>renderPartRow(p,true)).join(''):'<div class="empty">Belum ada sparepart yang sesuai pencarian.</div>')+'</div></div>';hydratePhotos();return;
   }
   $('detailTitle').textContent='Detail Motor';
   const m=motors.find(x=>x.id===selectedId);
@@ -180,6 +186,9 @@ async function submitForm(ev){
     if(photo&&(photo.size>8388608||!['image/jpeg','image/png','image/webp'].includes(photo.type)))throw Error('Foto harus JPG/PNG/WebP dengan ukuran maksimal 8 MB.');
     const payload={name:String(f.get('name')||'').trim(),capital:Number(f.get('capital')||0),sale_price:f.get('sale_price')!==''?Number(f.get('sale_price')):null,status:String(f.get('status')),notes:String(f.get('notes')||'').trim(),updated_at:new Date().toISOString()};
     if(!payload.name)throw Error('Nama tidak boleh kosong.');
+    if(!Number.isFinite(payload.capital)||payload.capital<0)throw Error('Modal harus bernilai nol atau lebih.');
+    if(payload.sale_price!==null&&(!Number.isFinite(payload.sale_price)||payload.sale_price<0))throw Error('Harga jual tidak valid.');
+    if(payload.status==='sold'&&(!payload.sale_price||payload.sale_price<=0))throw Error('Isi harga jual sebelum menandai terjual.');
     let table,oldPath;
     if(type==='motor'){
       table='partshop_motorcycles';payload.model_year=f.get('model_year')?Number(f.get('model_year')):null;
@@ -258,7 +267,7 @@ $('loginForm').addEventListener('submit',async ev=>{
   $('loginButton').disabled=false;
 });
 $('togglePassword').onclick=()=>{const pass=$('loginPassword');pass.type=pass.type==='password'?'text':'password';$('togglePassword').textContent=pass.type==='password'?'Lihat':'Sembunyikan'};
-const signOut=async()=>{await db.auth.signOut();displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
+const signOut=async()=>{await db.auth.signOut();$('loginPassword').value='';displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
 $('addMotor').onclick=()=>openModal('motor');$('addMotorMobile').onclick=()=>openModal('motor');
 $('searchBox').addEventListener('input',ev=>{query=ev.target.value;render()});
 $('yearFilter').addEventListener('change',ev=>{selectedYear=ev.target.value;render()});
