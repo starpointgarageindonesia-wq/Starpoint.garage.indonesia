@@ -232,7 +232,7 @@ function exportInventoryCSV(){
       rows.push(['Part',m.name,m.model_year||'',p.name,p.condition||'',p.capital??0,p.sale_price??'',({sold:'Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||p.status),p.notes||'']);
     }
   }
-  const csv='\uFEFFsep=;\r\n'+rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');
+  const csv='\uFEFFsep=;\r\n'+rows.map(row=>row.map(v=>{let value=String(v??'');if(/^[\s]*[=+@-]/.test(value))value="'"+value;return '"'+value.replace(/"/g,'""')+'"'}).join(';')).join('\r\n');
   const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
   const a=document.createElement('a');a.href=url;a.download='starpoint-second-partshop-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -265,11 +265,11 @@ $('yearFilter').addEventListener('change',ev=>{selectedYear=ev.target.value;rend
 $('closeModal').onclick=closeModal;$('cancelModal').onclick=closeModal;
 $('modalBackdrop').addEventListener('click',ev=>{if(ev.target===$('modalBackdrop'))closeModal()});
 $('editorForm').addEventListener('submit',submitForm);
-document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('modalBackdrop').hidden)closeModal();if(ev.key==='Enter'&&ev.target.matches('[data-open]')){selectedId=ev.target.dataset.open;render()}});
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('modalBackdrop').hidden)closeModal();if(ev.key==='Enter'&&ev.target.matches('[data-open]')){selectedId=ev.target.dataset.open;if(filter==='motor')filter='all';render()}});
 document.addEventListener('click',ev=>{
   const act=ev.target.closest('[data-action]');if(act){ev.stopPropagation();handleAction(act);return}
   const flt=ev.target.closest('[data-filter]');if(flt){filterChange(flt.dataset.filter);return}
   const nav=ev.target.closest('[data-nav]');if(nav){filterChange(nav.dataset.nav);return}
-  const row=ev.target.closest('[data-open]');if(row){selectedId=row.dataset.open;render()}
+  const row=ev.target.closest('[data-open]');if(row){selectedId=row.dataset.open;if(filter==='motor')filter='all';render()}
 });
 enterApp().catch(e=>{displayLogin('Tidak dapat terhubung: '+errText(e))});
