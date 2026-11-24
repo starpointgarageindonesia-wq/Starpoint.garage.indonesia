@@ -83,7 +83,8 @@ function render(){
   if(filter==='report'){
     $('detailTitle').textContent='Laporan';
     const sales=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.sale_price||0),0)+parts.filter(p=>p.status==='sold').reduce((a,p)=>a+Number(p.sale_price||0),0);
-    const soldCapital=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.capital||0),0)+parts.filter(p=>p.status==='sold').reduce((a,p)=>a+Number(p.capital||0),0);
+    const soldMotorIds=new Set(motors.filter(m=>m.status==='sold').map(m=>m.id));
+    const soldCapital=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.capital||0),0)+parts.filter(p=>p.status==='sold'||(p.status==='installed'&&soldMotorIds.has(p.motorcycle_id))).reduce((a,p)=>a+Number(p.capital||0),0);
     $('motorDetail').innerHTML='<div class="report-controls"><button class="btn primary small" data-action="exportCSV">↓ Ekspor Data (CSV)</button></div><div class="report-grid"><div class="report-box"><small>Total Modal Tercatat</small><strong>'+money(capital)+'</strong></div><div class="report-box"><small>Total Penjualan Tercatat</small><strong>'+money(sales)+'</strong></div><div class="report-box"><small>Selisih Penjualan - Modal Item Terjual</small><strong>'+money(sales-soldCapital)+'</strong></div><div class="report-box"><small>Motor / Part Terjual</small><strong>'+sold+' motor · '+parts.filter(p=>p.status==='sold').length+' part</strong></div><p class="report-note">Ringkasan ini mengikuti harga jual yang dicatat. Jangan menghitung part dua kali apabila modalnya sudah termasuk dalam modal motor.</p></div>';return;
   }
   if(filter==='parts'){
