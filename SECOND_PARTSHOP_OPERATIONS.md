@@ -1,25 +1,24 @@
-# Second Starpoint Partshop — Akun bersama, sistem terpisah
+# Second Starpoint Partshop: Password Terpisah, Infrastruktur Tetap Bersama
 
-## Login yang digunakan
-- Gunakan **akun Supabase Auth Owner Starpoint Garage yang sudah ada**, bukan akun baru.
-- Alias pada website Second Partshop: `starpointpart` atau `starpointgarage`, keduanya mengarah ke email owner `starpointgarageindonesia@gmail.com`.
-- Password tetap password autentikasi akun Owner Garage yang sudah berlaku. Jangan menaruh password di repository.
-- Izin akses Second Partshop berasal **hanya dari** `public.partshop_access`, tidak dari `staff_access`, `showroom_access`, atau hak akses bisnis Garage.
-- Mengubah password shared Auth akan berpengaruh ke semua aplikasi yang menggunakan akun itu; karena itu jangan ubah password dari proyek Partshop.
+## Akun Partshop
+- Username web: `starpointpart`.
+- Auth email: `starpointgarageindonesia+partshop@gmail.com` (alias Gmail yang masuk ke inbox Owner Starpoint Garage).
+- Password dibuat hanya melalui formulir aktivasi di website, **tidak disimpan di kode**.
+- Klik **Aktifkan login starpointpart** lalu konfirmasi email yang tiba di inbox owner. Supabase Auth bisa meminta pengaturan Redirect URL jika link konfirmasi mengarah ke tempat lain; cukup kembali ke website Second setelah email terverifikasi.
+- Saat login pertama kali setelah konfirmasi, fungsi `public.partshop_claim_access()` memberikan akses hanya untuk user dengan email yang cocok dan terverifikasi, menambahkan izin ke `partshop_access` saja.
+- Username `starpointgarage` tetap menggunakan identitas Auth Owner Garage yang lama bila dibutuhkan.
+- **Jangan** mengganti password identitas Owner Garage.
 
-## Isolasi yang wajib dipertahankan
-- GitHub branch `second-partshop`, bukan `main`, `showroom`, `deploy-owner-spg-2026`, atau `deploy-teknisi-spg-2026`.
-- Cloudflare Worker `second-starpoint-partshop` dengan domain `second.starpointgarage.com`.
-- Tabel khusus `public.partshop_access`, `public.partshop_motorcycles`, `public.partshop_parts`.
-- Storage bucket privat `starpoint-partshop-private`, hanya untuk foto Partshop.
-- Jangan modifikasi fungsi Edge Auth Garage, aturan keamanan global, tabel data Garage, atau deployment Garage.
+## Isolasi
+- Branch GitHub `second-partshop`.
+- Worker dan domain: `second-starpoint-partshop` / `second.starpointgarage.com`.
+- Database Partshop hanya: `public.partshop_access`, `public.partshop_motorcycles`, `public.partshop_parts`.
+- Storage foto hanya di bucket privat `starpoint-partshop-private`.
+- **Tidak** mengubah data/showroom/member/booking/sesi atau password Starpoint Garage.
 
-## Pengujian setelah perubahan
-1. Login di website Partshop dengan alias dan password akun owner Garage yang berlaku.
-2. Tambah motor, modal dan foto; cek penyimpanan ke `partshop_motorcycles`.
-3. Tambah part yang ditautkan ke motor; cek `partshop_parts` dan bucket privat.
-4. Uji edit, ubah status terjual disertai harga, filter, pencarian, laporan, dan logout.
-5. Pastikan Garage dan aplikasi lainnya masih beroperasi tanpa perubahan.
-
-## Deployment
-Cloudflare Worker production branch `second-partshop`, root `/`, deploy command `npx wrangler deploy`. Jangan merge ke main.
+## Pengujian
+1. Aktifkan akun, konfirmasi email, lalu login `starpointpart`.
+2. Tambah motor beserta foto, tambah sparepart beserta foto, edit/hapus.
+3. Cek status terjual, harga jual, filter dan CSV.
+4. Cek data hanya muncul dalam tabel dan bucket Partshop.
+5. Pastikan login Owner Garage lama tetap berjalan.
