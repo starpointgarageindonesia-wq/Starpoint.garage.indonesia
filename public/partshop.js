@@ -221,7 +221,7 @@ $('loginForm').addEventListener('submit',async ev=>{
   const email=username==='starpointpart'?'starpointpart@starpointgarage.com':(username.includes('@')?username:null);
   if(!email){$('loginError').textContent='Username tidak dikenal.';$('loginButton').disabled=false;return}
   const {error}=await db.auth.signInWithPassword({email,password});
-  if(error)$('loginError').textContent='Login gagal. Periksa email dan kata sandi.';
+  if(error)$('loginError').textContent='Login gagal. Periksa username dan kata sandi, atau pastikan akun sudah aktif.';
   else await enterApp();
   $('loginButton').disabled=false;
 });
