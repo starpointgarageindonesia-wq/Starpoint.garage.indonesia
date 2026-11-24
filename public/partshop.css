@@ -56,3 +56,10 @@ body[data-view="motor"] .row-tools{grid-column:3;grid-row:2;display:flex;flex-wr
 .side-ico svg{width:20px;height:20px;flex:none}
 .stat-symbol svg{width:31px;height:31px;display:block}
 @media(max-width:800px){.side-ico svg{width:17px;height:17px}.stat-symbol svg{width:23px;height:23px}}
+
+/* First-time Partshop owner activation */
+.login-card .login-help{font-size:11px;line-height:1.65;color:#aeb1bd;margin:12px 0 10px}
+.login-card .login-help strong{color:#fff}
+.activate-btn{width:100%;background:transparent!important;border:1px solid #4d4f59!important;color:#dadbe2!important;box-shadow:none!important;margin-top:3px}
+.activate-btn:hover{background:#252731!important}
+.activation-status{min-height:18px;color:#f2ce84!important;line-height:1.6;margin:10px 0 0!important;font-size:11px!important;overflow-wrap:anywhere}
