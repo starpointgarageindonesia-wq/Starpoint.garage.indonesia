@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const rupiah=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0});
 const money=n=>rupiah.format(Number(n)||0);
-let motors=[],parts=[],selectedId=null,filter='all',query='',modalType='',editingId=null,photoCache=new Map();
+let motors=[],parts=[],selectedId=null,filter='all',query='',selectedYear='',modalType='',editingId=null,photoCache=new Map();
 let toastTimer;
 function toast(message){const t=$('toast');t.textContent=message;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),3800)}
 function errText(error){return error?.message||String(error||'Terjadi kesalahan')}
@@ -18,7 +18,7 @@ async function enterApp(){
   if(access.error||!access.data?.active||access.data.role!=='owner'){
     await db.auth.signOut();displayLogin('Akun ini belum mendapat akses Second Partshop.');return;
   }
-  $('loginView').hidden=true;$('appView').hidden=false;$('accountText').textContent=user.email||'Owner';
+  $('loginView').hidden=true;$('appView').hidden=false;$('accountText').textContent=user.email?.startsWith('starpointpart@')?'starpointpart':(user.email||'Owner');
   await loadData();
 }
 async function loadData(){
@@ -44,39 +44,77 @@ async function hydratePhotos(){
   }
 }
 function render(){
-  const sold=motors.filter(x=>x.status==='sold').length;
-  const capital=motors.reduce((sum,x)=>sum+Number(x.capital||0),0)+parts.reduce((sum,x)=>sum+Number(x.capital||0),0);
-  $('statTotal').textContent=motors.length;$('statSold').textContent=sold;$('statAvailable').textContent=motors.length-sold;
+  const sold=motors.filter(m=>m.status==='sold').length;
+  const capital=motors.reduce((sum,m)=>sum+Number(m.capital||0),0)+parts.reduce((sum,p)=>sum+Number(p.capital||0),0);
+  $('statTotal').textContent=motors.length;
+  $('statSold').textContent=sold;
+  $('statAvailable').textContent=motors.length-sold;
   $('statCapital').textContent=money(capital);
-  $('filterAll').textContent=motors.length;$('filterAvailable').textContent=motors.length-sold;$('filterSold').textContent=sold;
-  document.querySelectorAll('[data-filter]').forEach(e=>e.classList.toggle('selected',e.dataset.filter===filter));
-  document.querySelectorAll('[data-nav]').forEach(e=>e.classList.toggle('active',e.dataset.nav===filter));
+  $('filterAll').textContent=motors.length;
+  $('filterAvailable').textContent=motors.length-sold;
+  $('filterSold').textContent=sold;
+  document.querySelectorAll('[data-filter]').forEach(el=>{
+    const effective=['parts','motor','report'].includes(filter)?'all':filter;
+    el.classList.toggle('selected',el.dataset.filter===effective);
+  });
+  document.querySelectorAll('[data-nav]').forEach(el=>el.classList.toggle('active',el.dataset.nav===filter));
+  const yearEl=$('yearFilter'), years=[...new Set(motors.map(m=>m.model_year).filter(Boolean))].sort((a,b)=>b-a);
+  if(selectedYear&&!years.includes(Number(selectedYear)))selectedYear='';
+  yearEl.innerHTML='<option value="">Semua Tahun</option>'+years.map(y=>'<option value="'+y+'" '+(String(y)===selectedYear?'selected':'')+'>'+y+'</option>').join('');
   const visible=motors.filter(m=>{
     if(filter==='sold'&&m.status!=='sold')return false;
     if(filter==='available'&&m.status!=='available')return false;
+    if(selectedYear&&String(m.model_year)!==selectedYear)return false;
     return (m.name+' '+(m.model_year||'')).toLowerCase().includes(query.toLowerCase());
   });
   $('motorList').innerHTML=visible.length?visible.map(m=>{
     const count=parts.filter(p=>p.motorcycle_id===m.id).length;
-    return '<article class="motor-row '+(m.id===selectedId?'active':'')+'" data-open="'+esc(m.id)+'">'+photoElement(m.photo_path)+
-      '<div class="motor-info"><strong>'+esc(m.name)+'</strong><small>'+(m.model_year||'—')+' · '+money(m.capital)+' · '+count+' part</small><small><span class="status '+esc(m.status)+'">'+(m.status==='sold'?'Terjual':'Belum Terjual')+'</span></small></div>'+
-      '<div class="row-tools"><button class="icon-button" data-action="editMotor" data-id="'+esc(m.id)+'">Edit</button><button class="icon-button red" data-action="addPart" data-id="'+esc(m.id)+'">+ Part</button></div></article>';
-  }).join(''):'<div class="empty">Tidak ada motor yang cocok. Tambahkan motor baru atau ubah filter.</div>';
+    return '<article class="motor-row '+(m.id===selectedId?'active':'')+'" data-open="'+esc(m.id)+'" tabindex="0" aria-label="Lihat detail '+esc(m.name)+'">'+
+      '<div class="motor-main">'+photoElement(m.photo_path)+'<strong>'+esc(m.name)+'</strong></div>'+
+      '<div class="motor-cell year">'+(m.model_year||'—')+'</div>'+
+      '<div class="motor-cell money">'+money(m.capital)+'</div>'+
+      '<div class="motor-cell status-cell"><span class="status '+esc(m.status)+'">'+(m.status==='sold'?'Terjual':'Belum Terjual')+'</span></div>'+
+      '<div class="motor-cell count">'+count+'</div>'+
+      '<div class="row-tools"><button class="icon-button" data-action="editMotor" data-id="'+esc(m.id)+'">Edit</button><button class="icon-button red" data-action="addPart" data-id="'+esc(m.id)+'">+ Tambah Part</button></div></article>';
+  }).join(''):'<div class="empty">Belum ada motor yang sesuai. Klik Tambah Motor untuk mengisi inventaris.</div>';
+
+  if(filter==='report'){
+    $('detailTitle').textContent='Laporan';
+    const sales=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.sale_price||0),0)+parts.filter(p=>p.status==='sold').reduce((a,p)=>a+Number(p.sale_price||0),0);
+    const soldCapital=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.capital||0),0)+parts.filter(p=>p.status==='sold').reduce((a,p)=>a+Number(p.capital||0),0);
+    $('motorDetail').innerHTML='<div class="report-grid"><div class="report-box"><small>Total Modal Tercatat</small><strong>'+money(capital)+'</strong></div><div class="report-box"><small>Total Penjualan Tercatat</small><strong>'+money(sales)+'</strong></div><div class="report-box"><small>Selisih Penjualan - Modal Item Terjual</small><strong>'+money(sales-soldCapital)+'</strong></div><div class="report-box"><small>Motor / Part Terjual</small><strong>'+sold+' motor · '+parts.filter(p=>p.status==='sold').length+' part</strong></div><p class="report-note">Ringkasan ini mengikuti harga jual yang dicatat. Jangan menghitung part dua kali apabila modalnya sudah termasuk dalam modal motor.</p></div>';return;
+  }
+  if(filter==='parts'){
+    $('detailTitle').textContent='Daftar Semua Part';
+    $('motorDetail').innerHTML='<div class="detail-wrap"><div class="parts-title"><h3>Sparepart Tercatat ('+parts.length+')</h3><button class="btn primary small" data-action="addPart" data-id="'+esc(selectedId||'')+'" '+(!selectedId?'disabled':'')+'>+ Tambah Part</button></div><div class="parts-table">'+renderPartHead()+(parts.length?parts.map(p=>renderPartRow(p,true)).join(''):'<div class="empty">Belum ada sparepart.</div>')+'</div></div>';hydratePhotos();return;
+  }
+  $('detailTitle').textContent='Detail Motor';
   const m=motors.find(x=>x.id===selectedId);
   if(!m){$('motorDetail').innerHTML='<div class="empty">Pilih atau tambahkan motor untuk melihat daftar part.</div>';hydratePhotos();return}
-  const list=parts.filter(p=>p.motorcycle_id===m.id);
-  const partCapital=list.reduce((sum,p)=>sum+Number(p.capital||0),0);
+  const list=parts.filter(p=>p.motorcycle_id===m.id),partCapital=list.reduce((sum,p)=>sum+Number(p.capital||0),0);
   $('motorDetail').innerHTML='<div class="detail-wrap"><div class="hero-motor">'+photoElement(m.photo_path)+
-    '<div class="detail-info"><strong>'+esc(m.name)+'</strong><span class="status '+esc(m.status)+'">'+(m.status==='sold'?'Terjual':'Belum Terjual')+'</span>'+
-    '<div class="details-kv">Tahun: <b>'+(m.model_year||'—')+'</b></div><div class="details-kv">Modal motor: <b>'+money(m.capital)+'</b></div><div class="details-kv">Modal part: <b>'+money(partCapital)+'</b></div>'+
-    '<div class="details-kv">Harga terjual: <b>'+(m.sale_price!==null?money(m.sale_price):'—')+'</b></div></div></div>'+
-    '<div class="detail-controls"><button class="btn outline small" data-action="editMotor" data-id="'+esc(m.id)+'">Edit Motor / Foto</button><button class="btn danger small" data-action="deleteMotor" data-id="'+esc(m.id)+'">Hapus Motor</button></div>'+
-    '<div class="divider"></div><div class="parts-title"><h3>List Part Motor ('+list.length+')</h3><button class="btn primary small" data-action="addPart" data-id="'+esc(m.id)+'">+ Tambah Part</button></div>'+
-    '<div class="parts-table">'+(list.length?list.map(p=>'<div class="part-row">'+photoElement(p.photo_path)+
-      '<div class="part-body"><strong>'+esc(p.name)+'</strong><small>'+esc(p.condition)+' · Modal '+money(p.capital)+'</small><span class="status '+esc(p.status)+'">'+({sold:'Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||'Belum Terjual')+'</span></div>'+
-      '<div class="part-actions"><button class="icon-button" data-action="editPart" data-id="'+esc(p.id)+'">Edit</button><button class="icon-button red" data-action="deletePart" data-id="'+esc(p.id)+'">Hapus</button></div></div>').join(''):
-      '<div class="empty">Belum ada sparepart. Klik Tambah Part untuk mengisi.</div>')+'</div></div>';
+    '<div class="detail-info"><strong>'+esc(m.name)+'</strong><div class="details-kv">Tahun: <b>'+(m.model_year||'—')+'</b></div>'+
+    '<div class="details-kv">Modal Motor: <b>'+money(m.capital)+'</b></div>'+
+    '<div class="details-kv">Modal Part: <b>'+money(partCapital)+'</b></div>'+
+    '<div class="details-kv">Harga Jual: <b>'+(m.sale_price!==null?money(m.sale_price):'Belum tercatat')+'</b></div>'+
+    '<div class="details-kv">Status: <span class="status '+esc(m.status)+'">'+(m.status==='sold'?'Terjual':'Belum Terjual')+'</span></div></div></div>'+
+    '<div class="detail-controls"><button class="btn outline small" data-action="editMotor" data-id="'+esc(m.id)+'">✎ Edit / Upload Foto Motor</button>'+
+    '<button class="btn danger small" data-action="deleteMotor" data-id="'+esc(m.id)+'">Hapus Motor</button></div>'+
+    '<div class="divider"></div><div class="parts-title"><h3>List Part Motor ('+list.length+')</h3>'+
+    '<button class="btn primary small" data-action="addPart" data-id="'+esc(m.id)+'">+ Tambah List Part</button></div>'+
+    '<div class="parts-table">'+renderPartHead()+(list.length?list.map(p=>renderPartRow(p,false)).join(''):'<div class="empty">Belum ada part. Tambahkan sparepart beserta modal dan foto secara manual.</div>')+'</div></div>';
   hydratePhotos();
+}
+function renderPartHead(){
+  return '<div class="part-table-header"><span>Nama Part</span><span>Kondisi</span><span>Modal</span><span>Status</span><span>Aksi</span></div>';
+}
+function renderPartRow(p,showMotor){
+  const mot=motors.find(m=>m.id===p.motorcycle_id);
+  return '<div class="part-row"><div class="part-name">'+photoElement(p.photo_path)+'<strong>'+esc(p.name)+(showMotor&&mot?'<small style="display:block;font-weight:400">'+esc(mot.name)+'</small>':'')+'</strong></div>'+
+    '<div class="part-cell condition">'+esc(p.condition)+'</div><div class="part-cell cost">'+money(p.capital)+'</div>'+
+    '<div class="part-cell status-cell"><span class="status '+esc(p.status)+'">'+({sold:'Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||'Belum Terjual')+'</span></div>'+
+    '<div class="part-actions"><button class="icon-button" data-action="editPart" data-id="'+esc(p.id)+'" title="Edit dan upload foto">Edit</button>'+
+    '<button class="icon-button red" data-action="deletePart" data-id="'+esc(p.id)+'" title="Hapus part">×</button></div></div>';
 }
 function filterChange(next){filter=next;render()}
 function openModal(type,id=null,motorId=null){
@@ -179,7 +217,9 @@ async function handleAction(el){
 }
 $('loginForm').addEventListener('submit',async ev=>{
   ev.preventDefault();$('loginButton').disabled=true;$('loginError').textContent='';
-  const email=$('loginEmail').value.trim(),password=$('loginPassword').value;
+  const username=$('loginUsername').value.trim().toLowerCase(),password=$('loginPassword').value;
+  const email=username==='starpointpart'?'starpointpart@starpointgarage.com':(username.includes('@')?username:null);
+  if(!email){$('loginError').textContent='Username tidak dikenal.';$('loginButton').disabled=false;return}
   const {error}=await db.auth.signInWithPassword({email,password});
   if(error)$('loginError').textContent='Login gagal. Periksa email dan kata sandi.';
   else await enterApp();
@@ -189,10 +229,11 @@ $('togglePassword').onclick=()=>{const pass=$('loginPassword');pass.type=pass.ty
 const signOut=async()=>{await db.auth.signOut();displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
 $('addMotor').onclick=()=>openModal('motor');$('addMotorMobile').onclick=()=>openModal('motor');
 $('searchBox').addEventListener('input',ev=>{query=ev.target.value;render()});
+$('yearFilter').addEventListener('change',ev=>{selectedYear=ev.target.value;render()});
 $('closeModal').onclick=closeModal;$('cancelModal').onclick=closeModal;
 $('modalBackdrop').addEventListener('click',ev=>{if(ev.target===$('modalBackdrop'))closeModal()});
 $('editorForm').addEventListener('submit',submitForm);
-document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('modalBackdrop').hidden)closeModal()});
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('modalBackdrop').hidden)closeModal();if(ev.key==='Enter'&&ev.target.matches('[data-open]')){selectedId=ev.target.dataset.open;render()}});
 document.addEventListener('click',ev=>{
   const act=ev.target.closest('[data-action]');if(act){ev.stopPropagation();handleAction(act);return}
   const flt=ev.target.closest('[data-filter]');if(flt){filterChange(flt.dataset.filter);return}
