@@ -1,31 +1,25 @@
-# Second Starpoint Partshop — Isolasi Operasional
+# Second Starpoint Partshop — Akun bersama, sistem terpisah
 
-## Peraturan penting
-- Perubahan kode HANYA pada branch `second-partshop`. Jangan merge ke `main`, `showroom`, `deploy-owner-spg-2026`, atau `deploy-teknisi-spg-2026`.
-- Cloudflare Worker: `second-starpoint-partshop`, domain `second.starpointgarage.com`.
-- Database HANYA `public.partshop_access`, `public.partshop_motorcycles`, `public.partshop_parts`.
-- Storage HANYA bucket privat `starpoint-partshop-private`.
-- Jangan ubah konfigurasi Auth global, tabel showroom/member/bookings atau Edge Functions Garage.
-- Source frontend menggunakan kunci publishable Supabase, tidak boleh menyimpan secret/service-role ataupun password dalam repository.
+## Login yang digunakan
+- Gunakan **akun Supabase Auth Owner Starpoint Garage yang sudah ada**, bukan akun baru.
+- Alias pada website Second Partshop: `starpointpart` atau `starpointgarage`, keduanya mengarah ke email owner `starpointgarageindonesia@gmail.com`.
+- Password tetap password autentikasi akun Owner Garage yang sudah berlaku. Jangan menaruh password di repository.
+- Izin akses Second Partshop berasal **hanya dari** `public.partshop_access`, tidak dari `staff_access`, `showroom_access`, atau hak akses bisnis Garage.
+- Mengubah password shared Auth akan berpengaruh ke semua aplikasi yang menggunakan akun itu; karena itu jangan ubah password dari proyek Partshop.
 
-## Aktivasi username starpointpart (belum aktif)
-Supabase project saat ini menggunakan autentikasi email di backend. Untuk memasukkan username `starpointpart`:
-1. Admin Supabase membuka Authentication > Users > Add user / Create new user.
-2. Buat user dengan email internal `starpointpart@starpointgarage.com`; tentukan password di UI Supabase (JANGAN di kode GitHub). Jika dashboard menyediakan opsi Auto-confirm, aktifkan untuk user yang dibuat manual.
-3. Setelah user benar-benar tercipta, beri user tersebut role owner pada `public.partshop_access`, dan cabut akses bootstrap lama hanya dari tabel tersebut. Jangan memodifikasi `public.showroom_access` atau tabel Garage mana pun.
-4. Login dari `second.starpointgarage.com` menggunakan username `starpointpart` dan password yang dibuat.
+## Isolasi yang wajib dipertahankan
+- GitHub branch `second-partshop`, bukan `main`, `showroom`, `deploy-owner-spg-2026`, atau `deploy-teknisi-spg-2026`.
+- Cloudflare Worker `second-starpoint-partshop` dengan domain `second.starpointgarage.com`.
+- Tabel khusus `public.partshop_access`, `public.partshop_motorcycles`, `public.partshop_parts`.
+- Storage bucket privat `starpoint-partshop-private`, hanya untuk foto Partshop.
+- Jangan modifikasi fungsi Edge Auth Garage, aturan keamanan global, tabel data Garage, atau deployment Garage.
 
-Catatan: Jika email alias tidak memiliki inbox yang dapat menerima surat, pemulihan password via email tidak tersedia. Pastikan admin dapat mengelola akun ini melalui dashboard.
+## Pengujian setelah perubahan
+1. Login di website Partshop dengan alias dan password akun owner Garage yang berlaku.
+2. Tambah motor, modal dan foto; cek penyimpanan ke `partshop_motorcycles`.
+3. Tambah part yang ditautkan ke motor; cek `partshop_parts` dan bucket privat.
+4. Uji edit, ubah status terjual disertai harga, filter, pencarian, laporan, dan logout.
+5. Pastikan Garage dan aplikasi lainnya masih beroperasi tanpa perubahan.
 
-## Rangkaian tes setelah deployment
-1. Login dan logout (jangan simpan password plaintext).
-2. Tambah motor + foto, verifikasi daftar motor dan statistik.
-3. Tambah part untuk motor, verifikasi relasi serta foto part.
-4. Edit motor/part, ubah status ke terjual bersama harga jual.
-5. Pencarian motor/part, filter tahun, menu Terjual/Belum Terjual.
-6. Ekspor laporan CSV dan cek angka modal/penjualan.
-7. Konfirmasi semua data tetap di tabel `partshop_*`.
-8. Jalankan smoke-test terpisah pada website Garage untuk memastikan tidak berubah.
-
-## Deploy
-Cloudflare Workers: production branch `second-partshop`, command `npx wrangler deploy`, root `/`. Jangan mengalihkan domain Garage atau memakai `wrangler.jsonc` main.
+## Deployment
+Cloudflare Worker production branch `second-partshop`, root `/`, deploy command `npx wrangler deploy`. Jangan merge ke main.
