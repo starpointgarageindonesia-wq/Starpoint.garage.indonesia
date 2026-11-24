@@ -65,7 +65,7 @@ export function createMotorPartsEditor(){
     cleanup();sequence=0;
     const existing=(motor?savedParts.filter(x=>x.motorcycle_id===motor.id):[]);
     const existingHtml=existing.length?'<div class="inline-existing"><strong>'+existing.length+' part sudah tersimpan</strong>'+
-      existing.map(p=>'<div class="inline-existing-row"><span>'+esc(p.name)+'</span><span>'+money(p.sale_price)+'</span><span class="status '+esc(p.status)+'">'+(p.status==='sold'?'Fix Terjual':p.status==='installed'?'Terpasang':'Belum Terjual')+'</span></div>').join('')+
+      existing.map(p=>'<div class="inline-existing-row"><span>'+esc(p.name)+'</span><span>'+(p.sale_price==null?'Belum diisi':money(p.sale_price))+'</span><span class="status '+esc(p.status)+'">'+(p.status==='sold'?'Fix Terjual':p.status==='installed'?'Terpasang':'Belum Terjual')+'</span></div>').join('')+
       '</div>':'';
     target.insertAdjacentHTML('beforeend',
       '<section class="inline-parts-section" aria-label="Daftar part motor">'+
