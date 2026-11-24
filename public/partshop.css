@@ -50,3 +50,9 @@ body[data-view="motor"] .motor-cell.count{display:none}
 body[data-view="motor"] .row-tools{grid-column:3;grid-row:2;display:flex;flex-wrap:wrap}
 .form-photo-preview img{width:92px;height:76px}
 }
+
+/* Crisp SVG iconography replacing placeholder glyphs */
+.side-ico{display:inline-flex;justify-content:center;align-items:center}
+.side-ico svg{width:20px;height:20px;flex:none}
+.stat-symbol svg{width:31px;height:31px;display:block}
+@media(max-width:800px){.side-ico svg{width:17px;height:17px}.stat-symbol svg{width:23px;height:23px}}
