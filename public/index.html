@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/partshop.css?v=20261124r5">
+  <link rel="stylesheet" href="/partshop.css?v=20261124-isolate1">
 </head>
 <body>
   <div class="login-wrap" id="loginView">
@@ -19,10 +19,10 @@
       <img src="/assets/starpoint-official.svg" alt="Starpoint Garage" class="login-logo">
       <div class="eyebrow">INTERNAL INVENTORY</div>
       <h1>SECOND <span>PARTSHOP</span></h1>
-      <p>Gunakan akun Owner Starpoint Garage yang sudah ada. Inventaris dan pembukuan Second Partshop tetap terpisah.</p>
+      <p>Login khusus Second Partshop. Data dan password Owner Starpoint Garage tidak berubah.</p>
       <label>Username<input id="loginUsername" type="text" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="starpointpart atau email Owner"></label>
       <label>Kata sandi akun Owner Garage<div class="pass-box"><input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Kata sandi"><button type="button" id="togglePassword" aria-label="Tampilkan kata sandi">Lihat</button></div></label>
-      <button type="submit" class="btn primary full" id="loginButton">Masuk</button><p class="login-help">Gunakan password akun Owner Garage, bukan password terpisah untuk Partshop.</p>
+      <button type="submit" class="btn primary full" id="loginButton">Masuk</button><p class="login-help">Untuk username <strong>starpointpart</strong>, pakai password khusus Partshop. Aktivasi diperlukan sekali melalui inbox email Starpoint Garage.</p><button type="button" class="btn outline full activate-btn" id="activatePartshop">Aktifkan login starpointpart</button><p id="activationStatus" class="activation-status" role="status"></p>
       <div id="loginError" class="error-text" role="alert"></div>
     </form>
   </div>
@@ -60,6 +60,6 @@
   </div>
   <div id="modalBackdrop" class="modal-backdrop" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><h2 id="modalTitle">Tambah Motor</h2><button class="close-btn" id="closeModal" aria-label="Tutup">×</button></div><form id="editorForm"><div id="formFields"></div><div class="modal-actions"><button type="button" id="cancelModal" class="btn outline">Batal</button><button type="submit" id="saveButton" class="btn primary">Simpan</button></div></form></section></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script type="module" src="/partshop.js?v=20261124-share1"></script>
+  <script type="module" src="/partshop.js?v=20261124-isolate1"></script>
 </body>
 </html>
