@@ -21,6 +21,7 @@ export function createMotorPartsEditor({bindRupiahInputs,parseRupiah}){
       '<label>Kondisi<select class="inline-part-condition"><option value="Bekas">Bekas</option><option value="Baru">Baru</option></select></label>'+
       '<label>Status<select class="inline-part-status"><option value="available">Belum Terjual</option><option value="sold">Fix Terjual</option><option value="installed">Terpasang</option></select></label>'+
       '<label class="span2">Upload Foto Part<input class="inline-part-photo" type="file" accept="image/jpeg,image/png,image/webp"></label>'+
+      '<div class="span2 inline-photo-expiry">Foto otomatis dihapus dari penyimpanan setelah 30 hari. Data part tetap tersimpan.</div>'+
       '</div><div class="inline-part-preview" hidden></div>';
     list.appendChild(article);
     bindRupiahInputs(article);
