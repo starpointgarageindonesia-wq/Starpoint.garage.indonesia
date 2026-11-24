@@ -270,28 +270,9 @@ $('loginForm').addEventListener('submit',async ev=>{
   const email=username==='starpointpart'?PARTSHOP_EMAIL:(username==='starpointgarage'?'starpointgarageindonesia@gmail.com':(username.includes('@')?username:null));
   if(!email){$('loginError').textContent='Username tidak dikenal.';$('loginButton').disabled=false;return}
   const {error}=await db.auth.signInWithPassword({email,password});
-  if(error)$('loginError').textContent=username==='starpointpart'?'Login belum aktif atau password salah. Jika baru pertama kali, tekan Aktifkan login starpointpart.':'Login gagal. Periksa kredensial akun Owner.';
+  if(error)$('loginError').textContent='Username atau kata sandi tidak cocok.';
   else await enterApp();
   $('loginButton').disabled=false;
-});
-$('activatePartshop').addEventListener('click',async()=>{
-  const status=$('activationStatus'),button=$('activatePartshop');
-  status.textContent='';$('loginError').textContent='';
-  if($('loginUsername').value.trim().toLowerCase()!=='starpointpart'){
-    status.textContent='Isi username starpointpart untuk aktivasi khusus Partshop.';return;
-  }
-  const password=$('loginPassword').value;
-  if(password.length<8){
-    status.textContent='Isi password khusus Partshop minimal 8 karakter.';return;
-  }
-  button.disabled=true;button.textContent='Mengirim aktivasi...';
-  try{
-    const {data,error}=await db.auth.signUp({email:PARTSHOP_EMAIL,password});
-    if(error)throw error;
-    if(data?.session){await enterApp();return;}
-    status.textContent='Permintaan aktivasi dikirim. Periksa email starpointgarageindonesia@gmail.com, klik konfirmasi, kemudian masuk kembali menggunakan username starpointpart dan password Partshop.';
-  }catch(e){status.textContent='Aktivasi gagal: '+errText(e)}
-  finally{button.disabled=false;button.textContent='Aktifkan login starpointpart'}
 });
 $('togglePassword').onclick=()=>{const pass=$('loginPassword');pass.type=pass.type==='password'?'text':'password';$('togglePassword').textContent=pass.type==='password'?'Lihat':'Sembunyikan'};
 const signOut=async()=>{await db.auth.signOut();$('loginPassword').value='';displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
