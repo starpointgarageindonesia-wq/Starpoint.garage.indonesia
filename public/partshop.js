@@ -39,7 +39,6 @@ async function loadData(){
   const data=await api('load');
   motors=data.motors||[];
   parts=data.parts||[];
-  if(!motors.some(m=>m.id===selectedId))selectedId=motors[0]?.id||null;
   render();
 }
 function photoElement(path,extra=''){
@@ -58,30 +57,38 @@ async function hydratePhotos(){
 }
 function render(){
   document.body.dataset.view=filter;
-  $('searchBox').placeholder=filter==='parts'?'Cari sparepart atau nama motor...':'Cari nama motor atau tahun...';
+  $('searchBox').placeholder=filter==='parts'?'Cari sparepart atau nama motor...':filter==='sold'?'Cari motor dalam arsip...':'Cari motor belum terjual...';
   const sold=motors.filter(m=>m.status==='sold').length;
   const capital=motors.reduce((sum,m)=>sum+Number(m.capital||0),0)+parts.reduce((sum,p)=>sum+Number(p.capital||0),0);
-  $('statTotal').textContent=motors.length;
-  $('statSold').textContent=sold;
-  $('statAvailable').textContent=motors.length-sold;
-  $('statCapital').textContent=money(capital);
-  $('filterAll').textContent=motors.length;
-  $('filterAvailable').textContent=motors.length-sold;
-  $('filterSold').textContent=sold;
-  document.querySelectorAll('[data-filter]').forEach(el=>{
-    const effective=['parts','motor','report'].includes(filter)?'all':filter;
-    el.classList.toggle('selected',el.dataset.filter===effective);
-  });
+  const activeMotors=motors.filter(m=>m.status==='available');
+  const archivedMotors=motors.filter(m=>m.status==='sold');
+  const activeIds=new Set(activeMotors.map(m=>m.id));
+  const stockParts=parts.filter(p=>activeIds.has(p.motorcycle_id));
+  const unsoldParts=stockParts.filter(p=>p.status==='available');
+  const installedParts=stockParts.filter(p=>p.status==='installed');
+  const activeCapital=activeMotors.reduce((sum,m)=>sum+Number(m.capital||0),0)+
+    stockParts.filter(p=>p.status!=='sold').reduce((sum,p)=>sum+Number(p.capital||0),0);
+  $('statTotal').textContent=activeMotors.length;
+  $('statSold').textContent=unsoldParts.length;
+  $('statAvailable').textContent=installedParts.length;
+  $('statCapital').textContent=money(activeCapital);
+  const inArchive=filter==='sold';
+  $('scopeLabel').textContent=inArchive?'Arsip Motor':'Belum Terjual';
+  $('filterAll').textContent=inArchive?archivedMotors.length:activeMotors.length;
+  $('listEyebrow').textContent=inArchive?'RIWAYAT PENJUALAN':'STOK AKTIF';
+  $('listTitle').textContent=inArchive?'Arsip Motor Terjual':'Motor Belum Terjual';
   document.querySelectorAll('[data-nav]').forEach(el=>el.classList.toggle('active',el.dataset.nav===filter));
-  const yearEl=$('yearFilter'), years=[...new Set(motors.map(m=>m.model_year).filter(Boolean))].sort((a,b)=>b-a);
+  const shownBase=filter==='sold'?archivedMotors:activeMotors;
+  const yearEl=$('yearFilter'), years=[...new Set(shownBase.map(m=>m.model_year).filter(Boolean))].sort((a,b)=>b-a);
   if(selectedYear&&!years.includes(Number(selectedYear)))selectedYear='';
   yearEl.innerHTML='<option value="">Semua Tahun</option>'+years.map(y=>'<option value="'+y+'" '+(String(y)===selectedYear?'selected':'')+'>'+y+'</option>').join('');
-  const visible=motors.filter(m=>{
-    if(filter==='sold'&&m.status!=='sold')return false;
-    if(filter==='available'&&m.status!=='available')return false;
+  const visible=shownBase.filter(m=>{
     if(selectedYear&&String(m.model_year)!==selectedYear)return false;
     return (m.name+' '+(m.model_year||'')).toLowerCase().includes(query.toLowerCase());
   });
+  if(!['parts','report'].includes(filter)&&!visible.some(m=>m.id===selectedId)){
+    selectedId=visible[0]?.id||null;
+  }
   $('motorList').innerHTML=visible.length?visible.map(m=>{
     const count=parts.filter(p=>p.motorcycle_id===m.id).length;
     return '<article class="motor-row '+(m.id===selectedId?'active':'')+'" data-open="'+esc(m.id)+'" tabindex="0" aria-label="Lihat detail '+esc(m.name)+'">'+
@@ -91,7 +98,7 @@ function render(){
       '<div class="motor-cell status-cell"><span class="status '+esc(m.status)+'">'+(m.status==='sold'?'Terjual':'Belum Terjual')+'</span></div>'+
       '<div class="motor-cell count">'+count+'</div>'+
       '<div class="row-tools"><button class="icon-button" data-action="editMotor" data-id="'+esc(m.id)+'">Edit</button><button class="icon-button red" data-action="addPart" data-id="'+esc(m.id)+'">+ Tambah Part</button></div></article>';
-  }).join(''):'<div class="empty">Belum ada motor yang sesuai. Klik Tambah Motor untuk mengisi inventaris.</div>';
+  }).join(''):'<div class="empty">'+(inArchive?'Belum ada motor yang terjual di arsip.':'Tidak ada motor belum terjual yang cocok dengan pencarian.')+'</div>';
 
   if(filter==='report'){
     $('detailTitle').textContent='Laporan';
@@ -110,8 +117,8 @@ function render(){
     $('motorDetail').innerHTML='<div class="detail-wrap"><div class="parts-title"><h3>Sparepart Tercatat ('+matchingParts.length+')</h3><button class="btn primary small" data-action="addPart" data-id="'+esc(selectedId||'')+'" '+(!selectedId?'disabled':'')+'>+ Tambah Part</button></div><div class="parts-table">'+renderPartHead()+(matchingParts.length?matchingParts.map(p=>renderPartRow(p,true)).join(''):'<div class="empty">Belum ada sparepart yang sesuai pencarian.</div>')+'</div></div>';hydratePhotos();return;
   }
   $('detailTitle').textContent='Detail Motor';
-  const m=motors.find(x=>x.id===selectedId);
-  if(!m){$('motorDetail').innerHTML='<div class="empty">Pilih atau tambahkan motor untuk melihat daftar part.</div>';hydratePhotos();return}
+  const m=shownBase.find(x=>x.id===selectedId);
+  if(!m){$('motorDetail').innerHTML='<div class="empty">'+(inArchive?'Pilih motor di arsip untuk melihat detail dan sparepart.':'Pilih motor belum terjual untuk melihat detail dan sparepart.')+'</div>';hydratePhotos();return}
   const list=parts.filter(p=>p.motorcycle_id===m.id),partCapital=list.reduce((sum,p)=>sum+Number(p.capital||0),0);
   $('motorDetail').innerHTML='<div class="detail-wrap"><div class="hero-motor">'+photoElement(m.photo_path)+
     '<div class="detail-info"><strong>'+esc(m.name)+'</strong><div class="details-kv">Tahun: <b>'+(m.model_year||'—')+'</b></div>'+
@@ -137,7 +144,7 @@ function renderPartRow(p,showMotor){
     '<div class="part-actions"><button class="icon-button" data-action="editPart" data-id="'+esc(p.id)+'" title="Edit dan upload foto">Edit</button>'+
     '<button class="icon-button red" data-action="deletePart" data-id="'+esc(p.id)+'" title="Hapus part">×</button></div></div>';
 }
-function filterChange(next){filter=next;render()}
+function filterChange(next){filter=next;selectedYear='';query='';$('searchBox').value='';render()}
 function openModal(type,id=null,motorId=null){
   inlineParts.cleanup();
   modalType=type;editingId=id;
