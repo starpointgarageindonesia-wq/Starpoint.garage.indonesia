@@ -1,3 +1,4 @@
+import { createMotorPartsEditor } from './partshop-inline.js?v=20261124-parts1';
 const API_ENDPOINT='https://msvdxyicostwztisvbvl.supabase.co/functions/v1/second-partshop-api';
 const PUBLIC_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
 const SESSION_NAME='second-partshop-session';
@@ -21,6 +22,7 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt
 const rupiah=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0});
 const money=n=>rupiah.format(Number(n)||0);
 let motors=[],parts=[],selectedId=null,filter='all',query='',selectedYear='',modalType='',editingId=null,photoCache=new Map(),previewUrl=null;
+const inlineParts=createMotorPartsEditor();
 let toastTimer;
 function toast(message){const t=$('toast');t.textContent=message;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),3800)}
 function errText(error){return error?.message||String(error||'Terjadi kesalahan')}
@@ -136,6 +138,7 @@ function renderPartRow(p,showMotor){
 }
 function filterChange(next){filter=next;render()}
 function openModal(type,id=null,motorId=null){
+  inlineParts.cleanup();
   modalType=type;editingId=id;
   const motor=type==='motor'?motors.find(x=>x.id===id):null;
   const part=type==='part'?parts.find(x=>x.id===id):null;
@@ -149,7 +152,7 @@ function openModal(type,id=null,motorId=null){
     '<label class="span2">Nama motor *<input name="name" required maxlength="120" placeholder="Contoh: Kawasaki ZX-25RR 2025" value="'+esc(motor?.name||'')+'"></label>'+
     '<label>Tahun<input name="model_year" type="number" min="1950" max="2100" value="'+esc(motor?.model_year||yearNow)+'"></label>'+
     '<label>Modal beli motor (Rp)<input name="capital" type="number" required min="0" step="1" value="'+esc(motor?.capital??0)+'"></label>'+
-    '<label>Status<select name="status"><option value="available" '+(motor?.status!=='sold'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(motor?.status==='sold'?'selected':'')+'>Terjual</option></select></label>'+
+    '<label>Status<select name="status"><option value="available" '+(motor?.status!=='sold'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(motor?.status==='sold'?'selected':'')+'>Fix Terjual</option></select></label>'+
     '<label>Harga terjual motor (Rp)<input name="sale_price" type="number" min="0" step="1" placeholder="Opsional" value="'+esc(motor?.sale_price??'')+'"></label>'+
     '<label class="span2">Upload foto motor<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · bisa diganti saat edit.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(motor?.notes||'')+'</textarea></label></div>':
@@ -157,12 +160,13 @@ function openModal(type,id=null,motorId=null){
     '<label class="span2">Nama sparepart *<input name="name" required maxlength="130" placeholder="Contoh: Kaliper Brembo GP4RS" value="'+esc(part?.name||'')+'"></label>'+
     '<label>Kondisi<select name="condition"><option value="Bekas" '+(part?.condition!=='Baru'?'selected':'')+'>Bekas</option><option value="Baru" '+(part?.condition==='Baru'?'selected':'')+'>Baru</option></select></label>'+
     '<label>Modal part (Rp)<input name="capital" type="number" required min="0" step="1" value="'+esc(part?.capital??0)+'"></label>'+
-    '<label>Status<select name="status"><option value="available" '+(!part||part.status==='available'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(part?.status==='sold'?'selected':'')+'>Terjual</option><option value="installed" '+(part?.status==='installed'?'selected':'')+'>Terpasang</option></select></label>'+
-    '<label>Harga terjual part (Rp)<input name="sale_price" type="number" min="0" step="1" placeholder="Opsional" value="'+esc(part?.sale_price??'')+'"></label>'+
+    '<label>Status<select name="status"><option value="available" '+(!part||part.status==='available'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(part?.status==='sold'?'selected':'')+'>Fix Terjual</option><option value="installed" '+(part?.status==='installed'?'selected':'')+'>Terpasang</option></select></label>'+
+    '<label>Harga jual part (Rp)<input name="sale_price" type="number" min="0" step="1" placeholder="Opsional" value="'+esc(part?.sale_price??'')+'"></label>'+
     '<label class="span2">Upload foto part<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · bisa diganti saat edit.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(part?.notes||'')+'</textarea></label></div>';
   $('formFields').insertAdjacentHTML('beforeend','<div class="form-photo-preview" id="photoPreview" hidden></div>');
   $('modalBackdrop').hidden=false;$('editorForm').reset();releasePreview();
+  if(type==='motor')inlineParts.mount($('formFields'),motor,parts,money);
   const inp=$('editorForm').querySelector('input[name="photo"]');
   inp.addEventListener('change',()=>{
     releasePreview();const file=inp.files?.[0],out=$('photoPreview');
@@ -177,7 +181,7 @@ function openModal(type,id=null,motorId=null){
   $('editorForm').querySelector('[name="name"]').focus();
 }
 function releasePreview(){if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl=null}}
-function closeModal(){releasePreview();$('modalBackdrop').hidden=true;editingId=null}
+function closeModal(){releasePreview();inlineParts.cleanup();$('modalBackdrop').hidden=true;editingId=null}
 async function uploadPhoto(file,type,id){
   if(!file)return null;
   if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>8388608)throw Error('Foto harus JPG, PNG, atau WebP maksimal 8MB.');
@@ -214,16 +218,46 @@ async function submitForm(ev){
       payload.motorcycle_id=String(f.get('motorcycle_id')||selectedId||'');
       if(!motors.some(m=>m.id===payload.motorcycle_id))throw Error('Pilih motor pemilik sparepart.');
     }
+    const additions=type==='motor'?inlineParts.collect():[];
     const saved=await api('save',{type,id:editingId||null,payload});
     const id=saved.id;
-    if(type==='motor')selectedId=id;
+    if(type==='motor'){selectedId=id;editingId=id}
     else selectedId=payload.motorcycle_id;
-    let uploadIssue=null;
+    const issues=[];
     if(photo){
-      try{await uploadPhoto(photo,type,id)}
-      catch(e){uploadIssue=errText(e)}
+      try{
+        await uploadPhoto(photo,type,id);
+        ev.target.querySelector('input[name="photo"]').value='';
+      }catch(e){issues.push('Foto motor/part: '+errText(e))}
     }
-    closeModal();await loadData();toast(uploadIssue?'Data tersimpan, tetapi foto gagal: '+uploadIssue:'Data berhasil disimpan.');
+    for(const entry of additions){
+      try{
+        const savedPart=await api('save',{
+          type:'part',
+          id:entry.article.dataset.savedId||null,
+          payload:{...entry.payload,motorcycle_id:id}
+        });
+        entry.article.dataset.savedId=savedPart.id;
+        const remove=entry.article.querySelector('.inline-part-remove');
+        remove.disabled=true;
+        remove.textContent='Tersimpan';
+        if(entry.photo){
+          try{
+            await uploadPhoto(entry.photo,'part',savedPart.id);
+            entry.article.querySelector('.inline-part-photo').value='';
+          }catch(e){issues.push('Foto '+entry.payload.name+': '+errText(e))}
+        }
+      }catch(e){issues.push('Part '+entry.payload.name+': '+errText(e))}
+    }
+    await loadData();
+    if(issues.length){
+      const box=$('inlinePartsError');
+      if(box){box.hidden=false;box.textContent='Sebagian data belum berhasil: '+issues.join(' | ')+'. Tekan Simpan lagi untuk mencoba ulang.'}
+      toast('Sebagian tersimpan. Periksa pesan pada bagian List Part Motor.');
+    }else{
+      closeModal();
+      toast(type==='motor'?(additions.length?'Motor dan '+additions.length+' part berhasil disimpan.':'Motor berhasil disimpan.'):'Part berhasil disimpan.');
+    }
   }catch(e){toast('Gagal menyimpan: '+errText(e))}
   finally{submit.disabled=false;submit.textContent='Simpan'}
 }
