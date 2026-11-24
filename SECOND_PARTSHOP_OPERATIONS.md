@@ -4,6 +4,8 @@
 - Login: username `starpointpart`, password sesuai yang dipilih owner; diverifikasi di server sebagai digest, tanpa mengubah `auth.users` atau login Garage.
 - Session: token HMAC 2 jam, disimpan di sessionStorage per tab. Logout menghapus token browser.
 - Backend secara eksplisit membatasi akses ke `partshop_motorcycles`, `partshop_parts`, dan bucket `starpoint-partshop-private`. Tidak mengakses tabel bisnis Garage.
+- Hak REST langsung untuk role `authenticated`/`anon` pada tabel inventaris Partshop telah dicabut. Hanya service_role dari Edge Function Partshop yang dapat membaca/menyimpan data.
+- Izin owner Garage yang lama di `partshop_access` telah dicabut hanya pada tabel Partshop; izin Garage lainnya tidak diubah.
 - Endpoint hanya menerima action `login`, `load`, `save`, `delete`, `photo`, `logout` dan upload foto (multipart). Login memakai rate limiter.
 - Branch deploy: `second-partshop`; Worker: `second-starpoint-partshop`; domain: `second.starpointgarage.com`.
 - Jangan mengubah fungsi trigger Auth Garage atau password Owner Garage.
