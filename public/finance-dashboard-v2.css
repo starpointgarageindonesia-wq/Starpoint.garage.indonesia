@@ -1,0 +1,101 @@
+/* Starpoint Second Partshop — dedicated finance dashboard, Nov 26 2026.
+   Unique standalone asset avoids stale older inventory styles on Safari. */
+body[data-view="all"] #financeDashboard{display:block!important}
+body[data-view="all"] .stat-grid,
+body[data-view="all"] .dashboard-grid,
+body[data-view="all"] #addMotor,
+body[data-view="all"] #searchBox{display:none!important}
+body:not([data-view="all"]) #financeDashboard,
+body:not([data-view="all"]) #financeTopLabel{display:none!important}
+body[data-view="all"] .topbar{justify-content:space-between}
+body[data-view="all"] .top-actions{margin-left:auto}
+body[data-view="all"] .content{padding-top:24px}
+#financeDashboard{width:100%;max-width:100%;min-width:0}
+#financeDashboard *,
+#financeDashboard *:before,
+#financeDashboard *:after{box-sizing:border-box}
+#financeDashboard .fin-v2{width:100%;max-width:1400px;margin:0 auto;display:flex;flex-direction:column;gap:21px;color:#181b22;font-family:Inter,system-ui,sans-serif}
+#financeDashboard .fin-v2-head{display:flex;justify-content:space-between;align-items:center;gap:16px;min-width:0}
+#financeDashboard .fin-v2-kicker{display:block;color:#8c929d;font-size:10px;font-weight:850;letter-spacing:.15em;line-height:1.45}
+#financeDashboard .fin-v2-head h1{font-family:'Barlow Condensed',Inter,sans-serif;color:#191b20;font-size:clamp(31px,3.2vw,46px);font-weight:900;line-height:1.1;letter-spacing:-.015em;margin:7px 0 8px}
+#financeDashboard .fin-v2-head p{color:#787f8b;font-size:12px;line-height:1.55;margin:0;max-width:780px}
+#financeDashboard .fin-v2-selector{min-width:0;flex:none}
+#financeDashboard .fin-v2-motor-label{background:#fff;border:1px solid #d9dde4;border-radius:10px;padding:13px 19px;color:#22262d;font-size:13px;font-weight:800;display:inline-flex;align-items:center;box-shadow:0 3px 10px #10182508}
+#financeDashboard .fin-v2-select-label{display:flex;flex-direction:column;gap:7px;color:#7d818c;font-weight:750;font-size:10px}
+#financeDashboard .fin-v2-select-label select{font-size:13px;min-height:46px;min-width:180px;border:1px solid #d7dce6;border-radius:9px;background:#fff;color:#22262b;padding:10px 32px 10px 12px}
+#financeDashboard .fin-v2-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;min-width:0}
+#financeDashboard .fin-v2-stat{min-width:0;position:relative;background:#fff;border:1px solid #dfe2e8;border-radius:13px;padding:20px 18px;box-shadow:0 3px 12px #1219270b;overflow:hidden}
+#financeDashboard .fin-v2-stat:before{position:absolute;content:"";inset:0 auto 0 0;width:4px;background:#222832}
+#financeDashboard .fin-v2-stat:nth-child(2):before{background:#d71a2e}
+#financeDashboard .fin-v2-stat:nth-child(3):before{background:#e1a326}
+#financeDashboard .fin-v2-stat:nth-child(4):before{background:#219d65}
+#financeDashboard .fin-v2-stat>span{color:#686f7b;font-size:10px;font-weight:800;letter-spacing:.08em;line-height:1.3;display:block}
+#financeDashboard .fin-v2-stat>strong{color:#171a21;font-size:clamp(18px,1.9vw,27px);font-weight:850;letter-spacing:-.045em;line-height:1.18;display:block;margin:13px 0 9px;overflow-wrap:anywhere}
+#financeDashboard .fin-v2-stat>small{display:block;font-size:10px;color:#858a95;line-height:1.5;overflow-wrap:anywhere}
+#financeDashboard .fin-v2-section-title{display:flex;align-items:end;justify-content:space-between;min-width:0}
+#financeDashboard .fin-v2-section-title h2{font-family:'Barlow Condensed',Inter,sans-serif;font-weight:900;color:#171a21;font-size:clamp(26px,2.4vw,34px);margin:6px 0 0;line-height:1.06}
+#financeDashboard .fin-v2-scenarios{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;min-width:0}
+#financeDashboard .fin-v2-scenario{background:#fff;border:1px solid #dadee6;border-top:5px solid #282d36;border-radius:14px;box-shadow:0 5px 18px #151e2b0e;padding:24px 25px 22px;min-width:0;display:flex;flex-direction:column}
+#financeDashboard .fin-v2-scenario.fin-v2-parts{border-top-color:#db182b}
+#financeDashboard .fin-v2-eyebrow{color:#9ca0aa;font-size:10px;font-weight:800;letter-spacing:.13em;display:block}
+#financeDashboard .fin-v2-scenario-title h2{font-family:'Barlow Condensed',Inter,sans-serif;font-size:clamp(27px,2.5vw,38px);font-weight:900;line-height:1.1;margin:8px 0 5px}
+#financeDashboard .fin-v2-scenario-title p{font-size:11px;line-height:1.6;color:#858a95;margin:0;min-height:32px}
+#financeDashboard .fin-v2-price-caption{font-size:10px;font-weight:800;color:#8d929b;letter-spacing:.07em;margin-top:24px}
+#financeDashboard .fin-v2-price{font-size:clamp(29px,3.3vw,48px);letter-spacing:-.055em;line-height:1.11;font-weight:900;color:#181b20;margin:9px 0 23px;overflow-wrap:anywhere}
+#financeDashboard .fin-v2-price.fin-v2-price-blank{font-size:clamp(22px,2.4vw,31px);color:#8c909a}
+#financeDashboard .fin-v2-cost-row{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #e8eaf0;padding:13px 0;font-size:11px;color:#7b828e;line-height:1.45}
+#financeDashboard .fin-v2-cost-row strong{color:#21252c;text-align:right;overflow-wrap:anywhere;font-size:12px}
+#financeDashboard .fin-v2-cost-row.fin-v2-cost-strong{padding-bottom:18px}
+#financeDashboard .fin-v2-diff{font-size:14px;font-weight:900;letter-spacing:-.03em}
+#financeDashboard .fin-v2-diff.fin-v2-positive{color:#218650}
+#financeDashboard .fin-v2-diff.fin-v2-negative{color:#c92e3a}
+#financeDashboard .fin-v2-neutral{color:#a1a4ad}
+#financeDashboard .fin-v2-progress-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10px;color:#818590;line-height:1.5}
+#financeDashboard .fin-v2-progress-head b{font-size:11px;color:#2b3039}
+#financeDashboard .fin-v2-progress{width:100%;height:7px;border-radius:99px;background:#e8eaf0;overflow:hidden;margin:10px 0}
+#financeDashboard .fin-v2-progress span{display:block;height:100%;border-radius:inherit;background:#343941;transition:width .25s ease}
+#financeDashboard .fin-v2-parts .fin-v2-progress span{background:#e32132}
+#financeDashboard .fin-v2-fine{color:#8b9099;font-size:10px;min-height:29px;line-height:1.5;margin:0}
+#financeDashboard .fin-v2-button{display:inline-flex;gap:10px;align-items:center;justify-content:center;align-self:flex-start;background:#f1f2f5;border:1px solid #d6dbe4;border-radius:8px;color:#262b34;font-size:11px;font-weight:800;padding:11px 14px;margin-top:14px;min-height:42px;white-space:normal;text-align:left;cursor:pointer}
+#financeDashboard .fin-v2-button:hover{background:#e5e8ee;border-color:#c2c9d6}
+#financeDashboard .fin-v2-button:focus-visible{outline:3px solid #e41b2b;outline-offset:3px}
+#financeDashboard .fin-v2-button>span{font-size:19px;line-height:0}
+#financeDashboard .fin-v2-button.fin-v2-button-solid{background:#da1427;color:#fff;border-color:#ca1728;margin:0;flex:none}
+#financeDashboard .fin-v2-button.fin-v2-button-solid:hover{background:#b91223}
+#financeDashboard .fin-v2-comparison{background:#191c23;color:#fff;border:1px solid #343944;border-radius:14px;padding:23px 25px;display:flex;justify-content:space-between;align-items:center;gap:20px;min-width:0}
+#financeDashboard .fin-v2-comparison .fin-v2-kicker{color:#9fa6b6}
+#financeDashboard .fin-v2-comparison h2{font-family:'Barlow Condensed',Inter,sans-serif;font-size:clamp(24px,2.3vw,33px);line-height:1.15;font-weight:900;margin:8px 0}
+#financeDashboard .fin-v2-comparison p{font-size:11px;color:#bbc0cc;line-height:1.6;margin:0}
+#financeDashboard .fin-v2-comparison-chip{border:1px solid #4b515e;background:#282d36;color:#e5e6eb;border-radius:99px;font-size:10px;font-weight:750;padding:9px 12px;white-space:nowrap;flex:none}
+#financeDashboard .fin-v2-bottom{background:#fff;border:1px solid #dfe2e8;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 23px}
+#financeDashboard .fin-v2-bottom h2{font-family:'Barlow Condensed',Inter,sans-serif;color:#23262c;font-size:24px;font-weight:850;margin:6px 0}
+#financeDashboard .fin-v2-bottom p{color:#7e8390;font-size:11px;line-height:1.55;margin:0}
+#financeDashboard .fin-v2-disclaimer{color:#818793;font-size:10px;line-height:1.65;margin:0 3px 10px}
+#financeDashboard .fin-v2-empty{border:1px dashed #c4cbd6;background:#fff;border-radius:15px;padding:35px;min-height:220px}
+#financeDashboard .fin-v2-empty strong{display:block;font-size:18px}
+#financeDashboard .fin-v2-empty p{color:#878c97;font-size:12px;margin:10px 0}
+@media(max-width:1340px){
+  #financeDashboard .fin-v2-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:1000px){
+  #financeDashboard .fin-v2-head{align-items:flex-start}
+  #financeDashboard .fin-v2-price{font-size:clamp(26px,3.7vw,38px)}
+  #financeDashboard .fin-v2-scenario{padding:19px}
+}
+@media(max-width:830px){
+  #financeDashboard .fin-v2-scenarios{grid-template-columns:1fr}
+  #financeDashboard .fin-v2-head{flex-direction:column;gap:12px;align-items:flex-start}
+  #financeDashboard .fin-v2-selector{width:100%}
+  #financeDashboard .fin-v2-select-label select{width:100%}
+  #financeDashboard .fin-v2-bottom{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:580px){
+  body[data-view="all"] .content{padding:15px 12px 22px}
+  #financeDashboard .fin-v2-summary{grid-template-columns:1fr}
+  #financeDashboard .fin-v2-stat{padding:15px}
+  #financeDashboard .fin-v2-stat>strong{font-size:24px}
+  #financeDashboard .fin-v2-comparison{flex-direction:column;align-items:flex-start;padding:18px}
+  #financeDashboard .fin-v2-comparison-chip{align-self:flex-start}
+  #financeDashboard .fin-v2-scenario{padding:17px}
+  #financeDashboard .fin-v2-head h1{font-size:34px}
+}
