@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/partshop.css?v=20261126-actions2">
+  <link rel="stylesheet" href="/partshop.css?v=20261126-zx44a">
   <link rel="stylesheet" href="/partshop-inline.css?v=20261124-parts1">
 </head>
 <body>
@@ -42,6 +42,10 @@
     <div class="main-area">
       <header class="topbar"><div class="top-actions"><input id="searchBox" type="search" placeholder="Cari nama motor atau tahun..." aria-label="Cari motor"><button id="addMotor" class="btn primary">+ Tambah Motor</button><button id="logoutTop" type="button" class="btn outline small">Keluar</button></div></header>
       <main class="content">
+        <div id="zx25BulkStatus" class="zx25-import-status" hidden role="status" aria-live="polite">
+          <span class="zx25-import-dot" aria-hidden="true"></span>
+          <span id="zx25BulkMessage"></span>
+        </div>
         <div class="stat-grid">
           <article class="stat"><span class="stat-symbol symbol-bike"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M8 17h5l3-7h3l2 4M5 17l4-9h4l3 9M12 7H9M16 7h3"/></svg></span><span class="stat-label">MOTOR BELUM TERJUAL</span><strong id="statTotal">0</strong><small>Stok motor aktif</small></article>
           <article class="stat"><span class="stat-symbol symbol-done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/></svg></span><span class="stat-label">PART BELUM TERJUAL</span><strong id="statSold">0</strong><small>Part tersedia</small></article>
@@ -69,6 +73,6 @@
     </div>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script type="module" src="/partshop.js?v=20261126-actions2"></script>
+  <script type="module" src="/partshop.js?v=20261126-zx44a"></script>
 </body>
 </html>
