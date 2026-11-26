@@ -1,6 +1,6 @@
 import { createMotorPartsEditor } from './partshop-inline.js?v=20261124-photo30d';
 import { formatRupiah, parseRupiah, bindRupiahInputs } from './partshop-currency.js?v=20261124-rupiah1';
-import { calculatePartshopFinancials, renderPartshopFinancials } from './partshop-finance.js?v=20261126-finance1';
+import { calculatePartshopFinancials, renderPartshopFinancials } from './partshop-finance.js?v=20261126-finance2';
 const API_ENDPOINT='https://msvdxyicostwztisvbvl.supabase.co/functions/v1/second-partshop-api';
 const PUBLIC_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
 const SESSION_NAME='second-partshop-session';
@@ -25,6 +25,7 @@ const rupiah=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maxi
 const money=n=>rupiah.format(Number(n)||0);
 let motors=[],parts=[],selectedId=null,filter='all',query='',selectedYear='',modalType='',editingId=null,photoCache=new Map(),previewUrl=null;
 const inlineParts=createMotorPartsEditor({bindRupiahInputs,parseRupiah});
+let financeSelectedMotorId=null;
 let toastTimer;
 function toast(message){const t=$('toast');t.textContent=message;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),3800)}
 function errText(error){return error?.message||String(error||'Terjadi kesalahan')}
@@ -103,7 +104,7 @@ function render(){
   document.body.dataset.view=filter;
   if(filter==='all'){
     document.querySelectorAll('[data-nav]').forEach(el=>el.classList.toggle('active',el.dataset.nav==='all'));
-    $('financeDashboard').innerHTML=renderPartshopFinancials(calculatePartshopFinancials(motors,parts),money,esc);
+    $('financeDashboard').innerHTML=renderPartshopFinancials(calculatePartshopFinancials(motors,parts),money,esc,financeSelectedMotorId);
     return;
   }
   $('searchBox').placeholder=filter==='parts'?'Cari sparepart atau nama motor...':filter==='sold'?'Cari motor dalam arsip...':'Cari motor belum terjual...';
@@ -382,6 +383,12 @@ $('loginForm').addEventListener('submit',async ev=>{
 $('togglePassword').onclick=()=>{const pass=$('loginPassword');pass.type=pass.type==='password'?'text':'password';$('togglePassword').textContent=pass.type==='password'?'Lihat':'Sembunyikan'};
 const signOut=async()=>{try{await api('logout')}catch{}sessionToken='';sessionStorage.removeItem(SESSION_NAME);$('loginPassword').value='';displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
 $('addMotor').onclick=()=>filter==='parts'?openModal('part',null,selectedId||motors[0]?.id||null):openModal('motor');
+document.addEventListener('change',ev=>{
+  if(ev.target?.id==='financeMotorPicker'){
+    financeSelectedMotorId=ev.target.value;
+    render();
+  }
+});
 $('searchBox').addEventListener('input',ev=>{query=ev.target.value;render()});
 $('yearFilter').addEventListener('change',ev=>{selectedYear=ev.target.value;render()});
 $('closeModal').onclick=closeModal;$('cancelModal').onclick=closeModal;
