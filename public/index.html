@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/partshop.css?v=20261124-nodouble2">
+  <link rel="stylesheet" href="/partshop.css?v=20261126-photo-price1">
   <link rel="stylesheet" href="/partshop-inline.css?v=20261124-parts1">
 </head>
 <body>
@@ -33,7 +33,7 @@
       <div class="side-title">MENU INVENTARIS</div>
       <button class="side-nav active" data-nav="all"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span> Dashboard</button>
       <button class="side-nav" data-nav="motor"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M8 17h5l3-7h3l2 4M5 17l4-9h4l3 9M12 7H9M16 7h3"/></svg></span> List Motor</button>
-      <button class="side-nav" data-nav="parts"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19 13.5 1.5 1.2-1.5 2.6-1.9-.6a7 7 0 0 1-2 1.1l-.4 2H9.4l-.4-2a7 7 0 0 1-2-1.1l-1.9.6-1.5-2.6 1.5-1.2a7 7 0 0 1 0-3l-1.5-1.2 1.5-2.6 1.9.6a7 7 0 0 1 2-1.1l.4-2h5.2l.4 2a7 7 0 0 1 2 1.1l1.9-.6 1.5 2.6-1.5 1.2a7 7 0 0 1 0 3z"/></svg></span> Part Motor</button>
+      <button class="side-nav" data-nav="parts"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19 13.5 1.5 1.2-1.5 2.6-1.9-.6a7 7 0 0 1-2 1.1l-.4 2H9.4l-.4-2a7 7 0 0 1-2-1.1l-1.9.6-1.5-2.6 1.5-1.2a7 7 0 0 1 0-3l-1.5-1.2 1.5-2.6 1.9.6a7 7 0 0 1 2-1.1l.4-2h5.2l.4 2a7 7 0 0 1 2 1.1l1.9-.6 1.5 2.6-1.5 1.2a7 7 0 0 1 0 3z"/></svg></span> Sparepart</button>
       <button class="side-nav" data-nav="sold"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 12 9-9h7a2 2 0 0 1 2 2v7l-9 9-9-9z"/><circle cx="16.5" cy="7.5" r="1"/></svg></span> Arsip</button>
       <button class="side-nav" data-nav="available"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14M5 21h14M7 3v4a5 5 0 0 0 2 4l3 1 3-1a5 5 0 0 0 2-4V3M7 21v-4a5 5 0 0 1 2-4l3-1 3 1a5 5 0 0 1 2 4v4"/></svg></span> Belum Terjual</button>
       <button class="side-nav" data-nav="report"><span class="side-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V11M9 21V6M14 21V13M19 21V3M2 21h20"/></svg></span> Laporan</button>
@@ -53,14 +53,22 @@
             <div class="filter-bar"><span class="pill selected"><span id="scopeLabel">Belum Terjual</span> (<span id="filterAll">0</span>)</span><select id="yearFilter" class="year-filter" aria-label="Filter tahun"><option value="">Semua Tahun</option></select></div>
             <div class="motor-table-header"><span>Motor</span><span>Tahun</span><span>Modal</span><span>Status</span><span>Part</span><span>Aksi</span></div><div id="motorList" class="motor-list"><div class="empty">Belum ada data motor.</div></div>
           </section>
-          <section class="panel detail-panel"><div class="section-head"><div><small>DETAIL DAN SPAREPART</small><h2 id="detailTitle">Detail Motor</h2></div></div><div id="motorDetail"><div class="empty">Pilih motor untuk melihat detail dan menambahkan sparepart.</div></div></section>
+          <section class="panel detail-panel"><div class="section-head"><div><small id="detailEyebrow">DETAIL MOTOR DAN SPAREPART</small><h2 id="detailTitle">Detail Motor</h2></div></div><div id="motorDetail"><div class="empty">Pilih motor untuk melihat detail dan menambahkan sparepart.</div></div></section>
         </div>
-        <footer>© Starpoint Garage · Second Partshop · Data tersimpan aman di akun owner.</footer>
+        <footer>STARPOINT SECOND PARTSHOP · Inventaris internal motor dan sparepart</footer>
       </main>
     </div>
   </div>
   <div id="modalBackdrop" class="modal-backdrop" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><h2 id="modalTitle">Tambah Motor</h2><button class="close-btn" id="closeModal" aria-label="Tutup">×</button></div><form id="editorForm"><div id="formFields"></div><div class="modal-actions"><button type="button" id="cancelModal" class="btn outline">Batal</button><button type="submit" id="saveButton" class="btn primary">Simpan</button></div></form></section></div>
+  <div id="photoViewer" class="photo-viewer" hidden>
+    <div class="photo-viewer-panel" role="dialog" aria-modal="true" aria-labelledby="photoViewerTitle">
+      <div class="photo-viewer-head"><strong id="photoViewerTitle">Foto Produk</strong><button type="button" id="closePhotoViewer" class="photo-viewer-close" aria-label="Tutup foto">×</button></div>
+      <div id="photoViewerLoading" class="photo-viewer-loading">Memuat foto...</div>
+      <img id="photoViewerImage" alt="" hidden>
+      <p class="photo-viewer-hint">Ketuk area gelap atau tombol × untuk menutup.</p>
+    </div>
+  </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script type="module" src="/partshop.js?v=20261124-photo30d"></script>
+  <script type="module" src="/partshop.js?v=20261126-photo-price1"></script>
 </body>
 </html>
