@@ -106,3 +106,76 @@ body.viewer-open{overflow:hidden}
   .photo-viewer-panel{max-height:96dvh}
   .photo-viewer-panel>img{max-height:calc(96dvh - 110px)}
 }
+
+/* Starpoint Second Partshop — refined sparepart action group (26 Nov 2026).
+   Large tap targets, equal button heights, no tiny single-character delete button. */
+.parts-table .part-table-header,
+.parts-table .part-row{
+  grid-template-columns:minmax(175px,1.65fr) minmax(62px,.60fr) minmax(84px,.78fr) minmax(100px,.94fr) minmax(98px,.88fr) 172px;
+  gap:10px;
+  align-items:center;
+}
+.parts-table .part-table-header>span:last-child{text-align:center}
+.parts-table .part-row{min-height:78px;padding:12px 13px;transition:background .16s ease}
+.parts-table .part-row:hover{background:#fcfcfd}
+.parts-table .part-actions{
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;justify-content:stretch;gap:7px;
+  min-width:0;width:100%;flex-wrap:nowrap;
+}
+.parts-table .part-action-btn{
+  -webkit-appearance:none;appearance:none;
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:5px;min-width:0;width:100%;min-height:37px;
+  padding:8px 7px;border-radius:8px;
+  border:1px solid transparent;
+  font-family:inherit;font-size:11px;font-weight:700;
+  line-height:1.15;white-space:nowrap;cursor:pointer;
+  transition:background-color .15s ease,border-color .15s ease,transform .15s ease;
+}
+.parts-table .part-action-btn svg{width:15px;height:15px;flex-shrink:0}
+.parts-table .part-action-edit{
+  background:#f2f3f6;border-color:#d9dce3;color:#252832;
+}
+.parts-table .part-action-edit:hover{
+  background:#e8eaf0;border-color:#bfc3cc;
+}
+.parts-table .part-action-delete{
+  background:#fff1f2;border-color:#f2c7cc;color:#b6192d;
+}
+.parts-table .part-action-delete:hover{
+  background:#ffe1e4;border-color:#e9a6af;
+}
+.parts-table .part-action-btn:focus-visible{
+  outline:3px solid #d91b30;outline-offset:2px;
+}
+.parts-table .part-action-btn:active{transform:scale(.97)}
+@media(max-width:1100px) and (min-width:801px){
+  .parts-table .part-table-header,
+  .parts-table .part-row{
+    grid-template-columns:minmax(155px,1.35fr) minmax(53px,.55fr) minmax(77px,.73fr) minmax(86px,.90fr) minmax(85px,.80fr) 156px;
+    gap:7px;
+  }
+  .parts-table .part-actions{gap:5px}
+  .parts-table .part-action-btn{padding:7px 5px;font-size:10px;min-height:39px}
+  .parts-table .part-action-btn svg{width:14px;height:14px}
+}
+@media(max-width:800px){
+  .parts-table .part-table-header{display:none}
+  .parts-table .part-row{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px 12px;padding:13px 14px;min-height:auto;
+  }
+  .parts-table .part-name{grid-column:1/-1}
+  .parts-table .part-cell.condition{grid-column:1;grid-row:2}
+  .parts-table .part-cell.cost{grid-column:2;grid-row:2}
+  .parts-table .part-cell.sale-price{grid-column:1;grid-row:3}
+  .parts-table .part-cell.status-cell{grid-column:2;grid-row:3}
+  .parts-table .part-actions{
+    grid-column:1/-1;grid-row:4;
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    justify-self:stretch;margin-top:2px;
+  }
+  .parts-table .part-action-btn{min-height:43px;font-size:12px;gap:7px}
+  .parts-table .part-action-btn svg{width:17px;height:17px}
+}
