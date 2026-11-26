@@ -65,3 +65,63 @@ export function missingZX25Names(motor,parts){
   const known=new Set(parts.filter(p=>p.motorcycle_id===motor.id).map(p=>normalizeZX25Name(p.name)));
   return ZX25_IMPORT_NAMES.filter(name=>!known.has(normalizeZX25Name(name)));
 }
+
+
+let importRunning=false;
+function localGet(key){try{return localStorage.getItem(key)}catch{return null}}
+function localSet(key,value){try{localStorage.setItem(key,value)}catch{}}
+function localDelete(key){try{localStorage.removeItem(key)}catch{}}
+export async function runZX25AutoImport({motors,parts,save,reload,onStatus}){
+  if(importRunning)return;
+  const motor=findZX25Motor(motors);
+  if(!motor){
+    onStatus('Impor ditunda: motor ZX25 belum ditemukan secara unik.','warning');
+    return;
+  }
+  const doneKey='partshop-'+ZX25_IMPORT_VERSION+'-'+motor.id+'-done';
+  if(localGet(doneKey)==='yes')return;
+  const missing=missingZX25Names(motor,parts);
+  if(!missing.length){localSet(doneKey,'yes');return}
+  const lockKey='partshop-'+ZX25_IMPORT_VERSION+'-'+motor.id+'-lock';
+  let lock=null;
+  try{lock=JSON.parse(localGet(lockKey)||'null')}catch{}
+  if(lock?.expiry>Date.now()){
+    onStatus('Daftar ZX25 sedang diproses pada tab lain.','running');
+    return;
+  }
+  const owner='imp-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+  const heartbeat=()=>localSet(lockKey,JSON.stringify({owner,expiry:Date.now()+60000}));
+  heartbeat();
+  importRunning=true;
+  let created=0;
+  try{
+    onStatus('Mengisi '+missing.length+' sparepart ZX25 dari gambar. Modal Rp0, foto dan harga jual kosong.','running');
+    for(const name of [...missing].reverse()){
+      heartbeat();
+      await save({type:'part',id:null,payload:{
+        motorcycle_id:motor.id,name,capital:0,sale_price:null,
+        condition:'Bekas',status:'available',notes:''
+      }});
+      created++;
+      if(created===1||created%5===0||created===missing.length){
+        onStatus('Mengimpor sparepart ZX25: '+created+' dari '+missing.length+' item baru selesai.','running');
+      }
+    }
+    const latest=await reload();
+    const stillMissing=missingZX25Names(motor,latest.parts||[]);
+    if(stillMissing.length){
+      onStatus('Impor belum lengkap: '+stillMissing.length+' item belum tercatat. Buka kembali halaman untuk melanjutkan.','warning');
+    }else{
+      localSet(doneKey,'yes');
+      onStatus('Selesai: 44 daftar sparepart ZX25 tersedia. Modal Rp0; harga jual dan foto bisa diisi melalui Edit.','success');
+    }
+    return {added:created,remaining:stillMissing.length};
+  }catch(error){
+    if(created)await reload().catch(()=>{});
+    onStatus('Tersimpan '+created+' item baru. '+(error?.message||'Koneksi bermasalah')+'. Muat ulang untuk melanjutkan.','warning');
+    return {added:created,error:String(error?.message||error)};
+  }finally{
+    try{if(JSON.parse(localGet(lockKey)||'null')?.owner===owner)localDelete(lockKey)}catch{}
+    importRunning=false;
+  }
+}
