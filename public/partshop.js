@@ -1,5 +1,6 @@
 import { createMotorPartsEditor } from './partshop-inline.js?v=20261124-photo30d';
 import { formatRupiah, parseRupiah, bindRupiahInputs } from './partshop-currency.js?v=20261124-rupiah1';
+import { calculatePartshopFinancials, renderPartshopFinancials } from './partshop-finance.js?v=20261126-finance1';
 const API_ENDPOINT='https://msvdxyicostwztisvbvl.supabase.co/functions/v1/second-partshop-api';
 const PUBLIC_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
 const SESSION_NAME='second-partshop-session';
@@ -100,6 +101,11 @@ async function hydratePhotos(){
 }
 function render(){
   document.body.dataset.view=filter;
+  if(filter==='all'){
+    document.querySelectorAll('[data-nav]').forEach(el=>el.classList.toggle('active',el.dataset.nav==='all'));
+    $('financeDashboard').innerHTML=renderPartshopFinancials(calculatePartshopFinancials(motors,parts),money,esc);
+    return;
+  }
   $('searchBox').placeholder=filter==='parts'?'Cari sparepart atau nama motor...':filter==='sold'?'Cari motor dalam arsip...':'Cari motor belum terjual...';
   const sold=motors.filter(m=>m.status==='sold').length;
   $('addMotor').textContent=filter==='parts'?'+ Tambah Part':'+ Tambah Motor';
@@ -213,7 +219,7 @@ function openModal(type,id=null,motorId=null){
     '<label>Tahun<input name="model_year" type="number" min="1950" max="2100" placeholder="Isi tahun" value="'+esc(motor?.model_year??'')+'"></label>'+
     '<label>Modal beli motor (Rp)<input name="capital" type="text" inputmode="numeric" data-rupiah required placeholder="Rp 0" value="'+esc(formatRupiah(motor?.capital??''))+'"></label>'+
     '<label>Status<select name="status"><option value="available" '+(motor?.status!=='sold'?'selected':'')+'>Belum Terjual</option><option value="sold" '+(motor?.status==='sold'?'selected':'')+'>Fix Terjual</option></select></label>'+
-    '<label>Harga terjual motor (Rp)<input name="sale_price" type="text" inputmode="numeric" data-rupiah placeholder="Rp 0 (opsional)" value="'+esc(formatRupiah(motor?.sale_price??''))+'"></label>'+
+    '<label>Target / Harga Jual Motor (Rp)<input name="sale_price" type="text" inputmode="numeric" data-rupiah placeholder="Rp 0 (opsional)" value="'+esc(formatRupiah(motor?.sale_price??''))+'"></label>'+
     '<label class="span2">Upload foto motor<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><div class="field-hint">JPG, PNG, atau WebP · maksimal 8 MB · otomatis dihapus setelah 30 hari.</div>'+
     '<label class="span2">Catatan<textarea name="notes" placeholder="Catatan tambahan">'+esc(motor?.notes||'')+'</textarea></label></div>':
     '<div class="form-grid"><label class="span2">Motor pemilik part *<select name="motorcycle_id" required>'+motors.map(m=>'<option value="'+esc(m.id)+'" '+(m.id===(part?.motorcycle_id||selectedId)?'selected':'')+'>'+esc(m.name)+'</option>').join('')+'</select></label>'+
@@ -355,6 +361,8 @@ async function handleAction(el){
   if(action==='deleteMotor')await deleteRecord('motor',id);
   if(action==='deletePart')await deleteRecord('part',id);
   if(action==='exportCSV')exportInventoryCSV();
+  if(action==='navigateMotor')filterChange('motor');
+  if(action==='navigateParts')filterChange('parts');
 }
 $('loginForm').addEventListener('submit',async ev=>{
   ev.preventDefault();
@@ -384,7 +392,7 @@ document.addEventListener('keydown',ev=>{
     if(!$('photoViewer').hidden){closePhotoViewer();return}
     if(!$('modalBackdrop').hidden){closeModal();return}
   }
-  if(ev.key==='Enter'&&ev.target.matches('[data-open]')){selectedId=ev.target.dataset.open;if(filter==='motor')filter='all';render()}
+  if(ev.key==='Enter'&&ev.target.matches('[data-open]')){selectedId=ev.target.dataset.open;if(filter==='motor')filter='available';render()}
 });
 $('closePhotoViewer').addEventListener('click',closePhotoViewer);
 $('photoViewer').addEventListener('click',ev=>{if(ev.target===$('photoViewer'))closePhotoViewer()});
@@ -394,6 +402,6 @@ document.addEventListener('click',ev=>{
   const act=ev.target.closest('[data-action]');if(act){ev.stopPropagation();handleAction(act);return}
   const flt=ev.target.closest('[data-filter]');if(flt){filterChange(flt.dataset.filter);return}
   const nav=ev.target.closest('[data-nav]');if(nav){filterChange(nav.dataset.nav);return}
-  const row=ev.target.closest('[data-open]');if(row){selectedId=row.dataset.open;if(filter==='motor')filter='all';render()}
+  const row=ev.target.closest('[data-open]');if(row){selectedId=row.dataset.open;if(filter==='motor')filter='available';render()}
 });
 enterApp().catch(e=>{displayLogin('Tidak dapat terhubung: '+errText(e))});
