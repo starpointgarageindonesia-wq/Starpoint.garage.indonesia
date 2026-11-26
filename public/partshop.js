@@ -1,6 +1,5 @@
 import { createMotorPartsEditor } from './partshop-inline.js?v=20261124-photo30d';
 import { formatRupiah, parseRupiah, bindRupiahInputs } from './partshop-currency.js?v=20261124-rupiah1';
-import { runZX25AutoImport } from './partshop-zx25-import.js?v=20261126-zx44a';
 const API_ENDPOINT='https://msvdxyicostwztisvbvl.supabase.co/functions/v1/second-partshop-api';
 const PUBLIC_KEY='sb_publishable_ihIG0dcPUHF9egWHaRlfvQ_E_Bn8zBk';
 const SESSION_NAME='second-partshop-session';
@@ -26,13 +25,6 @@ const money=n=>rupiah.format(Number(n)||0);
 let motors=[],parts=[],selectedId=null,filter='all',query='',selectedYear='',modalType='',editingId=null,photoCache=new Map(),previewUrl=null;
 const inlineParts=createMotorPartsEditor({bindRupiahInputs,parseRupiah});
 let toastTimer;
-let zx25ImportLaunched=false;
-function showZX25Import(message,level='running'){
-  const box=$('zx25BulkStatus');
-  if(!box)return;
-  box.hidden=false;box.dataset.level=level;
-  $('zx25BulkMessage').textContent=message;
-}
 function toast(message){const t=$('toast');t.textContent=message;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),3800)}
 function errText(error){return error?.message||String(error||'Terjadi kesalahan')}
 function displayLogin(message=''){$('appView').hidden=true;$('loginView').hidden=false;$('loginError').textContent=message}
@@ -42,15 +34,6 @@ async function enterApp(){
   $('loginView').hidden=true;
   $('appView').hidden=false;
   $('accountText').textContent='starpointpart';
-  if(!zx25ImportLaunched){
-    zx25ImportLaunched=true;
-    void runZX25AutoImport({
-      motors,parts,
-      save:payload=>api('save',payload),
-      reload:async()=>{await loadData();return {motors,parts}},
-      onStatus:showZX25Import
-    });
-  }
 }
 async function loadData(){
   const data=await api('load');
