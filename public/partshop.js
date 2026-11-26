@@ -191,8 +191,11 @@ function renderPartRow(p,showMotor){
     '<div class="part-cell cost" data-label="Modal Beli">'+money(p.capital)+'</div>'+
     '<div class="part-cell sale-price" data-label="Harga Jual"><strong class="'+(p.sale_price==null?'no-sale-price':'')+'">'+esc(sale)+'</strong></div>'+
     '<div class="part-cell status-cell" data-label="Status"><span class="status '+esc(p.status)+'">'+({sold:'Fix Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||'Belum Terjual')+'</span></div>'+
-    '<div class="part-actions"><button class="icon-button" data-action="editPart" data-id="'+esc(p.id)+'" title="Edit harga, status, dan foto">Edit</button>'+
-    '<button class="icon-button red" data-action="deletePart" data-id="'+esc(p.id)+'" title="Hapus sparepart">×</button></div></div>';
+    '<div class="part-actions" role="group" aria-label="Aksi sparepart '+esc(p.name)+'">'+
+    '<button type="button" class="part-action-btn part-action-edit" data-action="editPart" data-id="'+esc(p.id)+'" title="Edit harga, status, dan foto" aria-label="Edit '+esc(p.name)+'">'+
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L9 17l-4 1 1-4L16.5 3.5z"/></svg><span>Edit</span></button>'+
+    '<button type="button" class="part-action-btn part-action-delete" data-action="deletePart" data-id="'+esc(p.id)+'" title="Hapus sparepart" aria-label="Hapus '+esc(p.name)+'">'+
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 15h10l1-15"/><path d="M10 10v7M14 10v7"/></svg><span>Hapus</span></button></div></div>';
 }
 function filterChange(next){filter=next;selectedYear='';query='';$('searchBox').value='';render()}
 function openModal(type,id=null,motorId=null){
