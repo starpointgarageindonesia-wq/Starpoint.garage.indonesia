@@ -41,8 +41,51 @@ async function loadData(){
   parts=data.parts||[];
   render();
 }
-function photoElement(path,extra=''){
-  return '<div class="photo-box '+extra+'" '+(path?'data-photo="'+esc(path)+'"':'')+'>'+(path?'':'▧')+'</div>';
+function photoElement(path,extra='',label='Foto produk'){
+  if(!path)return '<div class="photo-box '+extra+' photo-empty" aria-label="Foto belum tersedia">▧</div>';
+  return '<button type="button" class="photo-box '+extra+' photo-enlarge" data-photo="'+esc(path)+'" data-photo-label="'+esc(label)+'" aria-label="Perbesar foto '+esc(label)+'"><span class="photo-placeholder">▧</span></button>';
+}
+let viewerRequest=0;
+let viewerReturnFocus=null;
+async function openPhotoViewer(box){
+  const path=box?.dataset?.photo;
+  if(!path)return;
+  const requestId=++viewerRequest;
+  viewerReturnFocus=box;
+  const title=box.dataset.photoLabel||'Foto produk';
+  $('photoViewerTitle').textContent=title;
+  const large=$('photoViewerImage');
+  large.alt='Foto besar '+title;
+  large.hidden=true;
+  large.removeAttribute('src');
+  $('photoViewerLoading').hidden=false;
+  $('photoViewerLoading').textContent='Memuat foto...';
+  $('photoViewer').hidden=false;
+  document.body.classList.add('viewer-open');
+  $('closePhotoViewer').focus();
+  try{
+    let cached=photoCache.get(path);
+    if(!cached||Date.now()>=cached.expires){
+      const response=await api('photo',{path});
+      if(!response.url)throw Error('Foto tidak tersedia');
+      cached={url:response.url,expires:Date.now()+1500000};
+      photoCache.set(path,cached);
+    }
+    if(requestId!==viewerRequest||$('photoViewer').hidden)return;
+    large.onload=()=>{if(requestId===viewerRequest){large.hidden=false;$('photoViewerLoading').hidden=true}};
+    large.onerror=()=>{if(requestId===viewerRequest)$('photoViewerLoading').textContent='Foto gagal dimuat. Coba buka kembali.'};
+    large.src=cached.url;
+  }catch(e){
+    if(requestId===viewerRequest)$('photoViewerLoading').textContent='Foto tidak dapat dibuka. Foto mungkin telah kedaluwarsa.';
+  }
+}
+function closePhotoViewer(){
+  viewerRequest++;
+  $('photoViewer').hidden=true;
+  $('photoViewerImage').removeAttribute('src');
+  document.body.classList.remove('viewer-open');
+  if(viewerReturnFocus?.isConnected)viewerReturnFocus.focus();
+  viewerReturnFocus=null;
 }
 async function hydratePhotos(){
   for(const element of document.querySelectorAll('[data-photo]')){
@@ -59,6 +102,7 @@ function render(){
   document.body.dataset.view=filter;
   $('searchBox').placeholder=filter==='parts'?'Cari sparepart atau nama motor...':filter==='sold'?'Cari motor dalam arsip...':'Cari motor belum terjual...';
   const sold=motors.filter(m=>m.status==='sold').length;
+  $('addMotor').textContent=filter==='parts'?'+ Tambah Part':'+ Tambah Motor';
   const capital=motors.reduce((sum,m)=>sum+Number(m.capital||0),0)+parts.reduce((sum,p)=>sum+Number(p.capital||0),0);
   const activeMotors=motors.filter(m=>m.status==='available');
   const archivedMotors=motors.filter(m=>m.status==='sold');
@@ -92,7 +136,7 @@ function render(){
   $('motorList').innerHTML=visible.length?visible.map(m=>{
     const count=parts.filter(p=>p.motorcycle_id===m.id).length;
     return '<article class="motor-row '+(m.id===selectedId?'active':'')+'" data-open="'+esc(m.id)+'" tabindex="0" aria-label="Lihat detail '+esc(m.name)+'">'+
-      '<div class="motor-main">'+photoElement(m.photo_path)+'<strong>'+esc(m.name)+'</strong></div>'+
+      '<div class="motor-main">'+photoElement(m.photo_path,'',m.name)+'<strong>'+esc(m.name)+'</strong></div>'+
       '<div class="motor-cell year">'+(m.model_year||'—')+'</div>'+
       '<div class="motor-cell money">'+money(m.capital)+'</div>'+
       '<div class="motor-cell status-cell"><span class="status '+esc(m.status)+'">'+(m.status==='sold'?'Terjual':'Belum Terjual')+'</span></div>'+
@@ -101,26 +145,29 @@ function render(){
   }).join(''):'<div class="empty">'+(inArchive?'Belum ada motor yang terjual di arsip.':'Tidak ada motor belum terjual yang cocok dengan pencarian.')+'</div>';
 
   if(filter==='report'){
-    $('detailTitle').textContent='Laporan';
+    $('detailEyebrow').textContent='REKAP KEUANGAN';
+    $('detailTitle').textContent='Laporan Penjualan';
     const sales=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.sale_price||0),0)+parts.filter(p=>p.status==='sold').reduce((a,p)=>a+Number(p.sale_price||0),0);
     const soldMotorIds=new Set(motors.filter(m=>m.status==='sold').map(m=>m.id));
     const soldCapital=motors.filter(m=>m.status==='sold').reduce((a,m)=>a+Number(m.capital||0),0)+parts.filter(p=>p.status==='sold'||(p.status==='installed'&&soldMotorIds.has(p.motorcycle_id))).reduce((a,p)=>a+Number(p.capital||0),0);
     $('motorDetail').innerHTML='<div class="report-controls"><button class="btn primary small" data-action="exportCSV">↓ Ekspor Data (CSV)</button></div><div class="report-grid"><div class="report-box"><small>Total Modal Tercatat</small><strong>'+money(capital)+'</strong></div><div class="report-box"><small>Total Penjualan Tercatat</small><strong>'+money(sales)+'</strong></div><div class="report-box"><small>Selisih Penjualan - Modal Item Terjual</small><strong>'+money(sales-soldCapital)+'</strong></div><div class="report-box"><small>Motor / Part Terjual</small><strong>'+sold+' motor · '+parts.filter(p=>p.status==='sold').length+' part</strong></div><p class="report-note">Ringkasan ini mengikuti harga jual yang dicatat. Jangan menghitung part dua kali apabila modalnya sudah termasuk dalam modal motor.</p></div>';return;
   }
   if(filter==='parts'){
-    $('detailTitle').textContent='Daftar Semua Part';
+    $('detailEyebrow').textContent='DATA INVENTARIS SPAREPART';
+    $('detailTitle').textContent='Inventaris Sparepart';
     const q=query.trim().toLowerCase();
     const matchingParts=parts.filter(p=>{
       const owner=motors.find(m=>m.id===p.motorcycle_id);
       return !q||(p.name+' '+(owner?.name||'')+' '+(owner?.model_year||'')).toLowerCase().includes(q);
     });
-    $('motorDetail').innerHTML='<div class="detail-wrap"><div class="parts-title"><h3>Sparepart Tercatat ('+matchingParts.length+')</h3><button class="btn primary small" data-action="addPart" data-id="'+esc(selectedId||'')+'" '+(!selectedId?'disabled':'')+'>+ Tambah Part</button></div><div class="parts-table">'+renderPartHead()+(matchingParts.length?matchingParts.map(p=>renderPartRow(p,true)).join(''):'<div class="empty">Belum ada sparepart yang sesuai pencarian.</div>')+'</div></div>';hydratePhotos();return;
+    $('motorDetail').innerHTML='<div class="detail-wrap"><div class="parts-title"><h3>'+matchingParts.length+' sparepart'+(q?' ditemukan dari '+parts.length+' data':' tercatat')+'</h3></div><div class="parts-table">'+renderPartHead()+(matchingParts.length?matchingParts.map(p=>renderPartRow(p,true)).join(''):'<div class="empty">Belum ada sparepart yang sesuai pencarian.</div>')+'</div></div>';hydratePhotos();return;
   }
+  $('detailEyebrow').textContent='DETAIL MOTOR DAN SPAREPART';
   $('detailTitle').textContent='Detail Motor';
   const m=shownBase.find(x=>x.id===selectedId);
   if(!m){$('motorDetail').innerHTML='<div class="empty">'+(inArchive?'Pilih motor di arsip untuk melihat detail dan sparepart.':'Pilih motor belum terjual untuk melihat detail dan sparepart.')+'</div>';hydratePhotos();return}
   const list=parts.filter(p=>p.motorcycle_id===m.id),partCapital=list.reduce((sum,p)=>sum+Number(p.capital||0),0);
-  $('motorDetail').innerHTML='<div class="detail-wrap"><div class="hero-motor">'+photoElement(m.photo_path)+
+  $('motorDetail').innerHTML='<div class="detail-wrap"><div class="hero-motor">'+photoElement(m.photo_path,'',m.name)+
     '<div class="detail-info"><strong>'+esc(m.name)+'</strong><div class="details-kv">Tahun: <b>'+(m.model_year||'—')+'</b></div>'+
     '<div class="details-kv">Modal Motor: <b>'+money(m.capital)+'</b></div>'+
     '<div class="details-kv">Modal Part: <b>'+money(partCapital)+'</b></div>'+
@@ -134,15 +181,18 @@ function render(){
   hydratePhotos();
 }
 function renderPartHead(){
-  return '<div class="part-table-header"><span>Nama Part</span><span>Kondisi</span><span>Modal</span><span>Status</span><span>Aksi</span></div>';
+  return '<div class="part-table-header"><span>Nama Sparepart</span><span>Kondisi</span><span>Modal Beli</span><span>Harga Jual</span><span>Status</span><span>Aksi</span></div>';
 }
 function renderPartRow(p,showMotor){
   const mot=motors.find(m=>m.id===p.motorcycle_id);
-  return '<div class="part-row"><div class="part-name">'+photoElement(p.photo_path)+'<strong>'+esc(p.name)+(showMotor&&mot?'<small style="display:block;font-weight:400">'+esc(mot.name)+'</small>':'')+'</strong></div>'+
-    '<div class="part-cell condition">'+esc(p.condition)+'</div><div class="part-cell cost">'+money(p.capital)+'</div>'+
-    '<div class="part-cell status-cell"><span class="status '+esc(p.status)+'">'+({sold:'Fix Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||'Belum Terjual')+'</span></div>'+
-    '<div class="part-actions"><button class="icon-button" data-action="editPart" data-id="'+esc(p.id)+'" title="Edit dan upload foto">Edit</button>'+
-    '<button class="icon-button red" data-action="deletePart" data-id="'+esc(p.id)+'" title="Hapus part">×</button></div></div>';
+  const sale=p.sale_price==null?'Belum diisi':money(p.sale_price);
+  return '<div class="part-row"><div class="part-name">'+photoElement(p.photo_path,'',p.name)+'<strong>'+esc(p.name)+(showMotor&&mot?'<small class="part-motor-name">'+esc(mot.name)+'</small>':'')+'</strong></div>'+
+    '<div class="part-cell condition" data-label="Kondisi">'+esc(p.condition||'—')+'</div>'+
+    '<div class="part-cell cost" data-label="Modal Beli">'+money(p.capital)+'</div>'+
+    '<div class="part-cell sale-price" data-label="Harga Jual"><strong class="'+(p.sale_price==null?'no-sale-price':'')+'">'+esc(sale)+'</strong></div>'+
+    '<div class="part-cell status-cell" data-label="Status"><span class="status '+esc(p.status)+'">'+({sold:'Fix Terjual',installed:'Terpasang',available:'Belum Terjual'}[p.status]||'Belum Terjual')+'</span></div>'+
+    '<div class="part-actions"><button class="icon-button" data-action="editPart" data-id="'+esc(p.id)+'" title="Edit harga, status, dan foto">Edit</button>'+
+    '<button class="icon-button red" data-action="deletePart" data-id="'+esc(p.id)+'" title="Hapus sparepart">×</button></div></div>';
 }
 function filterChange(next){filter=next;selectedYear='';query='';$('searchBox').value='';render()}
 function openModal(type,id=null,motorId=null){
@@ -320,14 +370,24 @@ $('loginForm').addEventListener('submit',async ev=>{
 });
 $('togglePassword').onclick=()=>{const pass=$('loginPassword');pass.type=pass.type==='password'?'text':'password';$('togglePassword').textContent=pass.type==='password'?'Lihat':'Sembunyikan'};
 const signOut=async()=>{try{await api('logout')}catch{}sessionToken='';sessionStorage.removeItem(SESSION_NAME);$('loginPassword').value='';displayLogin();};$('logoutButton').onclick=signOut;$('logoutTop').onclick=signOut;
-$('addMotor').onclick=()=>openModal('motor');
+$('addMotor').onclick=()=>filter==='parts'?openModal('part',null,selectedId||motors[0]?.id||null):openModal('motor');
 $('searchBox').addEventListener('input',ev=>{query=ev.target.value;render()});
 $('yearFilter').addEventListener('change',ev=>{selectedYear=ev.target.value;render()});
 $('closeModal').onclick=closeModal;$('cancelModal').onclick=closeModal;
 $('modalBackdrop').addEventListener('click',ev=>{if(ev.target===$('modalBackdrop'))closeModal()});
 $('editorForm').addEventListener('submit',submitForm);
-document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('modalBackdrop').hidden)closeModal();if(ev.key==='Enter'&&ev.target.matches('[data-open]')){selectedId=ev.target.dataset.open;if(filter==='motor')filter='all';render()}});
+document.addEventListener('keydown',ev=>{
+  if(ev.key==='Escape'){
+    if(!$('photoViewer').hidden){closePhotoViewer();return}
+    if(!$('modalBackdrop').hidden){closeModal();return}
+  }
+  if(ev.key==='Enter'&&ev.target.matches('[data-open]')){selectedId=ev.target.dataset.open;if(filter==='motor')filter='all';render()}
+});
+$('closePhotoViewer').addEventListener('click',closePhotoViewer);
+$('photoViewer').addEventListener('click',ev=>{if(ev.target===$('photoViewer'))closePhotoViewer()});
 document.addEventListener('click',ev=>{
+  const photo=ev.target.closest('[data-photo]');
+  if(photo){ev.stopPropagation();openPhotoViewer(photo);return}
   const act=ev.target.closest('[data-action]');if(act){ev.stopPropagation();handleAction(act);return}
   const flt=ev.target.closest('[data-filter]');if(flt){filterChange(flt.dataset.filter);return}
   const nav=ev.target.closest('[data-nav]');if(nav){filterChange(nav.dataset.nav);return}
