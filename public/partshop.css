@@ -179,3 +179,14 @@ body.viewer-open{overflow:hidden}
   .parts-table .part-action-btn{min-height:43px;font-size:12px;gap:7px}
   .parts-table .part-action-btn svg{width:17px;height:17px}
 }
+
+/* User-requested 44-part ZX25 bulk import progress, shown only when applicable. */
+.zx25-import-status{display:flex;align-items:center;gap:10px;margin:0 0 15px;padding:13px 15px;
+  border:1px solid #ccd6e5;border-left:4px solid #3e78c5;border-radius:9px;
+  color:#243951;background:#f2f6fb;font-size:12px;line-height:1.5;font-weight:600;
+  overflow-wrap:anywhere}
+.zx25-import-status[hidden]{display:none}
+.zx25-import-dot{width:8px;height:8px;background:currentColor;border-radius:50%;flex:none}
+.zx25-import-status[data-level="warning"]{color:#744a11;background:#fff6e8;border-color:#e6d1a7;border-left-color:#d59626}
+.zx25-import-status[data-level="success"]{color:#215e32;background:#ecf8ee;border-color:#b8dabf;border-left-color:#339a49}
+@media(max-width:600px){.zx25-import-status{font-size:11px;padding:10px 12px}}
