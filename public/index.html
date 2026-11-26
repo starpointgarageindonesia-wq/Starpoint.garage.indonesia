@@ -11,8 +11,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/partshop.css?v=20261126-finance1">
+  <link rel="stylesheet" href="/partshop.css?v=20261126-finance2">
   <link rel="stylesheet" href="/partshop-inline.css?v=20261124-parts1">
+  <link rel="stylesheet" href="/finance-dashboard-v2.css">
+  <style id="critical-finance-layout">
+    /* Inline failsafe for Safari: presentation must remain usable even if a cached
+       CSS file from an earlier deployment is loaded out of order. */
+    body[data-view="all"] .stat-grid,body[data-view="all"] .dashboard-grid,
+    body[data-view="all"] #addMotor,body[data-view="all"] #searchBox{display:none!important}
+    body:not([data-view="all"]) #financeDashboard,
+    body:not([data-view="all"]) #financeTopLabel{display:none!important}
+    body[data-view="all"] #financeDashboard{display:block!important;width:100%!important}
+    #financeDashboard .fin-v2{display:flex;flex-direction:column;gap:20px;color:#1b1e24;min-width:0}
+    #financeDashboard .fin-v2-head{display:flex;justify-content:space-between;align-items:center;gap:15px}
+    #financeDashboard .fin-v2-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+    #financeDashboard .fin-v2-scenarios{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+    #financeDashboard .fin-v2-stat,#financeDashboard .fin-v2-scenario,
+    #financeDashboard .fin-v2-bottom{background:#fff;border:1px solid #dfe2e8;border-radius:13px;padding:20px;min-width:0}
+    #financeDashboard .fin-v2-comparison{background:#191c23;color:#fff;border-radius:13px;padding:23px;display:flex;justify-content:space-between;gap:20px}
+    #financeDashboard .fin-v2-stat>strong,#financeDashboard .fin-v2-price{display:block;font-size:clamp(20px,2.5vw,38px);font-weight:850;overflow-wrap:anywhere}
+    #financeDashboard .fin-v2-head h1{font-size:clamp(30px,3vw,44px);font-weight:900;margin:8px 0}
+    #financeDashboard .fin-v2-price{margin:12px 0}
+    #financeDashboard .fin-v2-stat>span,#financeDashboard .fin-v2-kicker{display:block;font-size:10px;font-weight:800;letter-spacing:.12em}
+    @media(max-width:1250px){#financeDashboard .fin-v2-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:830px){#financeDashboard .fin-v2-scenarios{grid-template-columns:1fr}
+      #financeDashboard .fin-v2-head,#financeDashboard .fin-v2-comparison{flex-direction:column;align-items:flex-start}}
+    @media(max-width:520px){#financeDashboard .fin-v2-summary{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
   <div class="login-wrap" id="loginView">
@@ -70,6 +95,6 @@
     </div>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script type="module" src="/partshop.js?v=20261126-finance1"></script>
+  <script type="module" src="/partshop.js?v=20261126-finance2"></script>
 </body>
 </html>
